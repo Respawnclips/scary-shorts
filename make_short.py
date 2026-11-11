@@ -338,24 +338,20 @@ def main():
         elif k % 2:  zz0, zz1, cxn, cyn, ddx, ddy = 1.42, 1.56, fx * CW, fy * CH, 38, 0          # close-up
         else:        zz0, zz1, cxn, cyn, ddx, ddy = 1.30, 1.14, (CW / 2 + fx * CW) / 2, (CH / 2 + fy * CH) / 2, -(dx or 30), 0  # pull back
         fa = flash_a(t)
-        z = (zz0 + (zz1 - zz0) * p) * (1 + 0.04 * max(0, 1 - (t - t0) / 0.22))        # punch-in on each cut
-        cw, ch = int(CW / z), int(CH / z)
+        z = zz0 + (zz1 - zz0) * p                                                      # smooth zoom, no jolts
+        cw, ch = CW / z, CH / z                                                        # float crop size: no pixel rounding = no jitter
         cx0 = min(max(cxn - cw / 2, 0), CW - cw); cy0 = min(max(cyn - ch / 2, 0), CH - ch)
         pan = (p - 0.5) * 2
-        shk = 0                                                                        # no screen shake (it was distracting)
-        sx, sy = np.sin(t * 131) * shk, np.cos(t * 109) * shk
-        bob = 5 * np.sin(t * 1.7)                                                      # gentle handheld drift
         img = None
         for name in ("bg", "mid", "glow", "fg"):
             dp = DEPTH[name]
-            ox = int(min(max(cx0 + ddx * pan * dp + sx, 0), CW - cw))
-            oy = int(min(max(cy0 + ddy * pan * dp + sy + bob * dp, 0), CH - ch))
-            c = L[name].crop((ox, oy, ox + cw, oy + ch))
+            ox = min(max(cx0 + ddx * pan * dp, 0), CW - cw)
+            oy = min(max(cy0 + ddy * pan * dp, 0), CH - ch)
+            c = L[name].resize((W, H), Image.BICUBIC, box=(ox, oy, ox + cw, oy + ch))
             if name == "glow":
                 fl = 0.72 + 0.2 * np.sin(t * 9) + 0.08 * np.sin(t * 23 + 1)
                 c.putalpha(c.getchannel("A").point(lambda v: int(v * fl)))
             img = c if img is None else (img.alpha_composite(c) or img)
-        img = img.resize((W, H), Image.BICUBIC)
         if sc.get("fog", True):                                                         # drifting fog bands
             for fy_, spd, fl_ in ((0.50, 34, 1), (0.70, -22, 0)):
                 o = int(t * spd) % fogP
