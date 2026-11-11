@@ -1,0 +1,93 @@
+{
+  "id": "004-resurrection-mary-nl",
+  "legend": "Resurrection Mary (Chicago, VS)",
+  "lines": [
+    "Chicago, Archer Avenue. Neem nooit een meisje in een witte jurk mee.",
+    "Automobilisten vertellen dit verhaal al bijna honderd jaar.",
+    "Volgens de legende is zij de geest van een jonge vrouw, Mary.",
+    "Ze danst met een vreemde op een bal. Haar hand is ijskoud.",
+    "Dan vraagt ze om een lift naar huis, over Archer Avenue.",
+    "Hij rijdt. Ze zegt niets. De nacht wordt kouder.",
+    "Bij de poort van Resurrection Cemetery fluistert ze: stop hier.",
+    "Ze stapt uit, loopt dwars door de ijzeren spijlen, en is verdwenen.",
+    "In 1976 zouden er brandplekken op diezelfde spijlen zijn verschenen.",
+    "Had jij haar een lift gegeven?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "from": 0,
+      "move": [
+        30,
+        -20,
+        1.08,
+        1.2
+      ]
+    },
+    {
+      "name": "ballroom",
+      "from": 3,
+      "move": [
+        -25,
+        0,
+        1.1,
+        1.22
+      ]
+    },
+    {
+      "name": "ride",
+      "from": 4,
+      "move": [
+        0,
+        25,
+        1.08,
+        1.2
+      ]
+    },
+    {
+      "name": "gate",
+      "from": 6,
+      "move": [
+        0,
+        -30,
+        1.1,
+        1.26
+      ]
+    },
+    {
+      "name": "bars",
+      "from": 8,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.22
+      ]
+    },
+    {
+      "name": "end",
+      "from": 9,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.3
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Neem nooit het meisje in de witte jurk mee op deze weg 😨",
+  "description": "Al bijna honderd jaar vertellen automobilisten op Archer Avenue in Chicago over een meisje in het wit dat om een lift naar huis vraagt en bij de poort van de begraafplaats verdwijnt. Dit is de legende van Resurrection Mary.\n\n#engeverhalen #spookverhaal #legendes #horror #griezelig #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "resurrection mary",
+    "chicago",
+    "spook",
+    "legendes",
+    "horror",
+    "griezelig",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

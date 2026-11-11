@@ -1,0 +1,91 @@
+{
+  "id": "004-resurrection-mary",
+  "legend": "Resurrection Mary (Chicago, USA)",
+  "lines": [
+    "Chicago, Archer Avenue. Never pick up a girl in a white dress.",
+    "Drivers have told this story for almost a hundred years.",
+    "Legend says she is the ghost of a young woman named Mary.",
+    "She dances with a stranger at a ballroom. Her hand is ice cold.",
+    "Then she asks for a ride home, down Archer Avenue.",
+    "He drives. She says nothing. The night grows colder.",
+    "At the gates of Resurrection Cemetery, she whispers: stop here.",
+    "She steps out, walks through the iron bars, and is gone.",
+    "In 1976, people say scorch marks appeared on those very bars.",
+    "Would you have given her a ride?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "from": 0,
+      "move": [
+        30,
+        -20,
+        1.08,
+        1.2
+      ]
+    },
+    {
+      "name": "ballroom",
+      "from": 3,
+      "move": [
+        -25,
+        0,
+        1.1,
+        1.22
+      ]
+    },
+    {
+      "name": "ride",
+      "from": 4,
+      "move": [
+        0,
+        25,
+        1.08,
+        1.2
+      ]
+    },
+    {
+      "name": "gate",
+      "from": 6,
+      "move": [
+        0,
+        -30,
+        1.1,
+        1.26
+      ]
+    },
+    {
+      "name": "bars",
+      "from": 8,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.22
+      ]
+    },
+    {
+      "name": "end",
+      "from": 9,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.3
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Never Pick Up The Girl In The White Dress On This Road 😨 #shorts",
+  "description": "For almost a century drivers on Chicago's Archer Avenue have told of a girl in white who asks for a ride home and vanishes at the cemetery gates. This is the legend of Resurrection Mary.\n\n#scarystories #ghost #legends #horror #creepy #shorts",
+  "tags": [
+    "scary stories",
+    "resurrection mary",
+    "chicago",
+    "ghost",
+    "legends",
+    "horror",
+    "creepy",
+    "shorts"
+  ]
+}
