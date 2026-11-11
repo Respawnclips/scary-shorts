@@ -19,7 +19,10 @@ sys.path.insert(0, HERE)
 W, H, FPS = 1080, 1920, 30
 CW, CH = 1350, 2400                # scene canvas (bigger than the frame: room to pan and zoom)
 SR = 24000
-VOICE, SPEED, GAP = "bm_george", 1.0, 0.28
+VOICE, SPEED, GAP = "bm_fable", 0.95, 0.28
+NL_MODEL = "voices/nl2/vits-piper-nl_NL-miro-high/nl_NL-miro-high.onnx"      # Dutch narrator (piper)
+VOICE_FX = ("highpass=f=70,equalizer=f=180:t=q:w=1:g=2.5,equalizer=f=3500:t=q:w=1.5:g=-1.5,"
+            "acompressor=threshold=-20dB:ratio=3:attack=8:release=120,aecho=0.8:0.55:70|140:0.16|0.08")
 FONTS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf",
          "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"]
 FONT = next(f for f in FONTS if os.path.exists(f))
@@ -39,7 +42,7 @@ def _say_nl(lines):
     """Dutch narrator (piper, 22050 Hz) resampled to SR."""
     from piper import PiperVoice
     from piper.config import SynthesisConfig
-    v = PiperVoice.load(f"{HERE}/voices/nl/nl-rdh-medium.onnx")
+    v = PiperVoice.load(f"{HERE}/{NL_MODEL}")
     cfg = SynthesisConfig(length_scale=1.03)
     sr0 = v.config.sample_rate
     for line in lines:
@@ -48,9 +51,21 @@ def _say_nl(lines):
         yield np.interp(np.linspace(0, len(a) - 1, n), np.arange(len(a)), a).astype(np.float32)
 
 
+def _fx(a):
+    """Warm up one spoken line: EQ, light compression, small room echo (the raw TTS sounds flat)."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        sf.write(f"{td}/i.wav", a, SR)
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{td}/i.wav", "-af", VOICE_FX + ",loudnorm=I=-16",
+                        "-ar", str(SR), f"{td}/o.wav"], check=True)
+        out, _ = sf.read(f"{td}/o.wav", dtype="float32")
+    return out
+
+
 def narrate(lines, lang="en"):
     chunks, times, t = [np.zeros(int(0.4 * SR), np.float32)], [], 0.4
     for s in (_say_nl(lines) if lang == "nl" else _say_en(lines)):
+        s = _fx(s)
         d = len(s) / SR
         times.append((t, t + d))
         chunks += [s, np.zeros(int(GAP * SR), np.float32)]
