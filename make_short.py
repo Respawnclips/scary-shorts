@@ -5,7 +5,8 @@ Usage: python3 make_short.py stories/<id>.json [--preview]
 Needs next to the JSON: stories/<id>.py exporting SCENES (see toon.py for the drawing helpers).
 Output: videos/<id>.mp4 (1080x1920, 30fps, H.264 + AAC). --preview writes work/<id>/sheet.jpg only.
 
-Story JSON: id, lines[], scenes[{name, from (first line index), move [dx, dy, zoom0, zoom1], rain}],
+Story JSON: id, lang ("en" or "nl", default "en"), lines[],
+scenes[{name, from (first line index), move [dx, dy, zoom0, zoom1], rain}],
 flash_lines[] (lines that get lightning + thunder).
 """
 import importlib.util, json, os, subprocess, sys, zlib, random
@@ -26,15 +27,33 @@ DEPTH = {"bg": 0.25, "mid": 0.6, "glow": 0.6, "fg": 1.0}
 
 
 # ---------------- audio ----------------
-def narrate(lines):
+def _say_en(lines):
     from kokoro_onnx import Kokoro
     k = Kokoro(f"{HERE}/voices/kokoro-v1.0.int8.onnx", f"{HERE}/voices/voices-v1.0.bin")
-    chunks, times, t = [np.zeros(int(0.4 * SR), np.float32)], [], 0.4
     for line in lines:
         s, _ = k.create(line, voice=VOICE, speed=SPEED, lang="en-gb")
+        yield s.astype(np.float32)
+
+
+def _say_nl(lines):
+    """Dutch narrator (piper, 22050 Hz) resampled to SR."""
+    from piper import PiperVoice
+    from piper.config import SynthesisConfig
+    v = PiperVoice.load(f"{HERE}/voices/nl/nl-rdh-medium.onnx")
+    cfg = SynthesisConfig(length_scale=1.03)
+    sr0 = v.config.sample_rate
+    for line in lines:
+        a = np.concatenate([c.audio_float_array for c in v.synthesize(line, cfg)]).astype(np.float32)
+        n = int(round(len(a) * SR / sr0))
+        yield np.interp(np.linspace(0, len(a) - 1, n), np.arange(len(a)), a).astype(np.float32)
+
+
+def narrate(lines, lang="en"):
+    chunks, times, t = [np.zeros(int(0.4 * SR), np.float32)], [], 0.4
+    for s in (_say_nl(lines) if lang == "nl" else _say_en(lines)):
         d = len(s) / SR
         times.append((t, t + d))
-        chunks += [s.astype(np.float32), np.zeros(int(GAP * SR), np.float32)]
+        chunks += [s, np.zeros(int(GAP * SR), np.float32)]
         t += d + GAP
     return np.concatenate(chunks + [np.zeros(int(0.9 * SR), np.float32)]), times
 
@@ -119,7 +138,11 @@ def word_img(word, accent=False):
 
 
 ACCENT = {"dead", "death", "blood", "never", "don't", "die", "died", "kill", "killed", "scream", "screamed",
-          "burning", "red", "gone", "vanished", "run", "alone", "dark", "cursed", "ghost", "demon", "devil"}
+          "burning", "red", "gone", "vanished", "run", "alone", "dark", "cursed", "ghost", "demon", "devil",
+          # Dutch
+          "dood", "doden", "bloed", "nooit", "niet", "sterft", "stierf", "schreeuw", "schreeuwde", "gil",
+          "brandend", "rood", "weg", "verdwenen", "ren", "alleen", "donker", "vervloekt", "spook", "duivel",
+          "geest", "lijk", "graf", "angst", "nacht", "zwart"}
 
 
 def main():
@@ -146,7 +169,7 @@ def main():
         for i, tl in enumerate(tiles): sheet.paste(tl, (360 * (i % 4), 640 * (i // 4)))
         sheet.save(f"{work}/sheet.jpg", quality=85); print("sheet:", f"{work}/sheet.jpg"); return
 
-    voice, times = narrate(lines); D = len(voice) / SR
+    voice, times = narrate(lines, story.get("lang", "en")); D = len(voice) / SR
     if D > 59: sys.exit(f"Too long for a Short: {D:.1f}s - trim lines.")
     starts = [0.0 if i == 0 else times[sc["from"]][0] - 0.12 for i, sc in enumerate(plan)]
     ends = starts[1:] + [D]

@@ -1,0 +1,31 @@
+{
+  "id": "001-black-shuck-nl",
+  "lang": "nl",
+  "legend": "Black Shuck (East Anglia, Engeland)",
+  "lines": [
+    "Kijk nooit om naar de hond op de kustweg.",
+    "In Oost-Engeland noemen ze hem Black Shuck.",
+    "Een hond zo groot als een kalf, met één gloeiend rood oog.",
+    "Op een stormachtige zondag in 1577 brak hij door de deuren van de kerk van Bungay.",
+    "De bliksem sloeg in. Twee gelovigen vielen dood neer waar ze knielden.",
+    "Daarna rende hij twintig kilometer naar Blythburgh, en sloeg opnieuw toe.",
+    "De schroeiplekken zitten nog altijd op de kerkdeur. Je kunt ze aanraken.",
+    "Vissers zeggen: hoor je 's nachts poten achter je, blijf dan lopen.",
+    "Kijk niet om.",
+    "Want wie Black Shuck ziet, haalt het jaar zelden.",
+    "Heb jij ooit voetstappen gehoord die er niet waren?"
+  ],
+  "scenes": [
+    {"name": "road",   "from": 0, "move": [30, -20, 1.08, 1.16]},
+    {"name": "hound",  "from": 2, "move": [-40, 0, 1.20, 1.08]},
+    {"name": "church", "from": 3, "move": [0, 30, 1.08, 1.20], "rain": true},
+    {"name": "run",    "from": 5, "move": [45, 0, 1.10, 1.14]},
+    {"name": "door",   "from": 6, "move": [0, -30, 1.08, 1.22]},
+    {"name": "behind", "from": 7, "move": [-20, 0, 1.08, 1.26]},
+    {"name": "eyes",   "from": 10, "move": [0, 0, 1.08, 1.30]}
+  ],
+  "flash_lines": [3, 4],
+  "title": "De demonenhond die klauwsporen achterliet op een kerkdeur 😨",
+  "description": "In 1577 brak een gigantische zwarte hond tijdens een storm de kerk van Bungay binnen. De schroeiplekken zitten er vandaag nog steeds.\n\n#enge verhalen #folklore #legendes #horror #griezelig",
+  "tags": ["enge verhalen", "folklore", "black shuck", "legendes", "horror", "griezelig"]
+}
