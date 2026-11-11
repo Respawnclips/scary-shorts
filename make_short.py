@@ -83,6 +83,42 @@ def narrate(lines, lang="en", tts_dir=None):
     return np.concatenate(chunks + [np.zeros(int(0.9 * SR), np.float32)]), times
 
 
+def dread(voice, cuts, seed):
+    """Audible creepy bed (phones can't play the 49 Hz drone): dissonant drone, wind, heartbeat, end sting. Ducks under the voice."""
+    n = len(voice); rng = np.random.default_rng(seed + 7)
+    t = np.arange(n) / SR; T = t[-1]
+    def saw(f, k=7):
+        return sum(np.sin(2 * np.pi * f * h * t + h) / h ** 1.3 for h in range(1, k + 1))
+    sw = lambda rate, ph: 0.55 + 0.45 * np.sin(2 * np.pi * rate * t + ph)
+    d = (saw(110) * sw(.11, 0) + saw(116.5) * sw(.09, 2) + 0.7 * saw(155.6, 5) * sw(.13, 4) + 0.5 * saw(55, 4)) * 0.25
+    nz = rng.standard_normal(n)
+    wind = np.convolve(nz, np.ones(14) / 14, "same") * (0.5 + 0.5 * np.sin(2 * np.pi * 0.17 * t + 1)) ** 2 * 5
+    wh = (nz - np.convolve(nz, np.ones(30) / 30, "same")) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.23 * t + 3)) ** 3 * 0.8
+    sh = np.sin(2 * np.pi * (1480 + 40 * np.sin(2 * np.pi * 0.3 * t)) * t) * np.clip(np.sin(2 * np.pi * 0.06 * t - 1), 0, 1) ** 2 * 0.1
+    b = d + wind + wh + sh
+    b /= np.max(np.abs(b)) + 1e-9
+    hb = np.zeros(n)                                      # heartbeat, faster and louder toward the end
+    x = 0.8
+    while x < T - 1:
+        prog = x / T; per = 1.1 - 0.45 * prog
+        for off, lvl in ((0, 1.0), (0.22, 0.7)):
+            i = int((x + off) * SR); L = int(0.25 * SR); xx = np.arange(L) / SR
+            th = np.sin(2 * np.pi * 52 * xx) * np.exp(-xx / 0.07) * lvl * (0.25 + 0.75 * prog)
+            seg = hb[i:i + L]; seg += th[:len(seg)]
+        x += per
+    out = b * 0.5 + hb * 0.55
+    if cuts:                                              # scare sting when the last scene starts
+        i = int(cuts[-1] * SR); L = int(2.2 * SR); xx = np.arange(L) / SR
+        cl = sum(np.sin(2 * np.pi * f * xx) for f in (466, 493, 698, 740, 1244))
+        st = (cl * 0.18 + rng.standard_normal(L) * 0.3) * np.exp(-xx / 0.6) * (1 - np.exp(-xx / 0.01))
+        seg = out[i:i + L]; seg += st[:len(seg)]
+    env = np.abs(voice); k = int(0.25 * SR)
+    env = np.convolve(env, np.ones(k) / k, "same"); env = np.clip(env / (np.percentile(env, 90) + 1e-9), 0, 1)
+    duck = 1 - 0.55 * env
+    fade = np.minimum(1, np.minimum(t / 1.5, (T - t) / 1.5))
+    return (out * duck * fade * 0.30).astype(np.float32)
+
+
 def ambience(n, seed, flashes, cuts, rain_spans):
     rng = np.random.default_rng(seed)
     t = np.arange(n) / SR
@@ -200,7 +236,7 @@ def main():
     ends = starts[1:] + [D]
     flashes = sorted(round(times[i][0] + 0.25, 2) for i in story.get("flash_lines", []) if i < n)
     rain_spans = [(a, b) for sc, a, b in zip(plan, starts, ends) if sc.get("rain")]
-    mix = voice * 0.95 + ambience(len(voice), seed, flashes, starts[1:], rain_spans)
+    mix = voice * 0.95 + ambience(len(voice), seed, flashes, starts[1:], rain_spans) + dread(voice, starts[1:], seed)
     mix /= max(1.0, np.max(np.abs(mix)) / 0.97)
     sf.write(f"{work}/audio.wav", mix, SR)
 
