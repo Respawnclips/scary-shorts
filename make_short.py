@@ -51,12 +51,12 @@ def _say_nl(lines):
         yield np.interp(np.linspace(0, len(a) - 1, n), np.arange(len(a)), a).astype(np.float32)
 
 
-def _fx(a):
+def _fx(a, echo=True):
     """Warm up one spoken line: EQ, light compression, small room echo (the raw TTS sounds flat)."""
     import tempfile
     with tempfile.TemporaryDirectory() as td:
         sf.write(f"{td}/i.wav", a, SR)
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{td}/i.wav", "-af", VOICE_FX + ",loudnorm=I=-16",
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{td}/i.wav", "-af", (VOICE_FX if echo else VOICE_FX.rsplit(",aecho", 1)[0]) + ",loudnorm=I=-16",
                         "-ar", str(SR), f"{td}/o.wav"], check=True)
         out, _ = sf.read(f"{td}/o.wav", dtype="float32")
     return out
@@ -75,7 +75,7 @@ def narrate(lines, lang="en", tts_dir=None):
     chunks, times, t = [np.zeros(int(0.4 * SR), np.float32)], [], 0.4
     pre = tts_dir and all(os.path.exists(f"{tts_dir}/{i:02d}.wav") for i in range(len(lines)))
     for s in (_load_pre(tts_dir, len(lines)) if pre else _say_nl(lines) if lang == "nl" else _say_en(lines)):
-        s = _fx(s)
+        s = _fx(s, echo=not pre)
         d = len(s) / SR
         times.append((t, t + d))
         chunks += [s, np.zeros(int(GAP * SR), np.float32)]
