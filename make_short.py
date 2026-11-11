@@ -26,6 +26,7 @@ VOICE_FX = ("highpass=f=70,equalizer=f=180:t=q:w=1:g=2.5,equalizer=f=3500:t=q:w=
 FONTS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf",
          "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"]
 FONT = next(f for f in FONTS if os.path.exists(f))
+SPORT = False                       # story "mood": "sport" -> upbeat beat + crowd instead of horror sound, yellow accents
 DEPTH = {"bg": 0.25, "mid": 0.6, "glow": 0.6, "fg": 1.0}
 
 
@@ -164,6 +165,49 @@ def dread(voice, cuts, seed):
     return (out * duck * fade * 0.30).astype(np.float32)
 
 
+def sport_audio(voice, seed, cuts, crowd_spans, cheers):
+    """Upbeat sports bed: kick/snare/hat loop at 104 bpm + simple bass line + stadium crowd noise; cheers swell at given times."""
+    rng = np.random.default_rng(seed + 21)
+    n = len(voice); t = np.arange(n) / SR; T = t[-1]; beat = 60 / 104
+    out = np.zeros(n, np.float32)
+    def put(at, w, g=1.0):
+        i = int(at * SR)
+        if 0 <= i < n: seg = out[i:i + len(w)]; seg += (w * g)[:len(seg)]
+    xk = np.arange(int(0.25 * SR)) / SR
+    kick = np.sin(2 * np.pi * (110 * np.exp(-xk * 18) + 42) * xk) * np.exp(-xk * 9)
+    xs = np.arange(int(0.2 * SR)) / SR; snare = rng.standard_normal(len(xs)) * np.exp(-xs * 22) * 0.5 + np.sin(2 * np.pi * 190 * xs) * np.exp(-xs * 18) * 0.3
+    xh = np.arange(int(0.06 * SR)) / SR; hat = np.diff(rng.standard_normal(len(xh) + 1)) * np.exp(-xh * 70) * 0.25
+    notes = [55.0, 55.0, 65.4, 49.0]
+    k = 0; at = 0.0
+    while at < T:
+        bar, st = divmod(k, 8)
+        if st % 4 == 0: put(at, kick, 0.9)
+        if st in (2, 6): put(at, snare, 0.5)
+        put(at, hat, 0.6); put(at + beat / 2, hat, 0.35)
+        if st % 2 == 0:
+            f = notes[bar % 4]; xb = np.arange(int(beat * 1.6 * SR)) / SR
+            put(at, (np.sin(2 * np.pi * f * xb) + .3 * np.sin(2 * np.pi * 2 * f * xb)) * np.exp(-xb * 3.2) * 0.45)
+        k += 1; at += beat / 2
+    for a, b in crowd_spans:                                  # crowd murmur
+        i, j = int(a * SR), min(n, int(b * SR))
+        nz = rng.standard_normal(j - i); nz = np.convolve(nz, np.ones(60) / 60, "same") * 5
+        env = np.minimum(1, np.minimum((np.arange(j - i) / SR) / 0.6, (j - i - np.arange(j - i)) / SR / 0.6))
+        out[i:j] += (nz * env * 0.55).astype(np.float32)
+    for ct in cheers:                                         # roar swell
+        i = int(ct * SR); L = int(2.8 * SR); x = np.arange(L) / SR
+        nz = np.convolve(rng.standard_normal(L), np.ones(30) / 30, "same") * 9
+        env = (1 - np.exp(-x / 0.25)) * np.exp(-x / 1.3)
+        seg = out[i:i + L]; seg += (nz * env * 0.9).astype(np.float32)[:len(seg)]
+    for ct in cuts:                                           # whoosh on scene change
+        i = int((ct - 0.12) * SR); L = int(0.3 * SR); x = np.arange(L) / SR
+        w = np.convolve(rng.standard_normal(L), np.ones(8) / 8, "same") * np.sin(np.pi * x / x[-1]) * 0.7
+        seg = out[max(0, i):max(0, i) + L]; seg += w[:len(seg)].astype(np.float32)
+    env = np.abs(voice); kk = int(0.25 * SR)
+    env = np.convolve(env, np.ones(kk) / kk, "same"); env = np.clip(env / (np.percentile(env, 90) + 1e-9), 0, 1)
+    fade = np.minimum(1, np.minimum(t / 1.0, (T - t) / 1.5))
+    return (out * (1 - 0.6 * env) * fade * 0.42).astype(np.float32)
+
+
 def ambience(n, seed, flashes, cuts, rain_spans):
     rng = np.random.default_rng(seed)
     t = np.arange(n) / SR
@@ -239,10 +283,10 @@ def make_rain(seed):
     return img
 
 
-def make_vignette():
+def make_vignette(strength=215):
     yy, xx = np.mgrid[0:H, 0:W]
     v = np.clip(((xx - W / 2) / (W * 0.74)) ** 2 + ((yy - H * 0.5) / (H * 0.7)) ** 2, 0, 1)
-    arr = np.zeros((H, W, 4), np.uint8); arr[..., 2] = 12; arr[..., 3] = (v ** 1.6 * 215).astype(np.uint8)
+    arr = np.zeros((H, W, 4), np.uint8); arr[..., 2] = 12; arr[..., 3] = (v ** 1.6 * strength).astype(np.uint8)
     return Image.fromarray(arr, "RGBA")
 
 
@@ -270,7 +314,7 @@ def word_img(word, accent=False):
             x0, y0, x1, y1 = tmp.textbbox((0, 0), word, font=f, stroke_width=12)
         img = Image.new("RGBA", (x1 - x0 + 40, y1 - y0 + 48), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
         d.text((20 - x0 + 6, 20 - y0 + 10), word, font=f, fill=(0, 0, 0, 170), stroke_width=12, stroke_fill=(0, 0, 0, 170))
-        d.text((20 - x0, 20 - y0), word, font=f, fill=(255, 70, 50) if accent else (255, 255, 255),
+        d.text((20 - x0, 20 - y0), word, font=f, fill=((255, 214, 0) if SPORT else (255, 70, 50)) if accent else (255, 255, 255),
                stroke_width=12, stroke_fill=(0, 0, 0))
         _wcache[key] = img
     return _wcache[key]
@@ -320,7 +364,15 @@ def main():
     ends = starts[1:] + [D]
     flashes = sorted(round(times[i][0] + 0.25, 2) for i in story.get("flash_lines", []) if i < n)
     rain_spans = [(a, b) for sc, a, b in zip(plan, starts, ends) if sc.get("rain")]
-    mix = voice * 0.95 + ambience(len(voice), seed, flashes, starts[1:], rain_spans) + dread(voice, starts[1:], seed) + music(voice, seed)
+    global SPORT
+    SPORT = story.get("mood") == "sport"
+    if SPORT:
+        for w in story.get("accent", []): ACCENT.add(w.lower())
+        crowd = [(a, b) for sc, a, b in zip(plan, starts, ends) if sc.get("crowd")]
+        cheers = [a + 0.2 for sc, a in zip(plan, starts) if sc.get("cheer")]
+        mix = voice * 0.95 + sport_audio(voice, seed, starts[1:], crowd, cheers)
+    else:
+        mix = voice * 0.95 + ambience(len(voice), seed, flashes, starts[1:], rain_spans) + dread(voice, starts[1:], seed) + music(voice, seed)
     mix /= max(1.0, np.max(np.abs(mix)) / 0.97)
     sf.write(f"{work}/audio.wav", mix, SR)
 
@@ -333,7 +385,7 @@ def main():
             if clean:
                 words.append((a + (b - a) * c0, a + (b - a) * c1 + 0.04, clean, clean.lower() in ACCENT))
 
-    rain_l, vig = make_rain(seed), make_vignette()
+    rain_l, vig = make_rain(seed), make_vignette(90 if story.get("mood") == "sport" else 215)
     white = Image.new("RGBA", (W, H), (235, 232, 255, 255)); black = Image.new("RGBA", (W, H), (0, 0, 0, 255))
 
     def flash_a(t):

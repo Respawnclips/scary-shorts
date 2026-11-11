@@ -1,0 +1,168 @@
+{
+ "id": "006-virgil-van-dijk-nl",
+ "lang": "nl",
+ "mood": "sport",
+ "legend": "Virgil van Dijk (afwasser tot wereldtopper)",
+ "lines": [
+  "Hij was afwasser in Breda. Nu is hij een van de beste verdedigers ter wereld.",
+  "Dit is het verhaal van Virgil van Dijk.",
+  "Als tiener droomde hij van voetbal. Maar na training stond hij in een restaurant de borden te schrobben.",
+  "Bij Willem II kreeg hij geen contract. Zijn droom leek voorbij.",
+  "Toch ging hij naar Groningen. En daarna naar Celtic in Schotland.",
+  "Op zijn twintigste werd hij ernstig ziek. Hij knokte zich terug.",
+  "Via Southampton kwam hij bij Liverpool. Voor 75 miljoen pond, een wereldrecord voor een verdediger.",
+  "In 2019 won hij de Champions League. En hij werd tweede bij de Ballon d'Or.",
+  "Het jaar erna werd Liverpool voor het eerst in dertig jaar kampioen.",
+  "Van afwasser naar wereldtopper. Zou jij zijn blijven geloven?"
+ ],
+ "accent": [
+  "afwasser",
+  "droom",
+  "wereldrecord",
+  "champions",
+  "kampioen",
+  "geloven",
+  "contract",
+  "ziek",
+  "wereldtopper"
+ ],
+ "scenes": [
+  {
+   "name": "keuken",
+   "from": 0,
+   "move": [
+    20,
+    0,
+    1.05,
+    1.14
+   ],
+   "fog": false,
+   "focus": [
+    0.5,
+    0.62
+   ]
+  },
+  {
+   "name": "veld",
+   "from": 2,
+   "move": [
+    -30,
+    0,
+    1.05,
+    1.14
+   ],
+   "fog": false,
+   "focus": [
+    0.45,
+    0.8
+   ]
+  },
+  {
+   "name": "contract",
+   "from": 3,
+   "move": [
+    0,
+    20,
+    1.05,
+    1.14
+   ],
+   "fog": false,
+   "focus": [
+    0.32,
+    0.78
+   ]
+  },
+  {
+   "name": "groningen",
+   "from": 4,
+   "move": [
+    30,
+    0,
+    1.05,
+    1.14
+   ],
+   "fog": false,
+   "focus": [
+    0.5,
+    0.8
+   ],
+   "crowd": true
+  },
+  {
+   "name": "ziekenhuis",
+   "from": 5,
+   "move": [
+    0,
+    20,
+    1.05,
+    1.12
+   ],
+   "fog": false,
+   "focus": [
+    0.35,
+    0.8
+   ]
+  },
+  {
+   "name": "liverpool",
+   "from": 6,
+   "move": [
+    0,
+    -25,
+    1.05,
+    1.14
+   ],
+   "fog": false,
+   "focus": [
+    0.5,
+    0.75
+   ],
+   "crowd": true,
+   "cheer": true
+  },
+  {
+   "name": "cl",
+   "from": 7,
+   "move": [
+    0,
+    0,
+    1.05,
+    1.12
+   ],
+   "fog": false,
+   "focus": [
+    0.5,
+    0.6
+   ],
+   "crowd": true,
+   "cheer": true
+  },
+  {
+   "name": "finale",
+   "from": 9,
+   "move": [
+    0,
+    0,
+    1.05,
+    1.12
+   ],
+   "fog": false,
+   "focus": [
+    0.45,
+    0.78
+   ]
+  }
+ ],
+ "flash_lines": [],
+ "title": "Van afwasser naar wereldtopper ⚽🔥 #voetbal",
+ "description": "Virgil van Dijk was afwasser in Breda, kreeg geen contract bij Willem II en werd de duurste verdediger ter wereld. Zijn verhaal in 45 seconden.\n\n#voetbal #vandijk #liverpool #championsleague #motivatie #foryou #foryoupage",
+ "tags": [
+  "voetbal",
+  "vandijk",
+  "liverpool",
+  "championsleague",
+  "motivatie",
+  "foryou",
+  "foryoupage"
+ ]
+}

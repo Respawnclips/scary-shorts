@@ -324,10 +324,10 @@ def clown(x, y, s=1.0, t=0.0, mode="walk", flip=False, look=(0.0, 0.0), mouth=No
 
 
 def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", skin="#e2c29a", hair="#17181d",
-          hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None):
+          hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None, num=None, socks=None):
     """Rigged, animated person (feet at (x, y), ~430 units tall), drawn for time t. Use inside an "actor" scene
     (SCENES[name]["actor"] = dict(box=(x0, y0, x1, y1), fn=lambda ts, t: human(...))) so the main character really moves.
-    mode: stand (breathing, looking around) | walk | run | scared (trembling, hands up) | reach (arm out) | point | back (stand, seen from behind).
+    mode: stand (breathing, looking around) | walk | run | cheer (jumping, arms up) | wash (scrubbing at a sink) | scared (trembling, hands up) | reach (arm out) | point | back (stand, seen from behind).
     expr: calm | scared | shocked | grin.   hold: None | lantern (hand holds a lantern that swings).   back=True hides the face."""
     sn = _m.sin
     ph = t * (5.0 if mode == "walk" else 9.0 if mode == "run" else 0)
@@ -344,6 +344,11 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
         tr = sn(t * 38) * 2.2
         bob = tr * .6; lean = -4 + tr; al, el, ar, er = 150 + sn(t * 30) * 3, 30, -150 - sn(t * 31) * 3, -30
         hr = tr * 2; expr = "scared" if expr == "calm" else expr
+    elif mode == "cheer":
+        bob = -abs(sn(t * 6)) * 38; al, ar = 148 + sn(t * 7) * 9, -148 - sn(t * 7) * 9; el, er = 8, -8
+        la, ra = sn(t * 6) * 9, -sn(t * 6) * 9; expr = "grin"
+    elif mode == "wash":
+        bob = sn(t * 1.8) * 2; al, ar = -10 + sn(t * 8) * 5, 10 - sn(t * 8 + 1) * 5; el, er = -38 + sn(t * 8) * 8, 38 - sn(t * 8 + 1) * 8
     elif mode == "reach":
         ar, er = -92 + sn(t * 3) * 3, -6; bob = sn(t * 1.6) * 2
     elif mode == "point":
@@ -370,13 +375,13 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
 
     def leg(a, k):
         return (f'<g transform="rotate({a:.1f})"><path d="M-30,-6 L30,-6 L26,100 L-26,100Z" fill="{pants}"/>'
-                f'<g transform="translate(0,96) rotate({k:.1f})"><path d="M-25,0 L25,0 L22,88 L-22,88Z" fill="{pants}"/>'
+                f'<g transform="translate(0,96) rotate({k:.1f})"><path d="M-25,0 L25,0 L22,88 L-22,88Z" fill="{socks or pants}"/>'
                 f'<path d="M-24,84 Q-26,106 -4,106 Q40,106 46,96 Q44,86 22,84Z" fill="#14161b"/></g></g>')
 
     o += f'<g transform="translate(-24,-170)">{leg(la, lk)}</g><g transform="translate(24,-170)">{leg(ra, rk)}</g>'
     o += f'<g transform="translate(0,-170) rotate({lean:.1f})">'
     o += f'<g transform="translate(-52,-150)">{arm(al, el, None)}</g>'
-    o += f'<path d="M-58,0 Q-70,-80 -54,-160 Q0,-186 54,-160 Q70,-80 58,0Z" fill="{coat}"/><path d="M0,-170 V-6" stroke="#0d0f15" stroke-width="3" opacity=".5" fill="none"/>'
+    o += f'<path d="M-58,0 Q-70,-80 -54,-160 Q0,-186 54,-160 Q70,-80 58,0Z" fill="{coat}"/><path d="M0,-170 V-6" stroke="#0d0f15" stroke-width="3" opacity=".5" fill="none"/>' + (f'<text x="0" y="-70" font-size="64" font-weight="bold" fill="#fff" stroke="none" text-anchor="middle" font-family="DejaVu Sans">{num}</text>' if num else "")
     o += f'<rect x="-11" y="-190" width="22" height="26" fill="{skin}"/>'
     # head
     o += f'<g transform="translate(0,-196) rotate({hr:.1f})"><circle cx="0" cy="-36" r="42" fill="{skin}"/>'
@@ -384,13 +389,15 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
         o += f'<path d="M-44,-38 A44,44 0 0 1 44,-38 L42,-8 Q0,10 -42,-8Z" fill="{hair}"/>'
     else:
         o += f'<path d="M-43,-40 A43,43 0 0 1 43,-40 Q20,-64 0,-54 Q-22,-66 -43,-40Z" fill="{hair}"/>'
-        er_ = {"calm": 7, "scared": 11, "shocked": 13, "grin": 7}[expr]
+        er_ = {"calm": 7, "scared": 11, "shocked": 13, "grin": 7, "sad": 6}[expr]
         for ex in (-15, 15):
             o += (f'<ellipse cx="{ex}" cy="-34" rx="{er_}" ry="{er_ * blink:.1f}" fill="#fff" stroke-width="3"/>'
                   f'<circle cx="{ex + lx * 4:.1f}" cy="{-34 + ly * 3:.1f}" r="{3.4 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>')
         if expr in ("scared", "shocked"):
             o += ('<ellipse cx="0" cy="-10" rx="8" ry="11" fill="#2a1014" stroke-width="3"/>'
                   '<path d="M-26,-52 l16,-8 M26,-52 l-16,-8" fill="none" stroke-width="4"/>')
+        elif expr == "sad":
+            o += '<path d="M-9,-8 q9,-7 18,0" fill="none" stroke-width="4"/><path d="M-26,-54 l16,7 M26,-54 l-16,7" fill="none" stroke-width="4"/>'
         elif expr == "grin":
             o += '<path d="M-14,-14 q14,14 28,0Z" fill="#fff" stroke-width="3"/>'
         else:
