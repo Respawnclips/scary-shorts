@@ -62,9 +62,19 @@ def _fx(a):
     return out
 
 
-def narrate(lines, lang="en"):
+def _load_pre(tts_dir, n):
+    """Pre-synthesized lines (tts/<id>/00.wav, 01.wav, ...) e.g. from a cloud voice; resampled to SR."""
+    for i in range(n):
+        a, sr0 = sf.read(f"{tts_dir}/{i:02d}.wav", dtype="float32")
+        if a.ndim > 1: a = a.mean(1)
+        m = int(round(len(a) * SR / sr0))
+        yield np.interp(np.linspace(0, len(a) - 1, m), np.arange(len(a)), a).astype(np.float32)
+
+
+def narrate(lines, lang="en", tts_dir=None):
     chunks, times, t = [np.zeros(int(0.4 * SR), np.float32)], [], 0.4
-    for s in (_say_nl(lines) if lang == "nl" else _say_en(lines)):
+    pre = tts_dir and all(os.path.exists(f"{tts_dir}/{i:02d}.wav") for i in range(len(lines)))
+    for s in (_load_pre(tts_dir, len(lines)) if pre else _say_nl(lines) if lang == "nl" else _say_en(lines)):
         s = _fx(s)
         d = len(s) / SR
         times.append((t, t + d))
@@ -184,7 +194,7 @@ def main():
         for i, tl in enumerate(tiles): sheet.paste(tl, (360 * (i % 4), 640 * (i // 4)))
         sheet.save(f"{work}/sheet.jpg", quality=85); print("sheet:", f"{work}/sheet.jpg"); return
 
-    voice, times = narrate(lines, story.get("lang", "en")); D = len(voice) / SR
+    voice, times = narrate(lines, story.get("lang", "en"), f"{HERE}/tts/{sid}"); D = len(voice) / SR
     if D > 59: sys.exit(f"Too long for a Short: {D:.1f}s - trim lines.")
     starts = [0.0 if i == 0 else times[sc["from"]][0] - 0.12 for i, sc in enumerate(plan)]
     ends = starts[1:] + [D]
