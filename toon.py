@@ -321,3 +321,82 @@ def clown(x, y, s=1.0, t=0.0, mode="walk", flip=False, look=(0.0, 0.0), mouth=No
     out += f'<g transform="translate(76,-228)">{sleeve(arm_r, el_r, "balloon" if balloon and mode == "walk" else None)}</g>'
     out += '</g></g></g>'
     return out
+
+
+def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", skin="#e2c29a", hair="#17181d",
+          hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None):
+    """Rigged, animated person (feet at (x, y), ~430 units tall), drawn for time t. Use inside an "actor" scene
+    (SCENES[name]["actor"] = dict(box=(x0, y0, x1, y1), fn=lambda ts, t: human(...))) so the main character really moves.
+    mode: stand (breathing, looking around) | walk | run | scared (trembling, hands up) | reach (arm out) | point | back (stand, seen from behind).
+    expr: calm | scared | shocked | grin.   hold: None | lantern (hand holds a lantern that swings).   back=True hides the face."""
+    sn = _m.sin
+    ph = t * (5.0 if mode == "walk" else 9.0 if mode == "run" else 0)
+    bob = lean = 0.0; la = ra = lk = rk = 0.0
+    al, el, ar, er = 4 + sn(t * 1.4) * 2, -8, -4 - sn(t * 1.4) * 2, -8
+    hr = sn(t * 0.9) * 4 + look[0] * 6
+    if mode in ("walk", "run"):
+        amp = 26 if mode == "walk" else 42
+        la, ra = sn(ph) * amp, -sn(ph) * amp
+        lk, rk = max(0, sn(ph + 1.3)) * (34 if mode == "walk" else 60), max(0, sn(ph + 1.3 + _m.pi)) * (34 if mode == "walk" else 60)
+        bob = -abs(sn(ph)) * (10 if mode == "walk" else 18); lean = 4 if mode == "walk" else 12
+        al, ar = -sn(ph) * amp * .9 + 6, sn(ph) * amp * .9 - 6; el = er = -18 if mode == "walk" else -70
+    elif mode == "scared":
+        tr = sn(t * 38) * 2.2
+        bob = tr * .6; lean = -4 + tr; al, el, ar, er = 150 + sn(t * 30) * 3, 30, -150 - sn(t * 31) * 3, -30
+        hr = tr * 2; expr = "scared" if expr == "calm" else expr
+    elif mode == "reach":
+        ar, er = -92 + sn(t * 3) * 3, -6; bob = sn(t * 1.6) * 2
+    elif mode == "point":
+        ar, er = -88, 0; lean = 2; bob = sn(t * 1.6) * 2
+    else:
+        bob = sn(t * 1.8) * 3
+    if hold == "lantern" and mode in ("stand", "walk", "back"):
+        ar, er = -75, -35
+    lx, ly = look
+    blink = 0.12 if (t % 3.7) < 0.12 else 1.0
+    f = -1 if flip else 1
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob:.1f})">'
+
+    def arm(a, e, item):
+        g = (f'<g transform="rotate({a:.1f})"><path d="M-22,-10 Q-30,50 -20,104 L20,104 Q30,50 22,-10Z" fill="{coat}"/>'
+             f'<g transform="translate(0,100) rotate({e:.1f})"><path d="M-19,-4 Q-22,40 -15,84 L15,84 Q22,40 19,-4Z" fill="{coat}"/>'
+             f'<circle cx="0" cy="92" r="17" fill="{skin}"/>')
+        if item == "lantern":
+            sw = sn(t * 2.1) * 6
+            g += (f'<g transform="translate(0,92) rotate({-(a + e + lean) * .9 + sw:.1f})"><path d="M0,0 V30" stroke="#0d0f15" stroke-width="5"/>'
+                  f'<rect x="-18" y="30" width="36" height="52" rx="6" fill="#f3c555"/><rect x="-22" y="26" width="44" height="10" fill="#3a3d49"/>'
+                  f'<rect x="-22" y="78" width="44" height="10" fill="#3a3d49"/></g>')
+        return g + '</g></g>'
+
+    def leg(a, k):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-30,-6 L30,-6 L26,100 L-26,100Z" fill="{pants}"/>'
+                f'<g transform="translate(0,96) rotate({k:.1f})"><path d="M-25,0 L25,0 L22,88 L-22,88Z" fill="{pants}"/>'
+                f'<path d="M-24,84 Q-26,106 -4,106 Q40,106 46,96 Q44,86 22,84Z" fill="#14161b"/></g></g>')
+
+    o += f'<g transform="translate(-24,-170)">{leg(la, lk)}</g><g transform="translate(24,-170)">{leg(ra, rk)}</g>'
+    o += f'<g transform="translate(0,-170) rotate({lean:.1f})">'
+    o += f'<g transform="translate(-52,-150)">{arm(al, el, None)}</g>'
+    o += f'<path d="M-58,0 Q-70,-80 -54,-160 Q0,-186 54,-160 Q70,-80 58,0Z" fill="{coat}"/><path d="M0,-170 V-6" stroke="#0d0f15" stroke-width="3" opacity=".5" fill="none"/>'
+    o += f'<rect x="-11" y="-190" width="22" height="26" fill="{skin}"/>'
+    # head
+    o += f'<g transform="translate(0,-196) rotate({hr:.1f})"><circle cx="0" cy="-36" r="42" fill="{skin}"/>'
+    if back:
+        o += f'<path d="M-44,-38 A44,44 0 0 1 44,-38 L42,-8 Q0,10 -42,-8Z" fill="{hair}"/>'
+    else:
+        o += f'<path d="M-43,-40 A43,43 0 0 1 43,-40 Q20,-64 0,-54 Q-22,-66 -43,-40Z" fill="{hair}"/>'
+        er_ = {"calm": 7, "scared": 11, "shocked": 13, "grin": 7}[expr]
+        for ex in (-15, 15):
+            o += (f'<ellipse cx="{ex}" cy="-34" rx="{er_}" ry="{er_ * blink:.1f}" fill="#fff" stroke-width="3"/>'
+                  f'<circle cx="{ex + lx * 4:.1f}" cy="{-34 + ly * 3:.1f}" r="{3.4 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>')
+        if expr in ("scared", "shocked"):
+            o += ('<ellipse cx="0" cy="-10" rx="8" ry="11" fill="#2a1014" stroke-width="3"/>'
+                  '<path d="M-26,-52 l16,-8 M26,-52 l-16,-8" fill="none" stroke-width="4"/>')
+        elif expr == "grin":
+            o += '<path d="M-14,-14 q14,14 28,0Z" fill="#fff" stroke-width="3"/>'
+        else:
+            o += '<path d="M-9,-12 q9,5 18,0" fill="none" stroke-width="4"/>'
+    if hat:
+        o += '<ellipse cx="0" cy="-66" rx="62" ry="13" fill="#2a2622"/><path d="M-34,-68 Q-32,-118 0,-120 Q32,-118 34,-68Z" fill="#2a2622"/>'
+    o += '</g>'
+    o += f'<g transform="translate(52,-150)">{arm(ar, er, hold)}</g>'
+    return o + '</g></g></g>'
