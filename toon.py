@@ -197,3 +197,27 @@ def fence(y, col="#3a2f26", step=170):
     for x in range(40, 1400, step):
         s += f'<path d="M{x - 16},{y} v-170 l16,-22 l16,22 v170Z"/>'
     return s + '</g>'
+
+
+def hotel(x, y, s=1.0, lit="#f3c555", wall="#5a4a42", roof="#2d2623", rows=6, cols=5, seed=3):
+    """Tall Victorian hotel, front view, centred on x, feet at y. Some windows lit, some dark."""
+    r = random.Random(seed)
+    w, h = 150 * cols + 60, 170 * rows + 80
+    g = f'<g transform="translate({x},{y}) scale({s})" {OUT}>'
+    g += f'<rect x="{-w // 2}" y="{-h}" width="{w}" height="{h}" fill="{wall}"/>'
+    g += f'<path d="M{-w // 2 - 24},{-h} L{-w // 2 + 40},{-h - 90} H{w // 2 - 40} L{w // 2 + 24},{-h}Z" fill="{roof}"/>'
+    g += f'<rect x="{-w // 2 - 24}" y="{-h - 16}" width="{w + 48}" height="26" fill="{roof}"/>'
+    for ry in range(rows):
+        for cx in range(cols):
+            wx = -w // 2 + 50 + cx * 150
+            wy = -h + 50 + ry * 170
+            on = r.random() < .42
+            g += f'<rect x="{wx}" y="{wy}" width="64" height="104" rx="10" fill="{lit if on else "#14161f"}"/>'
+            g += f'<path d="M{wx + 32},{wy} v104 M{wx},{wy + 48} h64" fill="none" stroke-width="3"/>'
+    g += '<path d="M-60,0 V-120 A60,60 0 0 1 60,-120 V0Z" fill="#2a1d15"/>'
+    return g + '</g>'
+
+
+def tallhat(x, y, s=1.0):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><ellipse cx="0" cy="0" rx="68" ry="15" fill="#17181d"/>'
+            '<path d="M-38,-2 Q-36,-70 0,-72 Q36,-70 38,-2Z" fill="#17181d"/></g>')

@@ -1,0 +1,102 @@
+{
+  "id": "002-murder-castle-nl",
+  "legend": "Het Murder Castle van H. H. Holmes (Chicago, VS)",
+  "lines": [
+    "Chicago, 1893. De hele wereld kwam naar de wereldtentoonstelling.",
+    "En een charmante dokter stond klaar met kamers te huur.",
+    "Zijn naam was H. H. Holmes.",
+    "Hij bouwde een enorm hotel met honderd ramen.",
+    "Gangen liepen dood. Deuren openden op een stenen muur.",
+    "Een bord zei: kamers te huur. Veel gasten checkten in.",
+    "Geheime glijgaten voerden naar een kelder die geen gast ooit mocht zien.",
+    "In 1894 werd hij gepakt. Hij bekende zevenentwintig moorden. Maar slechts negen waren te bewijzen.",
+    "Een mysterieuze brand legde het gebouw in as voordat iemand het goed kon doorzoeken.",
+    "Had jij een kamer geboekt?"
+  ],
+  "scenes": [
+    {
+      "name": "castle",
+      "from": 0,
+      "move": [
+        30,
+        -20,
+        1.08,
+        1.18
+      ]
+    },
+    {
+      "name": "doctor",
+      "from": 1,
+      "move": [
+        0,
+        20,
+        1.1,
+        1.22
+      ]
+    },
+    {
+      "name": "hall",
+      "from": 3,
+      "move": [
+        0,
+        -30,
+        1.08,
+        1.24
+      ]
+    },
+    {
+      "name": "sign",
+      "from": 5,
+      "move": [
+        -30,
+        0,
+        1.1,
+        1.18
+      ]
+    },
+    {
+      "name": "chute",
+      "from": 6,
+      "move": [
+        0,
+        35,
+        1.08,
+        1.26
+      ]
+    },
+    {
+      "name": "caught",
+      "from": 7,
+      "move": [
+        25,
+        0,
+        1.1,
+        1.2
+      ]
+    },
+    {
+      "name": "fire",
+      "from": 8,
+      "move": [
+        0,
+        -25,
+        1.08,
+        1.28
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het hotel dat gasten liet verdwijnen 😨",
+  "description": "In 1893 bouwde een dokter in Chicago een hotel met geheime glijgaten en deuren naar niets. Tientallen gasten werden nooit meer gezien. Dit is het verhaal van H. H. Holmes en zijn Murder Castle.\n\n#engeverhalen #truecrime #griezelig #horror #geschiedenis #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "truecrime",
+    "h h holmes",
+    "murder castle",
+    "horror",
+    "griezelig",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

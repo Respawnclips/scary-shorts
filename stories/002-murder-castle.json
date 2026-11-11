@@ -1,0 +1,101 @@
+{
+  "id": "002-murder-castle",
+  "legend": "The Murder Castle of H. H. Holmes (Chicago, USA)",
+  "lines": [
+    "Chicago, 1893. The whole world came to see the fair.",
+    "And a charming doctor was waiting with rooms to rent.",
+    "His name was H. H. Holmes.",
+    "He built a huge hotel with a hundred windows.",
+    "Hallways led nowhere. Doors opened onto solid brick.",
+    "A sign said rooms to let. Many guests checked in.",
+    "Hidden chutes dropped into a cellar no guest was ever meant to see.",
+    "Detectives finally caught him in 1894. He confessed to twenty-seven murders. Only nine could be proven.",
+    "A mysterious fire gutted the building before anyone could search it properly.",
+    "Would you have booked a room?"
+  ],
+  "scenes": [
+    {
+      "name": "castle",
+      "from": 0,
+      "move": [
+        30,
+        -20,
+        1.08,
+        1.18
+      ]
+    },
+    {
+      "name": "doctor",
+      "from": 1,
+      "move": [
+        0,
+        20,
+        1.1,
+        1.22
+      ]
+    },
+    {
+      "name": "hall",
+      "from": 3,
+      "move": [
+        0,
+        -30,
+        1.08,
+        1.24
+      ]
+    },
+    {
+      "name": "sign",
+      "from": 5,
+      "move": [
+        -30,
+        0,
+        1.1,
+        1.18
+      ]
+    },
+    {
+      "name": "chute",
+      "from": 6,
+      "move": [
+        0,
+        35,
+        1.08,
+        1.26
+      ]
+    },
+    {
+      "name": "caught",
+      "from": 7,
+      "move": [
+        25,
+        0,
+        1.1,
+        1.2
+      ]
+    },
+    {
+      "name": "fire",
+      "from": 8,
+      "move": [
+        0,
+        -25,
+        1.08,
+        1.28
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Hotel Built To Make Guests Disappear 😨 #shorts",
+  "description": "In 1893 a Chicago doctor built a hotel with hidden chutes and doors to nowhere. Dozens of guests were never seen again. This is the legend of H. H. Holmes and his Murder Castle.\n\n#scarystories #truecrime #creepy #horror #history #shorts",
+  "tags": [
+    "scary stories",
+    "true crime",
+    "h h holmes",
+    "murder castle",
+    "horror",
+    "creepy",
+    "history",
+    "shorts"
+  ]
+}
