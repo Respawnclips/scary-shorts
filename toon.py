@@ -221,3 +221,103 @@ def hotel(x, y, s=1.0, lit="#f3c555", wall="#5a4a42", roof="#2d2623", rows=6, co
 def tallhat(x, y, s=1.0):
     return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><ellipse cx="0" cy="0" rx="68" ry="15" fill="#17181d"/>'
             '<path d="M-38,-2 Q-36,-70 0,-72 Q36,-70 38,-2Z" fill="#17181d"/></g>')
+
+
+# ---------------------------------------------------------------- animated clown (rigged, for "actor" scenes)
+import math as _m
+
+
+def clown(x, y, s=1.0, t=0.0, mode="walk", flip=False, look=(0.0, 0.0), mouth=None, head_rot=None,
+          bust=False, balloon=True, candy=True):
+    """Rigged clown, feet at (x, y), ~700 units tall, drawn for time t (seconds).
+    mode: walk | wave | stand | face (head only, centred at x,y).  bust=True hides everything below the chest.
+    Nested transforms = a real skeleton: hips -> knees -> shoes, shoulders -> elbows -> hands, neck -> head."""
+    sn = _m.sin
+    blink = 0.12 if (t % 3.3) < 0.13 else 1.0
+    if mode == "walk":
+        ph = t * 5.2
+        la, ra = sn(ph) * 27, -sn(ph) * 27
+        lk, rk = max(0, sn(ph + 1.3)) * 38, max(0, sn(ph + 1.3 + _m.pi)) * 38
+        bob = -abs(sn(ph)) * 16; lean = 5 + sn(ph * 2) * 1.2
+        arm_l, el_l = -sn(ph) * 24 + 8, -14
+        arm_r, el_r = sn(ph) * 24 - 8, -14 - 8 * sn(ph)
+        hr = sn(ph) * 3 + (0 if head_rot is None else head_rot)
+        mo = 0.18 + 0.06 * sn(t * 2) if mouth is None else mouth
+    elif mode == "wave":
+        bob = sn(t * 2.2) * 5; lean = sn(t * 1.7) * 2.5
+        la = ra = lk = rk = 0
+        arm_l, el_l = 8 + sn(t * 1.5) * 3, -20
+        arm_r, el_r = -152 + sn(t * 9) * 4, 28 + sn(t * 9) * 30          # raised arm, waving forearm
+        hr = sn(t * 1.3) * 6 + (0 if head_rot is None else head_rot)
+        mo = 0.3 + 0.2 * (sn(t * 3) > 0.4) if mouth is None else mouth
+    else:                                                                # stand / face
+        bob = sn(t * 1.6) * 4; lean = sn(t * 1.1) * 1.5
+        la = ra = lk = rk = 0; arm_l, el_l, arm_r, el_r = 4, -10, -4, -10
+        hr = sn(t * 0.8) * 5 + (0 if head_rot is None else head_rot)
+        mo = 0.25 if mouth is None else mouth
+    lx, ly = look
+    SUIT, DOTS, SKIN, RED = "#d8a935", "#2f5aa8", "#efe8dc", "#cf2430"
+
+    def sleeve(a, e, hold=None):
+        g = f'<g transform="rotate({a})"><path d="M-27,-16 Q-34,50 -22,112 L22,112 Q34,50 27,-16Z" fill="{SUIT}"/>'
+        g += f'<circle cx="-4" cy="40" r="9" fill="{DOTS}" stroke="none"/><circle cx="8" cy="82" r="8" fill="{DOTS}" stroke="none"/>'
+        g += f'<g transform="translate(0,104) rotate({e})"><path d="M-23,-6 Q-26,40 -18,92 L18,92 Q26,40 23,-6Z" fill="{SUIT}"/>'
+        g += f'<path d="M-24,80 h48 l-4,20 h-40Z" fill="#fff" />'
+        g += '<g transform="translate(0,104)"><circle r="24" fill="#f6f6f6"/><circle cx="-20" cy="6" r="10" fill="#f6f6f6"/><circle cx="19" cy="8" r="10" fill="#f6f6f6"/>'
+        up = -(a + e + lean)
+        if hold == "balloon":
+            sw = sn(t * 2.4) * 9
+            g += (f'<g transform="rotate({up + sw * .6:.1f})"><path d="M0,0 Q{20 + sw:.1f},-300 {10 + sw * 2:.1f},-560" stroke="#e8e2d0" stroke-width="4" fill="none"/>'
+                  f'<g transform="translate({10 + sw * 2:.1f},-630)"><ellipse rx="64" ry="78" fill="{RED}"/><path d="M-14,78 l14,22 l14,-22Z" fill="{RED}"/>'
+                  f'<ellipse cx="-22" cy="-30" rx="14" ry="22" fill="#fff" opacity=".35" stroke="none"/></g></g>')
+        if hold == "lolly":
+            g += (f'<g transform="rotate({up:.1f})"><path d="M0,0 V-170" stroke="#e8e2d0" stroke-width="9"/><g transform="translate(0,-196)">'
+                  f'<circle r="46" fill="#fff"/><path d="M0,0 m0,-38 a38,38 0 1 1 -2,0 M0,-22 a22,22 0 1 0 2,0 M0,-8 a8,8 0 1 1 -1,0" fill="none" stroke="#e23a56" stroke-width="9"/></g></g>')
+        g += '</g></g></g>'
+        return g
+
+    def leg(a, k):
+        return (f'<g transform="rotate({a})"><path d="M-44,-8 Q-52,60 -36,132 L36,132 Q52,60 44,-8Z" fill="{SUIT}"/>'
+                f'<path d="M-44,40 h88 M-40,86 h80" stroke="{DOTS}" stroke-width="10" fill="none"/>'
+                f'<g transform="translate(0,128) rotate({k})"><path d="M-34,0 L34,0 L29,100 L-29,100Z" fill="#7a2c80"/>'
+                f'<g transform="translate(0,96)"><path d="M-40,-6 Q-30,40 0,38 Q86,40 96,16 Q96,-8 52,-10 L36,-14Z" fill="{RED}"/>'
+                f'<circle cx="86" cy="12" r="20" fill="#e8c43a" stroke="none"/><path d="M-40,-6 h76" stroke="#0d0f15" stroke-width="6"/></g></g></g>')
+
+    def head(rot):
+        eyes = ""
+        for ex in (-30, 30):
+            eyes += (f'<g transform="translate({ex},-98)"><path d="M-22,-34 L0,-48 L22,-34 L0,-22Z" fill="#2c64c8" stroke-width="4"/>'
+                     f'<ellipse rx="18" ry="{22 * blink:.1f}" fill="#fff" stroke-width="4"/>'
+                     f'<circle cx="{lx * 9:.1f}" cy="{ly * 8:.1f}" r="{6.5 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/></g>')
+        brow = f'<path d="M-52,-132 L-12,-118 M52,-132 L12,-118" stroke="#8a1a22" stroke-width="9" fill="none"/>'
+        open_ = 16 + 44 * mo
+        mouth_ = (f'<path d="M-62,-62 Q0,-30 62,-62 Q0,{-30 + open_ - 6:.1f} -62,-62Z" fill="#1a0509" stroke-width="5"/>')
+        teeth = ""
+        for i in range(8):
+            u = (i + .5) / 8; px = -62 + 124 * u; py = -62 + 2 * 32 * u * (1 - u) * 1.0
+            teeth += f'<path d="M{px - 8:.1f},{py:.1f} l8,{10 + 10 * mo:.1f} l8,-{10 + 10 * mo:.1f}Z" fill="#f4efe2" stroke-width="2"/>'
+        smile = (f'<path d="M-84,-108 Q-96,-40 -62,-62 Q0,-30 62,-62 Q96,-40 84,-108" fill="none" stroke="{RED}" stroke-width="22"/>')
+        return (f'<g transform="rotate({rot})">'
+                + f'<g fill="#c9481f"><circle cx="-76" cy="-120" r="34"/><circle cx="-90" cy="-84" r="30"/><circle cx="76" cy="-120" r="34"/><circle cx="90" cy="-84" r="30"/><circle cx="-48" cy="-170" r="30"/><circle cx="48" cy="-170" r="30"/></g>'
+                + f'<path d="M-36,-176 L10,-262 L50,-174Z" fill="{DOTS}"/><circle cx="10" cy="-266" r="16" fill="{RED}"/>'
+                + f'<ellipse cx="0" cy="-92" rx="76" ry="84" fill="{SKIN}"/>'
+                + eyes + brow + smile + mouth_ + teeth
+                + f'<circle cx="0" cy="-74" r="24" fill="{RED}"/><circle cx="-7" cy="-82" r="7" fill="#ff8a8a" stroke="none"/></g>')
+
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "face":
+        return out + f'<g transform="translate(0,0)">{head(hr)}</g></g>'
+    out += f'<g transform="translate(0,{bob:.1f})">'
+    if not bust:
+        out += f'<g transform="translate(-40,-250)">{leg(la, lk)}</g><g transform="translate(40,-250)">{leg(ra, rk)}</g>'
+    out += f'<g transform="translate(0,-250) rotate({lean})">'
+    out += f'<g transform="translate(-76,-228)">{sleeve(arm_l, el_l, "lolly" if candy and mode == "walk" else None)}</g>' if mode != "wave" else f'<g transform="translate(-76,-228)">{sleeve(arm_l, el_l, "lolly" if candy else None)}</g>'
+    out += (f'<path d="M-80,0 Q-112,-120 -70,-250 L70,-250 Q112,-120 80,0Z" fill="{SUIT}"/>'
+            f'<circle cx="-40" cy="-60" r="14" fill="{DOTS}" stroke="none"/><circle cx="44" cy="-130" r="14" fill="{DOTS}" stroke="none"/><circle cx="-30" cy="-190" r="12" fill="{DOTS}" stroke="none"/>'
+            f'<g fill="{RED}"><circle cx="0" cy="-60" r="15"/><circle cx="0" cy="-120" r="15"/><circle cx="0" cy="-180" r="15"/></g>')
+    out += f'<path d="M-62,-250 l12,24 l16,-24 l16,24 l16,-24 l16,24 l16,-24 l16,24 l12,-24 l-6,-20 h-98Z" fill="#fafafa"/>'
+    out += f'<g transform="translate(0,-262)">{head(hr)}</g>'
+    out += f'<g transform="translate(76,-228)">{sleeve(arm_r, el_r, "balloon" if balloon and mode == "walk" else None)}</g>'
+    out += '</g></g></g>'
+    return out

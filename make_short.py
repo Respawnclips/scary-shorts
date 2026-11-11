@@ -209,6 +209,27 @@ def render_layers(scenes, work):
     return out
 
 
+class ActorRenderer:
+    """Draws animated SVG characters per frame: scene["actor"] = dict(fn=fn(ts, t) -> svg, box=(x0, y0, x1, y1))."""
+    def __init__(self):
+        from playwright.sync_api import sync_playwright
+        self.p = sync_playwright().start(); self.b = self.p.chromium.launch()
+        self.pg = self.b.new_page(viewport={"width": CW, "height": CH})
+        self.pg.set_content('<html><body style="margin:0;background:transparent">'
+                            f'<svg id="s" xmlns="http://www.w3.org/2000/svg" width="{CW}" height="{CH}" viewBox="0 0 {CW} {CH}" '
+                            'stroke-linejoin="round" stroke-linecap="round" font-family="DejaVu Sans"></svg></body></html>')
+
+    def draw(self, actor, ts, t):
+        import io
+        x0, y0, x1, y1 = actor["box"]
+        self.pg.evaluate("s => document.getElementById('s').innerHTML = s", actor["fn"](ts, t))
+        png = self.pg.screenshot(clip={"x": x0, "y": y0, "width": x1 - x0, "height": y1 - y0}, omit_background=True)
+        return Image.open(io.BytesIO(png)).convert("RGBA")
+
+    def close(self):
+        self.b.close(); self.p.stop()
+
+
 def make_rain(seed):
     rng = np.random.default_rng(seed)
     img = Image.new("RGBA", (W, H * 2), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
@@ -274,11 +295,17 @@ def main():
     layers = render_layers(mod.SCENES, work)
     plan = story["scenes"]
 
+    actors = ActorRenderer() if any("actor" in v for v in mod.SCENES.values()) else None
     if preview:                                             # contact sheet of every scene
         tiles = []
         for sc in plan:
             L = layers[sc["name"]]; im = L["bg"].copy()
-            for k in ("mid", "glow", "fg"): im.alpha_composite(L[k])
+            for k in ("mid", "glow", "fg"):
+                lay = L[k]
+                if k == "mid" and "actor" in mod.SCENES[sc["name"]]:
+                    a = mod.SCENES[sc["name"]]["actor"]; lay = lay.copy()
+                    lay.alpha_composite(actors.draw(a, 2.0, 2.0), a["box"][:2])
+                im.alpha_composite(lay)
             im = im.crop((54, 96, CW - 54, CH - 96)).resize((W, H))
             w = word_img(lines[sc["from"]].split()[0].upper().strip(".,!?"))
             im.alpha_composite(w, ((W - w.width) // 2, int(H * 0.5) - w.height // 2))
@@ -343,11 +370,15 @@ def main():
         cx0 = min(max(cxn - cw / 2, 0), CW - cw); cy0 = min(max(cyn - ch / 2, 0), CH - ch)
         pan = (p - 0.5) * 2
         img = None
+        act = mod.SCENES[sc["name"]].get("actor")
         for name in ("bg", "mid", "glow", "fg"):
             dp = DEPTH[name]
+            src = L[name]
+            if name == "mid" and act:                                                  # animated character, drawn live
+                src = src.copy(); src.alpha_composite(actors.draw(act, t - starts[si], t), act["box"][:2])
             ox = min(max(cx0 + ddx * pan * dp, 0), CW - cw)
             oy = min(max(cy0 + ddy * pan * dp, 0), CH - ch)
-            c = L[name].resize((W, H), Image.BICUBIC, box=(ox, oy, ox + cw, oy + ch))
+            c = src.resize((W, H), Image.BICUBIC, box=(ox, oy, ox + cw, oy + ch))
             if name == "glow":
                 fl = 0.72 + 0.2 * np.sin(t * 9) + 0.08 * np.sin(t * 23 + 1)
                 c.putalpha(c.getchannel("A").point(lambda v: int(v * fl)))
@@ -392,6 +423,7 @@ def main():
     ff.stdin.close()
     if ff.wait() != 0: sys.exit("ffmpeg failed")
     os.replace(tmp, f"{HERE}/videos/{sid}.mp4")
+    if actors: actors.close()
     print(f"done: videos/{sid}.mp4  ({D:.1f}s)")
 
 

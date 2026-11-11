@@ -1,0 +1,29 @@
+{
+  "id": "005-phantom-clowns",
+  "legend": "The Phantom Clowns (Boston, USA, 1981)",
+  "lines": [
+    "Boston, 1981. Children start telling the same story.",
+    "A clown in a van, parked near the bus stop.",
+    "He waves. He smiles. He offers them candy.",
+    "Within weeks, the sightings spread to cities all across America.",
+    "Police searched every street. They found no clown, and no van.",
+    "But every child described the same thing. A painted smile that never moved.",
+    "He only appeared at dusk, close to where children were alone.",
+    "Then the reports stopped. Nobody ever proved he was real.",
+    "Some say he never left. He just got better at hiding.",
+    "Next time you hear a van behind you, do not wave back."
+  ],
+  "scenes": [
+    {"name": "street", "from": 0, "move": [30, -20, 1.08, 1.2], "focus": [0.3, 0.88]},
+    {"name": "van", "from": 1, "move": [0, 20, 1.08, 1.18], "fog": false, "focus": [0.5, 0.58]},
+    {"name": "cops", "from": 4, "move": [-25, 0, 1.08, 1.2], "focus": [0.35, 0.9]},
+    {"name": "face", "from": 5, "move": [0, 0, 1.0, 1.1], "fog": false, "focus": [0.5, 0.55]},
+    {"name": "stop", "from": 6, "move": [30, 0, 1.08, 1.2], "focus": [0.45, 0.85]},
+    {"name": "tree", "from": 7, "move": [0, 20, 1.08, 1.22], "focus": [0.62, 0.58]},
+    {"name": "pop", "from": 9, "move": [0, 0, 1.0, 1.06], "fog": false, "focus": [0.5, 0.52]}
+  ],
+  "flash_lines": [],
+  "title": "The Killer Clown Everyone Saw... But Nobody Ever Caught 🤡😨 #shorts",
+  "description": "In 1981, children in Boston reported a clown in a van offering candy. Within weeks, reports spread across America. Police never found him. This is the legend of the Phantom Clowns.\n\n#scarystories #creepy #clown #horror #legends #shorts",
+  "tags": ["scarystories", "phantomclowns", "killerclown", "clown", "boston", "horror", "creepy", "shorts"]
+}
