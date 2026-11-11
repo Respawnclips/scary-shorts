@@ -51,7 +51,7 @@ def _say_nl(lines):
         yield np.interp(np.linspace(0, len(a) - 1, n), np.arange(len(a)), a).astype(np.float32)
 
 
-def _fx(a, echo=True):
+def _fx(a, echo=False):
     """Warm up one spoken line: EQ, light compression, small room echo (the raw TTS sounds flat)."""
     import tempfile
     with tempfile.TemporaryDirectory() as td:
@@ -75,7 +75,7 @@ def narrate(lines, lang="en", tts_dir=None):
     chunks, times, t = [np.zeros(int(0.4 * SR), np.float32)], [], 0.4
     pre = tts_dir and all(os.path.exists(f"{tts_dir}/{i:02d}.wav") for i in range(len(lines)))
     for s in (_load_pre(tts_dir, len(lines)) if pre else _say_nl(lines) if lang == "nl" else _say_en(lines)):
-        s = _fx(s, echo=not pre)
+        s = _fx(s, echo=False)
         d = len(s) / SR
         times.append((t, t + d))
         chunks += [s, np.zeros(int(GAP * SR), np.float32)]
