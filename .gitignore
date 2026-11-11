@@ -1,0 +1,4 @@
+work/
+voices/
+__pycache__/
+*.tmp.mp4

@@ -1,0 +1,199 @@
+"""Cartoon drawing helpers: every function returns an SVG fragment for a 1350x2400 canvas.
+Characters stand with their feet at (x, y). Thick dark outlines, muted night palette."""
+import random, itertools
+
+_n = itertools.count()
+OUT = 'stroke="#0d0f15" stroke-width="6"'
+
+
+def uid():
+    return f"g{next(_n)}"
+
+
+def sky(top="#141d36", bot="#5d6f8a"):
+    i = uid()
+    return (f'<defs><linearGradient id="{i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{top}"/>'
+            f'<stop offset="1" stop-color="{bot}"/></linearGradient></defs><rect width="1350" height="2400" fill="url(#{i})"/>')
+
+
+def stars(seed=1, n=45, ymax=1100):
+    r = random.Random(seed)
+    return "".join(f'<circle cx="{r.randint(0, 1350)}" cy="{r.randint(0, ymax)}" r="{r.choice([2, 2, 3, 4])}" '
+                   f'fill="#dfe6f5" opacity="{r.uniform(.35, .9):.2f}"/>' for _ in range(n))
+
+
+def glow(x, y, r, col, op=0.8):
+    i = uid()
+    return (f'<defs><radialGradient id="{i}"><stop offset="0" stop-color="{col}" stop-opacity="{op}"/>'
+            f'<stop offset="1" stop-color="{col}" stop-opacity="0"/></radialGradient></defs>'
+            f'<circle cx="{x}" cy="{y}" r="{r}" fill="url(#{i})"/>')
+
+
+def moon(x, y, r=110, col="#ebe6d0"):
+    return (glow(x, y, r * 3.2, col, 0.38) + f'<circle cx="{x}" cy="{y}" r="{r}" fill="{col}" {OUT}/>'
+            f'<circle cx="{x - r * .3}" cy="{y - r * .2}" r="{r * .18}" fill="#cfc9b0"/>'
+            f'<circle cx="{x + r * .32}" cy="{y + r * .3}" r="{r * .12}" fill="#cfc9b0"/>'
+            f'<circle cx="{x + r * .1}" cy="{y - r * .5}" r="{r * .08}" fill="#cfc9b0"/>')
+
+
+def clouds(seed=3, col="#0c1122", n=7, ymax=900, op=.85):
+    r = random.Random(seed); s = f'<g fill="{col}" opacity="{op}">'
+    for _ in range(n):
+        x, y = r.randint(-100, 1350), r.randint(0, ymax)
+        for k in range(5):
+            s += f'<ellipse cx="{x + k * 110}" cy="{y + r.randint(-30, 30)}" rx="{r.randint(120, 200)}" ry="{r.randint(60, 100)}"/>'
+    return s + '</g>'
+
+
+def fog(y, h, col="#93a3bb", op=.45):
+    i = uid()
+    return (f'<defs><linearGradient id="{i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{col}" stop-opacity="0"/>'
+            f'<stop offset=".5" stop-color="{col}" stop-opacity="{op}"/><stop offset="1" stop-color="{col}" stop-opacity="0"/>'
+            f'</linearGradient></defs><rect x="0" y="{y}" width="1350" height="{h}" fill="url(#{i})"/>')
+
+
+def bare_tree(x, y, h, col="#1a2233", seed=None, w=None):
+    r = random.Random(seed if seed is not None else int(x)); w = w or max(8, h / 20)
+    tx = x + r.randint(-15, 15)
+    s = f'<g fill="none" stroke="{col}"><path d="M{x},{y} L{tx},{y - h}" stroke-width="{w:.0f}"/>'
+    for k in range(6):
+        f = r.uniform(.35, .95); bx = x + (tx - x) * f; by = y - h * f
+        d = 1 if k % 2 else -1; L = h * r.uniform(.2, .36)
+        ex, ey = bx + d * L, by - L * r.uniform(.5, 1.0)
+        s += f'<path d="M{bx:.0f},{by:.0f} Q{bx + d * L * .5:.0f},{by - L * .1:.0f} {ex:.0f},{ey:.0f}" stroke-width="{w * .45:.0f}"/>'
+        s += f'<path d="M{(bx + ex) / 2 + d * L * .1:.0f},{(by + ey) / 2:.0f} l{d * L * .3:.0f},{-L * .38:.0f}" stroke-width="{max(3, w * .26):.0f}"/>'
+    return s + '</g>'
+
+
+def treeline(y, col="#27344a", seed=2, hmin=280, hmax=560, step=95, x0=-40, x1=1400):
+    r = random.Random(seed)
+    return "".join(bare_tree(x + r.randint(-25, 25), y, r.randint(hmin, hmax), col, seed * 100 + x)
+                   for x in range(x0, x1, step))
+
+
+def ground(y, col="#4a4035", seed=5, pebbles=True):
+    r = random.Random(seed)
+    s = f'<path d="M-20,{y} Q340,{y - 34} 675,{y} T1370,{y - 12} L1370,2420 L-20,2420Z" fill="{col}" {OUT}/>'
+    if pebbles:
+        for _ in range(22):
+            px, py = r.randint(0, 1350), r.randint(y + 40, 2380)
+            s += f'<ellipse cx="{px}" cy="{py}" rx="{r.randint(10, 22)}" ry="{r.randint(5, 9)}" fill="none" stroke="#0d0f15" stroke-width="3" opacity=".55"/>'
+    return s
+
+
+def road(y, col="#6a5a47", x=675, far=50, near=440):
+    return (f'<path d="M{x - far},{y} L{x + far},{y} L{x + near},2420 L{x - near},2420Z" fill="{col}" {OUT}/>'
+            f'<path d="M{x - far * .3},{y + 40} L{x - near * .35},2420 M{x + far * .3},{y + 40} L{x + near * .35},2420" stroke="#0d0f15" stroke-width="3" opacity=".3" fill="none"/>')
+
+
+def trunk(x, w=190, col="#2a2320", lean=30):
+    """Big framing tree at the edge of the picture."""
+    return (f'<path d="M{x},2420 L{x + lean},-20 L{x + lean + w * .8},-20 L{x + w},2420Z" fill="{col}" {OUT}/>'
+            f'<path d="M{x + w * .35},2300 Q{x + w * .45},1500 {x + lean + w * .3},600 M{x + w * .7},2000 Q{x + w * .72},1400 {x + lean + w * .6},900 '
+            f'M{x + w * .5},700 q-10,-200 10,-420" fill="none" stroke="#0d0f15" stroke-width="4" opacity=".7"/>'
+            f'<path d="M{x + w * .55},1250 q20,-18 44,-4 q-22,22 -44,4z" fill="#0d0f15"/>')
+
+
+def bush(x, y, s=1, col="#2b4534"):
+    b = f'<g transform="translate({x},{y}) scale({s})" {OUT} fill="{col}">'
+    for cx, cy, r in ((-110, -40, 70), (-40, -90, 85), (50, -80, 90), (125, -35, 72), (0, -30, 80)):
+        b += f'<circle cx="{cx}" cy="{cy}" r="{r}"/>'
+    return b + f'<rect x="-190" y="-20" width="390" height="140" stroke="none"/></g>'
+
+
+def grass(y=2330, col="#24382b", seed=8, n=26):
+    r = random.Random(seed); s = f'<g fill="{col}" {OUT}>'
+    for _ in range(n):
+        x = r.randint(-20, 1350); h = r.randint(60, 150)
+        s += f'<path d="M{x},{y + 90} L{x + 14},{y - h} L{x + 34},{y + 90} L{x + 56},{y - h * .7:.0f} L{x + 74},{y + 90}Z"/>'
+    return s + '</g>'
+
+
+def person(x, y, s=1.0, coat="#7c2f2b", pants="#22252d", skin="#e2c29a", hair="#17181d",
+           flip=False, back=False, hat=False, scared=False, arm="down"):
+    """arm: down | hold (forearm out, e.g. lantern) | reach (hand up and forward)."""
+    f = -1 if flip else 1
+    p = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    p += '<ellipse cx="-24" cy="-4" rx="30" ry="14" fill="#14161b"/><ellipse cx="28" cy="-4" rx="30" ry="14" fill="#14161b"/>'
+    p += f'<path d="M-44,-150 L-42,-8 L-8,-8 L-2,-120 L6,-8 L42,-8 L44,-150Z" fill="{pants}"/>'
+    p += f'<path d="M-50,-262 Q-76,-200 -64,-140 L-40,-144 Q-46,-200 -30,-250Z" fill="{coat}"/><circle cx="-53" cy="-134" r="15" fill="{skin}"/>'
+    p += f'<path d="M-54,-268 Q0,-292 54,-268 L62,-120 Q0,-104 -62,-120Z" fill="{coat}"/>'
+    if arm == "hold":
+        p += f'<path d="M50,-262 Q82,-220 72,-192 L122,-182 L120,-156 L50,-160 Q30,-200 30,-250Z" fill="{coat}"/><circle cx="128" cy="-168" r="15" fill="{skin}"/>'
+    elif arm == "reach":
+        p += f'<path d="M50,-262 L132,-332 L150,-310 L62,-222Z" fill="{coat}"/><circle cx="148" cy="-328" r="15" fill="{skin}"/>'
+    else:
+        p += f'<path d="M50,-262 Q76,-200 64,-140 L40,-144 Q46,-200 30,-250Z" fill="{coat}"/><circle cx="53" cy="-134" r="15" fill="{skin}"/>'
+    p += f'<rect x="-12" y="-298" width="24" height="28" fill="{skin}"/><circle cx="0" cy="-332" r="46" fill="{skin}"/>'
+    if back:
+        p += f'<path d="M-46,-336 A46,46 0 0 1 46,-336 L44,-306 Q0,-284 -44,-306Z" fill="{hair}"/>'
+    else:
+        p += f'<path d="M-46,-338 A46,46 0 0 1 46,-338 Q22,-362 2,-350 Q-20,-364 -46,-338Z" fill="{hair}"/>'
+        er = 11 if scared else 7
+        for ex in (-15, 19):
+            p += f'<circle cx="{ex}" cy="-328" r="{er}" fill="#fff" stroke-width="3"/><circle cx="{ex + 1}" cy="-328" r="3.5" fill="#0d0f15" stroke="none"/>'
+        if scared:
+            p += '<ellipse cx="3" cy="-300" rx="9" ry="12" fill="#2a1014" stroke-width="3"/><path d="M-28,-348 l16,-8 M32,-348 l-16,-8" fill="none" stroke-width="4"/>'
+        else:
+            p += '<path d="M-8,-302 q10,6 22,0" fill="none" stroke-width="4"/>'
+    if hat:
+        p += '<ellipse cx="0" cy="-366" rx="68" ry="15" fill="#2a2622"/><path d="M-36,-368 Q-34,-424 0,-426 Q34,-424 36,-368Z" fill="#2a2622"/>'
+    return p + '</g>'
+
+
+def lantern(x, y, s=1.0):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M0,-52 v18" fill="none"/>'
+            f'<rect x="-18" y="-34" width="36" height="52" rx="6" fill="#f7d76e"/><path d="M-22,-34 h44 M-22,18 h44" fill="none"/></g>')
+
+
+def hound(x, y, s=1.0, flip=False, outline="#3b4356"):
+    """Huge black dog, side view, facing left (flip=True faces right). Eye is at (-300,-368)*s."""
+    f = -1 if flip else 1
+    i = uid()
+    shapes = ('<ellipse cx="60" cy="-250" rx="235" ry="112"/><ellipse cx="-120" cy="-275" rx="135" ry="135"/>'
+              '<ellipse cx="-250" cy="-362" rx="92" ry="82"/><path d="M-310,-395 L-436,-352 L-430,-312 L-300,-300Z"/>'
+              '<path d="M-300,-306 L-412,-288 L-330,-266Z"/><path d="M-242,-430 L-214,-528 L-188,-424Z"/><path d="M-290,-424 L-278,-506 L-244,-430Z"/>'
+              '<path d="M-172,-200 L-192,0 L-138,0 L-110,-200Z"/><path d="M-92,-200 L-102,0 L-48,0 L-30,-200Z"/>'
+              '<path d="M170,-222 L212,-110 L190,0 L244,0 L264,-120 L252,-242Z"/><path d="M108,-200 L128,0 L182,0 L172,-200Z"/>'
+              '<path d="M280,-292 Q402,-332 424,-436 Q382,-340 270,-250Z"/>'
+              '<path d="M-60,-372 l30,-56 l26,50 l34,-48 l22,52 l36,-40 l18,50Z"/>')
+    return (f'<g transform="translate({x},{y}) scale({f * s},{s})"><defs><g id="{i}">{shapes}</g></defs>'
+            f'<use href="#{i}" stroke="{outline}" stroke-width="16" fill="{outline}"/><use href="#{i}" fill="#07080c"/>'
+            '<path d="M-420,-312 l12,22 l12,-22 l12,20 l12,-22 l12,20 l12,-22 l12,20 l12,-20Z" fill="#f1efe6" stroke="#0d0f15" stroke-width="2"/>'
+            '<ellipse cx="-300" cy="-368" rx="17" ry="12" fill="#ff2a1a"/><circle cx="-303" cy="-369" r="5" fill="#ffd9a0"/></g>')
+
+
+def church(x, y, s=1.0, lit="#f3c555", stone="#59606e", dark="#343946"):
+    c = f'<g transform="translate({x},{y}) scale({s})" {OUT}>'
+    c += f'<rect x="-270" y="-330" width="400" height="330" fill="{stone}"/><path d="M-292,-330 L-70,-505 L150,-330Z" fill="{dark}"/>'
+    c += f'<rect x="120" y="-640" width="172" height="640" fill="#626978"/><path d="M106,-640 L206,-840 L306,-640Z" fill="{dark}"/>'
+    c += '<path d="M206,-840 v-70 M184,-884 h44" fill="none" stroke-width="8"/>'
+    c += '<path d="M-125,0 L-125,-150 A55,55 0 0 1 -15,-150 L-15,0Z" fill="#3b2a1f"/><path d="M-70,-200 V0" fill="none" stroke-width="4"/>'
+    for wx, wy in ((-232, -110), (40, -110), (180, -400)):
+        c += f'<path d="M{wx},{wy} v-92 a26,26 0 0 1 52,0 v92Z" fill="{lit}"/>'
+    c += '<g fill="none" stroke-width="3" opacity=".6"><path d="M-240,-280 h50 M-150,-250 h60 M0,-270 h44 M150,-560 h50 M220,-260 h50 M160,-120 h46 M-200,-30 h40 M40,-40 h50"/></g>'
+    return c + '</g>'
+
+
+def gravestone(x, y, s=1.0, col="#69707f"):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-44,0 v-96 a44,44 0 0 1 88,0 v96Z" fill="{col}"/>'
+            '<path d="M0,-108 v52 M-18,-90 h36" fill="none" stroke-width="5"/></g>')
+
+
+def bolt(x, y, s=1.0):
+    pts = "0,0 -70,330 -10,320 -110,700 -30,690 -150,1080 60,600 -10,610 90,290 20,300 80,0"
+    return (f'<g transform="translate({x},{y}) scale({s})"><polygon points="{pts}" fill="#fff8c9" stroke="#ffffff" stroke-width="10"/></g>'
+            + glow(x - 30 * s, y + 500 * s, 520 * s, "#dfe6ff", .55))
+
+
+def signpost(x, y, text, s=1.0):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><rect x="-12" y="-330" width="24" height="330" fill="#4b3a2b"/>'
+            f'<path d="M-170,-320 h300 l50,42 l-50,42 h-300Z" fill="#8a6f4e"/>'
+            f'<text x="-158" y="-264" font-size="38" font-weight="bold" fill="#17120d" stroke="none">{text}</text></g>')
+
+
+def fence(y, col="#3a2f26", step=170):
+    s = f'<g {OUT} fill="{col}"><rect x="-20" y="{y - 120}" width="1400" height="20"/><rect x="-20" y="{y - 60}" width="1400" height="20"/>'
+    for x in range(40, 1400, step):
+        s += f'<path d="M{x - 16},{y} v-170 l16,-22 l16,22 v170Z"/>'
+    return s + '</g>'

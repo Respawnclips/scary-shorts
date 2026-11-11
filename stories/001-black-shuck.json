@@ -1,0 +1,30 @@
+{
+  "id": "001-black-shuck",
+  "legend": "Black Shuck (East Anglia, England)",
+  "lines": [
+    "Never look back at the dog on the coast road.",
+    "In East Anglia, they call it Black Shuck.",
+    "A hound as big as a calf, with one eye burning red.",
+    "On a stormy Sunday in 1577, it burst through the doors of Bungay church.",
+    "Lightning cracked. Two worshippers fell dead where they knelt.",
+    "Then it ran twelve miles to Blythburgh, and struck again.",
+    "The scorch marks are still on the church door. You can touch them.",
+    "Fishermen say if you hear paws behind you at night, keep walking.",
+    "Don't turn around.",
+    "Because those who see Black Shuck... rarely live out the year.",
+    "Have you ever heard footsteps that weren't there?"
+  ],
+  "scenes": [
+    {"name": "road",   "from": 0, "move": [30, -20, 1.08, 1.16]},
+    {"name": "hound",  "from": 2, "move": [-40, 0, 1.20, 1.08]},
+    {"name": "church", "from": 3, "move": [0, 30, 1.08, 1.20], "rain": true},
+    {"name": "run",    "from": 5, "move": [45, 0, 1.10, 1.14]},
+    {"name": "door",   "from": 6, "move": [0, -30, 1.08, 1.22]},
+    {"name": "behind", "from": 7, "move": [-20, 0, 1.08, 1.26]},
+    {"name": "eyes",   "from": 10, "move": [0, 0, 1.08, 1.30]}
+  ],
+  "flash_lines": [3, 4],
+  "title": "The Demon Dog That Left Claw Marks On A Church Door 😨 #shorts",
+  "description": "In 1577, a giant black hound burst into Bungay church during a storm. The scorch marks are still there today. This is the legend of Black Shuck.\n\n#scarystories #folklore #legends #horror #creepy #shorts",
+  "tags": ["scary stories", "folklore", "black shuck", "legends", "horror", "creepy", "shorts"]
+}
