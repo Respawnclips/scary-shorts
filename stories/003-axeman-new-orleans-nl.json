@@ -1,0 +1,103 @@
+{
+  "id": "003-axeman-new-orleans-nl",
+  "legend": "De Axeman van New Orleans (VS, 1918-1919)",
+  "lines": [
+    "New Orleans, 1919. Een moordenaar met een bijl struinde door het donker.",
+    "Niemand kende zijn naam. De kranten noemden hem de Axeman.",
+    "Toen kwam er een brief.",
+    "Hij beloofde elk huis te sparen waar op de nacht van negentien maart jazz werd gespeeld.",
+    "De hele stad hoorde het nieuws. En de hele stad gehoorzaamde.",
+    "Danszalen dreunden. Gezinnen speelden in hun woonkamer tot zonsopgang.",
+    "Die nacht werd niemand aangevallen.",
+    "De Axeman werd nooit gepakt. Zijn naam is nooit gevonden.",
+    "Wie was hij, en waar ging hij heen?",
+    "Had jij de muziek harder gezet?"
+  ],
+  "scenes": [
+    {
+      "name": "street",
+      "from": 0,
+      "move": [
+        30,
+        -20,
+        1.08,
+        1.18
+      ]
+    },
+    {
+      "name": "letter",
+      "from": 2,
+      "move": [
+        0,
+        25,
+        1.1,
+        1.24
+      ]
+    },
+    {
+      "name": "shadow",
+      "from": 3,
+      "move": [
+        -25,
+        0,
+        1.1,
+        1.22
+      ]
+    },
+    {
+      "name": "jazz",
+      "from": 4,
+      "move": [
+        30,
+        0,
+        1.08,
+        1.2
+      ]
+    },
+    {
+      "name": "party",
+      "from": 5,
+      "move": [
+        0,
+        -30,
+        1.08,
+        1.24
+      ]
+    },
+    {
+      "name": "dawn",
+      "from": 6,
+      "move": [
+        0,
+        20,
+        1.12,
+        1.24
+      ]
+    },
+    {
+      "name": "alley",
+      "from": 8,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.3
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Hij beval een hele stad om jazz te spelen, anders... 😨",
+  "description": "In 1919 terroriseerde de Axeman New Orleans. Toen stuurde hij een brief: speel de hele nacht jazz en hij laat je huis met rust. Hij werd nooit gepakt.\n\n#engeverhalen #truecrime #griezelig #horror #geschiedenis #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "truecrime",
+    "axeman",
+    "new orleans",
+    "jazz",
+    "horror",
+    "griezelig",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

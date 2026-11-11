@@ -1,0 +1,101 @@
+{
+  "id": "003-axeman-new-orleans",
+  "legend": "The Axeman of New Orleans (USA, 1918-1919)",
+  "lines": [
+    "New Orleans, 1919. An axe killer was loose in the dark.",
+    "Nobody knew his name. The newspapers called him the Axeman.",
+    "Then a letter arrived.",
+    "He promised to spare any house where jazz was playing on the night of March nineteenth.",
+    "The whole city heard the news. And the whole city obeyed.",
+    "Dance halls roared. Families played in their parlors until sunrise.",
+    "That night, no one was attacked.",
+    "The Axeman was never caught. His name was never found.",
+    "Who was he, and where did he go?",
+    "Would you have turned the music up?"
+  ],
+  "scenes": [
+    {
+      "name": "street",
+      "from": 0,
+      "move": [
+        30,
+        -20,
+        1.08,
+        1.18
+      ]
+    },
+    {
+      "name": "letter",
+      "from": 2,
+      "move": [
+        0,
+        25,
+        1.1,
+        1.24
+      ]
+    },
+    {
+      "name": "shadow",
+      "from": 3,
+      "move": [
+        -25,
+        0,
+        1.1,
+        1.22
+      ]
+    },
+    {
+      "name": "jazz",
+      "from": 4,
+      "move": [
+        30,
+        0,
+        1.08,
+        1.2
+      ]
+    },
+    {
+      "name": "party",
+      "from": 5,
+      "move": [
+        0,
+        -30,
+        1.08,
+        1.24
+      ]
+    },
+    {
+      "name": "dawn",
+      "from": 6,
+      "move": [
+        0,
+        20,
+        1.12,
+        1.24
+      ]
+    },
+    {
+      "name": "alley",
+      "from": 8,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.3
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "He Told An Entire City To Play Jazz Or Else 😨 #shorts",
+  "description": "In 1919 a killer called the Axeman terrified New Orleans, then sent a letter: play jazz all night and he would pass your house by. He was never caught.\n\n#scarystories #truecrime #creepy #horror #history #shorts",
+  "tags": [
+    "scary stories",
+    "true crime",
+    "axeman of new orleans",
+    "new orleans",
+    "jazz",
+    "horror",
+    "creepy",
+    "shorts"
+  ]
+}
