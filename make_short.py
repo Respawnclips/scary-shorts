@@ -342,7 +342,7 @@ def main():
         cw, ch = int(CW / z), int(CH / z)
         cx0 = min(max(cxn - cw / 2, 0), CW - cw); cy0 = min(max(cyn - ch / 2, 0), CH - ch)
         pan = (p - 0.5) * 2
-        shk = 16 * fa + 13 * max(0, 1 - (t - t0) / 0.2)                                # shake on flashes and on every cut
+        shk = 0                                                                        # no screen shake (it was distracting)
         sx, sy = np.sin(t * 131) * shk, np.cos(t * 109) * shk
         bob = 5 * np.sin(t * 1.7)                                                      # gentle handheld drift
         img = None
