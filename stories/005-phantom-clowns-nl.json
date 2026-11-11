@@ -1,0 +1,133 @@
+{
+  "id": "005-phantom-clowns-nl",
+  "legend": "De Phantom Clowns (Boston, VS, 1981)",
+  "lines": [
+    "Boston, 1981. Kinderen vertellen allemaal hetzelfde verhaal.",
+    "Een clown in een busje, vlak bij de bushalte.",
+    "Hij zwaait. Hij lacht. Hij biedt ze snoep aan.",
+    "Binnen weken duiken er meldingen op in steden door heel Amerika.",
+    "De politie zocht elke straat af. Ze vonden geen clown en geen busje.",
+    "Maar elk kind beschreef hetzelfde. Een geschilderde lach die nooit bewoog.",
+    "Hij verscheen alleen in de schemering, daar waar kinderen alleen waren.",
+    "Toen hielden de meldingen op. Niemand bewees ooit dat hij bestond.",
+    "Sommigen zeggen dat hij nooit is weggegaan. Hij kan zich alleen beter verstoppen.",
+    "Hoor je straks een busje achter je, zwaai dan niet terug."
+  ],
+  "scenes": [
+    {
+      "name": "street",
+      "from": 0,
+      "move": [
+        30,
+        -20,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.88
+      ]
+    },
+    {
+      "name": "van",
+      "from": 1,
+      "move": [
+        0,
+        20,
+        1.08,
+        1.18
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.58
+      ]
+    },
+    {
+      "name": "cops",
+      "from": 4,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.35,
+        0.9
+      ]
+    },
+    {
+      "name": "face",
+      "from": 5,
+      "move": [
+        0,
+        0,
+        1.0,
+        1.1
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    {
+      "name": "stop",
+      "from": 6,
+      "move": [
+        30,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.45,
+        0.85
+      ]
+    },
+    {
+      "name": "tree",
+      "from": 7,
+      "move": [
+        0,
+        20,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.62,
+        0.58
+      ]
+    },
+    {
+      "name": "pop",
+      "from": 9,
+      "move": [
+        0,
+        0,
+        1.0,
+        1.06
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.52
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De Killer Clown Die Iedereen Zag... Maar Niemand Ooit Ving 🤡😨",
+  "description": "In 1981 vertelden kinderen in Boston over een clown in een busje die snoep aanbood. Binnen weken verspreidden de meldingen zich door heel Amerika. De politie vond hem nooit. Dit is de legende van de Phantom Clowns.\n\n#engeverhalen #horror #clown #creepy #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "phantomclowns",
+    "killerclown",
+    "clown",
+    "horror",
+    "creepy",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}
