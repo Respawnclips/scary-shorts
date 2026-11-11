@@ -66,12 +66,21 @@ SCENES["gate"] = dict(
 )
 
 # 5. Scorch marks on the iron bars
-_scorch = "".join(f'<ellipse cx="{x}" cy="{y}" rx="54" ry="120" fill="#ff7a2a" opacity=".85" stroke="#0d0f15" stroke-width="5"/><ellipse cx="{x}" cy="{y}" rx="26" ry="70" fill="#1a0f0a"/>' for x, y in ((520, 1720), (680, 1780), (840, 1720)))
+def _hand(x, y, s=1.0, rot=0):
+    f = "".join(f'<rect x="{fx}" y="{fy}" width="34" height="{fh}" rx="17" transform="rotate({fr} {fx + 17} {fy + fh})"/>'
+                for fx, fy, fh, fr in ((-62, -190, 120, -12), (-24, -230, 140, -3), (16, -225, 135, 5), (54, -185, 115, 14)))
+    f += '<rect x="-112" y="-40" width="32" height="100" rx="16" transform="rotate(-62 -96 20)"/>'
+    return (f'<g transform="translate({x},{y}) scale({s}) rotate({rot})">'
+            f'<g fill="#ff7a2a" stroke="#ff7a2a" stroke-width="26"><ellipse cx="0" cy="0" rx="82" ry="92"/>{f}</g>'
+            f'<g fill="#150b08" stroke="#0d0f15" stroke-width="5"><ellipse cx="0" cy="0" rx="82" ry="92"/>{f}</g></g>')
+
+
+_scorch = _hand(470, 1800, 1.5, -8) + _hand(900, 1700, 1.35, 10)
 SCENES["bars"] = dict(
     bg='<rect width="1350" height="2400" fill="#0b0d14"/>',
     mid="".join(f'<rect x="{x}" y="0" width="150" height="2400" fill="#3a3d49" stroke="#0d0f15" stroke-width="10"/><path d="M{x + 30},0 V2400" stroke="#5a5e6e" stroke-width="12"/>' for x in (330, 610, 890)),
     fg=_scorch,
-    glow=glow(680, 1750, 700, "#ff6a1a", .55),
+    glow=glow(470, 1750, 600, "#ff6a1a", .5) + glow(900, 1650, 600, "#ff6a1a", .5),
 )
 
 # 6. An empty road and headlights

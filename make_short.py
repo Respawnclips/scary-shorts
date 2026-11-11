@@ -225,6 +225,18 @@ def make_vignette():
     return Image.fromarray(arr, "RGBA")
 
 
+def make_fog(seed):
+    """Seamless horizontal fog band (RGBA, 2W wide)."""
+    rng = np.random.default_rng(seed + 3); P = W * 2
+    small = np.tile(rng.random((9, 36)).astype(np.float32), (1, 3))
+    im = Image.fromarray((small * 255).astype(np.uint8)).resize((P * 3, 520), Image.BICUBIC).filter(ImageFilter.GaussianBlur(46))
+    a = np.array(im)[:, P:2 * P].astype(np.float32) / 255
+    a = np.clip((a - 0.32) * 1.9, 0, 1) * (np.sin(np.linspace(0, np.pi, 520)) ** 1.6)[:, None]
+    arr = np.zeros((520, P, 4), np.uint8); arr[..., 0], arr[..., 1], arr[..., 2] = 175, 188, 212; arr[..., 3] = (a * 78).astype(np.uint8)
+    one = Image.fromarray(arr, "RGBA"); two = Image.new("RGBA", (P * 2, 520)); two.paste(one, (0, 0)); two.paste(one, (P, 0))
+    return two, P
+
+
 _wcache = {}
 def word_img(word, accent=False):
     key = (word, accent)
@@ -304,29 +316,56 @@ def main():
             if 0 <= dt < 0.6: a = max(a, np.exp(-dt / 0.12) * (1 if dt < 0.07 or dt > 0.14 else 0.35))
         return a
 
+    fog_img, fogP = make_fog(seed)
+    prng = np.random.default_rng(seed + 5)
+    motes = [(prng.random() * W, prng.random() * H, prng.uniform(-14, 14), prng.uniform(-30, -8), prng.uniform(2, 5.5), prng.random() * 6.28) for _ in range(34)]
+    grain = [(prng.standard_normal((H, W)) * 2.6).astype(np.int16) for _ in range(6)]
+
+    def shot_of(t, si):
+        a, b = starts[si], ends[si]; dur = max(0.01, b - a)
+        ns = max(1, int(round(dur / 2.6))); ln = dur / ns
+        k = min(ns - 1, int((t - a) / ln))
+        return k, a + k * ln, a + (k + 1) * ln
+
     def frame(t):
         si = max(i for i, s in enumerate(starts) if s <= t)
         sc = plan[si]; L = layers[sc["name"]]
-        p = (t - starts[si]) / max(0.01, ends[si] - starts[si]); p = p * p * (3 - 2 * p)
+        k, t0, t1 = shot_of(t, si)
+        p = (t - t0) / max(0.01, t1 - t0); p = p * p * (3 - 2 * p)
         dx, dy, z0, z1 = sc.get("move", [0, 0, 1.08, 1.16])
+        fx, fy = sc.get("focus", (0.5, 0.6))
+        if k == 0:   zz0, zz1, cxn, cyn, ddx, ddy = z0, z1, CW / 2, CH / 2, dx, dy
+        elif k % 2:  zz0, zz1, cxn, cyn, ddx, ddy = 1.42, 1.56, fx * CW, fy * CH, 38, 0          # close-up
+        else:        zz0, zz1, cxn, cyn, ddx, ddy = 1.30, 1.14, (CW / 2 + fx * CW) / 2, (CH / 2 + fy * CH) / 2, -(dx or 30), 0  # pull back
         fa = flash_a(t)
-        z = (z0 + (z1 - z0) * p) * (1 + 0.035 * max(0, 1 - (t - starts[si]) / 0.22))   # punch-in on each cut
+        z = (zz0 + (zz1 - zz0) * p) * (1 + 0.04 * max(0, 1 - (t - t0) / 0.22))        # punch-in on each cut
         cw, ch = int(CW / z), int(CH / z)
-        cx0, cy0 = (CW - cw) / 2, (CH - ch) / 2
+        cx0 = min(max(cxn - cw / 2, 0), CW - cw); cy0 = min(max(cyn - ch / 2, 0), CH - ch)
         pan = (p - 0.5) * 2
-        sx, sy = (rnd.uniform(-1, 1) * 16 * fa, rnd.uniform(-1, 1) * 16 * fa)
-        bob = 5 * np.sin(t * 1.7)                                                   # gentle handheld drift
+        shk = 16 * fa + 13 * max(0, 1 - (t - t0) / 0.2)                                # shake on flashes and on every cut
+        sx, sy = np.sin(t * 131) * shk, np.cos(t * 109) * shk
+        bob = 5 * np.sin(t * 1.7)                                                      # gentle handheld drift
         img = None
         for name in ("bg", "mid", "glow", "fg"):
             dp = DEPTH[name]
-            ox = int(min(max(cx0 + dx * pan * dp + sx, 0), CW - cw))
-            oy = int(min(max(cy0 + dy * pan * dp + sy + bob * dp, 0), CH - ch))
+            ox = int(min(max(cx0 + ddx * pan * dp + sx, 0), CW - cw))
+            oy = int(min(max(cy0 + ddy * pan * dp + sy + bob * dp, 0), CH - ch))
             c = L[name].crop((ox, oy, ox + cw, oy + ch))
             if name == "glow":
                 fl = 0.72 + 0.2 * np.sin(t * 9) + 0.08 * np.sin(t * 23 + 1)
                 c.putalpha(c.getchannel("A").point(lambda v: int(v * fl)))
             img = c if img is None else (img.alpha_composite(c) or img)
-        img = img.resize((W, H), Image.BILINEAR)
+        img = img.resize((W, H), Image.BICUBIC)
+        if sc.get("fog", True):                                                         # drifting fog bands
+            for fy_, spd, fl_ in ((0.50, 34, 1), (0.70, -22, 0)):
+                o = int(t * spd) % fogP
+                band = fog_img.crop((o, 0, o + W, 520))
+                img.alpha_composite(band, (0, int(H * fy_) - 260))
+        dr = ImageDraw.Draw(img, "RGBA")                                                # floating dust / embers
+        for mx, my, vx, vy, mr, ph in motes:
+            x, y = (mx + vx * t) % W, (my + vy * t) % H
+            al = int(70 + 70 * np.sin(t * 1.3 + ph))
+            dr.ellipse((x - mr, y - mr, x + mr, y + mr), fill=(235, 238, 255, al))
         if sc.get("rain"):
             ry = H - int(t * 1700) % H
             img.alpha_composite(rain_l.crop((0, ry, W, ry + H)))
@@ -342,12 +381,13 @@ def main():
                 break
         f = min(1, t / 0.5, (D - t) / 0.6)
         if f < 1: img = Image.blend(black, img, max(0, f))
-        return img.convert("RGB")
+        arr = np.asarray(img.convert("RGB"), dtype=np.int16) + grain[int(t * FPS) % 6][..., None]   # film grain
+        return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
 
     tmp = f"{HERE}/videos/{sid}.tmp.mp4"
     ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
                            "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", f"{work}/audio.wav",
-                           "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                           "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "veryfast", "-crf", "23", "-maxrate", "6M", "-bufsize", "12M",
                            "-pix_fmt", "yuv420p", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000",
                            "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", tmp],
                           stdin=subprocess.PIPE)
