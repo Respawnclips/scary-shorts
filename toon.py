@@ -324,7 +324,7 @@ def clown(x, y, s=1.0, t=0.0, mode="walk", flip=False, look=(0.0, 0.0), mouth=No
 
 
 def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", skin="#e2c29a", hair="#17181d",
-          hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None, num=None, socks=None):
+          hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None, num=None, socks=None, longhair=False):
     """Rigged, animated person (feet at (x, y), ~430 units tall), drawn for time t. Use inside an "actor" scene
     (SCENES[name]["actor"] = dict(box=(x0, y0, x1, y1), fn=lambda ts, t: human(...))) so the main character really moves.
     mode: stand (breathing, looking around) | walk | run | cheer (jumping, arms up) | wash (scrubbing at a sink) | scared (trembling, hands up) | reach (arm out) | point | back (stand, seen from behind).
@@ -366,6 +366,8 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
         g = (f'<g transform="rotate({a:.1f})"><path d="M-22,-10 Q-30,50 -20,104 L20,104 Q30,50 22,-10Z" fill="{coat}"/>'
              f'<g transform="translate(0,100) rotate({e:.1f})"><path d="M-19,-4 Q-22,40 -15,84 L15,84 Q22,40 19,-4Z" fill="{coat}"/>'
              f'<circle cx="0" cy="92" r="17" fill="{skin}"/>')
+        if item == "hook":
+            g += ('<g transform="translate(0,96)"><path d="M0,0 V34 Q0,96 -46,78 L-38,62 Q-20,72 -14,36 V0Z" fill="#b8c0cc" stroke-width="5"/></g>')
         if item == "lantern":
             sw = sn(t * 2.1) * 6
             g += (f'<g transform="translate(0,92) rotate({-(a + e + lean) * .9 + sw:.1f})"><path d="M0,0 V30" stroke="#0d0f15" stroke-width="5"/>'
@@ -384,7 +386,7 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
     o += f'<path d="M-58,0 Q-70,-80 -54,-160 Q0,-186 54,-160 Q70,-80 58,0Z" fill="{coat}"/><path d="M0,-170 V-6" stroke="#0d0f15" stroke-width="3" opacity=".5" fill="none"/>' + (f'<text x="0" y="-70" font-size="64" font-weight="bold" fill="#fff" stroke="none" text-anchor="middle" font-family="DejaVu Sans">{num}</text>' if num else "")
     o += f'<rect x="-11" y="-190" width="22" height="26" fill="{skin}"/>'
     # head
-    o += f'<g transform="translate(0,-196) rotate({hr:.1f})"><circle cx="0" cy="-36" r="42" fill="{skin}"/>'
+    o += f'<g transform="translate(0,-196) rotate({hr:.1f})">' + (f'<path d="M-48,-40 Q-52,30 -36,56 L40,56 Q54,30 48,-40Z" fill="{hair}"/>' if longhair else "") + f'<circle cx="0" cy="-36" r="42" fill="{skin}"/>'
     if back:
         o += f'<path d="M-44,-38 A44,44 0 0 1 44,-38 L42,-8 Q0,10 -42,-8Z" fill="{hair}"/>'
     else:

@@ -1,0 +1,167 @@
+{
+ "id": "007-hookman-nl",
+ "lang": "nl",
+ "legend": "De Hookman (Amerikaanse stadslegende)",
+ "lines": [
+  "Een stil bospad. Een auto. Twee tieners en een nacht zonder maan.",
+  "De radio onderbreekt de muziek: een man is ontsnapt uit een inrichting.",
+  "Hij heeft een haak in plaats van een hand.",
+  "Het meisje wil naar huis. De jongen lacht haar uit.",
+  "Dan klinkt er gekrab op het dak. Krrrk. Krrrk.",
+  "Ze zegt: rij weg, nu! De jongen trapt het gaspedaal in.",
+  "Thuis stapt hij uit om haar portier open te doen.",
+  "En daar, vast aan de deurklink, hangt een haak.",
+  "De man is nooit gevonden. Al zeventig jaar vertellen Amerikanen dit verhaal.",
+  "Kijk jij ook altijd even naar je deurklink?"
+ ],
+ "scenes": [
+  {
+   "name": "pad",
+   "from": 0,
+   "move": [
+    20,
+    0,
+    1.05,
+    1.12
+   ],
+   "fog": true,
+   "focus": [
+    0.5,
+    0.62
+   ]
+  },
+  {
+   "name": "haak",
+   "from": 2,
+   "move": [
+    0,
+    20,
+    1.05,
+    1.14
+   ],
+   "fog": false,
+   "focus": [
+    0.35,
+    0.7
+   ]
+  },
+  {
+   "name": "meisje",
+   "from": 3,
+   "move": [
+    -20,
+    0,
+    1.05,
+    1.12
+   ],
+   "fog": false,
+   "focus": [
+    0.6,
+    0.62
+   ]
+  },
+  {
+   "name": "dak",
+   "from": 4,
+   "move": [
+    0,
+    0,
+    1.05,
+    1.14
+   ],
+   "fog": false,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "name": "rijden",
+   "from": 5,
+   "move": [
+    -30,
+    0,
+    1.05,
+    1.12
+   ],
+   "fog": false,
+   "focus": [
+    0.5,
+    0.7
+   ]
+  },
+  {
+   "name": "thuis",
+   "from": 6,
+   "move": [
+    30,
+    0,
+    1.05,
+    1.12
+   ],
+   "fog": false,
+   "focus": [
+    0.45,
+    0.8
+   ]
+  },
+  {
+   "name": "klink",
+   "from": 7,
+   "move": [
+    0,
+    0,
+    1.05,
+    1.16
+   ],
+   "fog": false,
+   "focus": [
+    0.5,
+    0.6
+   ]
+  },
+  {
+   "name": "man",
+   "from": 8,
+   "move": [
+    30,
+    0,
+    1.05,
+    1.14
+   ],
+   "focus": [
+    0.4,
+    0.8
+   ]
+  },
+  {
+   "name": "end",
+   "from": 9,
+   "move": [
+    0,
+    0,
+    1.05,
+    1.12
+   ],
+   "fog": false,
+   "focus": [
+    0.55,
+    0.75
+   ]
+  }
+ ],
+ "flash_lines": [
+  4
+ ],
+ "title": "Heb jij ooit je deurklink gecontroleerd? 😨🪝",
+ "description": "De Hookman: een Amerikaanse stadslegende over twee tieners, een radiobericht en een haak aan de deurklink.\n\n#engeverhalen #hookman #horror #creepy #legende #foryou #foryoupage",
+ "tags": [
+  "engeverhalen",
+  "hookman",
+  "horror",
+  "creepy",
+  "legende",
+  "foryou",
+  "foryoupage"
+ ]
+}
