@@ -1,0 +1,133 @@
+{
+  "id": "009-mary-celeste",
+  "legend": "The Mary Celeste (Atlantic Ocean, 1872)",
+  "lines": [
+    "December fourth, 1872. A ship drifts in the Atlantic and nobody is steering.",
+    "The crew of the Dei Gratia sail closer and shout. No answer.",
+    "They climb aboard. The Mary Celeste is completely empty.",
+    "The cargo is safe, the sails are set, and there is even food in the galley.",
+    "But the lifeboat is gone, and so is everyone who sailed on her.",
+    "The last log entry was written nine days earlier, far away.",
+    "Some blamed pirates. Some a storm. Some a sea monster.",
+    "Others say fumes from the alcohol cargo scared them into the boat.",
+    "Nobody was ever found. Nobody ever knew.",
+    "If you were aboard, would you have left the ship?"
+  ],
+  "scenes": [
+    {
+      "name": "drift",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ]
+    },
+    {
+      "name": "hail",
+      "from": 1,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.82
+      ]
+    },
+    {
+      "name": "deck",
+      "from": 2,
+      "move": [
+        20,
+        10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.88
+      ]
+    },
+    {
+      "name": "davit",
+      "from": 4,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.35,
+        0.85
+      ]
+    },
+    {
+      "name": "cabin",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.7
+      ]
+    },
+    {
+      "name": "theories",
+      "from": 6,
+      "move": [
+        -30,
+        0,
+        1.08,
+        1.25
+      ],
+      "rain": true,
+      "focus": [
+        0.35,
+        0.68
+      ]
+    },
+    {
+      "name": "wheel",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.52
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "The Ghost Ship Found Sailing With Nobody Aboard... 🚢😨 #shorts",
+  "description": "In December 1872 the Mary Celeste was found drifting in the Atlantic, her cargo intact and her lifeboat gone. Nobody aboard was ever seen again. This is the mystery of the Mary Celeste.\n\n#scarystories #maryceleste #ghostship #mystery #legends #shorts",
+  "tags": [
+    "scarystories",
+    "maryceleste",
+    "ghostship",
+    "mystery",
+    "atlantic",
+    "history",
+    "legends",
+    "shorts"
+  ]
+}

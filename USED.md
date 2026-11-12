@@ -10,3 +10,7 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 004 | 004-resurrection-mary (+ -nl) | Resurrection Mary (Chicago, USA) | 2026-11-11 |
 | 005 | 005-phantom-clowns (+ -nl) | The Phantom Clowns (Boston, USA, 1981) | not posted yet |
 | 006 | 006-virgil-van-dijk-nl | Voetbal: Virgil van Dijk (afwasser tot wereldtopper), sport mood | not posted |
+| 007 | 007-hookman-nl | The Hookman (USA, lovers' lane urban legend) | not posted |
+| 008 | 008-jersey-devil (+ -nl) | The Jersey Devil (Pine Barrens, New Jersey, USA) | 2026-11-12 |
+| 009 | 009-mary-celeste (+ -nl) | The Mary Celeste (Atlantic Ocean, 1872) | 2026-11-12 |
+| 010 | 010-brown-lady (+ -nl) | The Brown Lady of Raynham Hall (Norfolk, England, 1936 photo) | 2026-11-12 |

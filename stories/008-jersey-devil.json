@@ -1,0 +1,29 @@
+{
+  "id": "008-jersey-devil",
+  "legend": "The Jersey Devil (Pine Barrens, New Jersey, USA)",
+  "lines": [
+    "New Jersey, January 1909. In one week, thousands of people see the same monster.",
+    "The legend begins in 1735, deep in the Pine Barrens.",
+    "A woman named Mother Leeds learns her thirteenth child is coming, and she curses it.",
+    "They say it changed. Hooves, bat wings, a horse's head and a forked tail.",
+    "It flapped up the chimney and vanished into the pines.",
+    "In 1909, strange hoofprints appeared in the snow, even on rooftops.",
+    "Schools closed. Mills shut down. Armed search parties walked the woods.",
+    "Nobody ever caught it.",
+    "Hikers still talk about a scream in the pines at night.",
+    "Would you walk those woods after dark?"
+  ],
+  "scenes": [
+    {"name": "town", "from": 0, "move": [30, -10, 1.08, 1.2], "focus": [0.5, 0.4]},
+    {"name": "cabin", "from": 1, "move": [-20, 10, 1.08, 1.22], "focus": [0.3, 0.8]},
+    {"name": "hearth", "from": 3, "move": [0, 10, 1.08, 1.2], "fog": false, "focus": [0.5, 0.7]},
+    {"name": "prints", "from": 5, "move": [20, -10, 1.08, 1.2], "focus": [0.5, 0.55]},
+    {"name": "posse", "from": 6, "move": [-25, 0, 1.08, 1.2], "focus": [0.4, 0.9]},
+    {"name": "woods", "from": 8, "move": [20, 10, 1.08, 1.22], "focus": [0.65, 0.72]},
+    {"name": "pop", "from": 9, "move": [0, 0, 1.0, 1.08], "fog": false, "focus": [0.55, 0.52]}
+  ],
+  "flash_lines": [8],
+  "title": "The Monster Thousands Saw in One Week... Then It Vanished 😨🦇 #shorts",
+  "description": "In January 1909, thousands of people in New Jersey reported the same winged creature with hooves. Legend says it began in 1735 in the Pine Barrens. This is the legend of the Jersey Devil.\n\n#scarystories #jerseydevil #creepy #horror #legends #shorts",
+  "tags": ["scarystories", "jerseydevil", "newjersey", "pinebarrens", "cryptid", "horror", "legends", "shorts"]
+}

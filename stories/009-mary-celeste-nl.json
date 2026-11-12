@@ -1,0 +1,134 @@
+{
+  "id": "009-mary-celeste-nl",
+  "legend": "De Mary Celeste (Atlantische Oceaan, 1872)",
+  "lines": [
+    "Vier december, achttienhonderd tweeënzeventig. Een schip drijft op de Atlantische Oceaan en niemand stuurt het.",
+    "De bemanning van de Dei Gratia vaart dichterbij en roept. Geen antwoord.",
+    "Ze klimmen aan boord. De Mary Celeste is helemaal leeg.",
+    "De lading is veilig, de zeilen staan, en er is zelfs eten in de kombuis.",
+    "Maar de reddingsboot is weg, en iedereen die meevoer ook.",
+    "De laatste regel in het logboek was negen dagen eerder geschreven, ver hiervandaan.",
+    "Sommigen gaven piraten de schuld. Anderen een storm. Weer anderen een zeemonster.",
+    "Weer anderen denken dat dampen van de alcohol in het ruim hen de boot in joegen.",
+    "Niemand is ooit gevonden. Niemand heeft het ooit geweten.",
+    "Als jij aan boord was, was je dan van het schip gegaan?"
+  ],
+  "scenes": [
+    {
+      "name": "drift",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ]
+    },
+    {
+      "name": "hail",
+      "from": 1,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.82
+      ]
+    },
+    {
+      "name": "deck",
+      "from": 2,
+      "move": [
+        20,
+        10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.88
+      ]
+    },
+    {
+      "name": "davit",
+      "from": 4,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.35,
+        0.85
+      ]
+    },
+    {
+      "name": "cabin",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.7
+      ]
+    },
+    {
+      "name": "theories",
+      "from": 6,
+      "move": [
+        -30,
+        0,
+        1.08,
+        1.25
+      ],
+      "rain": true,
+      "focus": [
+        0.35,
+        0.68
+      ]
+    },
+    {
+      "name": "wheel",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.52
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "Het Spookschip Dat Zonder Bemanning Werd Gevonden 🚢😨",
+  "description": "In december 1872 werd de Mary Celeste drijvend gevonden op de Atlantische Oceaan, met de lading intact en de reddingsboot weg. Niemand aan boord is ooit teruggezien. Dit is het mysterie van de Mary Celeste.\n\n#engeverhalen #maryceleste #spookschip #mysterie #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "maryceleste",
+    "spookschip",
+    "mysterie",
+    "geschiedenis",
+    "legende",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

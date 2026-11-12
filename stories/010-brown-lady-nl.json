@@ -1,0 +1,138 @@
+{
+  "id": "010-brown-lady-nl",
+  "legend": "De Brown Lady van Raynham Hall (Norfolk, Engeland, foto uit 1936)",
+  "lines": [
+    "Norfolk, Engeland, negentienhonderd zesendertig. Een groot oud landhuis en een heel oude legende.",
+    "Ze zeggen dat een vrouw in een bruine jurk door de gangen van Raynham Hall waart.",
+    "De legende zegt dat zij Lady Dorothy Walpole was, door haar man opgesloten in het huis, in het begin van de achttiende eeuw.",
+    "Gasten zwoeren dat ze de trap af zweefde, met lege, gloeiende ogen.",
+    "Zelfs een beroemde zeekapitein, Frederick Marryat, beweerde dat hij haar had ontmoet.",
+    "Dan, in negentienhonderd zesendertig, zetten twee fotografen een camera op voor precies die trap.",
+    "Een van hen fluistert: snel, er is iets op de trap. Hij neemt de foto.",
+    "Op de foto zweeft een bleke, doorzichtige gestalte de treden af.",
+    "Experts noemen het een dubbele belichting of een spelletje van het licht.",
+    "Maar niemand heeft het bewezen. Wat zie jij?"
+  ],
+  "scenes": [
+    {
+      "name": "hall",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "portrait",
+      "from": 1,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    {
+      "name": "stairs",
+      "from": 3,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    {
+      "name": "camera",
+      "from": 5,
+      "move": [
+        20,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.78
+      ]
+    },
+    {
+      "name": "photo",
+      "from": 7,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.55,
+        0.5
+      ]
+    },
+    {
+      "name": "experts",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.18
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.82
+      ]
+    },
+    {
+      "name": "pop",
+      "from": 9,
+      "move": [
+        0,
+        0,
+        1.0,
+        1.08
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.52
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "De Spookfoto Die Experts Nog Steeds Niet Kunnen Verklaren 👻📸",
+  "description": "In 1936 fotografeerden twee fotografen een trap in Raynham Hall in Engeland en op de foto leek een spookachtige vrouw te staan. De legende noemt haar de Brown Lady. Echt spook of een trucje? Dit is de legende van de Brown Lady van Raynham Hall.\n\n#engeverhalen #brownlady #spook #spookhuis #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "brownlady",
+    "raynhamhall",
+    "spookfoto",
+    "spookhuis",
+    "engeland",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

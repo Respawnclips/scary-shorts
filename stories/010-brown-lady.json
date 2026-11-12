@@ -1,0 +1,137 @@
+{
+  "id": "010-brown-lady",
+  "legend": "The Brown Lady of Raynham Hall (Norfolk, England, 1936 photograph)",
+  "lines": [
+    "Norfolk, England, 1936. A grand old house, and a very old legend.",
+    "They say a woman in a brown dress walks the halls of Raynham Hall.",
+    "Legend says she was Lady Dorothy Walpole, locked inside by her husband in the early 1700s.",
+    "Guests swore she glided down the staircase, with empty, glowing eyes.",
+    "Even a famous sea captain, Frederick Marryat, claimed he met her.",
+    "Then, in 1936, two photographers set up a camera facing that very staircase.",
+    "One of them whispers: quick, there is something on the stairs. He takes the shot.",
+    "The photo shows a pale, see-through figure drifting down the steps.",
+    "Experts call it a double exposure or a trick of the light.",
+    "But nobody has proved it. What do you see?"
+  ],
+  "scenes": [
+    {
+      "name": "hall",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "portrait",
+      "from": 1,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    {
+      "name": "stairs",
+      "from": 3,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    {
+      "name": "camera",
+      "from": 5,
+      "move": [
+        20,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.78
+      ]
+    },
+    {
+      "name": "photo",
+      "from": 7,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.55,
+        0.5
+      ]
+    },
+    {
+      "name": "experts",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.18
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.82
+      ]
+    },
+    {
+      "name": "pop",
+      "from": 9,
+      "move": [
+        0,
+        0,
+        1.0,
+        1.08
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.52
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "The Ghost Photo That Experts Still Can't Explain... 👻📸 #shorts",
+  "description": "In 1936, two photographers shot a staircase at Raynham Hall in England and the picture seemed to show a ghostly woman. Legend says she is the Brown Lady. Real ghost or a trick? This is the legend of the Brown Lady of Raynham Hall.\n\n#scarystories #brownlady #ghost #haunted #legends #shorts",
+  "tags": [
+    "scarystories",
+    "brownlady",
+    "raynhamhall",
+    "ghostphoto",
+    "haunted",
+    "england",
+    "legends",
+    "shorts"
+  ]
+}

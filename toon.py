@@ -409,3 +409,180 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
     o += '</g>'
     o += f'<g transform="translate(52,-150)">{arm(ar, er, hold)}</g>'
     return o + '</g></g></g>'
+
+
+# ---------------------------------------------------------------- Jersey Devil rig (horse head, bat wings, hooves, forked tail)
+def devil(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(0.0, 0.0), shriek=None, body="#3a2b33"):
+    """Rigged, animated Jersey Devil, feet at (x, y), ~620 units tall, faces LEFT (flip=True faces right).
+    mode: stand (breathing, wings folded-ish, tail swaying) | fly (hovering, big wing flaps, legs dangling) | face (head only, centred at x,y).
+    shriek: mouth opening 0-1 (None = automatic)."""
+    sn = _m.sin
+    fly = mode == "fly"
+    fl = sn(t * (7.5 if fly else 2.0))
+    wa = (-8 + fl * 40) if fly else (-4 + fl * 7)
+    hov = (-sn(t * 3.7) * 34 - 120) if fly else sn(t * 1.7) * 3
+    sway = sn(t * 2.6) * 18
+    nr = sn(t * .9) * 4 + look[0] * 6
+    blink = 0.12 if (t % 3.1) < 0.12 else 1.0
+    mo = (0.15 + 0.1 * sn(t * 2)) if shriek is None else shriek
+    MEM, BELLY, EYE = "#2a1d2e", "#5a4048", "#ff3a22"
+
+    def wing(side):
+        a = wa * side
+        g = (f'<g transform="rotate({-(30 * side) + a * side * -1:.1f})"><g transform="scale({side},1)">'
+             f'<path d="M0,0 L-130,-310 L-360,-290 L-290,-190 L-340,-100 L-200,-110 L-120,-20Z" fill="{MEM}"/>'
+             f'<path d="M0,0 L-130,-310 L-8,-30" fill="{body}"/>'
+             f'<path d="M-130,-310 L-290,-190 M-130,-310 L-200,-110" fill="none" stroke-width="5"/>'
+             f'<path d="M-130,-310 L-170,-352 L-146,-320" fill="{body}"/></g></g>')
+        return g
+
+    def hind(sd, ph):
+        a = (-30 + sn(t * 3.7 + ph) * 12) if fly else sd * 3
+        k = (50 + sn(t * 3.7 + ph) * 10) if fly else 0
+        return (f'<g transform="rotate({a:.1f})"><path d="M-30,-10 Q-60,60 -30,130 L26,120 Q30,50 28,-10Z" fill="{body}"/>'
+                f'<g transform="translate(0,124) rotate({k:.1f})"><path d="M-24,-6 L-34,60 L-26,92 L24,92 L22,60 L26,-6Z" fill="{body}"/>'
+                f'<path d="M-30,88 L-44,126 L38,126 L26,88Z" fill="#17101a"/></g></g>')
+
+    def head():
+        eyes = ""
+        for ex, ey in ((-52, -22), (4, -34)):
+            eyes += (f'<ellipse cx="{ex}" cy="{ey}" rx="13" ry="{11 * blink:.1f}" fill="{EYE}" stroke-width="4"/>'
+                     f'<circle cx="{ex + look[0] * 4:.1f}" cy="{ey + look[1] * 3:.1f}" r="{4 * (1 if blink > .5 else .1):.1f}" fill="#ffe9a0" stroke="none"/>')
+        op = 12 + 56 * mo
+        teeth = "".join(f'<path d="M{-150 + i * 22},{14 + i * 0.6:.1f} l8,{14:.0f} l8,-14Z" fill="#f4efe2" stroke-width="2"/>' for i in range(5))
+        return (f'<g transform="rotate({nr:.1f})">'
+                f'<path d="M-14,-70 L-6,-176 L30,-76Z M-46,-72 L-62,-170 L-12,-84Z" fill="#17101a"/>'          # ears + horns
+                f'<path d="M20,-70 q60,-90 14,-150 q-6,70 -40,100Z" fill="#17101a"/>'
+                f'<ellipse cx="0" cy="-20" rx="64" ry="62" fill="{body}"/>'
+                f'<path d="M-40,-50 Q-150,-30 -200,18 Q-204,44 -176,44 L-60,{34 + op * .1:.1f}Z" fill="{body}"/>'  # snout (top)
+                f'<path d="M-60,{34 + op * .1:.1f} L-176,{44}  L-190,{44 + op:.1f} Q-150,{58 + op:.1f} -50,{52 + op:.1f}Z" fill="#241823"/>'
+                f'<path d="M-176,{44} L-190,{44 + op:.1f}" stroke-width="5" fill="none"/>'
+                + eyes + f'<g transform="translate(0,{op * .15:.1f})">{teeth}</g>'
+                f'<circle cx="-186" cy="12" r="6" fill="#0d0f15" stroke="none"/>'
+                f'<path d="M-30,-62 q20,-26 54,-8 M-50,-52 q-20,-14 -28,-34" fill="none" stroke-width="4" opacity=".5"/></g>')
+
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "face":
+        return out + head() + '</g>'
+    out += f'<g transform="translate(0,{hov:.1f})">'
+    out += f'<g transform="translate(70,-260) rotate({sway - 10:.1f})"><path d="M0,-12 Q150,-30 190,80 Q210,150 170,200 L196,214 L214,178 L226,214 L240,196 L214,120 Q196,40 0,18Z" fill="{body}"/>'
+    out += f'<path d="M176,198 l-28,38 l44,-18 l36,26 l-6,-44Z" fill="#17101a"/></g>'
+    out += f'<g transform="translate(20,-380)">{wing(-1)}</g><g transform="translate(-20,-380)">{wing(1)}</g>'
+    out += f'<g transform="translate(-36,-230)">{hind(-1, 0)}</g><g transform="translate(40,-230)">{hind(1, 2.2)}</g>'
+    out += (f'<g transform="rotate({sn(t * 1.5) * 2:.1f})"><path d="M-84,-230 Q-110,-330 -60,-430 L60,-430 Q110,-330 84,-230Z" fill="{body}"/>'
+            f'<path d="M-50,-250 Q0,-210 50,-250 Q56,-330 0,-400 Q-56,-330 -50,-250Z" fill="{BELLY}" stroke="none"/>')
+    arm = -20 + sn(t * 2.2) * 8 if not fly else -40 + sn(t * 7.5) * 14
+    out += (f'<g transform="translate(-60,-380) rotate({arm:.1f})"><path d="M-14,0 Q-26,60 -12,110 L16,106 Q22,50 14,0Z" fill="{body}"/>'
+            f'<path d="M-14,108 l-6,26 M0,110 l0,28 M12,108 l8,26" stroke="#e8e0d0" stroke-width="6" fill="none"/></g>')
+    out += (f'<g transform="translate(-20,-420) rotate({-12 + nr * .5:.1f})"><path d="M-30,10 Q-70,-60 -40,-130 L10,-120 Q-10,-60 30,10Z" fill="{body}"/>'
+            f'<g transform="translate(-24,-146)">{head()}</g></g></g>')
+    return out + '</g></g>'
+
+
+# ---------------------------------------------------------------- the Brown Lady (floating ghost woman rig)
+def lady(x, y, s=1.0, t=0.0, mode="glide", flip=False, look=(0.0, 0.0), alpha=0.92, gown="#6b4a34", face_only=False):
+    """Rigged, animated ghost woman in an old brown gown, ~620 units tall, feet (hem) at (x, y). She floats.
+    mode: glide (drifting, arms swaying) | beckon (one arm waves toward you) | stand (still, breathing) | face (head only, centred at x,y)."""
+    sn = _m.sin
+    hov = -26 - sn(t * 1.6) * 16
+    lean = sn(t * 1.1) * 3
+    hr = sn(t * .7) * 5 + look[0] * 6
+    blink = 0.12 if (t % 4.1) < 0.14 else 1.0
+    if mode == "beckon":
+        a1, e1 = -120 + sn(t * 3) * 10, 40 + sn(t * 3) * 25
+        a2, e2 = 10, -10
+    elif mode == "stand":
+        a1, e1, a2, e2 = 6, -10, -6, -10
+    else:
+        a1, e1 = 14 + sn(t * 1.4) * 8, -16 + sn(t * 1.9) * 8
+        a2, e2 = -14 - sn(t * 1.3 + 1) * 8, -16 - sn(t * 1.7) * 8
+    HAIR, SKIN = "#2a2020", "#e3dccd"
+
+    def sleeve(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-20,-10 Q-30,60 -18,118 L18,118 Q30,60 20,-10Z" fill="{gown}"/>'
+                f'<g transform="translate(0,114) rotate({e:.1f})"><path d="M-17,-4 Q-24,50 -14,96 L14,96 Q24,50 17,-4Z" fill="{gown}"/>'
+                f'<path d="M-20,86 q20,22 40,0 l0,16 q-20,16 -40,0Z" fill="#e8e2d2"/><circle cx="0" cy="110" r="15" fill="{SKIN}"/></g></g>')
+
+    def head():
+        eyes = "".join(f'<ellipse cx="{ex}" cy="-8" rx="10" ry="{14 * blink:.1f}" fill="#06070b" stroke-width="3"/>'
+                       f'<circle cx="{ex + look[0] * 3:.1f}" cy="{-8 + look[1] * 3:.1f}" r="3" fill="#cfe8ff" stroke="none"/>' for ex in (-17, 17))
+        return (f'<g transform="rotate({hr:.1f})"><path d="M-48,-30 Q-60,60 -34,92 L38,92 Q60,60 48,-30Z" fill="{HAIR}"/>'
+                f'<ellipse cx="0" cy="-2" rx="44" ry="54" fill="{SKIN}"/>'
+                f'<path d="M-46,-14 Q-40,-72 0,-70 Q40,-72 46,-14 Q20,-46 0,-44 Q-20,-46 -46,-14Z" fill="{HAIR}"/>'
+                f'<circle cx="0" cy="-86" r="26" fill="{HAIR}"/>'
+                + eyes + f'<path d="M-9,30 q9,-6 18,0" fill="none" stroke-width="4"/>'
+                f'<path d="M-26,-26 l14,-4 M26,-26 l-14,-4" fill="none" stroke-width="3" opacity=".6"/></g>')
+
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if face_only or mode == "face":
+        return out + head() + '</g>'
+    out += f'<g opacity="{alpha}" transform="translate(0,{hov:.1f})">'
+    # skirt with a waving hem
+    w1, w2, w3 = sn(t * 2.2) * 22, sn(t * 2.2 + 1.6) * 26, sn(t * 2.2 + 3.1) * 22
+    out += (f'<path d="M-70,-300 Q-150,-140 {-190 + w1:.1f},0 Q{-110 + w1:.1f},{26 + w2 * .3:.1f} {-60 + w2:.1f},8 Q0,{30 - w2 * .3:.1f} {60 + w3:.1f},8 '
+            f'Q{110 + w3:.1f},{26 + w3 * .3:.1f} {190 + w3:.1f},0 Q150,-140 70,-300Z" fill="{gown}"/>'
+            f'<path d="M-30,-250 Q-50,-120 {-60 + w1:.1f},-20 M30,-250 Q50,-120 {60 + w3:.1f},-20 M0,-260 Q0,-120 {w2:.1f},-10" fill="none" stroke-width="4" opacity=".4"/>')
+    out += f'<g transform="translate(0,-300) rotate({lean:.1f})">'
+    out += f'<g transform="translate(-60,-196)">{sleeve(a1, e1)}</g>'
+    out += (f'<path d="M-62,0 Q-76,-100 -56,-214 Q0,-236 56,-214 Q76,-100 62,0Z" fill="{gown}"/>'
+            f'<path d="M-40,-214 Q0,-170 40,-214" fill="#e8e2d2" stroke-width="5"/>')
+    out += f'<rect x="-12" y="-244" width="24" height="34" fill="{SKIN}"/><g transform="translate(0,-292)">{head()}</g>'
+    out += f'<g transform="translate(60,-196)">{sleeve(a2, e2)}</g>'
+    return out + '</g></g></g>'
+
+
+# ---------------------------------------------------------------- shared set pieces for the 2026-11-12 stories
+def pine(x, y, h, col="#14241f", seed=None):
+    r = random.Random(seed if seed is not None else int(x))
+    s = f'<g fill="{col}"><rect x="{x - 8}" y="{y - h * .2:.0f}" width="16" height="{h * .2:.0f}"/>'
+    for i in range(5):
+        w = h * (.34 - i * .05); yy = y - h * .12 - i * h * .19
+        s += f'<path d="M{x - w:.0f},{yy:.0f} L{x + r.randint(-6, 6)},{yy - h * .3:.0f} L{x + w:.0f},{yy:.0f}Z"/>'
+    return s + '</g>'
+
+
+def pineline(y, col="#101c1a", seed=3, hmin=380, hmax=700, step=110, x0=-40, x1=1400):
+    r = random.Random(seed)
+    return "".join(pine(x + r.randint(-30, 30), y, r.randint(hmin, hmax), col, seed * 31 + x) for x in range(x0, x1, step))
+
+
+def waves(y, col="#1d3552", seed=4, rows=9, hi=34, line="#0d0f15"):
+    r = random.Random(seed); s = ''
+    for k in range(rows):
+        yy = y + k * 110; ph = r.randint(0, 90)
+        d = f'M-20,{yy} '
+        for xx in range(-20, 1400, 130):
+            d += f'q65,{-hi - k * 6 + (ph % 20)} 130,0 '
+        s += f'<path d="{d} L1400,2420 L-20,2420Z" fill="{col}" stroke="{line}" stroke-width="5" opacity="{.75 + k * .03:.2f}"/>'
+    return s
+
+
+def snow(y, col="#cfd9e6"):
+    return (f'<path d="M-20,{y} Q340,{y - 40} 675,{y} T1370,{y - 14} L1370,2420 L-20,2420Z" fill="{col}" {OUT}/>'
+            f'<path d="M100,{y + 80} q80,-30 190,0 M700,{y + 140} q100,-34 230,0 M300,{y + 260} q80,-26 170,0" fill="none" stroke="#9fb0c8" stroke-width="6"/>')
+
+
+def hoofprints(x0, y0, x1, y1, n=9, col="#7f8fa8"):
+    s = ''
+    for i in range(n):
+        u = i / (n - 1); px, py = x0 + (x1 - x0) * u, y0 + (y1 - y0) * u + (14 if i % 2 else -14)
+        s += (f'<g transform="translate({px:.0f},{py:.0f})" fill="{col}" stroke="#0d0f15" stroke-width="3"><path d="M-14,-18 Q-4,-6 -4,18 L-16,18 Q-26,0 -14,-18Z"/>'
+              f'<path d="M14,-18 Q4,-6 4,18 L16,18 Q26,0 14,-18Z"/></g>')
+    return s
+
+
+def ship(x, y, s=1.0, hull="#4a3a2e", sail="#d6cfb8", lean=0.0):
+    """Old two-masted sailing ship, side view, centred on x, waterline at y."""
+    g = f'<g transform="translate({x},{y}) rotate({lean}) scale({s})" {OUT}>'
+    g += f'<path d="M-420,-110 L420,-110 L340,40 L-340,40Z" fill="{hull}"/><path d="M-420,-110 H420 v-26 H-420Z" fill="#2b2119"/>'
+    g += '<rect x="-12" y="-760" width="24" height="650" fill="#3a2b1f"/><rect x="-250" y="-640" width="24" height="530" fill="#3a2b1f"/><rect x="190" y="-560" width="24" height="450" fill="#3a2b1f"/>'
+    g += (f'<path d="M-170,-720 Q-60,-620 -170,-340 H150 Q60,-620 150,-720Z" fill="{sail}"/><path d="M-120,-340 Q0,-300 120,-340 V-160 H-120Z" fill="{sail}"/>'
+          f'<path d="M-244,-600 Q-340,-480 -420,-200 L-240,-200Z" fill="{sail}"/><path d="M210,-520 Q330,-400 390,-210 L214,-210Z" fill="{sail}"/>')
+    g += '<path d="M-12,-760 L-12,-800 l70,16 l-70,16" fill="#8c2a2a"/>'
+    return g + '</g>'
+
+
+def window(x, y, w, h, lit="#f3c555"):
+    return (f'<g {OUT}><rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{lit}"/><path d="M{x + w / 2},{y} v{h} M{x},{y + h / 2} h{w}" fill="none"/></g>')

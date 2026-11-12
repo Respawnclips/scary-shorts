@@ -1,0 +1,134 @@
+{
+  "id": "008-jersey-devil-nl",
+  "legend": "De Jersey Devil (Pine Barrens, New Jersey, VS)",
+  "lines": [
+    "New Jersey, januari negentienhonderd negen. In één week zien duizenden mensen hetzelfde monster.",
+    "De legende begint in zeventienhonderd vijfendertig, diep in de Pine Barrens.",
+    "Een vrouw genaamd Mother Leeds hoort dat haar dertiende kind eraan komt, en ze vervloekt het.",
+    "Het veranderde, zeggen ze. Hoeven, vleermuisvleugels, een paardenkop en een gevorkte staart.",
+    "Het vloog de schoorsteen uit en verdween in de dennenbomen.",
+    "In negentienhonderd negen verschenen er vreemde hoefafdrukken in de sneeuw, zelfs op daken.",
+    "Scholen sloten. Fabrieken stopten. Gewapende groepen doorzochten de bossen.",
+    "Niemand ving het ooit.",
+    "Wandelaars praten nog steeds over een gil in de dennen, midden in de nacht.",
+    "Zou jij die bossen in durven na zonsondergang?"
+  ],
+  "scenes": [
+    {
+      "name": "town",
+      "from": 0,
+      "move": [
+        30,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    {
+      "name": "cabin",
+      "from": 1,
+      "move": [
+        -20,
+        10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ]
+    },
+    {
+      "name": "hearth",
+      "from": 3,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "prints",
+      "from": 5,
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    {
+      "name": "posse",
+      "from": 6,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.9
+      ]
+    },
+    {
+      "name": "woods",
+      "from": 8,
+      "move": [
+        20,
+        10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.65,
+        0.72
+      ]
+    },
+    {
+      "name": "pop",
+      "from": 9,
+      "move": [
+        0,
+        0,
+        1.0,
+        1.08
+      ],
+      "fog": false,
+      "focus": [
+        0.55,
+        0.52
+      ]
+    }
+  ],
+  "flash_lines": [
+    8
+  ],
+  "title": "Het Monster Dat Duizenden Mensen Zagen In Één Week 😨🦇",
+  "description": "In januari 1909 meldden duizenden mensen in New Jersey hetzelfde gevleugelde wezen met hoeven. De legende zegt dat het begon in 1735 in de Pine Barrens. Dit is de legende van de Jersey Devil.\n\n#engeverhalen #jerseydevil #horror #creepy #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "jerseydevil",
+    "newjersey",
+    "cryptid",
+    "horror",
+    "creepy",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}
