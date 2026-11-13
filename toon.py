@@ -586,3 +586,119 @@ def ship(x, y, s=1.0, hull="#4a3a2e", sail="#d6cfb8", lean=0.0):
 
 def window(x, y, w, h, lit="#f3c555"):
     return (f'<g {OUT}><rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{lit}"/><path d="M{x + w / 2},{y} v{h} M{x},{y + h / 2} h{w}" fill="none"/></g>')
+
+
+# ---------------------------------------------------------------- Spring-heeled Jack rig (cloak, helmet, glowing eyes, spring boots)
+def jack(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(0.0, 0.0), flame=None, cloak="#14151f"):
+    """Rigged, animated Spring-heeled Jack, ~600 units tall, feet at (x, y). Faces RIGHT (flip=True faces left).
+    mode: stand (cloak swaying, breathing) | leap (bounces high on spring boots, legs tucking, cloak flaring) | claw (arm reaches out at you) | face (head only, centred at x,y).
+    flame: 0-1 size of the blue fire from his mouth (None = automatic flicker in leap/claw)."""
+    sn = _m.sin
+    ph = (t * 1.25) % 1.0
+    air = max(0.0, sn(ph * _m.pi)) if mode == "leap" else 0.0
+    up = -air * 330
+    sq = (1 - air) * (max(0, sn(ph * _m.pi * 2 + 2.2)) * 0 + 0)      # placeholder (no squash)
+    tuck = air * 70
+    fl = flame if flame is not None else (0.5 + 0.5 * sn(t * 9) if mode in ("leap", "claw") else 0.0)
+    fl = max(0.0, fl)
+    br = sn(t * 1.8) * 3
+    flap = sn(t * 3.1) * 8 + (air * 30 if mode == "leap" else 0)
+    hr = sn(t * .8) * 3 + look[0] * 5
+    blink = 0.15 if (t % 3.3) < .12 else 1.0
+    a1, e1, a2, e2 = 8 + sn(t * 1.5) * 4, -20, -8 - sn(t * 1.4) * 4, -20
+    if mode == "leap":
+        a1, e1, a2, e2 = 130 - air * 30, 20, 40 + air * 40, 30
+    elif mode == "claw":
+        a1, e1 = -95 + sn(t * 3) * 6, -10 + sn(t * 4) * 8
+    SK, EYE = "#232733", "#ff7a1a"
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-16,-8 Q-22,50 -12,104 L12,104 Q22,50 16,-8Z" fill="{cloak}"/>'
+                f'<g transform="translate(0,100) rotate({e:.1f})"><path d="M-14,-4 Q-18,40 -10,84 L10,84 Q18,40 14,-4Z" fill="{cloak}"/>'
+                f'<path d="M-12,82 l-10,38 M0,86 l0,44 M12,82 l12,36" stroke="#c9ccd6" stroke-width="6" stroke-linecap="round" fill="none"/>'
+                f'<circle cx="0" cy="88" r="14" fill="#2b2f3d"/></g></g>')
+
+    def leg(a, k):
+        coil = "".join(f'<path d="M-22,{60 + i * 15} h44" stroke="#e0b24a" stroke-width="5" fill="none"/>' for i in range(3))
+        return (f'<g transform="rotate({a:.1f})"><path d="M-24,-6 L24,-6 L20,96 L-20,96Z" fill="#1a1c27"/>'
+                f'<g transform="translate(0,92) rotate({k:.1f})"><path d="M-20,0 L20,0 L16,96 L-16,96Z" fill="#1a1c27"/>{coil}'
+                f'<path d="M-20,92 Q-24,114 0,114 Q44,114 50,102 Q46,92 18,92Z" fill="#8a6a2a"/></g></g>')
+
+    def head():
+        eyes = "".join(f'<path d="M{ex - 15},-20 Q{ex},{-34 * blink - 4:.1f} {ex + 15},-20 Q{ex},{-8 + 12 * (1 - blink):.1f} {ex - 15},-20Z" fill="{EYE}" stroke-width="3"/>' for ex in (-18, 18))
+        mouth = ""
+        if fl > .05:
+            mouth = (f'<path d="M-10,12 Q0,{34 + fl * 20:.0f} 10,12Z" fill="#06070b" stroke-width="3"/>'
+                     f'<path d="M10,16 Q{50 + fl * 70:.0f},{10 + sn(t * 12) * 8:.0f} {60 + fl * 110:.0f},{20 + sn(t * 9) * 12:.0f} Q{40 + fl * 50:.0f},{36} 8,24Z" fill="#7fc8ff" stroke="#e8f6ff" stroke-width="3"/>'
+                     f'<path d="M14,20 Q{40 + fl * 40:.0f},18 {50 + fl * 70:.0f},22" fill="none" stroke="#fff" stroke-width="4"/>')
+        else:
+            mouth = '<path d="M-12,14 q12,8 24,0" fill="none" stroke-width="4"/>'
+        return (f'<g transform="rotate({hr:.1f})"><path d="M-44,-30 Q-50,-100 0,-130 Q50,-100 44,-30Z" fill="#2a2c38"/>'
+                f'<path d="M-20,-110 L0,-190 L20,-110Z" fill="#2a2c38"/>'      # pointed helmet spike
+                f'<ellipse cx="0" cy="0" rx="40" ry="46" fill="{SK}"/>'
+                f'<path d="M-46,-26 Q0,-50 46,-26 L46,-12 Q0,-30 -46,-12Z" fill="#14151f"/>' + eyes + mouth +
+                f'<path d="M-34,24 L-10,60 L0,30 L12,60 L34,24Z" fill="#0b0c12" opacity=".0"/></g>')
+
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "face":
+        return out + head() + '</g>'
+    out += f'<g transform="translate(0,{up:.1f})">'
+    # cloak behind
+    out += (f'<g transform="translate(0,-340)"><path d="M-40,-150 Q{-150 - flap * 3:.0f},0 {-190 - flap * 4:.0f},{190 - air * 60:.0f} Q{-110 - flap:.0f},{150 - air * 40:.0f} {-60},{190 - air * 50:.0f} '
+            f'Q-10,{140 - air * 30:.0f} 30,{196 - air * 50:.0f} L50,-150Z" fill="#0c0d14"/></g>')
+    out += f'<g transform="translate(-24,-250)">{leg(-4 - tuck * .3, tuck * 1.2)}</g><g transform="translate(24,-250)">{leg(6 + tuck * .2, tuck * 1.5)}</g>'
+    out += f'<g transform="translate(0,-250) rotate({sn(t * 1.1) * 2 + (-6 if mode == "claw" else 0):.1f})">'
+    out += f'<g transform="translate(-44,-190)">{arm(a2, e2)}</g>'
+    out += (f'<path d="M-46,0 Q-60,-100 -44,-200 Q0,-226 44,-200 Q60,-100 46,0Z" fill="{cloak}"/>'
+            f'<path d="M-30,-190 Q0,-150 30,-190" fill="#2b2f3d" stroke-width="4"/><circle cx="0" cy="-130" r="14" fill="#e0b24a" stroke-width="3"/>')
+    out += f'<rect x="-10" y="-232" width="20" height="26" fill="{SK}"/><g transform="translate(0,{-276 + br:.1f})">{head()}</g>'
+    out += f'<g transform="translate(44,-190)">{arm(a1, e1)}</g>'
+    return out + '</g></g></g>'
+
+
+# ---------------------------------------------------------------- the Bell Witch (hooded floating spirit rig)
+def wraith(x, y, s=1.0, t=0.0, mode="float", flip=False, look=(0.0, 0.0), alpha=0.9, robe="#1d1a26", glowc="#d8f0ff"):
+    """Rigged, animated hooded spirit, ~600 units tall, hem at (x, y). Floats; no legs.
+    mode: float (drifting, arms swaying) | reach (both arms stretch toward you) | loom (leans in, arms spread) | face (hood only, centred at x,y)."""
+    sn = _m.sin
+    hov = -34 - sn(t * 1.5) * 18
+    lean = sn(t * 1.0) * 4
+    hr = sn(t * .6) * 5 + look[0] * 5
+    blink = 0.2 if (t % 3.9) < .15 else 1.0
+    if mode == "reach":
+        a1, e1, a2, e2 = -100 + sn(t * 2.6) * 8, 8 + sn(t * 3) * 10, -96 - sn(t * 2.4) * 8, 6 + sn(t * 3.3) * 10
+        lean = -8
+    elif mode == "loom":
+        a1, e1, a2, e2 = 70 + sn(t * 2) * 10, 12, -70 - sn(t * 2.2) * 10, 12
+        lean = -4 + sn(t * 2.5) * 3
+    else:
+        a1, e1, a2, e2 = 16 + sn(t * 1.4) * 8, -18 + sn(t * 1.9) * 8, -16 - sn(t * 1.3 + 1) * 8, -18 - sn(t * 1.7) * 8
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-18,-8 Q-34,70 -16,150 L16,150 Q30,70 18,-8Z" fill="{robe}"/>'
+                f'<g transform="translate(0,146) rotate({e:.1f})"><path d="M-14,-4 Q-24,50 -10,110 L10,110 Q24,50 14,-4Z" fill="{robe}"/>'
+                f'<path d="M-10,106 l-12,46 M-3,110 l-3,56 M5,110 l3,56 M12,106 l14,44" stroke="#cfd6e0" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>')
+
+    def head():
+        eyes = "".join(f'<ellipse cx="{ex}" cy="-4" rx="11" ry="{15 * blink:.1f}" fill="{glowc}" stroke-width="3"/>'
+                       f'<circle cx="{ex + look[0] * 3:.1f}" cy="{-4 + look[1] * 3:.1f}" r="3.5" fill="#06070b" stroke="none"/>' for ex in (-20, 20))
+        return (f'<g transform="rotate({hr:.1f})"><path d="M-70,80 Q-84,-60 -30,-110 Q0,-130 30,-110 Q84,-60 70,80 Q0,40 -70,80Z" fill="{robe}"/>'
+                f'<path d="M-46,56 Q-54,-50 0,-84 Q54,-50 46,56 Q0,28 -46,56Z" fill="#07080d"/>' + eyes +
+                f'<path d="M-14,30 q14,8 28,0" fill="none" stroke="#cfd6e0" stroke-width="3" opacity=".6"/></g>')
+
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "face":
+        return out + head() + '</g>'
+    out += f'<g opacity="{alpha}" transform="translate(0,{hov:.1f})">'
+    w1, w2, w3 = sn(t * 2.4) * 26, sn(t * 2.4 + 1.7) * 30, sn(t * 2.4 + 3.2) * 26
+    out += (f'<path d="M-76,-300 Q-170,-120 {-200 + w1:.0f},10 L{-130 + w1:.0f},{-30 + w2 * .3:.0f} L{-70 + w2:.0f},30 L{-10 + w2:.0f},-24 L{50 + w3:.0f},34 L{110 + w3:.0f},-20 L{200 + w3:.0f},10 '
+            f'Q170,-120 76,-300Z" fill="{robe}"/>'
+            f'<path d="M-30,-250 Q-50,-120 {-60 + w1:.0f},-20 M30,-250 Q50,-120 {60 + w3:.0f},-20" fill="none" stroke="#0d0f15" stroke-width="4" opacity=".4"/>')
+    out += f'<g transform="translate(0,-300) rotate({lean:.1f})">'
+    out += f'<g transform="translate(-62,-190)">{arm(a1, e1)}</g>'
+    out += f'<path d="M-64,0 Q-80,-100 -58,-206 Q0,-230 58,-206 Q80,-100 64,0Z" fill="{robe}"/>'
+    out += f'<g transform="translate(0,-262)">{head()}</g>'
+    out += f'<g transform="translate(62,-190)">{arm(a2, e2)}</g>'
+    return out + '</g></g></g>'

@@ -1,0 +1,119 @@
+{
+  "id": "012-bell-witch",
+  "legend": "The Bell Witch (Adams, Tennessee, USA, 1817)",
+  "lines": [
+    "Tennessee, 1817. A farm family hears knocking on the walls.",
+    "Then scratching, gasping, and the sound of chains in the dark.",
+    "Blankets were torn from the beds by something nobody could see.",
+    "Soon a voice began to speak, and it claimed to be a witch.",
+    "Legend says it sang hymns, and even mocked the preachers.",
+    "News spread, and people came from far away to listen.",
+    "They say even General Andrew Jackson rode out to see it.",
+    "In the end the voice said goodbye, and promised to return.",
+    "Some say it still lingers there. Do you believe it?"
+  ],
+  "scenes": [
+    {
+      "name": "farm",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.75
+      ]
+    },
+    {
+      "name": "room",
+      "from": 1,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "voice",
+      "from": 3,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.25
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "crowd",
+      "from": 5,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "name": "leave",
+      "from": 7,
+      "move": [
+        0,
+        -15,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    {
+      "name": "window",
+      "from": 8,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.25
+      ],
+      "fog": false,
+      "focus": [
+        0.45,
+        0.45
+      ]
+    }
+  ],
+  "flash_lines": [
+    1
+  ],
+  "title": "The Witch That Terrified a Whole Tennessee Farm 👻 The Bell Witch #shorts",
+  "description": "In 1817, a farm family in Tennessee heard knocking, whispers and a voice with no body. Legend says it was the Bell Witch. This is one of America's oldest ghost stories.\n\n#scarystories #bellwitch #tennessee #ghost #legends #shorts",
+  "tags": [
+    "scarystories",
+    "bellwitch",
+    "tennessee",
+    "ghost",
+    "americanlegends",
+    "haunted",
+    "legends",
+    "shorts"
+  ]
+}

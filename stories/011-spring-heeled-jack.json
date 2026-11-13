@@ -1,0 +1,133 @@
+{
+  "id": "011-spring-heeled-jack",
+  "legend": "Spring-heeled Jack (London, England, 1837)",
+  "lines": [
+    "London, 1837. Something leaps over garden walls at night.",
+    "People say it wore a black cloak and a pointed helmet.",
+    "Its eyes glowed like burning coals, and it spat blue fire.",
+    "Witnesses swore it jumped fences no man could clear.",
+    "Legend says its boots had springs, so they called it Spring-heeled Jack.",
+    "Even the Lord Mayor of London read out the reports.",
+    "Crowds hunted it on Clapham Common, but it always vanished.",
+    "Nobody ever caught it, and sightings went on for decades.",
+    "Was it a prank, or something else? Would you walk home alone?"
+  ],
+  "scenes": [
+    {
+      "name": "street",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.45
+      ]
+    },
+    {
+      "name": "alley",
+      "from": 1,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.75
+      ]
+    },
+    {
+      "name": "face",
+      "from": 2,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "fog": false,
+      "focus": [
+        0.42,
+        0.5
+      ]
+    },
+    {
+      "name": "fence",
+      "from": 3,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "mayor",
+      "from": 5,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "common",
+      "from": 6,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "roof",
+      "from": 8,
+      "move": [
+        0,
+        -5,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.42,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    2
+  ],
+  "title": "The Leaping Devil of Victorian London 😱 Spring-heeled Jack #shorts",
+  "description": "In 1837, London was terrified by a cloaked figure that leapt over walls and breathed blue fire. Legend says his boots had springs. Prank, panic, or something stranger? This is the legend of Spring-heeled Jack.\n\n#scarystories #springheeledjack #london #legends #victorian #shorts",
+  "tags": [
+    "scarystories",
+    "springheeledjack",
+    "london",
+    "victorian",
+    "legends",
+    "folklore",
+    "haunted",
+    "shorts"
+  ]
+}

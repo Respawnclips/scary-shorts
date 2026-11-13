@@ -1,0 +1,132 @@
+{
+  "id": "011-spring-heeled-jack-nl",
+  "legend": "Spring-heeled Jack (Londen, Engeland, 1837)",
+  "lines": [
+    "Londen, achttienhonderd zevenendertig. Iets springt 's nachts over de tuinmuren.",
+    "Mensen zeggen dat het een zwarte mantel en een puntige helm droeg.",
+    "Zijn ogen gloeiden als hete kolen en hij spuwde blauw vuur.",
+    "Getuigen zwoeren dat hij over hekken sprong die geen mens kan nemen.",
+    "De legende zegt dat zijn laarzen veren hadden, daarom heette hij Spring-heeled Jack.",
+    "Zelfs de burgemeester van Londen las de meldingen voor.",
+    "Menigtes joegen op hem op Clapham Common, maar hij verdween steeds.",
+    "Niemand heeft hem ooit gevangen, en hij werd tientallen jaren gezien.",
+    "Was het een grap, of iets anders? Zou jij alleen naar huis lopen?"
+  ],
+  "scenes": [
+    {
+      "name": "street",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.45
+      ]
+    },
+    {
+      "name": "alley",
+      "from": 1,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.75
+      ]
+    },
+    {
+      "name": "face",
+      "from": 2,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "fog": false,
+      "focus": [
+        0.42,
+        0.5
+      ]
+    },
+    {
+      "name": "fence",
+      "from": 3,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "mayor",
+      "from": 5,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "common",
+      "from": 6,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "roof",
+      "from": 8,
+      "move": [
+        0,
+        -5,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.42,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    2
+  ],
+  "title": "De springende duivel van Londen 😱 Spring-heeled Jack",
+  "description": "In achttienhonderd zevenendertig werd Londen bang van een figuur in een mantel die over muren sprong en blauw vuur spuwde. De legende zegt dat zijn laarzen veren hadden. Een grap of iets engers?\n\n#engeverhalen #springheeledjack #londen #legende #spookverhaal #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "springheeledjack",
+    "londen",
+    "legende",
+    "spookverhaal",
+    "foryou"
+  ],
+  "lang": "nl"
+}

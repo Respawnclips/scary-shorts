@@ -1,0 +1,117 @@
+{
+  "id": "013-flannan-isles-nl",
+  "legend": "Het mysterie van de Flannan Isles-vuurtoren (Schotland, 1900)",
+  "lines": [
+    "Schotland, december negentienhonderd. Een bevoorradingsschip nadert een eenzame vuurtoren.",
+    "Flannan Isles, midden in de stormachtige Atlantische Oceaan. Drie vuurtorenwachters wonen hier.",
+    "Maar niemand zwaait. Het licht was al dagen uit.",
+    "Een man klimt omhoog en vindt lege bedden en een stilstaande klok.",
+    "De legende zegt dat een stoel omgevallen lag, met het eten nog op tafel.",
+    "Twee regenjassen waren weg. Waren ze de storm in gerend?",
+    "Sommigen dachten aan een reusachtige golf. Anderen aan spionnen, zeeslangen of geesten.",
+    "De drie wachters werden nooit gevonden.",
+    "Wat denk jij dat daar gebeurd is?"
+  ],
+  "scenes": [
+    {
+      "name": "island",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ]
+    },
+    {
+      "name": "cliff",
+      "from": 2,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "room",
+      "from": 3,
+      "move": [
+        20,
+        5,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.25,
+        0.8
+      ]
+    },
+    {
+      "name": "coats",
+      "from": 5,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.3,
+        0.8
+      ]
+    },
+    {
+      "name": "storm",
+      "from": 6,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.65,
+        0.6
+      ]
+    },
+    {
+      "name": "empty",
+      "from": 7,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.25,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "Drie vuurtorenwachters verdwenen spoorloos in 1900 🌊",
+  "description": "In december negentienhonderd vond een schip de vuurtoren van de Flannan Isles in Schotland leeg: een stilstaande klok, een jas weg, drie wachters verdwenen. Dit mysterie is nooit opgelost.\n\n#engeverhalen #flannanisles #vuurtoren #mysterie #schotland #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "flannanisles",
+    "vuurtoren",
+    "mysterie",
+    "schotland",
+    "foryou"
+  ],
+  "lang": "nl"
+}

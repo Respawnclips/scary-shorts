@@ -1,0 +1,118 @@
+{
+  "id": "013-flannan-isles",
+  "legend": "The Flannan Isles Lighthouse mystery (Scotland, 1900)",
+  "lines": [
+    "Scotland, December 1900. A supply ship nears a lonely lighthouse.",
+    "Flannan Isles, out in the stormy Atlantic. Three keepers live here.",
+    "But nobody waves. The light had been dark for days.",
+    "A man climbs up and finds empty beds and a stopped clock.",
+    "Legend says a chair lay overturned, the meal still on the table.",
+    "Two raincoats were gone. Had they rushed out into a storm?",
+    "Some blamed a giant wave. Others said spies, serpents, or ghosts.",
+    "The three keepers were never found.",
+    "What do you think happened out there?"
+  ],
+  "scenes": [
+    {
+      "name": "island",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ]
+    },
+    {
+      "name": "cliff",
+      "from": 2,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "room",
+      "from": 3,
+      "move": [
+        20,
+        5,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.25,
+        0.8
+      ]
+    },
+    {
+      "name": "coats",
+      "from": 5,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.3,
+        0.8
+      ]
+    },
+    {
+      "name": "storm",
+      "from": 6,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.65,
+        0.6
+      ]
+    },
+    {
+      "name": "empty",
+      "from": 7,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.25,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "Three Keepers Vanished From a Lighthouse in 1900... 🌊 #shorts",
+  "description": "In December 1900, a ship reached the remote Flannan Isles lighthouse in Scotland and found it empty: a stopped clock, a missing coat, three keepers gone. This is the Flannan Isles mystery, and it was never solved.\n\n#scarystories #flannanisles #lighthouse #mystery #scotland #shorts",
+  "tags": [
+    "scarystories",
+    "flannanisles",
+    "lighthouse",
+    "mystery",
+    "scotland",
+    "unsolved",
+    "legends",
+    "shorts"
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "012-bell-witch-nl",
+  "legend": "De Bell Witch (Adams, Tennessee, VS, 1817)",
+  "lines": [
+    "Tennessee, achttienhonderd zeventien. Een boerenfamilie hoort geklop op de muren.",
+    "Dan gekrabbel, gehijg en het geluid van kettingen in het donker.",
+    "Dekens werden van de bedden getrokken door iets wat niemand kon zien.",
+    "Al snel begon een stem te praten, en die zei dat het een heks was.",
+    "De legende zegt dat ze psalmen zong en zelfs de predikers uitlachte.",
+    "Het nieuws ging rond, en mensen kwamen van ver om te luisteren.",
+    "Ze zeggen dat zelfs generaal Andrew Jackson erheen reed om het te horen.",
+    "Uiteindelijk nam de stem afscheid en beloofde terug te komen.",
+    "Sommigen zeggen dat ze daar nog rondwaart. Geloof jij het?"
+  ],
+  "scenes": [
+    {
+      "name": "farm",
+      "from": 0,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.75
+      ]
+    },
+    {
+      "name": "room",
+      "from": 1,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "voice",
+      "from": 3,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.25
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "crowd",
+      "from": 5,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "name": "leave",
+      "from": 7,
+      "move": [
+        0,
+        -15,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    {
+      "name": "window",
+      "from": 8,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.25
+      ],
+      "fog": false,
+      "focus": [
+        0.45,
+        0.45
+      ]
+    }
+  ],
+  "flash_lines": [
+    1
+  ],
+  "title": "De heks die een hele boerderij in Tennessee terroriseerde 👻",
+  "description": "In achttienhonderd zeventien hoorde een boerenfamilie in Tennessee geklop, gefluister en een stem zonder lichaam. De legende zegt dat het de Bell Witch was, een van de oudste spookverhalen van Amerika.\n\n#engeverhalen #bellwitch #tennessee #spookverhaal #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "bellwitch",
+    "tennessee",
+    "spookverhaal",
+    "legende",
+    "foryou"
+  ],
+  "lang": "nl"
+}
