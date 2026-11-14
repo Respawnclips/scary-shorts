@@ -1,0 +1,117 @@
+{
+  "id": "014-mothman",
+  "legend": "The Mothman (Point Pleasant, West Virginia, USA, 1966)",
+  "lines": [
+    "West Virginia, November 1966. Four friends see something that should not exist.",
+    "They are driving past an old abandoned factory near Point Pleasant.",
+    "In the doorway stands something tall and grey, with huge wings and glowing red eyes.",
+    "Legend says it spread its wings and rose into the night.",
+    "It chased their car, keeping pace at more than one hundred miles an hour.",
+    "They screamed all the way to the police station.",
+    "Soon, more people across town reported the same winged shape. They called it the Mothman.",
+    "Thirteen months later, the Silver Bridge collapsed into the Ohio River.",
+    "Some say the Mothman came to warn the town.",
+    "Would you have stopped the car?"
+  ],
+  "scenes": [
+    {
+      "name": "drive",
+      "move": [
+        30,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.88
+      ],
+      "from": 0
+    },
+    {
+      "name": "factory",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 2
+    },
+    {
+      "name": "wings",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "from": 3
+    },
+    {
+      "name": "chase",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "from": 4
+    },
+    {
+      "name": "town",
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ],
+      "from": 6
+    },
+    {
+      "name": "bridge",
+      "move": [
+        0,
+        0,
+        1.08,
+        1.18
+      ],
+      "focus": [
+        0.55,
+        0.6
+      ],
+      "from": 7
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "Four Friends Saw a Winged Creature With Red Eyes... 🦋🔴 #shorts",
+  "description": "In November 1966, four friends near Point Pleasant, West Virginia saw a huge winged figure with glowing red eyes. Soon the whole town was talking about the Mothman. This is the legend, as people tell it.\n\n#scarystories #mothman #cryptid #westvirginia #legends #shorts",
+  "tags": [
+    "scarystories",
+    "mothman",
+    "pointpleasant",
+    "cryptid",
+    "westvirginia",
+    "legends",
+    "creepy",
+    "shorts"
+  ]
+}

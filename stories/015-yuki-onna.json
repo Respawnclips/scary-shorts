@@ -1,0 +1,120 @@
+{
+  "id": "015-yuki-onna",
+  "legend": "Yuki-onna, the Snow Woman (Japan, folktale)",
+  "lines": [
+    "Japan, long ago. Two woodcutters are trapped in a deadly blizzard.",
+    "They shelter in a tiny hut as the snow howls.",
+    "At night the door flies open. A tall woman in white glides in.",
+    "Her skin is pale as ice. Her breath is frost.",
+    "She bends over the old man, and he never wakes.",
+    "Then she spares the young one, Minokichi, if he never tells a soul.",
+    "Years later, he has a kind wife named O-Yuki.",
+    "One snowy night, he tells her about the woman he once met.",
+    "She rises, eyes burning blue. It was me, she whispers, and fades into the wind.",
+    "Would you have kept the secret?"
+  ],
+  "scenes": [
+    {
+      "name": "storm",
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "from": 0
+    },
+    {
+      "name": "hut",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 1,
+      "fog": false
+    },
+    {
+      "name": "breath",
+      "move": [
+        15,
+        5,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.65,
+        0.8
+      ],
+      "from": 3,
+      "fog": false
+    },
+    {
+      "name": "spared",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 5,
+      "fog": false
+    },
+    {
+      "name": "home",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.18
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ],
+      "from": 6,
+      "fog": false
+    },
+    {
+      "name": "reveal",
+      "move": [
+        0,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ],
+      "from": 8,
+      "fog": false
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Snow Woman Who Spared One Man, Then Came Back... ❄️ #shorts",
+  "description": "In an old Japanese folktale, a woodcutter meets the Yuki-onna, a pale snow spirit, in a blizzard. She lets him live on one condition: he must never tell. This is the legend of the Snow Woman.\n\n#scarystories #yukionna #japan #folklore #legends #shorts",
+  "tags": [
+    "scarystories",
+    "yukionna",
+    "japan",
+    "folklore",
+    "snow",
+    "legends",
+    "creepy",
+    "shorts"
+  ]
+}

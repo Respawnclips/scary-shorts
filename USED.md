@@ -17,3 +17,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 011 | 011-spring-heeled-jack (+ -nl) | Spring-heeled Jack (London, England, 1837) | 2026-11-13 |
 | 012 | 012-bell-witch (+ -nl) | The Bell Witch (Adams, Tennessee, USA, 1817) | 2026-11-13 |
 | 013 | 013-flannan-isles (+ -nl) | The Flannan Isles lighthouse mystery (Scotland, 1900) | 2026-11-13 |
+| 014 | 014-mothman (+ -nl) | The Mothman (Point Pleasant, West Virginia, USA, 1966) | 2026-11-14 |
+| 015 | 015-yuki-onna (+ -nl) | Yuki-onna, the Snow Woman (Japan, folktale) | 2026-11-14 |
+| 016 | 016-winchester-house (+ -nl) | The Winchester Mystery House (San Jose, California, USA, 1884-1922) | 2026-11-14 |

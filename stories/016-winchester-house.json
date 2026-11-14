@@ -1,0 +1,118 @@
+{
+  "id": "016-winchester-house",
+  "legend": "The Winchester Mystery House (San Jose, California, USA, 1884-1922)",
+  "lines": [
+    "San Jose, California. A mansion that was never allowed to be finished.",
+    "Sarah Winchester inherited a rifle fortune after her husband died in 1881.",
+    "Legend says a medium warned her that restless spirits were following her.",
+    "His advice: move west, and never stop building.",
+    "So from 1884, hammers rang for decades. Some say day and night.",
+    "Stairs climb straight into the ceiling. A door opens onto a blank wall.",
+    "Legend says a bell rang every midnight, and she met her ghostly guests alone.",
+    "She died in 1922, and the building finally stopped.",
+    "Historians doubt the ghost story, but visitors still hear footsteps in empty halls.",
+    "Would you spend a night there?"
+  ],
+  "scenes": [
+    {
+      "name": "mansion",
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "from": 0
+    },
+    {
+      "name": "medium",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.25,
+        0.8
+      ],
+      "fog": false,
+      "from": 2
+    },
+    {
+      "name": "build",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.2,
+        0.8
+      ],
+      "from": 4
+    },
+    {
+      "name": "stairs",
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "fog": false,
+      "from": 5
+    },
+    {
+      "name": "bell",
+      "move": [
+        0,
+        -15,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "from": 6
+    },
+    {
+      "name": "end",
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "fog": false,
+      "from": 7
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Mansion Built For 38 Years To Fool Ghosts... 🏚️👻 #shorts",
+  "description": "Sarah Winchester kept building her California mansion for decades. Legend says she did it to confuse restless spirits. Stairs to nowhere, doors on walls: this is the Winchester Mystery House.\n\n#scarystories #winchestermysteryhouse #hauntedhouse #california #legends #shorts",
+  "tags": [
+    "scarystories",
+    "winchestermysteryhouse",
+    "hauntedhouse",
+    "california",
+    "ghost",
+    "legends",
+    "creepy",
+    "shorts"
+  ]
+}

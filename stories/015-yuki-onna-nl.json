@@ -1,0 +1,120 @@
+{
+  "id": "015-yuki-onna-nl",
+  "legend": "Yuki-onna, the Snow Woman (Japan, folktale)",
+  "lines": [
+    "Japan, lang geleden. Twee houthakkers zitten vast in een dodelijke sneeuwstorm.",
+    "Ze schuilen in een piepklein hutje terwijl de sneeuw huilt.",
+    "'s Nachts vliegt de deur open. Een lange vrouw in het wit zweeft naar binnen.",
+    "Haar huid is bleek als ijs. Haar adem is rijp.",
+    "Ze buigt zich over de oude man, en hij wordt nooit meer wakker.",
+    "Dan spaart ze de jonge man, Minokichi, op voorwaarde dat hij het nooit aan iemand vertelt.",
+    "Jaren later heeft hij een lieve vrouw, genaamd O-Yuki.",
+    "Op een besneeuwde avond vertelt hij haar over de vrouw die hij ooit ontmoette.",
+    "Ze staat op. Haar ogen branden blauw. Ik was het, fluistert ze, en verdwijnt in de wind.",
+    "Had jij het geheim bewaard?"
+  ],
+  "scenes": [
+    {
+      "name": "storm",
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "from": 0
+    },
+    {
+      "name": "hut",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 1,
+      "fog": false
+    },
+    {
+      "name": "breath",
+      "move": [
+        15,
+        5,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.65,
+        0.8
+      ],
+      "from": 3,
+      "fog": false
+    },
+    {
+      "name": "spared",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 5,
+      "fog": false
+    },
+    {
+      "name": "home",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.18
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ],
+      "from": 6,
+      "fog": false
+    },
+    {
+      "name": "reveal",
+      "move": [
+        0,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ],
+      "from": 8,
+      "fog": false
+    }
+  ],
+  "flash_lines": [],
+  "title": "De sneeuwvrouw die één man spaarde... en terugkwam ❄️",
+  "description": "In een oud Japans volksverhaal ontmoet een houthakker de Yuki-onna, een bleke sneeuwgeest, in een sneeuwstorm. Ze laat hem leven op één voorwaarde: hij mag het nooit vertellen.\n\n#engeverhalen #yukionna #japan #legendes #horror #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "yukionna",
+    "japan",
+    "volksverhaal",
+    "legendes",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

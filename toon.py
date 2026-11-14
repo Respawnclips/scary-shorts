@@ -702,3 +702,153 @@ def wraith(x, y, s=1.0, t=0.0, mode="float", flip=False, look=(0.0, 0.0), alpha=
     out += f'<g transform="translate(0,-262)">{head()}</g>'
     out += f'<g transform="translate(62,-190)">{arm(a2, e2)}</g>'
     return out + '</g></g></g>'
+
+
+# ---------------------------------------------------------------- rigs and props for the 2026-11-14 stories
+def mothman(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(0.0, 0.0), body="#55535e", wingc="#3b3644"):
+    """Rigged, animated Mothman, ~620 units tall, feet at (x, y). Faces LEFT (flip=True faces right).
+    mode: stand (breathing, wings twitching, eyes glowing) | fly (hovering, big wing flaps, legs dangling) | face (eyes close-up, centred at x,y)."""
+    sn = _m.sin
+    fly = mode == "fly"
+    fl = sn(t * (8.5 if fly else 1.7))
+    wa = fl * (34 if fly else 5)
+    hov = (-150 - sn(t * 2.9) * 36) if fly else sn(t * 1.6) * 2
+    sway = sn(t * 1.3) * 3
+    blink = 0.15 if (t % 3.4) < .13 else 1.0
+    EYE = "#ff2a1a"
+
+    def wing(side):
+        a = (-14 + wa) if not fly else (26 + wa)
+        return (f'<g transform="rotate({-side * a:.1f})"><g transform="scale({side},1)">'
+                f'<path d="M0,0 L-70,-340 L-330,-310 L-400,-160 L-270,-30 L-310,100 L-110,50Z" fill="{wingc}"/>'
+                f'<path d="M0,0 L-70,-340 L-20,-20Z" fill="{body}"/>'
+                f'<path d="M-70,-340 L-250,-150 M-70,-340 L-180,-30 M-70,-340 L-300,-60" fill="none" stroke-width="4" opacity=".55"/>'
+                f'<circle cx="-250" cy="-200" r="34" fill="#8a7f6e" stroke-width="4"/><circle cx="-250" cy="-200" r="14" fill="#1a1620" stroke="none"/>'
+                f'<circle cx="-170" cy="-80" r="22" fill="#8a7f6e" stroke-width="4"/><circle cx="-170" cy="-80" r="9" fill="#1a1620" stroke="none"/></g></g>')
+
+    def leg(ph, sd):
+        a = (-22 + sn(t * 3.0 + ph) * 12) if fly else sd * 3
+        k = (46 + sn(t * 3.0 + ph) * 12) if fly else 0
+        return (f'<g transform="rotate({a:.1f})"><path d="M-34,-6 Q-52,60 -26,124 L26,124 Q38,60 34,-6Z" fill="{body}"/>'
+                f'<g transform="translate(0,120) rotate({k:.1f})"><path d="M-22,-4 L-30,60 L-24,112 L24,112 L18,60 L26,-4Z" fill="{body}"/>'
+                f'<path d="M-30,104 L-44,138 L38,138 L24,104Z" fill="#1a1620"/></g></g>')
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-14,-6 Q-20,60 -10,120 L10,120 Q20,60 14,-6Z" fill="{body}"/>'
+                f'<g transform="translate(0,116) rotate({e:.1f})"><path d="M-11,-4 Q-14,40 -8,92 L8,92 Q14,40 11,-4Z" fill="{body}"/>'
+                f'<path d="M-8,88 l-8,34 M0,90 l0,40 M8,88 l10,32" stroke="#1a1620" stroke-width="6" stroke-linecap="round" fill="none"/></g></g>')
+
+    def head(scale=1.0):
+        eyes = ""
+        for ex in (-36, 36):
+            eyes += (f'<g stroke="none">{glow(ex, -34, 80, "#ff2a1a", .35)}</g><ellipse cx="{ex}" cy="-34" rx="30" ry="{38 * blink:.1f}" fill="{EYE}" stroke-width="4"/>'
+                     f'<ellipse cx="{ex + look[0] * 5:.1f}" cy="{-34 + look[1] * 4:.1f}" rx="9" ry="{12 * blink:.1f}" fill="#ffd0a0" stroke="none"/>')
+        return (f'<g transform="scale({scale})"><path d="M-84,10 Q-96,-70 -40,-100 Q0,-116 40,-100 Q96,-70 84,10 Q0,36 -84,10Z" fill="{body}"/>'
+                f'<path d="M-60,-84 q-14,-30 -4,-56 M60,-84 q14,-30 4,-56" fill="none" stroke-width="6"/>' + eyes + '</g>')
+
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "face":
+        return out + head(1.6) + '</g>'
+    out += f'<g transform="translate(0,{hov:.1f})">'
+    out += f'<g transform="translate(24,-440)">{wing(-1)}</g><g transform="translate(-24,-440)">{wing(1)}</g>'
+    out += f'<g transform="translate(-36,-250)">{leg(0, -1)}</g><g transform="translate(36,-250)">{leg(2.2, 1)}</g>'
+    aa = (-18 + sn(t * 3.0) * 10) if fly else 6 + sn(t * 1.4) * 3
+    out += f'<g transform="translate(0,-250) rotate({sway:.1f})">'
+    out += f'<g transform="translate(-72,-228)">{arm(aa, -14)}</g>'
+    out += (f'<path d="M-70,0 Q-92,-120 -68,-232 Q0,-264 68,-232 Q92,-120 70,0Z" fill="{body}"/>'
+            f'<path d="M-40,-200 q20,10 40,0 M-44,-150 q22,10 44,0 M-40,-100 q20,10 40,0" fill="none" stroke-width="4" opacity=".45"/>')
+    out += f'<g transform="translate(0,-262)">{head()}</g>'
+    out += f'<g transform="translate(72,-228)">{arm(-aa, 14)}</g>'
+    return out + '</g></g></g>'
+
+
+def yuki(x, y, s=1.0, t=0.0, mode="glide", flip=False, look=(0.0, 0.0), alpha=0.95, frost=True):
+    """Rigged, animated snow woman (Yuki-onna): white kimono, long black hair, pale-blue skin, floats, ~640 units tall, hem at (x, y).
+    mode: glide (drifting, hair and sleeves blowing) | reach (one long sleeve and hand stretch toward you) | stand (still, breathing) | face (head only, centred at x,y).
+    frost: breath puffs from her mouth."""
+    sn = _m.sin
+    hov = -24 - sn(t * 1.5) * 14
+    lean = sn(t * 1.0) * 3
+    hr = sn(t * .7) * 4 + look[0] * 6
+    blink = 0.12 if (t % 4.3) < .14 else 1.0
+    if mode == "reach":
+        a1, e1 = -100 + sn(t * 2.4) * 6, 10 + sn(t * 3) * 12
+        a2, e2 = 12, -12
+        lean = -6
+    elif mode == "stand":
+        a1, e1, a2, e2 = 8, -10, -8, -10
+    else:
+        a1, e1 = 14 + sn(t * 1.3) * 8, -14 + sn(t * 1.8) * 8
+        a2, e2 = -14 - sn(t * 1.2 + 1) * 8, -14 - sn(t * 1.6) * 8
+    KIM, SKIN, HAIR, OBI = "#e9eff6", "#d6e6f0", "#0c0d14", "#7f93bd"
+    blow = sn(t * 2.2) * 16
+
+    def sleeve(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-24,-10 Q-48,70 -30,150 L30,150 Q44,70 22,-10Z" fill="{KIM}"/>'
+                f'<g transform="translate(0,146) rotate({e:.1f})"><path d="M-26,-4 Q-40,56 -24,128 L24,128 Q38,56 24,-4Z" fill="{KIM}"/>'
+                f'<path d="M-24,120 L24,120" stroke="{OBI}" stroke-width="8"/>'
+                f'<path d="M-10,126 l-6,34 M0,128 l0,42 M10,126 l8,34" stroke="{SKIN}" stroke-width="9" stroke-linecap="round" fill="none"/></g></g>')
+
+    def head():
+        eyes = "".join(f'<ellipse cx="{ex}" cy="-4" rx="11" ry="{12 * blink:.1f}" fill="#f4fbff" stroke-width="3"/>'
+                       f'<circle cx="{ex + look[0] * 3:.1f}" cy="{-4 + look[1] * 3:.1f}" r="{6 * (1 if blink > .5 else .2):.1f}" fill="#4fa8e8" stroke="none"/>' for ex in (-18, 18))
+        puffs = ""
+        if frost:
+            for i in range(5):
+                p = ((t * .8) + i * .2) % 1.0
+                puffs += f'<circle cx="{-4 - p * 160 * (1 if mode == "reach" else .5):.0f}" cy="{34 + p * 10 - p * 30:.0f}" r="{10 + p * 26:.0f}" fill="#eaf6ff" stroke="none" opacity="{(1 - p) * .55:.2f}"/>'
+        hairflow = f'<path d="M-50,-30 Q-70,70 {-60 + blow:.0f},150 L{-10 + blow:.0f},120 Q-20,60 -34,20Z M50,-30 Q70,70 {60 + blow:.0f},150 L{10 + blow:.0f},120 Q20,60 34,20Z" fill="{HAIR}"/>'
+        return (f'<g transform="rotate({hr:.1f})">{hairflow}'
+                f'<ellipse cx="0" cy="-2" rx="44" ry="54" fill="{SKIN}"/>'
+                f'<path d="M-48,-14 Q-44,-76 0,-74 Q44,-76 48,-14 Q24,-44 6,-34 Q-10,-48 -48,-14Z" fill="{HAIR}"/>'
+                + eyes + f'<path d="M-9,30 q9,5 18,0" fill="none" stroke="#6a8fb8" stroke-width="4"/>'
+                f'<path d="M-30,-24 l16,-2 M30,-24 l-16,-2" fill="none" stroke-width="3" opacity=".6"/>{puffs}</g>')
+
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "face":
+        return out + head() + '</g>'
+    out += f'<g opacity="{alpha}" transform="translate(0,{hov:.1f})">'
+    w1, w2, w3 = sn(t * 2.2) * 24, sn(t * 2.2 + 1.6) * 28, sn(t * 2.2 + 3.1) * 24
+    out += (f'<path d="M-66,-300 Q-130,-140 {-170 + w1:.1f},0 Q{-100 + w1:.1f},{22 + w2 * .3:.1f} {-50 + w2:.1f},8 Q0,{26 - w2 * .3:.1f} {50 + w3:.1f},8 '
+            f'Q{100 + w3:.1f},{22 + w3 * .3:.1f} {170 + w3:.1f},0 Q130,-140 66,-300Z" fill="{KIM}"/>'
+            f'<path d="M-30,-250 Q-44,-120 {-50 + w1:.1f},-20 M30,-250 Q44,-120 {50 + w3:.1f},-20" fill="none" stroke-width="4" opacity=".35"/>')
+    out += f'<g transform="translate(0,-300) rotate({lean:.1f})">'
+    out += f'<g transform="translate(-62,-196)">{sleeve(a1, e1)}</g>'
+    out += (f'<path d="M-62,0 Q-76,-100 -56,-214 Q0,-236 56,-214 Q76,-100 62,0Z" fill="{KIM}"/>'
+            f'<path d="M-56,-70 H56 V-10 H-56Z" fill="{OBI}" stroke-width="5"/><path d="M-40,-214 L0,-150 L40,-214" fill="none" stroke-width="5"/>')
+    out += f'<rect x="-12" y="-244" width="24" height="34" fill="{SKIN}"/><g transform="translate(0,-292)">{head()}</g>'
+    out += f'<g transform="translate(62,-196)">{sleeve(a2, e2)}</g>'
+    return out + '</g></g></g>'
+
+
+def car(x, y, s=1.0, t=0.0, flip=False, body="#6a2a2a", beams=True, speed=1.0):
+    """Old-fashioned sedan, side view facing LEFT (flip=True faces right), wheels touching y. Wheels spin, body bounces, headlight beam."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    bounce = sn(t * 14 * speed) * 3 * speed
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if beams:
+        o += '<path d="M-300,-110 L-1000,-250 L-1000,40 Z" fill="#fff1b0" opacity=".28" stroke="none"/>'
+    o += f'<g transform="translate(0,{bounce:.1f})">'
+    o += (f'<path d="M-290,-80 Q-300,-160 -230,-175 L240,-175 Q300,-170 300,-90 L300,-60 L-290,-60Z" fill="{body}"/>'
+          f'<path d="M-150,-175 L-90,-290 L120,-290 L210,-175Z" fill="{body}"/>'
+          f'<path d="M-130,-180 L-80,-272 L-10,-272 L-10,-180Z M10,-180 L10,-272 L112,-272 L180,-180Z" fill="#9fb4c8"/>'
+          f'<circle cx="-50" cy="-228" r="22" fill="#e2c29a" stroke-width="4"/><circle cx="64" cy="-228" r="22" fill="#d6b48c" stroke-width="4"/>'
+          f'<ellipse cx="-280" cy="-120" rx="20" ry="26" fill="#fff1b0"/><rect x="-300" y="-72" width="600" height="14" fill="#b8bcc8"/></g>')
+    for wx in (-170, 170):
+        a = (t * 400 * speed) % 360
+        o += (f'<g transform="translate({wx},-52)"><circle r="56" fill="#14161b"/><circle r="30" fill="#aab0bc" stroke-width="4"/>'
+              f'<g transform="rotate({a:.0f})"><path d="M-30,0 H30 M0,-30 V30" stroke-width="5" fill="none"/></g></g>')
+    return o + '</g>'
+
+
+def snow_particles(t, n=70, seed=3, speed=260, drift=-220, w=1350, h=2400, op=.85):
+    """Falling, drifting snowflakes (call from an actor fn; time-driven)."""
+    r = random.Random(seed); s = ''
+    for i in range(n):
+        x0, y0, sp, rad = r.uniform(0, w), r.uniform(0, h), r.uniform(.6, 1.4), r.choice([3, 4, 5, 7])
+        x = (x0 + drift * sp * t) % w; y = (y0 + speed * sp * t) % h
+        s += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{rad}" fill="#f2f7ff" opacity="{op}"/>'
+    return s

@@ -1,0 +1,117 @@
+{
+  "id": "014-mothman-nl",
+  "legend": "The Mothman (Point Pleasant, West Virginia, USA, 1966)",
+  "lines": [
+    "West Virginia, november negentienhonderdzesenzestig. Vier vrienden zien iets dat niet zou moeten bestaan.",
+    "Ze rijden langs een oude, verlaten fabriek bij Point Pleasant.",
+    "In de deuropening staat iets groots en grijs, met enorme vleugels en gloeiende rode ogen.",
+    "Volgens de legende sloeg het zijn vleugels uit en steeg op de nacht in.",
+    "Het achtervolgde hun auto en hield makkelijk bij, bij meer dan honderdzestig kilometer per uur.",
+    "Ze gilden tot aan het politiebureau.",
+    "Al snel zagen meer mensen in de stad dezelfde gevleugelde gedaante. Ze noemden hem de Mothman.",
+    "Dertien maanden later stortte de Silver Bridge in de Ohio-rivier.",
+    "Sommigen zeggen dat de Mothman kwam om de stad te waarschuwen.",
+    "Zou jij de auto hebben laten stoppen?"
+  ],
+  "scenes": [
+    {
+      "name": "drive",
+      "move": [
+        30,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.88
+      ],
+      "from": 0
+    },
+    {
+      "name": "factory",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 2
+    },
+    {
+      "name": "wings",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "from": 3
+    },
+    {
+      "name": "chase",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "from": 4
+    },
+    {
+      "name": "town",
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ],
+      "from": 6
+    },
+    {
+      "name": "bridge",
+      "move": [
+        0,
+        0,
+        1.08,
+        1.18
+      ],
+      "focus": [
+        0.55,
+        0.6
+      ],
+      "from": 7
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "Vier vrienden zagen een gevleugeld wezen met rode ogen... 🦋🔴",
+  "description": "In november 1966 zagen vier vrienden bij Point Pleasant in West Virginia een enorme gevleugelde gedaante met gloeiende rode ogen. Dit is de legende van de Mothman.\n\n#engeverhalen #mothman #cryptid #legendes #horror #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "mothman",
+    "cryptid",
+    "legendes",
+    "horror",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

@@ -1,0 +1,118 @@
+{
+  "id": "016-winchester-house-nl",
+  "legend": "The Winchester Mystery House (San Jose, California, USA, 1884-1922)",
+  "lines": [
+    "San Jose, Californië. Een villa die nooit af mocht komen.",
+    "Sarah Winchester erfde een geweren-fortuin nadat haar man overleed in achttienhonderdeenentachtig.",
+    "Volgens de legende waarschuwde een medium haar dat rusteloze geesten haar volgden.",
+    "Zijn advies: ga naar het westen en stop nooit met bouwen.",
+    "Dus vanaf achttienhonderdvierentachtig klonk er tientallen jaren gehamer. Sommigen zeggen dag en nacht.",
+    "Trappen lopen recht het plafond in. Een deur komt uit op een kale muur.",
+    "Volgens de legende luidde elke middernacht een bel, en ontmoette ze haar spookachtige gasten alleen.",
+    "Ze overleed in negentienhonderdtweeëntwintig, en het bouwen stopte eindelijk.",
+    "Historici twijfelen aan het spookverhaal, maar bezoekers horen nog steeds voetstappen in lege gangen.",
+    "Zou jij daar een nacht blijven?"
+  ],
+  "scenes": [
+    {
+      "name": "mansion",
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "from": 0
+    },
+    {
+      "name": "medium",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.25,
+        0.8
+      ],
+      "fog": false,
+      "from": 2
+    },
+    {
+      "name": "build",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.2,
+        0.8
+      ],
+      "from": 4
+    },
+    {
+      "name": "stairs",
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "fog": false,
+      "from": 5
+    },
+    {
+      "name": "bell",
+      "move": [
+        0,
+        -15,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "from": 6
+    },
+    {
+      "name": "end",
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "fog": false,
+      "from": 7
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het huis dat 38 jaar werd gebouwd om geesten te foppen 🏚️👻",
+  "description": "Sarah Winchester bouwde tientallen jaren aan haar villa in Californië. Volgens de legende om rusteloze geesten te verwarren. Trappen naar nergens, deuren op muren: het Winchester Mystery House.\n\n#engeverhalen #winchestermysteryhouse #spookhuis #legendes #horror #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "winchestermysteryhouse",
+    "spookhuis",
+    "legendes",
+    "horror",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}
