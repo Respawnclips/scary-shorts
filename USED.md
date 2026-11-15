@@ -20,3 +20,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 014 | 014-mothman (+ -nl) | The Mothman (Point Pleasant, West Virginia, USA, 1966) | 2026-11-14 |
 | 015 | 015-yuki-onna (+ -nl) | Yuki-onna, the Snow Woman (Japan, folktale) | 2026-11-14 |
 | 016 | 016-winchester-house (+ -nl) | The Winchester Mystery House (San Jose, California, USA, 1884-1922) | 2026-11-14 |
+| 017 | 017-flying-dutchman (+ -nl) | The Flying Dutchman (Cape of Good Hope, sailors' legend, 1881 sighting) | 2026-11-15 |
+| 018 | 018-beast-of-gevaudan (+ -nl) | The Beast of Gévaudan (France, 1764-1767) | 2026-11-15 |
+| 019 | 019-roanoke-lost-colony (+ -nl) | The Lost Colony of Roanoke (North Carolina, USA, 1587-1590) | 2026-11-15 |

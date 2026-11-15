@@ -1,0 +1,118 @@
+{
+  "id": "019-roanoke-lost-colony-nl",
+  "legend": "The Lost Colony of Roanoke (North Carolina, USA, 1587-1590)",
+  "lines": [
+    "Roanoke Island, augustus vijftienhonderdnegentig. Een schip werpt het anker uit voor een stille kust.",
+    "Gouverneur John White is drie jaar weggeweest.",
+    "Hij liet meer dan honderd kolonisten achter, ook zijn eigen familie.",
+    "Hij loopt het strand op en roept hun namen. Niemand antwoordt.",
+    "De huizen zijn weg en het fort staat leeg.",
+    "Dan ziet hij één woord, in een paal gekerfd: Croatoan.",
+    "Er was geen kruis, het geheime teken dat ze hadden afgesproken voor gevaar.",
+    "Een storm joeg hem weg, en hij zag hen nooit meer terug.",
+    "Misschien sloten ze zich aan bij een vriendelijke stam. Niemand weet het.",
+    "Wat denk jij dat er met hen gebeurd is?"
+  ],
+  "scenes": [
+    {
+      "name": "ship",
+      "move": [
+        -25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.6
+      ],
+      "from": 0
+    },
+    {
+      "name": "beach",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "from": 3
+    },
+    {
+      "name": "empty",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "from": 4
+    },
+    {
+      "name": "post",
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.6,
+        0.7
+      ],
+      "from": 5
+    },
+    {
+      "name": "storm",
+      "move": [
+        0,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "rain": true,
+      "from": 7
+    },
+    {
+      "name": "vanish",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 8
+    }
+  ],
+  "flash_lines": [
+    7
+  ],
+  "title": "Meer dan 100 kolonisten verdwenen. Eén woord bleef achter...",
+  "description": "In 1590 keerde gouverneur John White terug naar Roanoke Island en vond zijn kolonie leeg, met één woord in een paal gekerfd: Croatoan. Wat er met de kolonisten gebeurde, is nog altijd een raadsel.\n\n#engeverhalen #roanoke #verlorenkolonie #geschiedenis #mysterie #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "roanoke",
+    "verlorenkolonie",
+    "geschiedenis",
+    "mysterie",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

@@ -1,0 +1,115 @@
+{
+  "id": "018-beast-of-gevaudan-nl",
+  "legend": "The Beast of Gévaudan (France, 1764-1767)",
+  "lines": [
+    "Frankrijk, zeventienhonderdvierenzestig. Iets jaagt in de bergen van de Gévaudan.",
+    "Herders spraken over een beest, groter dan elke wolf, met een rode vacht en een donkere streep.",
+    "Het sprong uit de mist en was weg voordat iemand zich kon verweren.",
+    "Al snel durfde niemand nog alleen over straat.",
+    "Koning Lodewijk de Vijftiende stuurde zijn beste jagers.",
+    "Ze doodden wolf na wolf, maar het beest bleef terugkomen.",
+    "Drie jaar lang waarde het rond in die heuvels.",
+    "In zeventienhonderdzevenenzestig schoot een plaatselijke jager, Jean Chastel, op een enorm dier.",
+    "Volgens de legende was zijn kogel van gewijd zilver.",
+    "Was het een wolf, of iets veel ergers?"
+  ],
+  "scenes": [
+    {
+      "name": "hills",
+      "move": [
+        -30,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.55,
+        0.75
+      ],
+      "from": 0
+    },
+    {
+      "name": "shepherd",
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 1
+    },
+    {
+      "name": "village",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 3
+    },
+    {
+      "name": "hunt",
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.6,
+        0.88
+      ],
+      "from": 4
+    },
+    {
+      "name": "chastel",
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 7
+    },
+    {
+      "name": "howl",
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "from": 9
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het beest dat Frankrijk drie jaar angst aanjoeg... 🐺",
+  "description": "Van 1764 tot 1767 spraken dorpelingen in de Gévaudan in Frankrijk over een enorm wolfachtig beest. Zelfs de koning stuurde jagers. Dit is de legende.\n\n#engeverhalen #beastofgevaudan #cryptid #frankrijk #legendes #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "beastofgevaudan",
+    "cryptid",
+    "frankrijk",
+    "legendes",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

@@ -368,6 +368,9 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
              f'<circle cx="0" cy="92" r="17" fill="{skin}"/>')
         if item == "hook":
             g += ('<g transform="translate(0,96)"><path d="M0,0 V34 Q0,96 -46,78 L-38,62 Q-20,72 -14,36 V0Z" fill="#b8c0cc" stroke-width="5"/></g>')
+        if item == "musket":
+            g += ('<g transform="translate(0,92)"><rect x="-9" y="-70" width="18" height="120" rx="6" fill="#5a3a22"/>'
+                  '<rect x="-5" y="40" width="10" height="170" fill="#2b2f3a"/></g>')
         if item == "lantern":
             sw = sn(t * 2.1) * 6
             g += (f'<g transform="translate(0,92) rotate({-(a + e + lean) * .9 + sw:.1f})"><path d="M0,0 V30" stroke="#0d0f15" stroke-width="5"/>'
@@ -852,3 +855,120 @@ def snow_particles(t, n=70, seed=3, speed=260, drift=-220, w=1350, h=2400, op=.8
         x = (x0 + drift * sp * t) % w; y = (y0 + speed * sp * t) % h
         s += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{rad}" fill="#f2f7ff" opacity="{op}"/>'
     return s
+
+
+# ---------------------------------------------------------------- rigs for the 2026-11-15 stories: sailing ship + wolf-like beast
+def galleon(x, y, s=1.0, t=0.0, ghost=False, flip=False, alpha=1.0, roll=1.0, tattered=None):
+    """Animated old sailing ship, side view, bow to the RIGHT (flip=True: bow left), waterline at (x, y), ~900 units tall.
+    Rocks on the waves, sails billow, pennant flutters. ghost=True: pale green hull, torn sails, glowing windows."""
+    sn = _m.sin
+    tat = ghost if tattered is None else tattered
+    hull, dark = ("#2f463f", "#17261f") if ghost else ("#5a4331", "#2b2119")
+    sail = "#b4cbc0" if ghost else "#d6cfb8"
+    rock = sn(t * .9) * 3.2 * roll
+    bob = sn(t * 1.3 + 1) * 10 * roll
+    bil = sn(t * 1.1) * 16
+    f = -1 if flip else 1
+    g = f'<g opacity="{alpha:.2f}" transform="translate({x},{y}) scale({f * s},{s})">'
+    if ghost:
+        g += glow(0, -300, 620, "#7fffc8", .22)
+    g += f'<g transform="translate(0,{bob:.1f}) rotate({rock:.2f})" {OUT}>'
+    for mx, top, w in ((-250, -620, 120), (-10, -800, 160), (240, -690, 125)):
+        g += f'<rect x="{mx - 11}" y="{top}" width="22" height="{-top - 100}" fill="#3a2b1f"/>'
+    for mx, top, w, h in ((-250, -590, 105, 210), (-10, -760, 140, 250), (-10, -480, 170, 260), (240, -660, 108, 220), (240, -430, 130, 200)):
+        b = bil * (.6 if mx != 240 else .9)
+        bot = top + h
+        d = f'M{mx - w},{top} Q{mx},{top - 12 + b * .3:.0f} {mx + w},{top} L{mx + w + b:.0f},{bot} '
+        if tat:
+            n = 6
+            for k in range(n):
+                xx = mx + w + b - (2 * w + 0) * (k + .5) / n
+                yy = bot + (34 if k % 2 == 0 else -22) + sn(t * 2 + k) * 8
+                d += f'L{xx:.0f},{yy:.0f} '
+            d += f'L{mx - w + b:.0f},{bot}Z'
+        else:
+            d += f'Q{mx + b * .5:.0f},{bot + 20 + bil:.0f} {mx - w + b:.0f},{bot}Z'
+        g += f'<path d="{d}" fill="{sail}"/>'
+        g += f'<path d="M{mx},{top} Q{mx + b * .4:.0f},{(top + bot) / 2:.0f} {mx + b * .5:.0f},{bot}" fill="none" stroke="#0d0f15" stroke-width="3" opacity=".35"/>'
+        if tat:
+            g += f'<ellipse cx="{mx - w * .35:.0f}" cy="{top + h * .45:.0f}" rx="{w * .16:.0f}" ry="{h * .12:.0f}" fill="{dark}" opacity=".55" stroke="none"/>'
+    pw = sn(t * 5) * 8
+    g += f'<path d="M-10,-800 L-10,-850 q60,{-8 + pw:.0f} 100,{4 - pw:.0f} q-50,{14 + pw:.0f} -100,{12 - pw:.0f}" fill="{"#d8f4e8" if ghost else "#8c2a2a"}" stroke-width="4"/>'
+    g += f'<path d="M-440,-150 L440,-160 Q480,-168 540,-215 L430,40 L-330,40 Q-430,0 -440,-150Z" fill="{hull}"/>'
+    g += f'<path d="M-440,-150 L-440,-290 L-250,-290 L-250,-155Z" fill="{hull}"/><path d="M-440,-290 h190" stroke-width="10"/>'
+    g += f'<path d="M-440,-150 L440,-160 L430,-132 L-440,-122Z" fill="{dark}"/>'
+    g += '<path d="M520,-205 L680,-290" stroke-width="12" fill="none"/>'
+    lit = "#b8ffe0" if ghost else "#f3c555"
+    for wx in (-405, -350, -295):
+        g += f'<rect x="{wx}" y="-262" width="38" height="46" fill="{lit}" stroke-width="4"/>'
+    for px in range(-180, 420, 110):
+        g += f'<circle cx="{px}" cy="-70" r="15" fill="{lit}" stroke-width="4"/>'
+    g += f'<path d="M-330,40 Q-100,70 330,40" fill="none" stroke="{dark}" stroke-width="5" opacity=".5"/>'
+    return g + '</g></g>'
+
+
+def gevaudan(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(0.0, 0.0), fur="#7b4a2e", fur2="#93603d", jaw=None):
+    """Rigged, animated wolf-like beast (reddish coat, dark stripe down the back), paws at (x, y), ~380 units tall, faces LEFT (flip=True: right).
+    mode: stand (breathing, tail swaying, head sweeping) | prowl (walking) | leap (bounds through the air) | howl (head thrown back) | face (head only, centred at x,y).
+    jaw: 0-1 mouth opening (None = automatic)."""
+    sn = _m.sin
+    blink = 0.15 if (t % 3.1) < .12 else 1.0
+    ph = t * 5.0
+    body_rot = 0.0; lift = 0.0; head_rot = sn(t * .7) * 6 + look[0] * 6
+    fa = [0, 0]; ba = [0, 0]; fk = [0, 0]; bk = [0, 0]; tail = 16 + sn(t * 1.6) * 8
+    jw = 0.1 if jaw is None else jaw
+    bob = sn(t * 1.8) * 3
+    if mode == "prowl":
+        fa = [sn(ph) * 30, -sn(ph) * 30]; ba = [-sn(ph) * 28, sn(ph) * 28]
+        fk = [max(0, sn(ph + 1.3)) * 40, max(0, sn(ph + 1.3 + _m.pi)) * 40]
+        bk = [max(0, sn(ph + 1.3)) * 40, max(0, sn(ph + 1.3 + _m.pi)) * 40]
+        bob = -abs(sn(ph)) * 9; head_rot = 10 + sn(ph) * 4 + look[0] * 4; tail = 8 + sn(ph) * 6
+        if jaw is None: jw = 0.0
+    elif mode == "leap":
+        c = (t * 1.1) % 1.0
+        air = max(0.0, sn(c * _m.pi))
+        lift = -air * 300; body_rot = -air * 16 + 8
+        fa = [75 * air, 62 * air]; ba = [-72 * air, -60 * air]; fk = [-10 * air] * 2; bk = [30 * air] * 2
+        head_rot = -6; tail = -10; bob = 0
+        if jaw is None: jw = 0.55 * air + .1
+    elif mode == "howl":
+        head_rot = 58 + sn(t * 1.2) * 4; bob = sn(t * 1.4) * 4; tail = 24
+        if jaw is None: jw = 0.85 + sn(t * 2.2) * .08
+    elif mode == "stand":
+        head_rot += sn(t * 1.1) * 8 + 4
+        if jaw is None: jw = 0.12 + .06 * sn(t * 2)
+    f = -1 if flip else 1
+
+    def head():
+        eye = (f'<ellipse cx="-88" cy="-20" rx="15" ry="{12 * blink:.1f}" fill="#ffd34a" stroke-width="4"/>'
+               f'<ellipse cx="{-88 + look[0] * 3:.1f}" cy="{-20 + look[1] * 3:.1f}" rx="4" ry="{10 * blink:.1f}" fill="#1a0c06" stroke="none"/>')
+        op = jw * 34
+        return (f'<path d="M-6,-48 L14,-132 L48,-40Z" fill="{fur}"/><path d="M-62,-54 L-54,-138 L-18,-56Z" fill="{fur}"/>'
+                f'<ellipse cx="-34" cy="-4" rx="88" ry="64" fill="{fur}"/>'
+                f'<path d="M-104,-22 Q-196,-18 -226,12 Q-210,38 -112,34Z" fill="{fur2}"/>'
+                f'<g transform="translate(-112,30) rotate({-op:.1f})"><path d="M0,-4 Q-88,10 -118,-4 L-108,-30 L0,-30Z" fill="{fur2}"/>'
+                f'<path d="M-96,-6 l8,-20 l10,20 l10,-20 l10,20" fill="#f1efe6" stroke-width="2"/></g>'
+                f'<path d="M-120,32 Q-112,{32 - op * .6:.0f} -112,{32 - op:.0f}" fill="none"/>'
+                f'<path d="M-204,22 l8,24 l10,-22 l10,24 l10,-22 l10,22 l10,-22" fill="#f1efe6" stroke-width="2"/>'
+                f'<ellipse cx="-226" cy="10" rx="14" ry="11" fill="#0d0f15"/>{eye}'
+                f'<path d="M-112,-40 l50,12" stroke-width="5" fill="none"/>')
+
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "face":
+        return out + f'<g transform="rotate({head_rot * .3:.1f})">' + head() + '</g></g>'
+    out += f'<g transform="translate(0,{lift + bob:.1f}) rotate({body_rot:.1f},0,-200)">'
+
+    def leg(hx, a, k, shade):
+        c = "#5e3920" if shade else fur
+        return (f'<g transform="translate({hx},-190) rotate({a:.1f})"><path d="M-30,-10 L30,-10 L22,120 L-22,120Z" fill="{c}"/>'
+                f'<g transform="translate(0,116) rotate({k:.1f})"><path d="M-20,0 L20,0 L16,84 L-16,84Z" fill="{c}"/>'
+                f'<ellipse cx="-12" cy="88" rx="34" ry="15" fill="{c}"/></g></g>')
+
+    out += leg(-130, fa[1], fk[1], True) + leg(170, ba[1], bk[1], True)
+    out += f'<g transform="translate(250,-260) rotate({tail:.1f})"><path d="M0,0 Q70,10 70,110 Q40,70 -10,40Z" fill="{fur}"/><path d="M50,60 q16,40 20,50 q-24,-10 -30,-30" fill="#5e3920" stroke="none"/></g>'
+    out += f'<ellipse cx="40" cy="-235" rx="215" ry="108" fill="{fur}"/><ellipse cx="-160" cy="-262" rx="100" ry="105" fill="{fur}"/>'
+    out += '<path d="M-90,-335 Q60,-352 250,-300 Q60,-322 -90,-312Z" fill="#35200f" stroke="none"/>'
+    out += f'<path d="M-40,-150 q70,40 160,10" fill="none" stroke="#0d0f15" stroke-width="4" opacity=".35"/>'
+    out += leg(-130, fa[0], fk[0], False) + leg(170, ba[0], bk[0], False)
+    out += f'<g transform="translate(-232,-300) rotate({head_rot:.1f})">' + head() + '</g>'
+    return out + '</g></g>'

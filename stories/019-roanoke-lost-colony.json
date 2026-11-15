@@ -1,0 +1,117 @@
+{
+  "id": "019-roanoke-lost-colony",
+  "legend": "The Lost Colony of Roanoke (North Carolina, USA, 1587-1590)",
+  "lines": [
+    "Roanoke Island, August 1590. A ship drops anchor off a silent shore.",
+    "Governor John White has been away for three years.",
+    "He left more than one hundred settlers behind, including his own family.",
+    "He walks up the beach, calling their names. Nobody answers.",
+    "The houses are gone, and the fort stands empty.",
+    "Then he sees one word carved into a post: Croatoan.",
+    "There was no cross, the secret sign they had agreed on for danger.",
+    "A storm drove him away, and he never saw them again.",
+    "Maybe they joined a friendly tribe. Nobody knows.",
+    "What do you think happened to them?"
+  ],
+  "scenes": [
+    {
+      "name": "ship",
+      "move": [
+        -25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.6
+      ],
+      "from": 0
+    },
+    {
+      "name": "beach",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "from": 3
+    },
+    {
+      "name": "empty",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "from": 4
+    },
+    {
+      "name": "post",
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.6,
+        0.7
+      ],
+      "from": 5
+    },
+    {
+      "name": "storm",
+      "move": [
+        0,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "rain": true,
+      "from": 7
+    },
+    {
+      "name": "vanish",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 8
+    }
+  ],
+  "flash_lines": [
+    7
+  ],
+  "title": "Over 100 Settlers Vanished. One Word Was Left Behind... #shorts",
+  "description": "In 1590, Governor John White returned to Roanoke Island and found his colony empty, with one word carved into a post: Croatoan. What happened to the settlers is still a mystery.\n\n#scarystories #roanoke #lostcolony #history #mystery #shorts",
+  "tags": [
+    "scarystories",
+    "roanoke",
+    "lostcolony",
+    "croatoan",
+    "historymystery",
+    "creepy",
+    "shorts"
+  ]
+}

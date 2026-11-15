@@ -1,0 +1,135 @@
+{
+  "id": "017-flying-dutchman-nl",
+  "legend": "The Flying Dutchman (Cape of Good Hope, sailors' legend, sighting 1881)",
+  "lines": [
+    "Kaap de Goede Hoop. Zeelieden fluisteren over een schip dat nooit de haven bereikt.",
+    "Een Nederlandse kapitein zwoer de Kaap te ronden, wat voor storm er ook woei.",
+    "Zijn bemanning smeekte hem om terug te keren, maar hij lachte de hemel uit.",
+    "Volgens de legende vervloekte de hemel hem: hij moest eeuwig blijven varen.",
+    "Op stormachtige nachten rijst zijn spookschip uit de golven.",
+    "De zeilen zijn aan flarden en de bemanning staat doodstil als standbeelden.",
+    "Wie het ziet, zegt men, heeft ontzettend veel pech.",
+    "In achttienhonderdeenentachtig schreef een prins aan boord van een Brits oorlogsschip over een gloeiend rood schip.",
+    "Toen verdween het in het donker.",
+    "Zou jij terugzwaaien naar de Vliegende Hollander?"
+  ],
+  "scenes": [
+    {
+      "name": "cape",
+      "move": [
+        -25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.75,
+        0.6
+      ],
+      "rain": true,
+      "from": 0
+    },
+    {
+      "name": "captain",
+      "move": [
+        20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.6,
+        0.75
+      ],
+      "rain": true,
+      "from": 1
+    },
+    {
+      "name": "curse",
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "rain": true,
+      "from": 3
+    },
+    {
+      "name": "ghostship",
+      "move": [
+        -30,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.45,
+        0.6
+      ],
+      "from": 4
+    },
+    {
+      "name": "crew",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 5
+    },
+    {
+      "name": "prince",
+      "move": [
+        -20,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 7
+    },
+    {
+      "name": "vanish",
+      "move": [
+        30,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.7
+      ],
+      "from": 8
+    }
+  ],
+  "flash_lines": [
+    2,
+    3
+  ],
+  "title": "Het spookschip dat nooit de haven bereikt... 👻🚢",
+  "description": "Zeelieden vertellen al eeuwen over de Vliegende Hollander: een vervloekte kapitein die eeuwig moet blijven varen. Dit is de legende.\n\n#engeverhalen #vliegendehollander #spookschip #zeelegendes #horror #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "vliegendehollander",
+    "spookschip",
+    "zeelegendes",
+    "horror",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

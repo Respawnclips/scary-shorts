@@ -1,0 +1,114 @@
+{
+  "id": "018-beast-of-gevaudan",
+  "legend": "The Beast of Gévaudan (France, 1764-1767)",
+  "lines": [
+    "France, 1764. Something is hunting in the mountains of Gévaudan.",
+    "Shepherds spoke of a beast bigger than any wolf, with a red coat and a dark stripe.",
+    "It leapt out of the mist, and vanished before anyone could fight back.",
+    "Soon, nobody dared to walk alone.",
+    "King Louis the Fifteenth sent his best hunters.",
+    "They killed wolf after wolf, but the beast kept coming back.",
+    "For three years, it haunted those hills.",
+    "In 1767, a local hunter named Jean Chastel shot a huge animal.",
+    "Legend says his bullet was made of blessed silver.",
+    "Was it a wolf, or something far worse?"
+  ],
+  "scenes": [
+    {
+      "name": "hills",
+      "move": [
+        -30,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.55,
+        0.75
+      ],
+      "from": 0
+    },
+    {
+      "name": "shepherd",
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 1
+    },
+    {
+      "name": "village",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 3
+    },
+    {
+      "name": "hunt",
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.6,
+        0.88
+      ],
+      "from": 4
+    },
+    {
+      "name": "chastel",
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "from": 7
+    },
+    {
+      "name": "howl",
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "from": 9
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Beast That Terrorized France for 3 Years... 🐺 #shorts",
+  "description": "From 1764 to 1767, villagers in the mountains of Gévaudan, France, spoke of a huge wolf-like beast. Even the king sent hunters. This is the legend, as people tell it.\n\n#scarystories #beastofgevaudan #cryptid #france #legends #shorts",
+  "tags": [
+    "scarystories",
+    "beastofgevaudan",
+    "cryptid",
+    "france",
+    "legends",
+    "creepy",
+    "shorts"
+  ]
+}

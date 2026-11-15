@@ -1,0 +1,134 @@
+{
+  "id": "017-flying-dutchman",
+  "legend": "The Flying Dutchman (Cape of Good Hope, sailors' legend, sighting 1881)",
+  "lines": [
+    "Cape of Good Hope. Sailors whisper about a ship that never reaches port.",
+    "A Dutch captain swore to round the Cape, whatever the storm.",
+    "His crew begged him to turn back, but he laughed at the sky.",
+    "Legend says heaven cursed him to sail forever.",
+    "On stormy nights, his ghost ship rises from the waves.",
+    "Its sails are torn, and its crew stands still as statues.",
+    "Seeing it is a sign of terrible luck.",
+    "In 1881, a prince aboard a British warship wrote of a glowing red ship.",
+    "Then it faded into the dark.",
+    "Would you wave back at the Flying Dutchman?"
+  ],
+  "scenes": [
+    {
+      "name": "cape",
+      "move": [
+        -25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.75,
+        0.6
+      ],
+      "rain": true,
+      "from": 0
+    },
+    {
+      "name": "captain",
+      "move": [
+        20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.6,
+        0.75
+      ],
+      "rain": true,
+      "from": 1
+    },
+    {
+      "name": "curse",
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "rain": true,
+      "from": 3
+    },
+    {
+      "name": "ghostship",
+      "move": [
+        -30,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.45,
+        0.6
+      ],
+      "from": 4
+    },
+    {
+      "name": "crew",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 5
+    },
+    {
+      "name": "prince",
+      "move": [
+        -20,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 7
+    },
+    {
+      "name": "vanish",
+      "move": [
+        30,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.7
+      ],
+      "from": 8
+    }
+  ],
+  "flash_lines": [
+    2,
+    3
+  ],
+  "title": "The Ghost Ship That Can Never Reach Port... 👻🚢 #shorts",
+  "description": "Sailors have told of the Flying Dutchman for centuries: a cursed captain doomed to sail the seas forever. This is the legend, as people tell it.\n\n#scarystories #flyingdutchman #ghostship #sealegends #legends #shorts",
+  "tags": [
+    "scarystories",
+    "flyingdutchman",
+    "ghostship",
+    "sealegends",
+    "legends",
+    "creepy",
+    "shorts"
+  ]
+}
