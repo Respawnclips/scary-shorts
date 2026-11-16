@@ -1,0 +1,116 @@
+{
+  "id": "021-marfa-lights-nl",
+  "legend": "The Marfa Lights (Texas, USA, first reported 1883)",
+  "lines": [
+    "Texas, achttienhonderddrieëntachtig. Een jonge cowboy drijft zijn vee door een donkere, lege vlakte.",
+    "Vlak bij Marfa ziet hij in de verte een vreemd licht flikkeren.",
+    "Hij denkt dat het een kampvuur is, en loopt erop af.",
+    "Maar als hij aankomt, is er niets. Geen as, geen voetsporen.",
+    "De lichten komen elke nacht terug.",
+    "Ze zweven, splitsen zich in tweeën en drijven door de woestijn.",
+    "Sommigen zeggen dat het geesten zijn, anderen denken aan autolichten ver weg.",
+    "Wetenschappers discussiëren er al meer dan honderd jaar over.",
+    "Niemand heeft ze ooit helemaal kunnen verklaren.",
+    "Wat denk jij dat het zijn?"
+  ],
+  "scenes": [
+    {
+      "name": "plain",
+      "move": [
+        -25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.75
+      ],
+      "from": 0
+    },
+    {
+      "name": "approach",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 2
+    },
+    {
+      "name": "empty",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.45,
+        0.85
+      ],
+      "from": 3,
+      "fog": false
+    },
+    {
+      "name": "dance",
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ],
+      "from": 4
+    },
+    {
+      "name": "cars",
+      "move": [
+        0,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "from": 6
+    },
+    {
+      "name": "end",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ],
+      "from": 8
+    }
+  ],
+  "flash_lines": [],
+  "title": "Mysterieuze lichten spoken door de woestijn van Texas",
+  "description": "Sinds 1883 zweven er vreemde gloeiende lichten boven de woestijn bij Marfa in Texas. Geesten, autolampen of iets anders? Een oud Amerikaans mysterie.\n\n#engeverhalen #marfalights #texas #mysterie #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "marfalights",
+    "texas",
+    "mysterie",
+    "legende",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

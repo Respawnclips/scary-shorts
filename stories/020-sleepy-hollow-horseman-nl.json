@@ -1,0 +1,119 @@
+{
+  "id": "020-sleepy-hollow-horseman-nl",
+  "legend": "The Headless Horseman of Sleepy Hollow (New York, USA, Hessian ghost legend)",
+  "lines": [
+    "Sleepy Hollow, New York. Elke nacht wacht een ruiter op de eenzame weg.",
+    "Ze zeggen dat het een Hessische soldaat is uit de Amerikaanse onafhankelijkheidsoorlog.",
+    "Een kanonskogel nam zijn hoofd mee, en hij werd begraven op het kerkhof.",
+    "Maar elke nacht rijst zijn geest op, op zoek naar het hoofd dat hij verloor.",
+    "Hij galoppeert door de donkere bossen op een zwart paard.",
+    "Volgens de dorpelingen moet hij voor zonsopgang terug zijn in zijn graf.",
+    "Reizigers vertellen over hoefslagen die dreunend vlak achter hen komen.",
+    "Hun enige hoop is de oude brug bij de kerk.",
+    "Steek hem over, en de ruiter kan je niet volgen.",
+    "Zou jij die weg 's nachts durven te rijden?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "move": [
+        -25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.75
+      ],
+      "from": 0
+    },
+    {
+      "name": "battle",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.7,
+        0.8
+      ],
+      "from": 2,
+      "fog": false
+    },
+    {
+      "name": "churchyard",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.75,
+        0.7
+      ],
+      "from": 3
+    },
+    {
+      "name": "gallop",
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 4
+    },
+    {
+      "name": "chase",
+      "move": [
+        0,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.45,
+        0.85
+      ],
+      "rain": false,
+      "from": 6
+    },
+    {
+      "name": "bridge",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 7
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "De hoofdloze ruiter die elke nacht door Sleepy Hollow galoppeert",
+  "description": "In de legende van Sleepy Hollow rijdt een hoofdloze Hessische ruiter elke nacht op zoek naar zijn verloren hoofd. Alleen de brug bij de kerk kan hem stoppen. Een oud Amerikaans spookverhaal.\n\n#engeverhalen #sleepyhollow #hoofdlozeruiter #legende #spook #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "sleepyhollow",
+    "hoofdlozeruiter",
+    "legende",
+    "spookverhaal",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

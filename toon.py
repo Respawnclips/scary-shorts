@@ -972,3 +972,114 @@ def gevaudan(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(0.0, 0.0), fur=
     out += leg(-130, fa[0], fk[0], False) + leg(170, ba[0], bk[0], False)
     out += f'<g transform="translate(-232,-300) rotate({head_rot:.1f})">' + head() + '</g>'
     return out + '</g></g>'
+
+
+# ---------------------------------------------------------------- Headless horseman rig (galloping horse + rider without a head, glowing pumpkin)
+def horseman(x, y, s=1.0, t=0.0, mode="gallop", flip=False, pumpkin=True, horse="#2a2f42", cloak="#1c2030", ember="#ff9a2e"):
+    """Rigged, animated headless rider on a black horse, hooves at (x, y), ~760 units tall, ~600 wide, faces LEFT (flip=True: right).
+    mode: gallop | trot | rear (horse rears up) | stand (breathing, tail swishing, horse stamping) | throw (rider hurls the pumpkin arm forward).
+    pumpkin: glowing jack-o'-lantern held in the raised hand."""
+    sn = _m.sin
+    ph = t * (9.0 if mode == "gallop" else 5.5 if mode == "trot" else 0)
+    bob = rot = 0.0
+    fa = [0, 0]; ba = [0, 0]; fk = [0, 0]; bk = [0, 0]
+    arm = -60 + sn(t * 1.5) * 4; head = sn(t * 1.3) * 3
+    tail = 14 + sn(t * 1.7) * 6; wave = 1.0
+    if mode in ("gallop", "trot"):
+        a = 38 if mode == "gallop" else 24
+        fa = [sn(ph) * a, sn(ph + 1.0) * a]; ba = [-sn(ph + 2.4) * a, -sn(ph + 3.4) * a]
+        fk = [max(0, sn(ph + 1.5)) * 62, max(0, sn(ph + 2.5)) * 62]; bk = [max(0, sn(ph + 3.9)) * 62, max(0, sn(ph + 4.9)) * 62]
+        bob = -abs(sn(ph)) * (22 if mode == "gallop" else 9); rot = sn(ph * 1.0 + .4) * (3 if mode == "gallop" else 1.5)
+        head = sn(ph) * 5 + 6; tail = 38 + sn(ph) * 10; wave = 2.2 if mode == "gallop" else 1.4
+        arm = -100 + sn(ph) * 5
+    elif mode == "rear":
+        c = .5 + .5 * sn(t * 1.6)
+        rot = 22 * c; fa = [-70 * c, -50 * c]; fk = [-60 * c, -40 * c]; head = -12 * c; tail = 30; wave = 1.6
+        arm = -150 + sn(t * 3) * 6; bob = -4 * c
+    elif mode == "throw":
+        c = (t * .9) % 1.0
+        arm = -40 - 140 * (sn(c * _m.pi) ** .6) if c < .6 else -50
+        ph = t * 8.0; a = 30
+        fa = [sn(ph) * a, sn(ph + 1.0) * a]; ba = [-sn(ph + 2.4) * a, -sn(ph + 3.4) * a]
+        fk = [max(0, sn(ph + 1.5)) * 55, max(0, sn(ph + 2.5)) * 55]; bk = [max(0, sn(ph + 3.9)) * 55, max(0, sn(ph + 4.9)) * 55]
+        bob = -abs(sn(ph)) * 18; tail = 36; wave = 2.0
+    else:
+        bob = sn(t * 1.8) * 3; fa[1] = max(0, sn(t * 2.4)) * -22; fk[1] = max(0, sn(t * 2.4)) * 40
+        head = -6 + sn(t * 1.1) * 6; tail = 18 + sn(t * 2.0) * 14
+    f = -1 if flip else 1
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    out += f'<g transform="translate(0,{bob:.1f}) rotate({rot:.1f},150,-60)">'
+
+    def leg(hx, a, k, shade):
+        c = "#10121a" if shade else horse
+        return (f'<g transform="translate({hx},-250) rotate({a:.1f})"><path d="M-32,-14 L32,-14 L20,130 L-20,130Z" fill="{c}"/>'
+                f'<g transform="translate(0,126) rotate({k:.1f})"><path d="M-19,0 L19,0 L14,100 L-14,100Z" fill="{c}"/>'
+                f'<path d="M-24,92 L24,92 L22,128 L-26,128Z" fill="#2a2d3a" stroke-width="4"/></g></g>')
+
+    out += leg(-110, fa[1], fk[1], True) + leg(150, ba[1], bk[1], True)
+    out += f'<g transform="translate(205,-330) rotate({tail:.1f})"><path d="M0,0 Q90,20 80,160 Q50,90 -10,60Z" fill="#0b0c12"/></g>'
+    # rider (behind the horse's body, saddle at (40,-400))
+    r = f'<g transform="translate(40,-400)">'
+    wv = sn(t * (9 if mode in ("gallop", "throw") else 3)) * 10 * wave
+    ck = ''
+    ck += f'<path d="M20,-60 Q150,-30 {210 + wv * 2:.0f},{60 + wv:.0f} Q150,60 {120 + wv:.0f},{150 + wv:.0f} Q60,120 10,40Z" fill="{cloak}"/>'
+    ck += f'<path d="M40,-30 Q150,10 {190 + wv * 2:.0f},{70 + wv:.0f}" fill="none" stroke="#2c3040" stroke-width="4"/>'
+    r += f'<g transform="rotate({-14 + head * .5:.1f})"><path d="M-48,0 Q-64,-110 -34,-210 Q10,-236 56,-206 Q80,-110 52,0Z" fill="#242838"/>'
+    r += '<path d="M-34,-208 Q10,-190 56,-206 L52,-232 Q4,-250 -36,-232Z" fill="#161824" stroke-width="5"/>'      # collar, neck stump
+    r += '<path d="M-26,-232 Q10,-216 48,-232" fill="#050609" stroke="none"/>'
+    # raised arm with pumpkin
+    r += f'<g transform="translate(-40,-190) rotate({arm:.1f})"><path d="M-22,-8 Q-30,50 -20,104 L20,104 Q30,50 22,-8Z" fill="#242838"/>'
+    r += f'<g transform="translate(0,100) rotate({-30 + arm * -.1:.1f})"><path d="M-19,-4 Q-22,40 -15,84 L15,84 Q22,40 19,-4Z" fill="#242838"/><circle cx="0" cy="92" r="16" fill="#8a8f9c"/>'
+    if pumpkin:
+        fl = 1 + .08 * sn(t * 23) + .05 * sn(t * 37)
+        r += (f'<g transform="translate(0,112)"><circle cx="0" cy="0" r="{110 * fl:.0f}" fill="{ember}" opacity=".28" stroke="none"/>'
+              f'<ellipse cx="0" cy="0" rx="62" ry="54" fill="#e0701c"/><path d="M-24,-50 Q-30,0 -24,50 M24,-50 Q30,0 24,50" fill="none" stroke="#a84c10" stroke-width="4"/>'
+              f'<path d="M-6,-54 q4,-24 22,-26" fill="none" stroke="#2a4a22" stroke-width="8"/>'
+              f'<path d="M-38,-14 L-18,-14 L-28,-34Z M18,-14 L38,-14 L28,-34Z" fill="#ffd25a" stroke-width="3"/>'
+              f'<path d="M-30,12 L-18,26 L-8,14 L4,28 L14,14 L24,26 L32,12 Q0,44 -30,12Z" fill="#ffd25a" stroke-width="3"/></g>')
+    r += '</g></g></g>'
+    # other arm holding the reins
+    r += '<path d="M10,-150 Q-40,-120 -90,-100" fill="none" stroke="#242838" stroke-width="36" stroke-linecap="round"/>'
+    r += '</g>'
+    # horse body, neck, head
+    out += f'<g transform="translate(0,0)">'
+    out += r
+    out += f'<ellipse cx="20" cy="-330" rx="215" ry="105" fill="{horse}"/>'
+    out += f'<path d="M-130,-300 Q-200,-480 -250,-560 L-170,-600 Q-100,-480 -40,-400Z" fill="{horse}"/>'
+    out += '<path d="M-200,-560 Q-120,-500 -60,-380 Q-110,-500 -170,-590Z" fill="#0b0c12" stroke="none"/>'
+    out += (f'<g transform="translate(-220,-580) rotate({head:.1f})"><path d="M-10,-30 L20,-100 L48,-30Z" fill="{horse}"/>'
+            f'<path d="M-28,-40 Q60,-70 76,-10 Q20,40 -150,110 Q-190,100 -176,70 Q-60,10 -28,-40Z" fill="{horse}"/>'
+            f'<ellipse cx="-168" cy="90" rx="22" ry="16" fill="#0b0c12" stroke="none"/>'
+            f'<ellipse cx="-4" cy="-8" rx="13" ry="11" fill="#ff7a2a" stroke-width="4"/><circle cx="-4" cy="-8" r="5" fill="#ffd25a" stroke="none"/></g>')
+    out += leg(-110, fa[0], fk[0], False) + leg(150, ba[0], bk[0], False)
+    out += f'<g transform="translate(40,-400)">{ck}</g>'
+    out += '<path d="M-120,-270 Q20,-230 160,-270" fill="none" stroke="#0d0f15" stroke-width="4" opacity=".4"/>'
+    out += '<path d="M10,-420 Q60,-450 110,-420 L100,-380 Q55,-395 10,-380Z" fill="#3a2a22" stroke-width="5"/>'   # saddle
+    return out + '</g></g></g>'
+
+
+# ---------------------------------------------------------------- Ghost light (orb) rig
+def orb(x, y, s=1.0, t=0.0, mode="float", col="#ffe9a8", seed=0, split=None):
+    """Animated glowing ghost light centred at (x, y), radius ~60*s. mode: float (drifting, pulsing) | flicker (fast flicker) | dance (circles around).
+    split: 0-1 shows a smaller twin orb splitting off to the right."""
+    sn = _m.sin
+    if mode == "dance":
+        dx, dy = sn(t * 1.7 + seed) * 120, sn(t * 2.3 + seed * 2) * 60
+    elif mode == "flicker":
+        dx, dy = sn(t * 3 + seed) * 20, sn(t * 4 + seed) * 12
+    else:
+        dx, dy = sn(t * .8 + seed) * 50, sn(t * 1.1 + seed * 1.7) * 30
+    pul = 1 + .12 * sn(t * (14 if mode == "flicker" else 3) + seed)
+    if mode == "flicker" and sn(t * 17 + seed) > .9:
+        pul *= .55
+
+    def one(ox, oy, k):
+        r = 60 * s * k * pul
+        return (f'<circle cx="{ox:.0f}" cy="{oy:.0f}" r="{r * 4.2:.0f}" fill="{col}" opacity=".10"/>'
+                f'<circle cx="{ox:.0f}" cy="{oy:.0f}" r="{r * 2.4:.0f}" fill="{col}" opacity=".22"/>'
+                f'<circle cx="{ox:.0f}" cy="{oy:.0f}" r="{r * 1.3:.0f}" fill="{col}" opacity=".55"/>'
+                f'<circle cx="{ox:.0f}" cy="{oy:.0f}" r="{r * .7:.0f}" fill="#fffdf0"/>')
+    o = '<g>' + one(x + dx, y + dy, 1.0)
+    if split:
+        o += one(x + dx + split * 260 * s, y + dy - split * 40 + sn(t * 2.1) * 20, .7)
+    return o + '</g>'

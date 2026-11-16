@@ -1,0 +1,28 @@
+{
+  "id": "022-green-children",
+  "legend": "The Green Children of Woolpit (Suffolk, England, 12th-century legend)",
+  "lines": [
+    "Woolpit, England, twelfth century. It is harvest time in a quiet village.",
+    "The farmers hear a strange noise near the old wolf pits.",
+    "Out of a pit stumble two children, a boy and a girl.",
+    "Their skin is green, and they speak a language nobody knows.",
+    "They refuse all food, except raw green beans.",
+    "Slowly the girl learns English, and her skin turns normal.",
+    "She says they came from a land without a sun, only twilight.",
+    "They followed the sound of bells, and suddenly they were here.",
+    "A lost world below the earth, or two frightened children?",
+    "What do you think?"
+  ],
+  "scenes": [
+    {"name": "village", "move": [-25, -10, 1.08, 1.2], "focus": [0.5, 0.8], "from": 0},
+    {"name": "pit", "move": [25, 0, 1.08, 1.22], "focus": [0.5, 0.8], "from": 1},
+    {"name": "green", "move": [-20, 0, 1.08, 1.22], "focus": [0.35, 0.8], "from": 3},
+    {"name": "beans", "move": [20, -10, 1.08, 1.25], "focus": [0.5, 0.8], "from": 4, "fog": false},
+    {"name": "twilight", "move": [0, 0, 1.1, 1.25], "focus": [0.5, 0.8], "from": 6},
+    {"name": "question", "move": [-20, 0, 1.08, 1.2], "focus": [0.5, 0.8], "from": 8}
+  ],
+  "flash_lines": [],
+  "title": "Two Green Children Crawled Out of a Pit in Medieval England #shorts",
+  "description": "In 12th-century Woolpit, two green-skinned children appeared from a wolf pit and spoke an unknown language. A strange old English legend.\n\n#scarystories #greenchildren #woolpit #medieval #legend #shorts",
+  "tags": ["scarystories", "greenchildren", "woolpit", "medieval", "legend", "creepy", "shorts"]
+}

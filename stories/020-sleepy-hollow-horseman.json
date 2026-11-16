@@ -1,0 +1,28 @@
+{
+  "id": "020-sleepy-hollow-horseman",
+  "legend": "The Headless Horseman of Sleepy Hollow (New York, USA, Hessian ghost legend)",
+  "lines": [
+    "Sleepy Hollow, New York. Every night, a rider waits on the lonely road.",
+    "They say he is a Hessian soldier from the Revolutionary War.",
+    "A cannonball took his head, and he was buried in the churchyard.",
+    "But each night his ghost rises, searching for the head he lost.",
+    "He gallops through the dark woods on a black horse.",
+    "Locals say he must be back in his grave before sunrise.",
+    "Travelers tell of hoofbeats thundering close behind them.",
+    "Their only hope is the old bridge by the church.",
+    "Cross it, and the rider cannot follow.",
+    "Would you dare ride that road at night?"
+  ],
+  "scenes": [
+    {"name": "road", "move": [-25, -10, 1.08, 1.2], "focus": [0.6, 0.75], "from": 0},
+    {"name": "battle", "move": [25, 0, 1.08, 1.22], "focus": [0.7, 0.8], "from": 2, "fog": false},
+    {"name": "churchyard", "move": [-20, 0, 1.08, 1.22], "focus": [0.75, 0.7], "from": 3},
+    {"name": "gallop", "move": [20, -10, 1.08, 1.25], "focus": [0.5, 0.8], "from": 4},
+    {"name": "chase", "move": [0, 0, 1.1, 1.25], "focus": [0.45, 0.85], "rain": false, "from": 6},
+    {"name": "bridge", "move": [-20, 0, 1.08, 1.2], "focus": [0.5, 0.8], "from": 7}
+  ],
+  "flash_lines": [6],
+  "title": "The Headless Rider Who Gallops Through Sleepy Hollow Every Night #shorts",
+  "description": "In the legend of Sleepy Hollow, a headless Hessian horseman rides every night to find his lost head, and only a bridge by the church can stop him. An old American ghost story.\n\n#scarystories #sleepyhollow #headlesshorseman #legend #ghost #shorts",
+  "tags": ["scarystories", "sleepyhollow", "headlesshorseman", "legend", "ghoststory", "creepy", "shorts"]
+}

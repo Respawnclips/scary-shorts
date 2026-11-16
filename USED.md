@@ -23,3 +23,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 017 | 017-flying-dutchman (+ -nl) | The Flying Dutchman (Cape of Good Hope, sailors' legend, 1881 sighting) | 2026-11-15 |
 | 018 | 018-beast-of-gevaudan (+ -nl) | The Beast of Gévaudan (France, 1764-1767) | 2026-11-15 |
 | 019 | 019-roanoke-lost-colony (+ -nl) | The Lost Colony of Roanoke (North Carolina, USA, 1587-1590) | 2026-11-15 |
+| 020 | 020-sleepy-hollow-horseman (+ -nl) | The Headless Horseman of Sleepy Hollow (New York, USA, Hessian ghost legend) | 2026-11-16 |
+| 021 | 021-marfa-lights (+ -nl) | The Marfa Lights (Texas, USA, first reported 1883) | 2026-11-16 |
+| 022 | 022-green-children (+ -nl) | The Green Children of Woolpit (Suffolk, England, 12th-century legend) | 2026-11-16 |

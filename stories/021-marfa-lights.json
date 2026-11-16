@@ -1,0 +1,28 @@
+{
+  "id": "021-marfa-lights",
+  "legend": "The Marfa Lights (Texas, USA, first reported 1883)",
+  "lines": [
+    "Texas, 1883. A young cowboy drives his cattle across a dark, empty plain.",
+    "Near Marfa, he sees a strange light flicker in the distance.",
+    "He thinks it is a campfire, so he heads toward it.",
+    "But when he arrives, there is nothing. No ashes, no footprints.",
+    "The lights keep coming back, night after night.",
+    "They float, split in two, and drift across the desert.",
+    "Some say they are ghosts, others say they are car lights far away.",
+    "Scientists have argued about it for over a hundred years.",
+    "Nobody has ever fully explained them.",
+    "What do you think they are?"
+  ],
+  "scenes": [
+    {"name": "plain", "move": [-25, -10, 1.08, 1.2], "focus": [0.6, 0.75], "from": 0},
+    {"name": "approach", "move": [25, 0, 1.08, 1.22], "focus": [0.5, 0.8], "from": 2},
+    {"name": "empty", "move": [-20, 0, 1.08, 1.22], "focus": [0.45, 0.85], "from": 3, "fog": false},
+    {"name": "dance", "move": [20, -10, 1.08, 1.25], "focus": [0.5, 0.45], "from": 4},
+    {"name": "cars", "move": [0, 0, 1.1, 1.25], "focus": [0.4, 0.85], "from": 6},
+    {"name": "end", "move": [-20, 0, 1.08, 1.2], "focus": [0.5, 0.6], "from": 8}
+  ],
+  "flash_lines": [],
+  "title": "Mysterious Lights Haunt the Texas Desert. Nobody Can Explain Them #shorts",
+  "description": "Since 1883, strange glowing lights have floated over the desert near Marfa, Texas. Ghosts, car headlights or something else? An old American mystery.\n\n#scarystories #marfalights #texas #mystery #legend #shorts",
+  "tags": ["scarystories", "marfalights", "texas", "mystery", "legend", "creepy", "shorts"]
+}

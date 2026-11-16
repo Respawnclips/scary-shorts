@@ -1,0 +1,116 @@
+{
+  "id": "022-green-children-nl",
+  "legend": "The Green Children of Woolpit (Suffolk, England, 12th-century legend)",
+  "lines": [
+    "Woolpit, Engeland, twaalfde eeuw. Het is oogsttijd in een rustig dorp.",
+    "De boeren horen een vreemd geluid bij de oude wolvenkuilen.",
+    "Uit een kuil strompelen twee kinderen, een jongen en een meisje.",
+    "Hun huid is groen, en ze spreken een taal die niemand kent.",
+    "Ze weigeren al het eten, behalve rauwe groene bonen.",
+    "Langzaam leert het meisje Engels, en haar huid wordt weer normaal.",
+    "Ze vertelt dat ze uit een land zonder zon komen, met alleen schemer.",
+    "Ze volgden het geluid van klokken, en opeens waren ze hier.",
+    "Een verloren wereld onder de grond, of twee bange kinderen?",
+    "Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "village",
+      "move": [
+        -25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 0
+    },
+    {
+      "name": "pit",
+      "move": [
+        25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 1
+    },
+    {
+      "name": "green",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.35,
+        0.8
+      ],
+      "from": 3
+    },
+    {
+      "name": "beans",
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 4,
+      "fog": false
+    },
+    {
+      "name": "twilight",
+      "move": [
+        0,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 6
+    },
+    {
+      "name": "question",
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "from": 8
+    }
+  ],
+  "flash_lines": [],
+  "title": "Twee groene kinderen kropen uit een kuil in middeleeuws Engeland",
+  "description": "In het twaalfde-eeuwse Woolpit verschenen twee kinderen met groene huid uit een wolvenkuil, die een onbekende taal spraken. Een vreemde oude Engelse legende.\n\n#engeverhalen #greenchildren #woolpit #middeleeuwen #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "greenchildren",
+    "woolpit",
+    "middeleeuwen",
+    "legende",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}
