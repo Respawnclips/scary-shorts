@@ -1,0 +1,131 @@
+{
+  "id": "024-lost-dutchman",
+  "legend": "The Lost Dutchman's Gold Mine (Superstition Mountains, Arizona, USA, 1891)",
+  "lines": [
+    "Arizona, 1891. An old German prospector lies dying in Phoenix.",
+    "His name is Jacob Waltz, but everyone calls him the Dutchman.",
+    "For years he vanished into the Superstition Mountains, and returned with gold.",
+    "With his last breath, legend says, he whispered of a secret mine.",
+    "It lies near a tall rock spire called Weaver's Needle.",
+    "Ever since, thousands of treasure hunters have searched those canyons.",
+    "They drew maps and followed old trails, but nobody has found the mine.",
+    "Some searchers never returned. Locals say the mountains guard their secret.",
+    "Is the gold really buried there, or was it only a dream?",
+    "Would you go looking?"
+  ],
+  "scenes": [
+    {
+      "name": "town",
+      "from": 0,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "mountain",
+      "from": 2,
+      "move": [
+        25,
+        -10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "gold",
+      "from": 3,
+      "move": [
+        0,
+        10,
+        1.05,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.85
+      ]
+    },
+    {
+      "name": "needle",
+      "from": 4,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ]
+    },
+    {
+      "name": "hunters",
+      "from": 5,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "night",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "mine",
+      "from": 8,
+      "move": [
+        0,
+        0,
+        1.05,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Secret Gold Mine Thousands Have Hunted for 130 Years #shorts",
+  "description": "In 1891 an old prospector named Jacob Waltz died, and legend says he whispered of a hidden gold mine in Arizona's Superstition Mountains. Nobody has ever found it.\n\n#scarystories #lostdutchman #arizona #treasure #legend #shorts",
+  "tags": [
+    "scarystories",
+    "lostdutchman",
+    "arizona",
+    "goldmine",
+    "treasure",
+    "legend",
+    "wildwest",
+    "shorts"
+  ]
+}

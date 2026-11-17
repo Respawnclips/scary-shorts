@@ -26,3 +26,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 020 | 020-sleepy-hollow-horseman (+ -nl) | The Headless Horseman of Sleepy Hollow (New York, USA, Hessian ghost legend) | 2026-11-16 |
 | 021 | 021-marfa-lights (+ -nl) | The Marfa Lights (Texas, USA, first reported 1883) | 2026-11-16 |
 | 022 | 022-green-children (+ -nl) | The Green Children of Woolpit (Suffolk, England, 12th-century legend) | 2026-11-16 |
+| 023 | 023-hairy-hands (+ -nl) | The Hairy Hands of Dartmoor (Devon, England, 1910 road legend) | 2026-11-17 |
+| 024 | 024-lost-dutchman (+ -nl) | The Lost Dutchman's Gold Mine (Superstition Mountains, Arizona, USA, 1891) | 2026-11-17 |
+| 025 | 025-baba-yaga (+ -nl) | Baba Yaga and her hut on chicken legs (Russia / Slavic folktale) | 2026-11-17 |

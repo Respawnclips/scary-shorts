@@ -1,0 +1,116 @@
+{
+  "id": "025-baba-yaga",
+  "legend": "Baba Yaga and her hut on chicken legs (Russia / Slavic folktale)",
+  "lines": [
+    "Deep in the Russian forest stands a hut that walks on chicken legs.",
+    "It belongs to Baba Yaga, the witch of Slavic folktales.",
+    "She flies through the night in a giant mortar, sweeping away her tracks with a broom.",
+    "One evening, a lost traveler finds a fence lit by glowing skulls.",
+    "The hut spins around, and the door creaks open.",
+    "Baba Yaga leans out and sniffs the air. I smell a visitor!",
+    "She sets hard tasks for everyone who enters. Do them well, and you may go free.",
+    "Be rude, and the legends say you will never be seen again.",
+    "But the kind and the brave are said to leave with a gift.",
+    "Would you dare knock on her door?"
+  ],
+  "scenes": [
+    {
+      "name": "forest",
+      "from": 0,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    },
+    {
+      "name": "fly",
+      "from": 2,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    {
+      "name": "fence",
+      "from": 3,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "door",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "kitchen",
+      "from": 7,
+      "move": [
+        0,
+        10,
+        1.05,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "dawn",
+      "from": 8,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.82
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Witch With a Hut That Walks on Chicken Legs #shorts",
+  "description": "Deep in the Russian forest lives Baba Yaga, a witch whose hut walks on chicken legs. An old Slavic folktale about tests, warnings and gifts.\n\n#scarystories #babayaga #slavicfolklore #witch #folktale #shorts",
+  "tags": [
+    "scarystories",
+    "babayaga",
+    "slavicfolklore",
+    "witch",
+    "folktale",
+    "russia",
+    "creepy",
+    "shorts"
+  ]
+}

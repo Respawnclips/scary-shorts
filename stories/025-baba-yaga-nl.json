@@ -1,0 +1,116 @@
+{
+  "id": "025-baba-yaga-nl",
+  "legend": "Baba Yaga and her hut on chicken legs (Russia / Slavic folktale)",
+  "lines": [
+    "Diep in het Russische bos staat een hut die op kippenpoten loopt.",
+    "Hij is van Baba Yaga, de heks uit Slavische volksverhalen.",
+    "Ze vliegt 's nachts in een reusachtige vijzel en veegt haar sporen weg met een bezem.",
+    "Op een avond vindt een verdwaalde reiziger een hek vol gloeiende schedels.",
+    "De hut draait rond en de deur kraakt open.",
+    "Baba Yaga leunt naar buiten en snuift. Ik ruik een bezoeker!",
+    "Ze geeft zware opdrachten aan iedereen die binnenkomt. Doe ze goed, en je mag gaan.",
+    "Wees onbeleefd, en je wordt volgens de legende nooit meer gezien.",
+    "Maar de vriendelijken en de moedigen vertrekken met een cadeau.",
+    "Durf jij op haar deur te kloppen?"
+  ],
+  "scenes": [
+    {
+      "name": "forest",
+      "from": 0,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    },
+    {
+      "name": "fly",
+      "from": 2,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    {
+      "name": "fence",
+      "from": 3,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "door",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "kitchen",
+      "from": 7,
+      "move": [
+        0,
+        10,
+        1.05,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "dawn",
+      "from": 8,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.82
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De heks met een hut op kippenpoten",
+  "description": "Diep in het Russische bos woont Baba Yaga, een heks met een hut op kippenpoten. Een oud Slavisch volksverhaal over beproevingen, waarschuwingen en cadeaus.\n\n#engeverhalen #babayaga #slavischvolksverhaal #heks #volksverhaal #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "babayaga",
+    "heks",
+    "volksverhaal",
+    "rusland",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

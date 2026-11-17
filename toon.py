@@ -1083,3 +1083,211 @@ def orb(x, y, s=1.0, t=0.0, mode="float", col="#ffe9a8", seed=0, split=None):
     if split:
         o += one(x + dx + split * 260 * s, y + dy - split * 40 + sn(t * 2.1) * 20, .7)
     return o + '</g>'
+
+
+# ---------------------------------------------------------------- Hairy Hand rig (Dartmoor)
+def hairyhand(x, y, s=1.0, t=0.0, mode="reach", rot=0.0, flip=False, skin="#8c7562", hair="#241a14", alpha=1.0, seed=1):
+    """Rigged, animated shaggy hand. (x, y) = wrist; the hand points UP (rot rotates it clockwise around the wrist), the forearm
+    trails 300 units downward. mode: reach (fingers wiggle, sways) | grip (clenched, trembling) | crawl (fingers walking) | wave."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    sway = sn(t * 1.7 + seed) * 5
+    if mode == "grip":
+        c1 = [68 + sn(t * 31 + i) * 3 for i in range(4)]; c2 = [78 + sn(t * 29 + i) * 3 for i in range(4)]
+        th = 50; sway = sn(t * 33) * 2.5
+    elif mode == "crawl":
+        c1 = [max(0, sn(t * 6 + i * 1.2)) * 36 - 8 for i in range(4)]; c2 = [max(0, sn(t * 6 + i * 1.2 + .8)) * 44 for i in range(4)]
+        th = 10 + sn(t * 6) * 8; sway = sn(t * 3) * 3
+    elif mode == "wave":
+        c1 = [6 + sn(t * 4 + i) * 6 for i in range(4)]; c2 = [6 + sn(t * 4 + i + .5) * 8 for i in range(4)]
+        th = 0; sway = sn(t * 4) * 16
+    else:
+        c1 = [14 + sn(t * 3 + i * .9) * 12 for i in range(4)]; c2 = [20 + sn(t * 3.4 + i * .9) * 14 for i in range(4)]
+        th = -10 + sn(t * 2.4) * 6
+    o = (f'<g transform="translate({x},{y}) rotate({rot + sway:.1f}) scale({f * s},{s})" {OUT} opacity="{alpha}">'
+         f'<path d="M-44,0 L-54,330 L54,330 L44,0Z" fill="{skin}"/>')
+    rr = random.Random(seed * 7 + 3); hs = f'<g stroke="{hair}" stroke-width="4" fill="none" stroke-linecap="round">'
+    for _ in range(46):
+        px, py = rr.randint(-38, 38), rr.randint(-100, 300); a = rr.choice([-1, 1]) * rr.randint(10, 24)
+        hs += f'<path d="M{px},{py} l{a * .5:.0f},-{rr.randint(14, 28)}"/>'
+    hs += '</g>'
+    L1, L2, W = (78, 60, 24)
+    for i, (px, k) in enumerate(zip((-36, -12, 12, 36), (.9, 1.1, 1.0, .8))):
+        l1, l2 = L1 * k, L2 * k
+        o += (f'<g transform="translate({px},-96) rotate({(c1[i] * (1 if i > 1 else .8)) * (-1 if px < 0 else 1) * .6 + c1[i] * .4:.1f})">'
+              f'<rect x="{-W / 2}" y="{-l1}" width="{W}" height="{l1 + 8}" rx="12" fill="{skin}"/>'
+              f'<g transform="translate(0,{-l1}) rotate({c2[i]:.1f})"><rect x="{-W * .45}" y="{-l2}" width="{W * .9}" height="{l2 + 6}" rx="12" fill="{skin}"/>'
+              f'<path d="M{-W * .3},{-l2 + 6} l{W * .3},10 l{W * .3},-10" fill="none" stroke-width="3"/></g></g>')
+    o += (f'<g transform="translate(-44,-34) rotate({-48 + th:.1f})"><rect x="-14" y="-74" width="28" height="84" rx="14" fill="{skin}"/></g>'
+          f'<path d="M-50,10 Q-56,-60 -44,-104 L44,-104 Q56,-60 50,10Z" fill="{skin}"/>')
+    return o + hs + '</g>'
+
+
+# ---------------------------------------------------------------- Baba Yaga rig (hunched witch; walks, points, cackles, flies in a mortar)
+def babayaga(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(0.0, 0.0), dress="#4b2f52", scarf="#8a2f2f", skin="#b4c098", cackle=False):
+    """Rigged, animated Baba Yaga, feet at (x, y), ~430 units tall, faces RIGHT (flip=True faces left).
+    mode: stand (leaning on a broom, breathing) | walk (hobbling) | point (arm out, leaning forward) | fly (sitting in a flying mortar, broom trailing; (x, y) = mortar centre)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * 4.2
+    bob = la = ra = lk = rk = 0.0; lean = 14.0
+    al, el, ar, er = 8, 20, -20, -30
+    if mode == "walk":
+        la, ra = sn(ph) * 20, -sn(ph) * 20; lk, rk = max(0, sn(ph + 1.3)) * 26, max(0, sn(ph + 1.3 + _m.pi)) * 26
+        bob = -abs(sn(ph)) * 8; ar, er = -sn(ph) * 14 - 25, -35
+    elif mode == "point":
+        ar, er = -95 + sn(t * 3) * 3, -4; lean = 22; bob = sn(t * 1.6) * 3
+    else:
+        bob = sn(t * 1.7) * 3; ar = -22 + sn(t * 1.3) * 4
+    if cackle:
+        bob += sn(t * 17) * 4; lean += sn(t * 17) * 3
+    blink = 0.15 if (t % 4.1) < .12 else 1.0
+    hr = sn(t * .9) * 4 + look[0] * 8
+    wild = sn(t * 2.4)
+
+    def arm(a, e, item):
+        g = (f'<g transform="rotate({a:.1f})"><path d="M-16,-6 Q-22,40 -12,88 L12,88 Q20,40 16,-6Z" fill="{dress}"/>'
+             f'<g transform="translate(0,84) rotate({e:.1f})"><path d="M-13,-4 Q-16,36 -9,76 L9,76 Q16,36 13,-4Z" fill="{dress}"/>'
+             f'<path d="M-8,70 q-6,26 -2,38 M0,72 q0,28 2,40 M8,70 q6,26 2,36" fill="none" stroke-width="7" stroke="#0d0f15"/>'
+             f'<circle cx="0" cy="84" r="14" fill="{skin}"/>')
+        if item == "broom":
+            g += ('<g transform="translate(0,84)"><rect x="-6" y="-170" width="12" height="400" fill="#6a4a2c"/>'
+                  '<path d="M-26,150 L26,150 L52,260 L-52,260Z" fill="#b89a4a"/><path d="M-26,176 H26 M-14,150 V260 M14,150 V260" fill="none" stroke-width="3"/></g>')
+        return g + '</g></g>'
+
+    def leg(a, k):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-22,-4 L22,-4 L18,76 L-18,76Z" fill="{dress}"/>'
+                f'<g transform="translate(0,74) rotate({k:.1f})"><path d="M-17,0 L17,0 L15,58 L-15,58Z" fill="{skin}"/>'
+                f'<path d="M-16,54 Q-18,76 2,76 Q34,76 38,66 Q34,56 16,54Z" fill="#14161b"/></g></g>')
+
+    if mode == "fly":
+        fb = sn(t * 2.2) * 14
+        o = f'<g transform="translate({x},{y + fb:.1f}) rotate({sn(t * 1.6) * 4:.1f}) scale({f * s},{s})" {OUT}>'
+        # broom trailing behind (left), swept by her
+        o += (f'<g transform="translate(-30,60) rotate({-62 + sn(t * 3) * 6:.1f})"><rect x="-6" y="0" width="12" height="260" fill="#6a4a2c"/>'
+              f'<g transform="translate(0,255) rotate({sn(t * 5) * 8:.1f})"><path d="M-30,0 L30,0 L56,120 L-56,120Z" fill="#b89a4a"/><path d="M-14,0 V120 M14,0 V120" fill="none" stroke-width="3"/></g></g>')
+        o += f'<g transform="translate(10,-60) rotate({lean * .6:.1f})"><path d="M-60,0 Q-70,-100 -30,-150 L40,-150 Q74,-90 60,0Z" fill="{dress}"/>'
+        o += f'<g transform="translate(34,-132)">{arm(-50 + sn(t * 2) * 6, -40, None)}</g>'
+        o += _baba_head(t, skin, scarf, blink, hr, look, cackle, wild, -178)
+        o += '</g>'
+        o += (f'<path d="M-130,-70 Q-140,60 -90,110 L90,110 Q140,60 130,-70Z" fill="#7a7a86"/><ellipse cx="0" cy="-70" rx="130" ry="26" fill="#4a4a56"/>'
+              f'<path d="M-100,10 H100 M-110,-30 H110" fill="none" stroke-width="4" opacity=".6"/>'
+              f'<g transform="translate(70,-30) rotate({-22 + sn(t * 2.4) * 6:.1f})"><rect x="-9" y="-190" width="18" height="260" rx="8" fill="#9a9aa6"/></g></g>')
+        return o
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob:.1f})">'
+    o += f'<g transform="translate(-16,-150)">{leg(la, lk)}</g><g transform="translate(18,-150)">{leg(ra, rk)}</g>'
+    o += f'<g transform="translate(0,-150) rotate({lean:.1f})">'
+    o += f'<g transform="translate(-34,-140)">{arm(al, el, "broom" if mode == "stand" else None)}</g>'
+    o += (f'<path d="M-62,10 Q-74,-80 -46,-150 Q0,-176 52,-148 Q74,-70 64,10Z" fill="{dress}"/>'
+          f'<path d="M-40,-30 H50 M-30,-70 H44" fill="none" stroke-width="4" opacity=".35"/>')
+    o += _baba_head(t, skin, scarf, blink, hr, look, cackle, wild, -182)
+    o += f'<g transform="translate(40,-140)">{arm(ar, er, None)}</g>'
+    return o + '</g></g></g>'
+
+
+def _baba_head(t, skin, scarf, blink, hr, look, cackle, wild, hy):
+    lx, ly = look
+    o = f'<g transform="translate(14,{hy}) rotate({hr:.1f})">'
+    o += f'<path d="M-44,-20 Q-70,30 -52,70 Q-40,40 -34,10Z M-30,10 Q-56,60 -30,92 Q-26,50 -18,16Z" fill="#d9dbe0" stroke-width="4"/>'
+    o += f'<circle cx="0" cy="-30" r="44" fill="{skin}"/>'
+    o += f'<path d="M-48,-30 A48,48 0 0 1 48,-30 Q24,-60 0,-56 Q-26,-62 -48,-30Z" fill="{scarf}"/><path d="M-46,-26 q-18,20 -8,48 q10,-20 14,-30Z" fill="{scarf}"/>'
+    o += f'<path d="M28,-30 Q80,-18 70,6 Q56,-6 36,-8Z" fill="{skin}"/>'
+    o += f'<path d="M-6,-12 Q4,-6 18,-14" fill="none" stroke-width="4"/>'
+    for ex in (-10, 16):
+        o += (f'<ellipse cx="{ex}" cy="-34" rx="8" ry="{8 * blink:.1f}" fill="#fff" stroke-width="3"/>'
+              f'<circle cx="{ex + lx * 3:.1f}" cy="{-34 + ly * 2:.1f}" r="{3.4 if blink > .5 else .1}" fill="#0d0f15" stroke="none"/>')
+    o += '<path d="M-20,-50 l16,-6 M10,-52 l18,4" fill="none" stroke-width="4"/>'
+    if cackle:
+        o += f'<path d="M-6,0 Q14,{20 + abs(wild) * 8:.0f} 36,-2 Q14,-8 -6,0Z" fill="#2a1014" stroke-width="4"/><path d="M8,-4 l4,10 l4,-10Z" fill="#c8ccd4" stroke-width="2"/>'
+    else:
+        o += '<path d="M-4,4 Q16,12 38,-4" fill="none" stroke-width="4"/><path d="M14,6 l4,10 l4,-10Z" fill="#c8ccd4" stroke-width="2"/>'
+    o += '<circle cx="-14" cy="-6" r="5" fill="#7a5a4a" stroke-width="2"/>'
+    return o + '</g>'
+
+
+# ---------------------------------------------------------------- Baba Yaga's hut on chicken legs
+def hutlegs(x, y, s=1.0, t=0.0, mode="stand", flip=False, door=0.0, spin=False):
+    """Rigged hut standing on two huge chicken legs, feet at (x, y), ~700 units tall, front faces RIGHT (flip=True faces left).
+    mode: stand (shifting weight, creaking) | walk (stomping along) .  door: 0-1 how far the door is open (light spills out). spin=True turns the hut like a lazy top."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * 3.0
+    if mode == "walk":
+        a1, a2 = sn(ph) * 30, -sn(ph) * 30; k1, k2 = max(0, sn(ph + 1.2)) * 50, max(0, sn(ph + 1.2 + _m.pi)) * 50
+        bob = -abs(sn(ph)) * 16; tilt = sn(ph) * 2
+    else:
+        a1, a2 = sn(t * 1.1) * 5, -sn(t * 1.1) * 5 - 4; k1 = k2 = 6 + sn(t * 1.1) * 4
+        bob = sn(t * 1.1) * 6; tilt = sn(t * .7) * 1.5
+
+    def leg(a, k):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-22,0 L22,0 L16,160 L-16,160Z" fill="#d9a83e"/><path d="M-18,50 h36 M-16,100 h32" fill="none" stroke-width="4"/>'
+                f'<g transform="translate(0,160) rotate({-k:.1f})"><path d="M-16,0 L16,0 L12,150 L-12,150Z" fill="#c9962e"/><path d="M-12,60 h24 M-12,100 h24" fill="none" stroke-width="4"/>'
+                f'<g transform="translate(0,150) rotate({k * .6 - a * .5:.1f})"><path d="M-14,0 L14,0 L10,14 L-10,14Z" fill="#c9962e"/>'
+                f'<path d="M-6,8 Q60,10 84,34 Q40,40 -6,30Z M-6,8 Q-50,10 -74,34 Q-30,40 6,30Z M0,8 Q80,-8 120,10 Q70,30 6,26Z" fill="#d9a83e"/></g></g></g>')
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    o += f'<g transform="translate(-70,{-310 + bob:.1f})">{leg(a1, k1)}</g><g transform="translate(60,{-300 + bob:.1f})">{leg(a2, k2)}</g>'
+    sx = abs(_m.cos(t * 1.1)) * .75 + .25 if spin else 1.0
+    o += f'<g transform="translate(0,{-310 + bob:.1f}) rotate({tilt:.1f}) scale({sx:.2f},1)">'
+    o += ('<rect x="-200" y="-300" width="400" height="300" fill="#6a4a2c"/>'
+          '<path d="M-200,-100 H200 M-200,-200 H200" fill="none" stroke-width="5"/><path d="M-224,-300 L0,-470 L224,-300Z" fill="#a8935a"/>'
+          '<path d="M-150,-320 l-10,24 M-90,-340 l-6,40 M-30,-356 l0,56 M40,-350 l6,50 M110,-334 l10,34" fill="none" stroke-width="4"/>'
+          '<rect x="-150" y="-230" width="90" height="90" fill="#f3c555"/><path d="M-105,-230 V-140 M-150,-185 H-60" fill="none" stroke-width="5"/>'
+          '<rect x="40" y="-250" width="110" height="250" fill="#2a1a10"/>')
+    if door > 0:
+        o += (f'<rect x="40" y="-250" width="110" height="250" fill="#ffcf6a"/>'
+              f'<path d="M40,-250 L{40 + 90 * (1 - door * .7):.0f},{-250 + 14 * door:.0f} L{40 + 90 * (1 - door * .7):.0f},{-14 * door:.0f} L40,0Z" fill="#4a2f1a"/>')
+    else:
+        o += '<circle cx="62" cy="-120" r="8" fill="#d9b44a"/>'
+    o += '</g></g>'
+    return o
+
+
+# ---------------------------------------------------------------- Dutchman helpers (Arizona desert)
+def saguaro(x, y, s=1.0, col="#2c4a34"):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT} fill="{col}"><rect x="-34" y="-420" width="68" height="420" rx="34"/>'
+            '<path d="M-34,-250 Q-110,-250 -110,-330 L-110,-380 Q-110,-410 -84,-410 Q-60,-410 -60,-380 L-60,-330 Q-60,-300 -34,-300Z"/>'
+            '<path d="M34,-200 Q106,-200 106,-270 L106,-320 Q106,-350 82,-350 Q58,-350 58,-320 L58,-270 Q58,-250 34,-250Z"/></g>')
+
+
+def needle(x, y, s=1.0, col="#6a4a3a", hi="#9a6a4a"):
+    """Weaver's Needle-style rock spire, base centred at (x, y)."""
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-260,0 L-200,-260 L-120,-420 L-80,-900 L-30,-1000 L20,-960 L60,-560 L110,-420 L230,-200 L300,0Z" fill="{col}"/>'
+            f'<path d="M-30,-1000 L20,-960 L60,-560 L110,-420 L40,-420 L-10,-700Z" fill="{hi}" stroke="none"/>'
+            '<path d="M-120,-420 L-60,-300 L-90,-100 M110,-420 L70,-300 L100,-90" fill="none" stroke-width="4" opacity=".6"/></g>')
+
+
+def mesa(x, y, w, h, col="#5a3a34", hi="#7a4a3c"):
+    return (f'<g {OUT}><path d="M{x - w / 2:.0f},{y} L{x - w * .4:.0f},{y - h} L{x + w * .4:.0f},{y - h} L{x + w / 2:.0f},{y}Z" fill="{col}"/>'
+            f'<path d="M{x - w * .4:.0f},{y - h} L{x + w * .4:.0f},{y - h} L{x + w * .38:.0f},{y - h * .85:.0f} L{x - w * .38:.0f},{y - h * .85:.0f}Z" fill="{hi}" stroke="none"/></g>')
+
+
+def nuggets(x, y, s=1.0, n=14, seed=2):
+    r = random.Random(seed); o = f'<g transform="translate({x},{y}) scale({s})" {OUT} stroke-width="4">'
+    for i in range(n):
+        px, py, w = r.randint(-120, 120), r.randint(-60, 10) + abs(r.randint(-120, 120)) * -.2, r.randint(18, 34)
+        o += f'<path d="M{px - w},{py} l{w * .4:.0f},-{w * .8:.0f} l{w * 1.2:.0f},-{w * .2:.0f} l{w * .7:.0f},{w:.0f}Z" fill="{r.choice(["#e8b830", "#f3cc48", "#d9a820"])}"/>'
+    return o + '</g>'
+
+
+def mine_door(x, y, s=1.0, lit=True):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-220,0 L-190,-380 Q0,-470 190,-380 L220,0Z" fill="#4a3a34"/>'
+            f'<path d="M-140,0 L-130,-300 Q0,-360 130,-300 L140,0Z" fill="{"#e8b830" if lit else "#07060a"}"/>'
+            '<path d="M-150,0 V-320 M150,0 V-320 M-170,-330 H170" fill="none" stroke="#6a4a2c" stroke-width="22"/></g>')
+
+
+# ---------------------------------------------------------------- misc helpers for Baba Yaga
+def skullpost(x, y, s=1.0, t=0.0, col="#ffd060"):
+    fl = 1 + .08 * _m.sin(t * 9 + x)
+    return (glow(x, y - 150 * s, 160 * s * fl, col, .45) +
+            f'<g transform="translate({x},{y}) scale({s})" {OUT}><rect x="-12" y="-230" width="24" height="230" fill="#8a7a5a"/>'
+            f'<path d="M-52,-230 Q-60,-330 0,-336 Q60,-330 52,-230 L30,-196 H-30Z" fill="#e8e2c8"/>'
+            f'<ellipse cx="-20" cy="-270" rx="14" ry="18" fill="{col}"/><ellipse cx="20" cy="-270" rx="14" ry="18" fill="{col}"/>'
+            f'<path d="M-6,-242 l6,-12 l6,12Z M-24,-212 V-198 M0,-212 V-198 M24,-212 V-198" fill="#0d0f15" stroke-width="4"/></g>')
+
+
+def bonefence(y, step=130, col="#d9d2b4", x0=-40, x1=1400):
+    o = f'<g {OUT} fill="{col}"><path d="M{x0},{y - 120} H{x1} M{x0},{y - 40} H{x1}" fill="none" stroke="#6a5a42" stroke-width="14"/>'
+    for i, x in enumerate(range(x0, x1, step)):
+        h = 220 + (i * 37) % 70
+        o += f'<rect x="{x - 12}" y="{y - h}" width="24" height="{h}" rx="10"/><circle cx="{x}" cy="{y - h - 4}" r="20"/>'
+    return o + '</g>'

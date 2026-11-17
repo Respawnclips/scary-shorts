@@ -1,0 +1,133 @@
+{
+  "id": "023-hairy-hands-nl",
+  "legend": "The Hairy Hands of Dartmoor (Devon, England, 1910 road legend)",
+  "lines": [
+    "Dartmoor, Engeland, negentienhonderdtien. Een eenzame weg kruist het woeste heideland.",
+    "Op een zomerdag verongelukt daar een dokter op zijn motor.",
+    "Kort daarna melden automobilisten steeds hetzelfde vreemde verhaal.",
+    "Opeens wordt het stuur uit hun handen getrokken.",
+    "Volgens de legende grijpen twee enorme, harige handen het stuur en trekken ze de auto van de weg.",
+    "Een legerofficier vloog van zijn motor, en zei dat er handen om de zijne hadden gegrepen.",
+    "Een vrouw in een woonwagen zag volgens de legende een harige hand door haar raam kruipen.",
+    "Ingenieurs gaven een gevaarlijke bocht de schuld, maar bestuurders blijven het verhaal vertellen.",
+    "Was het een vloek, of gewoon een gevaarlijke weg?",
+    "Houd vannacht je handen aan het stuur. Zou jij over Dartmoor rijden?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "from": 0,
+      "move": [
+        25,
+        -15,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "doctor",
+      "from": 1,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "drive",
+      "from": 2,
+      "move": [
+        20,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "wheel",
+      "from": 3,
+      "move": [
+        0,
+        10,
+        1.05,
+        1.18
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.78
+      ]
+    },
+    {
+      "name": "officer",
+      "from": 5,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.88
+      ]
+    },
+    {
+      "name": "caravan",
+      "from": 6,
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.88
+      ]
+    },
+    {
+      "name": "pop",
+      "from": 8,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.68,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "De weg waar onzichtbare handen aan het stuur trekken",
+  "description": "Op een eenzame weg over Dartmoor zeiden bestuurders sinds 1910 dat twee harige handen hun stuur grepen. Een klassieke Engelse weglegende.\n\n#engeverhalen #hairyhands #dartmoor #spookverhaal #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "hairyhands",
+    "dartmoor",
+    "spookverhaal",
+    "legende",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

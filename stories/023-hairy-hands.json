@@ -1,0 +1,133 @@
+{
+  "id": "023-hairy-hands",
+  "legend": "The Hairy Hands of Dartmoor (Devon, England, 1910 road legend)",
+  "lines": [
+    "Dartmoor, England, 1910. A lonely road crosses the wild moor.",
+    "One summer day, a doctor on a motorcycle crashes there.",
+    "Soon, drivers begin to report the same strange thing.",
+    "Suddenly, the steering wheel is wrenched out of their hands.",
+    "They say two huge, hairy hands grab it and pull them off the road.",
+    "An army officer was thrown from his bike, and claimed hands had gripped his.",
+    "A woman in a caravan, legend says, saw a shaggy hand crawl through her window.",
+    "Engineers blamed a bad bend, but drivers still tell the tale.",
+    "Was it a curse, or only a dangerous road?",
+    "Tonight, keep both hands on the wheel. Would you cross Dartmoor?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "from": 0,
+      "move": [
+        25,
+        -15,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "doctor",
+      "from": 1,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "drive",
+      "from": 2,
+      "move": [
+        20,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "wheel",
+      "from": 3,
+      "move": [
+        0,
+        10,
+        1.05,
+        1.18
+      ],
+      "fog": false,
+      "focus": [
+        0.5,
+        0.78
+      ]
+    },
+    {
+      "name": "officer",
+      "from": 5,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.88
+      ]
+    },
+    {
+      "name": "caravan",
+      "from": 6,
+      "move": [
+        20,
+        -10,
+        1.08,
+        1.2
+      ],
+      "fog": false,
+      "focus": [
+        0.35,
+        0.88
+      ]
+    },
+    {
+      "name": "pop",
+      "from": 8,
+      "move": [
+        0,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.68,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "The Road Where Invisible Hands Grab the Steering Wheel #shorts",
+  "description": "On a lonely Dartmoor road in 1910, drivers began to say two hairy hands seized their steering wheels. A classic English road legend.\n\n#scarystories #hairyhands #dartmoor #haunted #legend #shorts",
+  "tags": [
+    "scarystories",
+    "hairyhands",
+    "dartmoor",
+    "haunted",
+    "legend",
+    "england",
+    "creepy",
+    "shorts"
+  ]
+}
