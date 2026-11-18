@@ -1,0 +1,101 @@
+{
+  "id": "027-dancing-plague-nl",
+  "legend": "The Dancing Plague of 1518 (Strasbourg, Holy Roman Empire / now France)",
+  "lines": [
+    "In juli vijftienhonderdachttien stapte in Straatsburg een vrouw de straat op en begon te dansen.",
+    "Volgens de legende danste ze dagenlang, zonder plezier en zonder rust.",
+    "Al snel deden tientallen stadsbewoners mee, niet in staat te stoppen.",
+    "Binnen weken dansten er volgens oude kronieken honderden mensen.",
+    "De stadsraad dacht dat meer dansen zou helpen, dus huurden ze muzikanten in en bouwden een podium.",
+    "Het werd er alleen maar erger van.",
+    "Daarom stuurden ze de dansers naar een bergkapel om te bidden.",
+    "Toen verdween het dansen net zo plotseling als het begonnen was.",
+    "Niemand weet waarom. Beschimmeld brood? Stress? Massahysterie?",
+    "Wat denk jij dat hen deed dansen?"
+  ],
+  "scenes": [
+    {
+      "name": "street",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "crowd",
+      "from": 2,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "stage",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "mountain",
+      "from": 6,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "quiet",
+      "from": 7,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het stadje dat in 1518 niet kon stoppen met dansen",
+  "description": "In juli 1518 begonnen de inwoners van Straatsburg te dansen en volgens oude kronieken konden ze niet stoppen. Een echt historisch mysterie dat nog steeds onverklaard is.\n\n#engeverhalen #dansplaag #geschiedenis #mysterie #straatsburg #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "dansplaag",
+    "geschiedenis",
+    "mysterie",
+    "straatsburg",
+    "1518",
+    "creepy"
+  ],
+  "lang": "nl"
+}

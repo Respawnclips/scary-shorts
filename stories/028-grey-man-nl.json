@@ -1,0 +1,129 @@
+{
+  "id": "028-grey-man-nl",
+  "legend": "The Grey Man of Pawleys Island (South Carolina, USA, hurricane ghost legend)",
+  "lines": [
+    "Op Pawleys Island in Zuid-Carolina vertellen de bewoners over een heer in het grijs.",
+    "Volgens de legende was hij een jongeman die stierf op weg naar huis, naar zijn bruid.",
+    "Nu loopt hij, zeggen ze, over het strand vóór elke zware orkaan.",
+    "Hij verschijnt stil, in grijze jas en hoed, en waarschuwt wie hij ontmoet.",
+    "In achttienhonderdtweeëntwintig zou een vrouw hem op haar veranda hebben ontmoet.",
+    "Ze luisterde en verliet met haar gezin het eiland.",
+    "De storm raasde over het eiland, maar haar huis bleef gespaard.",
+    "Ze zeggen dat hij weer verscheen voor Hazel in negentienhonderdvierenvijftig en Hugo in negentienhonderdnegenentachtig.",
+    "Zou jij naar een spook luisteren?"
+  ],
+  "scenes": [
+    {
+      "name": "island",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "road",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "beach",
+      "from": 2,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    },
+    {
+      "name": "porch",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "leave",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "storm",
+      "from": 6,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "again",
+      "from": 7,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "Het spook dat waarschuwt voor elke orkaan",
+  "description": "Op Pawleys Island in Zuid-Carolina verschijnt volgens de legende een spook in het grijs op het strand vóór zware orkanen. Wie luistert, blijft volgens het verhaal gespaard.\n\n#engeverhalen #grijzeman #zuidcarolina #orkaan #spookverhaal #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "grijzeman",
+    "zuidcarolina",
+    "orkaan",
+    "spookverhaal",
+    "creepy"
+  ],
+  "lang": "nl"
+}

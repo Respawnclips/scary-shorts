@@ -1,0 +1,117 @@
+{
+  "id": "026-kappa-nl",
+  "legend": "The Kappa (Japan, river folklore)",
+  "lines": [
+    "In Japan zeggen ze dat er in elke stille rivier een klein groen wezen wacht.",
+    "Het heet de kappa, met een schildpadschild en een snavel.",
+    "Op zijn hoofd zit een schaaltje water, en dat water is zijn kracht.",
+    "Volgens de legende grijpt hij iedereen die te dicht bij de oever komt.",
+    "Op een avond hoorde een reiziger een plons achter zich.",
+    "De kappa sprong uit het water en greep met zijn zwemvliezen naar hem.",
+    "Maar hij herinnerde zich het oude advies en boog beleefd.",
+    "De kappa boog terug, zo diep dat al zijn water eruit liep.",
+    "Zwak en tam gleed hij terug de rivier in.",
+    "Zou jij buigen, of wegrennen?"
+  ],
+  "scenes": [
+    {
+      "name": "river",
+      "from": 0,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.65,
+        0.8
+      ]
+    },
+    {
+      "name": "dish",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "bank",
+      "from": 3,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "leap",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "bow",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.82
+      ]
+    },
+    {
+      "name": "gone",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    5
+  ],
+  "title": "Het kleine rivier-monster dat terugbuigt",
+  "description": "In de Japanse folklore wacht de kappa in stille rivieren, en zijn kracht zit in een schaaltje water op zijn hoofd. Een oude truc werkt tegen hem: goede manieren.\n\n#engeverhalen #kappa #japansefolklore #yokai #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "kappa",
+    "japansefolklore",
+    "yokai",
+    "legende",
+    "japan",
+    "creepy"
+  ],
+  "lang": "nl"
+}

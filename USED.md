@@ -29,3 +29,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 023 | 023-hairy-hands (+ -nl) | The Hairy Hands of Dartmoor (Devon, England, 1910 road legend) | 2026-11-17 |
 | 024 | 024-lost-dutchman (+ -nl) | The Lost Dutchman's Gold Mine (Superstition Mountains, Arizona, USA, 1891) | 2026-11-17 |
 | 025 | 025-baba-yaga (+ -nl) | Baba Yaga and her hut on chicken legs (Russia / Slavic folktale) | 2026-11-17 |
+| 026 | 026-kappa (+ -nl) | The Kappa (Japan, river folklore) | 2026-11-18 |
+| 027 | 027-dancing-plague (+ -nl) | The Dancing Plague of 1518 (Strasbourg) | 2026-11-18 |
+| 028 | 028-grey-man (+ -nl) | The Grey Man of Pawleys Island (South Carolina, USA, hurricane ghost legend) | 2026-11-18 |

@@ -327,7 +327,7 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
           hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None, num=None, socks=None, longhair=False):
     """Rigged, animated person (feet at (x, y), ~430 units tall), drawn for time t. Use inside an "actor" scene
     (SCENES[name]["actor"] = dict(box=(x0, y0, x1, y1), fn=lambda ts, t: human(...))) so the main character really moves.
-    mode: stand (breathing, looking around) | walk | run | cheer (jumping, arms up) | wash (scrubbing at a sink) | scared (trembling, hands up) | reach (arm out) | point | back (stand, seen from behind).
+    mode: stand (breathing, looking around) | walk | dance (wild jerky dancing) | run | cheer (jumping, arms up) | wash (scrubbing at a sink) | scared (trembling, hands up) | reach (arm out) | point | back (stand, seen from behind).
     expr: calm | scared | shocked | grin.   hold: None | lantern (hand holds a lantern that swings).   back=True hides the face."""
     sn = _m.sin
     ph = t * (5.0 if mode == "walk" else 9.0 if mode == "run" else 0)
@@ -349,6 +349,16 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
         la, ra = sn(t * 6) * 9, -sn(t * 6) * 9; expr = "grin"
     elif mode == "wash":
         bob = sn(t * 1.8) * 2; al, ar = -10 + sn(t * 8) * 5, 10 - sn(t * 8 + 1) * 5; el, er = -38 + sn(t * 8) * 8, 38 - sn(t * 8 + 1) * 8
+    elif mode == "bow":
+        lean = 40 * max(0.0, min(1.0, (t % 6) / 1.0)) if False else 42; al, el, ar, er = 20, -6, -20, -6; hr = 8; bob = 0
+    elif mode == "dance":
+        ph = t * 7.0
+        bob = -abs(sn(ph)) * 22; lean = sn(ph * .5) * 9
+        la, ra = sn(ph) * 30, -sn(ph) * 30
+        lk, rk = max(0, sn(ph + 1.5)) * 50, max(0, sn(ph + 1.5 + _m.pi)) * 50
+        al, el = 100 + sn(ph) * 45, 30 + sn(ph * 2) * 25
+        ar, er = -100 - sn(ph + 1.2) * 45, -30 - sn(ph * 2 + 1) * 25
+        hr = sn(ph * .5) * 14
     elif mode == "reach":
         ar, er = -92 + sn(t * 3) * 3, -6; bob = sn(t * 1.6) * 2
     elif mode == "point":
@@ -1291,3 +1301,80 @@ def bonefence(y, step=130, col="#d9d2b4", x0=-40, x1=1400):
         h = 220 + (i * 37) % 70
         o += f'<rect x="{x - 12}" y="{y - h}" width="24" height="{h}" rx="10"/><circle cx="{x}" cy="{y - h - 4}" r="20"/>'
     return o + '</g>'
+
+
+# ---------------------------------------------------------------- rigs for the 2026-11-18 stories
+def kappa(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(0.0, 0.0), skin="#4f8a5a", shell="#6a5a2e", water=1.0, fangs=False):
+    """Rigged, animated kappa (Japanese river imp), feet at (x, y), ~380 units tall, faces RIGHT (flip=True faces left).
+    mode: stand (breathing, looking around) | walk | bow (bows deeply, head dish spills water) | reach (arm out, grabbing) | face (head only at x,y).
+    water: 0..1 amount of water in the head dish."""
+    sn = _m.sin
+    ph = t * 5.0 if mode == "walk" else 0
+    bob = sn(t * 1.8) * 3; lean = 0.0; hr = sn(t * .9) * 3 + look[0] * 4
+    la = ra = lk = rk = 0.0
+    al, el, ar, er = 10 + sn(t * 1.4) * 4, 12, -10 - sn(t * 1.4) * 4, 12
+    bend = 0.0
+    if mode == "walk":
+        la, ra = sn(ph) * 26, -sn(ph) * 26
+        lk, rk = max(0, sn(ph + 1.3)) * 30, max(0, sn(ph + 1.3 + _m.pi)) * 30
+        bob = -abs(sn(ph)) * 9; lean = 6; al, ar = -sn(ph) * 22, sn(ph) * 22
+    elif mode == "bow":
+        bend = 40 + sn(t * 1.2) * 4; hr = 25 + sn(t * 1.0) * 3; al, el = 25, 10; ar, er = -25, 10
+    elif mode == "reach":
+        ar, er = -88 + sn(t * 3) * 5, -10 + sn(t * 4) * 8; lean = 8; fangs = True
+    blink = 0.15 if (t % 3.4) < .13 else 1.0
+    f = -1 if flip else 1
+    wl = max(0.0, min(1.0, water))
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-14,-6 Q-20,40 -12,80 L12,80 Q20,40 14,-6Z" fill="{skin}"/>'
+                f'<g transform="translate(0,76) rotate({e:.1f})"><path d="M-12,-2 Q-16,34 -9,66 L9,66 Q16,34 12,-2Z" fill="{skin}"/>'
+                f'<path d="M-14,62 l-8,26 l14,-10 l6,12 l6,-12 l14,10 l-8,-26Z" fill="#8ab070" stroke-width="4"/></g></g>')
+
+    def leg(a, k):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-20,-4 L20,-4 L16,70 L-16,70Z" fill="{skin}"/>'
+                f'<g transform="translate(0,66) rotate({k:.1f})"><path d="M-16,0 L16,0 L13,60 L-13,60Z" fill="{skin}"/>'
+                f'<path d="M-18,56 Q-20,74 0,74 Q34,74 40,66 Q36,58 16,56Z" fill="#8ab070" stroke-width="4"/></g></g>')
+
+    def head():
+        dish = (f'<ellipse cx="0" cy="-58" rx="30" ry="9" fill="#3a2a1a" stroke-width="4"/>'
+                f'<ellipse cx="0" cy="-59" rx="{24 * wl + 2:.0f}" ry="{6 * wl + 1:.0f}" fill="#7fd0f0" stroke="none"/>')
+        eyes = "".join(f'<ellipse cx="{ex}" cy="-22" rx="11" ry="{12 * blink:.1f}" fill="#f6f0c0" stroke-width="3"/>'
+                       f'<circle cx="{ex + 3 + look[0] * 3:.1f}" cy="{-22 + look[1] * 3:.1f}" r="3.6" fill="#0d0f15" stroke="none"/>' for ex in (-8, 26))
+        fg = '<path d="M10,6 l4,12 l5,-12 M24,6 l4,12 l5,-12" fill="#fff" stroke-width="3"/>' if fangs else ''
+        return (f'<g transform="rotate({hr:.1f})"><path d="M-40,-30 Q-44,-60 -24,-66 L-16,-52 L-6,-68 L6,-52 L16,-68 L24,-52 L30,-60 Q44,-50 40,-30Z" fill="#2a3a20" stroke-width="4"/>'
+                f'<circle cx="0" cy="-20" r="44" fill="{skin}"/>' + dish + eyes +
+                f'<path d="M26,-8 Q64,-12 62,4 Q60,16 26,12Z" fill="#e2b84a" stroke-width="4"/><path d="M28,2 H58" stroke-width="3"/>' + fg + '</g>')
+
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob:.1f})">'
+    o += f'<g transform="translate(0,-170)">{leg(la, lk)}</g>'
+    if mode == "face":
+        return f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>' + head() + '</g>'
+    o += f'<g transform="translate(-14,-170)">{leg(ra, rk)}</g>' if False else f'<g transform="translate(26,-170)">{leg(ra, rk)}</g>'
+    o += f'<g transform="translate(0,-170) rotate({lean + bend:.1f})">'
+    o += f'<g transform="translate(-18,-130)">{arm(al, el)}</g>'
+    o += (f'<path d="M-52,-6 Q-74,-80 -40,-150 Q0,-170 40,-150 Q70,-80 50,-6Z" fill="{shell}"/>'
+          f'<path d="M-60,-130 Q-100,-90 -60,-20 Q-30,-60 -30,-130Z" fill="{shell}"/>'
+          f'<path d="M-48,-110 l22,16 M-52,-70 l24,10 M-40,-40 l22,6" stroke-width="4" fill="none"/>'
+          f'<path d="M-30,-8 Q-34,-80 -14,-150 Q18,-162 34,-130 Q40,-70 30,-8Z" fill="#a8c080" stroke-width="4"/>')
+    o += f'<g transform="translate(6,-168)">{head()}</g>'
+    o += f'<g transform="translate(24,-130)">{arm(ar, er)}</g>'
+    if bend:
+        o += f'<path d="M20,-190 q{10 + sn(t * 9) * 3:.0f},{40 + 120 * wl:.0f} {6 + sn(t * 7) * 4:.0f},{150 + sn(t * 6) * 8:.0f}" fill="none" stroke="#7fd0f0" stroke-width="10" stroke-linecap="round" opacity=".8"/>' if wl > 0 else ''
+    return o + '</g></g></g>'
+
+
+def ghostman(x, y, s=1.0, t=0.0, mode="stand", flip=False, expr="calm", look=(1, 0), alpha=0.62):
+    """The Grey Man: a pale grey, see-through gentleman in a hat and long coat (rigged via human()). mode as in human(); wisps of mist at the feet."""
+    body = human(0, 0, 1.0, t, mode, coat="#8f9aa8", pants="#7a8594", skin="#cdd5dd", hair="#6a7380", hat=True, expr=expr, look=look)
+    mist = "".join(f'<ellipse cx="{mx + sn_(t * 1.2 + mx) * 16:.0f}" cy="{8 + k * 4}" rx="{120 - k * 20}" ry="{18}" fill="#c8d4e0" opacity=".35" stroke="none"/>' for k, mx in enumerate((-30, 20, 0)))
+    f = -1 if flip else 1
+    return f'<g transform="translate({x},{y}) scale({f * s},{s})">{mist}<g opacity="{alpha}">{body}</g></g>'
+
+
+def sn_(v):
+    return _m.sin(v)
+
+
+def torchlit_hall_floor(y=2050):
+    return f'<rect x="-20" y="{y}" width="1400" height="500" fill="#4a3a30" {OUT}/><path d="M-20,{y + 120} H1370 M-20,{y + 260} H1370" stroke="#2a1e18" stroke-width="6"/>'

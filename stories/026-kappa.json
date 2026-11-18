@@ -1,0 +1,117 @@
+{
+  "id": "026-kappa",
+  "legend": "The Kappa (Japan, river folklore)",
+  "lines": [
+    "In Japan, they say a small green creature waits in every quiet river.",
+    "It is called the kappa, with a turtle shell and a beak.",
+    "On its head sits a dish of water, and that water is its power.",
+    "Legend says it grabs anyone who wanders too close to the bank.",
+    "One evening, a traveler heard a splash behind him.",
+    "The kappa leapt out, reaching with its webbed hands.",
+    "But he remembered the old advice, and bowed politely.",
+    "The kappa bowed back, so deeply that its water spilled out.",
+    "Weak and tame, it slipped back into the river.",
+    "Would you bow, or run?"
+  ],
+  "scenes": [
+    {
+      "name": "river",
+      "from": 0,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.65,
+        0.8
+      ]
+    },
+    {
+      "name": "dish",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "bank",
+      "from": 3,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "leap",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "bow",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.82
+      ]
+    },
+    {
+      "name": "gone",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    5
+  ],
+  "title": "The Tiny River Monster That Bows Back #shorts",
+  "description": "In Japanese folklore the kappa waits in quiet rivers, and its power is a dish of water on its head. One old trick is said to defeat it: good manners.\n\n#scarystories #kappa #japanesefolklore #yokai #folktale #shorts",
+  "tags": [
+    "scarystories",
+    "kappa",
+    "japanesefolklore",
+    "yokai",
+    "folktale",
+    "japan",
+    "creepy",
+    "shorts"
+  ]
+}

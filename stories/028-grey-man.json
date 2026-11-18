@@ -1,0 +1,130 @@
+{
+  "id": "028-grey-man",
+  "legend": "The Grey Man of Pawleys Island (South Carolina, USA, hurricane ghost legend)",
+  "lines": [
+    "On Pawleys Island, South Carolina, locals tell of a gentleman in grey.",
+    "Legend says he was a young man who died on the road home to his bride.",
+    "Now, they say, he walks the beach before every great hurricane.",
+    "He appears quietly in a grey coat and hat, and warns those he meets.",
+    "In 1822, a woman is said to have met him on her porch.",
+    "She listened, and left the island with her family.",
+    "The storm tore through, but her house was spared.",
+    "They say he walked again before Hazel in 1954 and Hugo in 1989.",
+    "Would you listen to a ghost?"
+  ],
+  "scenes": [
+    {
+      "name": "island",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "road",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "beach",
+      "from": 2,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    },
+    {
+      "name": "porch",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "leave",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "storm",
+      "from": 6,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "again",
+      "from": 7,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "The Ghost Who Warns Before Every Hurricane #shorts",
+  "description": "On Pawleys Island, South Carolina, legend says a ghost in grey appears on the beach before great hurricanes. Those who listen are said to be spared.\n\n#scarystories #greyman #southcarolina #hurricane #ghoststory #shorts",
+  "tags": [
+    "scarystories",
+    "greyman",
+    "southcarolina",
+    "hurricane",
+    "ghoststory",
+    "pawleysisland",
+    "creepy",
+    "shorts"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "027-dancing-plague",
+  "legend": "The Dancing Plague of 1518 (Strasbourg, Holy Roman Empire / now France)",
+  "lines": [
+    "In July 1518, in Strasbourg, a woman stepped into the street and began to dance.",
+    "Legend says she danced for days, without joy and without rest.",
+    "Soon dozens of townspeople joined her, unable to stop.",
+    "Within weeks, old chronicles say, hundreds were dancing.",
+    "The council thought more dancing would cure it, so they hired musicians and built a stage.",
+    "It only made things worse.",
+    "So the dancers were sent to a mountain shrine to pray.",
+    "Then, as suddenly as it began, the dancing faded away.",
+    "No one knows why. Moldy bread? Stress? Mass hysteria?",
+    "What do you think made them dance?"
+  ],
+  "scenes": [
+    {
+      "name": "street",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "crowd",
+      "from": 2,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "stage",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "mountain",
+      "from": 6,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "quiet",
+      "from": 7,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Town That Could Not Stop Dancing in 1518 #shorts",
+  "description": "In July 1518 the people of Strasbourg began to dance and, according to old chronicles, could not stop. A real historical mystery that is still unexplained.\n\n#scarystories #dancingplague #history #mystery #strasbourg #shorts",
+  "tags": [
+    "scarystories",
+    "dancingplague",
+    "history",
+    "mystery",
+    "strasbourg",
+    "1518",
+    "creepy",
+    "shorts"
+  ]
+}
