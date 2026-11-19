@@ -1,0 +1,116 @@
+{
+  "id": "031-stingy-jack",
+  "legend": "Stingy Jack and the first jack-o'-lantern (Ireland, folktale)",
+  "lines": [
+    "In old Ireland, they tell of a man called Stingy Jack.",
+    "He was a clever drunk who tricked the Devil himself.",
+    "Legend says he trapped him up an apple tree, with crosses cut in the bark.",
+    "Jack only let him down after a promise: never take my soul.",
+    "But when Jack died, heaven turned him away.",
+    "And the Devil kept his promise, and refused him too.",
+    "He tossed Jack a single burning coal to light his way.",
+    "Jack set it inside a turnip, and he wanders the bogs forever.",
+    "That is why we carve lanterns. Would you follow his light?"
+  ],
+  "scenes": [
+    {
+      "name": "lane",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "tree",
+      "from": 2,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ]
+    },
+    {
+      "name": "promise",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "gate",
+      "from": 4,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "hell",
+      "from": 5,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "bog",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Cursed Man Behind Every Jack-o'-Lantern #shorts",
+  "description": "Irish legend says Stingy Jack tricked the Devil, then was refused by heaven and hell. Now he wanders the bogs with a burning coal in a turnip.\n\n#scarystories #stingyjack #ireland #halloween #folklore #shorts",
+  "tags": [
+    "scarystories",
+    "stingyjack",
+    "ireland",
+    "halloween",
+    "jackolantern",
+    "folklore",
+    "creepy",
+    "shorts"
+  ]
+}

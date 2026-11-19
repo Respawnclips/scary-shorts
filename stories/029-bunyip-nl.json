@@ -1,0 +1,114 @@
+{
+  "id": "029-bunyip-nl",
+  "legend": "The Bunyip (Australia, Aboriginal billabong legend, 1847 skull)",
+  "lines": [
+    "In Australië waarschuwen oude verhalen van de Aboriginals voor een wezen dat de bunyip heet.",
+    "Het leeft in donkere moerassen en poelen, zeggen ze, en wacht op de nacht.",
+    "Kolonisten begonnen in de jaren achttienveertig een vreemd beest in het water te melden.",
+    "Een harige romp, een lange nek en een gezicht als van een hond.",
+    "Anderen hoorden alleen een diepe brul over het moeras rollen.",
+    "In achttienhonderdzevenenveertig werd in Sydney een vreemde schedel getoond, en de mensen kwamen kijken.",
+    "Deskundigen noemden hem later een misvormd veulen.",
+    "Maar de bewoners van de moerassen bleven altijd luisteren.",
+    "Zou jij vannacht kamperen naast een poel?"
+  ],
+  "scenes": [
+    {
+      "name": "billabong",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.6,
+        0.75
+      ]
+    },
+    {
+      "name": "camp",
+      "from": 2,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.35,
+        0.85
+      ]
+    },
+    {
+      "name": "beast",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ]
+    },
+    {
+      "name": "roar",
+      "from": 4,
+      "move": [
+        10,
+        10,
+        1.1,
+        1.3
+      ],
+      "focus": [
+        0.55,
+        0.65
+      ]
+    },
+    {
+      "name": "museum",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "night",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.75
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het moerasmonster waar Australië nog over fluistert",
+  "description": "In de Australische legende wacht een harig beest met een lange nek in het donkere water. Kolonisten hoorden het brullen, en een vreemde schedel trok ooit mensen naar Sydney.\n\n#engeverhalen #bunyip #australie #monster #folklore #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "bunyip",
+    "australie",
+    "monster",
+    "folklore",
+    "spookverhaal"
+  ],
+  "lang": "nl"
+}

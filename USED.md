@@ -32,3 +32,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 026 | 026-kappa (+ -nl) | The Kappa (Japan, river folklore) | 2026-11-18 |
 | 027 | 027-dancing-plague (+ -nl) | The Dancing Plague of 1518 (Strasbourg) | 2026-11-18 |
 | 028 | 028-grey-man (+ -nl) | The Grey Man of Pawleys Island (South Carolina, USA, hurricane ghost legend) | 2026-11-18 |
+| 029 | 029-bunyip (+ -nl) | The Bunyip (Australia, Aboriginal billabong legend, 1847 skull) | 2026-11-19 |
+| 030 | 030-mad-gasser (+ -nl) | The Mad Gasser of Mattoon (Illinois, USA, September 1944) | 2026-11-19 |
+| 031 | 031-stingy-jack (+ -nl) | Stingy Jack and the first jack-o'-lantern (Ireland, folktale) | 2026-11-19 |

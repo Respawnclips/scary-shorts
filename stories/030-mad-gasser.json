@@ -1,0 +1,130 @@
+{
+  "id": "030-mad-gasser",
+  "legend": "The Mad Gasser of Mattoon (Illinois, USA, September 1944)",
+  "lines": [
+    "Mattoon, Illinois. September, 1944.",
+    "Night after night, people reported a sweet, strange smell drifting through their windows.",
+    "Some said they felt weak, and that a tall figure in dark clothes stood outside.",
+    "The newspapers soon called him the Mad Gasser.",
+    "Neighbours patrolled the streets with flashlights.",
+    "Police searched everywhere, but they never found him.",
+    "No gas was ever proven, and no man was ever caught.",
+    "Experts later blamed fear, spreading through the town like a rumour.",
+    "Was he real, or just a fear that spread?"
+  ],
+  "scenes": [
+    {
+      "name": "town",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "window",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "figure",
+      "from": 2,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "news",
+      "from": 3,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "patrol",
+      "from": 4,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "search",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "end",
+      "from": 7,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Phantom Gasser Who Terrorized a Whole Town #shorts",
+  "description": "In September 1944, a whole Illinois town claimed a mysterious figure was gassing homes at night. Police never found him. Was it real, or fear spreading?\n\n#scarystories #madgasser #mattoon #illinois #unsolved #shorts",
+  "tags": [
+    "scarystories",
+    "madgasser",
+    "mattoon",
+    "illinois",
+    "unsolved",
+    "mystery",
+    "creepy",
+    "shorts"
+  ]
+}

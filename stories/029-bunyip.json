@@ -1,0 +1,115 @@
+{
+  "id": "029-bunyip",
+  "legend": "The Bunyip (Australia, Aboriginal billabong legend, 1847 skull)",
+  "lines": [
+    "In Australia, old Aboriginal stories warn of a creature called the bunyip.",
+    "It lives in dark billabongs and swamps, they say, and waits for night.",
+    "Settlers in the 1840s began to report a strange beast in the water.",
+    "A shaggy body, a long neck, and a face like a dog.",
+    "Some only heard a deep roar rolling across the marsh.",
+    "In 1847, a strange skull went on show in Sydney, and crowds came to stare.",
+    "Experts later called it a deformed foal.",
+    "But the people of the swamps never stopped listening.",
+    "Would you camp beside a billabong tonight?"
+  ],
+  "scenes": [
+    {
+      "name": "billabong",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.6,
+        0.75
+      ]
+    },
+    {
+      "name": "camp",
+      "from": 2,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.35,
+        0.85
+      ]
+    },
+    {
+      "name": "beast",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ]
+    },
+    {
+      "name": "roar",
+      "from": 4,
+      "move": [
+        10,
+        10,
+        1.1,
+        1.3
+      ],
+      "focus": [
+        0.55,
+        0.65
+      ]
+    },
+    {
+      "name": "museum",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "night",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.75
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Swamp Monster Australia Still Whispers About #shorts",
+  "description": "In Australian billabong legend, a shaggy beast with a long neck waits in the dark water. Settlers heard it roar, and a strange skull once drew crowds in Sydney.\n\n#scarystories #bunyip #australia #creature #folklore #shorts",
+  "tags": [
+    "scarystories",
+    "bunyip",
+    "australia",
+    "billabong",
+    "folklore",
+    "creature",
+    "creepy",
+    "shorts"
+  ]
+}

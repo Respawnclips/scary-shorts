@@ -1,0 +1,129 @@
+{
+  "id": "030-mad-gasser-nl",
+  "legend": "The Mad Gasser of Mattoon (Illinois, USA, September 1944)",
+  "lines": [
+    "Mattoon, Illinois. September, negentienhonderdvierenveertig.",
+    "Nacht na nacht meldden mensen een zoete, vreemde geur die door hun ramen kwam.",
+    "Sommigen voelden zich zwak en zeiden dat een lange gestalte in donkere kleren buiten stond.",
+    "De kranten noemden hem de Mad Gasser.",
+    "Buren patrouilleerden met zaklampen door de straten.",
+    "De politie zocht overal, maar vond hem nooit.",
+    "Er werd nooit gas aangetoond, en er werd nooit een man gepakt.",
+    "Deskundigen gaven later de schuld aan angst, die zich als een gerucht door de stad verspreidde.",
+    "Was hij echt, of was het gewoon een angst die zich verspreidde?"
+  ],
+  "scenes": [
+    {
+      "name": "town",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "window",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "figure",
+      "from": 2,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "news",
+      "from": 3,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "patrol",
+      "from": 4,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "search",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "end",
+      "from": 7,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De spookgasser die een hele stad bang maakte",
+  "description": "In september 1944 dacht een hele stad in Illinois dat een mysterieuze gestalte 's nachts huizen vergaste. De politie vond hem nooit. Echt, of verspreide angst?\n\n#engeverhalen #madgasser #mattoon #onopgelost #mysterie #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "madgasser",
+    "mattoon",
+    "onopgelost",
+    "mysterie",
+    "spookverhaal"
+  ],
+  "lang": "nl"
+}

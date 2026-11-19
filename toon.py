@@ -324,7 +324,7 @@ def clown(x, y, s=1.0, t=0.0, mode="walk", flip=False, look=(0.0, 0.0), mouth=No
 
 
 def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", skin="#e2c29a", hair="#17181d",
-          hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None, num=None, socks=None, longhair=False):
+          hat=False, flip=False, expr="calm", look=(0.0, 0.0), back=False, hold=None, num=None, socks=None, longhair=False, horns=False):
     """Rigged, animated person (feet at (x, y), ~430 units tall), drawn for time t. Use inside an "actor" scene
     (SCENES[name]["actor"] = dict(box=(x0, y0, x1, y1), fn=lambda ts, t: human(...))) so the main character really moves.
     mode: stand (breathing, looking around) | walk | dance (wild jerky dancing) | run | cheer (jumping, arms up) | wash (scrubbing at a sink) | scared (trembling, hands up) | reach (arm out) | point | back (stand, seen from behind).
@@ -419,6 +419,8 @@ def human(x, y, s=1.0, t=0.0, mode="stand", coat="#7c2f2b", pants="#22252d", ski
             o += '<path d="M-9,-12 q9,5 18,0" fill="none" stroke-width="4"/>'
     if hat:
         o += '<ellipse cx="0" cy="-66" rx="62" ry="13" fill="#2a2622"/><path d="M-34,-68 Q-32,-118 0,-120 Q32,-118 34,-68Z" fill="#2a2622"/>'
+    if horns:
+        o += '<path d="M-34,-68 L-52,-128 L-12,-76Z M34,-68 L52,-128 L12,-76Z" fill="#2a1014" stroke-width="5"/>'
     o += '</g>'
     o += f'<g transform="translate(52,-150)">{arm(ar, er, hold)}</g>'
     return o + '</g></g></g>'
@@ -1378,3 +1380,51 @@ def sn_(v):
 
 def torchlit_hall_floor(y=2050):
     return f'<rect x="-20" y="{y}" width="1400" height="500" fill="#4a3a30" {OUT}/><path d="M-20,{y + 120} H1370 M-20,{y + 260} H1370" stroke="#2a1e18" stroke-width="6"/>'
+
+
+def devilman(x, y, s=1.0, t=0.0, mode="stand", flip=False, expr="grin", look=(1, 0)):
+    """Red horned Devil with a swishing tail (rigged via human(); modes as in human())."""
+    f = -1 if flip else 1
+    sw = _m.sin(t * 3) * 14
+    tail = (f'<g transform="translate(-40,-200)" {OUT}><path d="M0,0 Q-70,{20 + sw:.0f} -90,{-50 + sw:.0f} Q-100,{-90 + sw:.0f} -130,{-80 + sw:.0f}" fill="none" stroke-width="14"/>'
+            f'<path d="M-130,{-80 + sw:.0f} l-22,-8 l10,24Z" fill="#7a1f1f"/></g>')
+    body = human(0, 0, 1.0, t, mode, coat="#7a1f1f", pants="#4a1418", skin="#b83a2a", hair="#2a1014", expr=expr, look=look, horns=True)
+    return f'<g transform="translate({x},{y}) scale({f * s},{s})">{tail}{body}</g>'
+
+
+def bunyip(x, y, s=1.0, t=0.0, mode="swim", flip=False, look=(1, 0), rise=1.0, fur="#3a4638", fur2="#566a4e"):
+    """Bunyip: a shaggy swamp beast with a long swaying neck and a dog-like head, faces RIGHT (flip=True: left).
+    (x, y) = water line under the body. mode: swim (neck low, swaying) | rise (neck up) | roar (neck up, mouth open, shaking) | peek (only the head above water).
+    rise 0..1 scales how far the neck stretches."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    jaw = 0.0
+    if mode == "roar":
+        jaw = 26 + sn(t * 9) * 8; rise = max(rise, .9)
+    elif mode == "swim":
+        rise = min(rise, .45)
+    elif mode == "peek":
+        rise = 0.0
+    L = 60 + 90 * rise
+    a1 = -6 + sn(t * 1.1) * 7 + (sn(t * 14) * 2 if mode == "roar" else 0)
+    a2 = 22 + sn(t * 1.3 + 1) * 9
+    a3 = 30 + sn(t * 1.5 + 2) * 8 - (14 if mode == "roar" else 0)
+    blink = 0.12 if (t % 3.2) < .12 else 1.0
+    lx, ly = look
+    head = (f'<g transform="rotate({-a3 + 20:.1f})">'
+            f'<path d="M-30,-38 L-52,-84 L-8,-52Z M10,-44 L14,-92 L40,-48Z" fill="{fur}" stroke-width="5"/>'
+            f'<path d="M-6,34 Q-52,64 -40,10 Q-70,-20 -30,-44 Q10,-62 52,-34 Q120,-30 128,-2 Q124,14 60,22 Q30,46 -6,34Z" fill="{fur2}" stroke-width="6"/>'
+            f'<path d="M-30,-40 q-10,22 -4,40 M-6,-52 q-6,22 0,40 M-48,-4 q-12,16 -8,32" fill="none" stroke="#0d0f15" stroke-width="4"/>'
+            f'<g transform="translate(46,16) rotate({jaw:.1f})"><path d="M0,0 Q70,4 84,-6 Q80,18 40,24 Q10,26 0,18Z" fill="{fur}" stroke-width="5"/>'
+            + ('<path d="M20,0 l6,-14 l8,14 M50,0 l5,-12 l7,12" fill="#fff" stroke-width="3"/>' if jaw > 4 else '') + '</g>'
+            f'<ellipse cx="62" cy="-14" rx="13" ry="{13 * blink:.1f}" fill="#ffe28a" stroke-width="4"/>'
+            f'<circle cx="{66 + lx * 3:.1f}" cy="{-14 + ly * 3:.1f}" r="{4 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>'
+            f'<ellipse cx="118" cy="-8" rx="9" ry="6" fill="#0d0f15" stroke="none"/></g>')
+    neck = (f'<g transform="rotate({a1:.1f})"><path d="M-38,0 L-26,{-L} L26,{-L} L40,0Z" fill="{fur}" stroke-width="6"/>'
+            f'<g transform="translate(0,{-L}) rotate({a2:.1f})"><circle cx="0" cy="0" r="30" fill="{fur}" stroke-width="6"/><path d="M-26,0 L-18,{-L * .8:.0f} L18,{-L * .8:.0f} L26,0Z" fill="{fur}" stroke-width="6"/>'
+            f'<g transform="translate(0,{-L * .8:.0f}) rotate({a3 * .4:.1f})">{head}</g></g></g>')
+    body = (f'<path d="M-190,10 Q-170,-120 -40,-130 Q80,-140 190,10Z" fill="{fur}" stroke-width="6"/>'
+            f'<path d="M-130,-30 q10,-40 30,-60 M-60,-40 q10,-40 30,-70 M20,-40 q10,-40 30,-70 M90,-30 q10,-30 28,-50" fill="none" stroke="{fur2}" stroke-width="10" stroke-linecap="round"/>')
+    inner = (neck if mode == "peek" else body + f'<g transform="translate(70,-110)">{neck}</g>')
+    rip = "".join(f'<ellipse cx="{k * 90 + sn(t * 1.5 + k) * 12:.0f}" cy="{14 + abs(k) * 2}" rx="{150 - abs(k) * 20}" ry="14" fill="none" stroke="#9ec0d8" stroke-width="5" opacity=".55"/>' for k in (-1, 0, 1))
+    return f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{sn(t * 1.2) * 4:.1f})">{inner}</g>{rip}</g>'

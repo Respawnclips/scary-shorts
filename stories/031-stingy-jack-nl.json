@@ -1,0 +1,115 @@
+{
+  "id": "031-stingy-jack-nl",
+  "legend": "Stingy Jack and the first jack-o'-lantern (Ireland, folktale)",
+  "lines": [
+    "In het oude Ierland vertellen ze over een man die Stingy Jack heette.",
+    "Hij was een slimme dronkaard die de duivel zelf te slim af was.",
+    "De legende zegt dat hij hem in een appelboom opsloot, met kruisen in de bast gekerfd.",
+    "Jack liet hem pas naar beneden na een belofte: nooit mijn ziel nemen.",
+    "Maar toen Jack stierf, wees de hemel hem af.",
+    "En de duivel hield zijn belofte, en wees hem ook af.",
+    "Hij gooide Jack één gloeiende kool toe om zijn weg te verlichten.",
+    "Jack zette hem in een uitgeholde raap, en hij zwerft eeuwig door de venen.",
+    "Daarom snijden we lantaarns uit. Zou jij zijn licht volgen?"
+  ],
+  "scenes": [
+    {
+      "name": "lane",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "tree",
+      "from": 2,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ]
+    },
+    {
+      "name": "promise",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "gate",
+      "from": 4,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "hell",
+      "from": 5,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "bog",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De vervloekte man achter elke pompoenlantaarn",
+  "description": "Volgens de Ierse legende hield Stingy Jack de duivel voor de gek en werd hij door hemel en hel geweigerd. Nu zwerft hij door de venen met een gloeiende kool in een raap.\n\n#engeverhalen #stingyjack #ierland #halloween #folklore #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "stingyjack",
+    "ierland",
+    "halloween",
+    "folklore",
+    "spookverhaal"
+  ],
+  "lang": "nl"
+}
