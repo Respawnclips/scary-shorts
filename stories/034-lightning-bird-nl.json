@@ -1,0 +1,137 @@
+{
+  "id": "034-lightning-bird-nl",
+  "legend": "The Impundulu, the lightning bird (South Africa, Zulu and Xhosa folklore)",
+  "lines": [
+    "In Zuid-Afrika dragen onweerswolken een oud en angstaanjagend verhaal.",
+    "De folklore van de Zoeloes en de Xhosa vertelt over de Impundulu, de bliksemvogel.",
+    "Het is een enorme vogel, zwart en wit, groter dan een man.",
+    "Ze zeggen dat de donder zijn vleugelslag is, en de bliksem uit zijn klauwen schiet.",
+    "In sommige verhalen dient hij een heks, die hem op haar vijanden afstuurt.",
+    "Je hoort hem eerder dan je hem ziet, een gerommel dat de grond doet trillen.",
+    "Dan splijt de lucht wit open, en een schaduw met enorme vleugels scheert over de heuvels.",
+    "Mensen schuilden binnen tot de laatste donder verstomde.",
+    "De volgende keer dat de bliksem inslaat, durf jij dan omhoog te kijken?"
+  ],
+  "scenes": [
+    {
+      "name": "hills",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.65,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "perch",
+      "from": 2,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    {
+      "name": "claws",
+      "from": 3,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "rain": true
+    },
+    {
+      "name": "witch",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "village",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "sweep",
+      "from": 6,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "rain": true
+    },
+    {
+      "name": "hut",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.25,
+        0.85
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [
+    3,
+    6
+  ],
+  "title": "De reuzenvogel die de donder brengt",
+  "description": "In de folklore van de Zoeloes en Xhosa is de Impundulu een enorme zwart-witte vogel: de donder is zijn vleugelslag en de bliksem schiet uit zijn klauwen.\n\n#engeverhalen #impundulu #zuidafrika #folklore #bliksemvogel #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "impundulu",
+    "zuidafrika",
+    "folklore",
+    "bliksemvogel",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

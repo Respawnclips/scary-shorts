@@ -1,0 +1,115 @@
+{
+  "id": "033-lincoln-ghost-train",
+  "legend": "Lincoln's Ghost Train (Hudson Valley, New York, April 1865 funeral train legend)",
+  "lines": [
+    "Every April, along the Hudson River, people wait by the tracks in the dark.",
+    "They say Lincoln's funeral train still comes, the one that carried him home in 1865.",
+    "Legend says the clocks stop as it nears, and the air turns freezing cold.",
+    "A pale engine glides in, draped in black, with no driver at the controls.",
+    "A ghostly band plays a slow, muffled march.",
+    "Soldiers stand on the open cars, still as statues, pale as bone.",
+    "Then it fades into the mist, without a whistle, without a sound.",
+    "And the clocks start ticking again, as if nothing happened.",
+    "Would you wait by the tracks to see it?"
+  ],
+  "scenes": [
+    {
+      "name": "tracks",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "clock",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "engine",
+      "from": 3,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "band",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "soldiers",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "fade",
+      "from": 6,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.7,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Ghost Train That Still Rolls Every April #shorts",
+  "description": "New York legend says Abraham Lincoln's funeral train returns every April, a pale engine, a ghostly band, and clocks that stop as it passes.\n\n#scarystories #ghosttrain #lincoln #newyork #hudsonriver #shorts",
+  "tags": [
+    "scarystories",
+    "ghosttrain",
+    "lincoln",
+    "newyork",
+    "hudsonriver",
+    "americanlegends",
+    "creepy",
+    "shorts"
+  ]
+}

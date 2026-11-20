@@ -1,0 +1,129 @@
+{
+  "id": "032-kelpie-nl",
+  "legend": "The Kelpie (Scottish Highlands, water-horse folklore)",
+  "lines": [
+    "In de Schotse Hooglanden verbergt een donker meer een heel oude waarschuwing.",
+    "Naast het water staat een prachtig paard, nat en glanzend.",
+    "De legende zegt dat het een kelpie is, die wacht op vermoeide reizigers.",
+    "Raak zijn rug aan, en je hand blijft vastzitten aan zijn huid.",
+    "Dan stort hij zich in het meer en sleurt zijn berijder mee naar beneden.",
+    "Ze zeggen dat alleen een ijzeren hoofdstel hem kan stoppen, over zijn kop gegooid.",
+    "Dan moet hij gehoorzamen en voor je werken als een ploegpaard.",
+    "Maar de kelpie vergeet nooit, en hij kijkt toe vanuit het water.",
+    "Dus als je 's nachts een eenzaam paard bij een meer ziet, zou je erop klimmen?"
+  ],
+  "scenes": [
+    {
+      "name": "loch",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "lure",
+      "from": 2,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "grip",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.6,
+        0.75
+      ]
+    },
+    {
+      "name": "plunge",
+      "from": 4,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ],
+      "fog": true
+    },
+    {
+      "name": "bridle",
+      "from": 5,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.6,
+        0.7
+      ]
+    },
+    {
+      "name": "plough",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.85
+      ]
+    },
+    {
+      "name": "night",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Raak nooit het paard bij het meer aan",
+  "description": "Volgens de Schotse legende wacht de kelpie, een glanzend watterpaard, bij het meer op vermoeide reizigers. Raak hem aan en je komt niet meer los.\n\n#engeverhalen #kelpie #schotland #folklore #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "kelpie",
+    "schotland",
+    "folklore",
+    "legende",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

@@ -1,0 +1,115 @@
+{
+  "id": "033-lincoln-ghost-train-nl",
+  "legend": "Lincoln's Ghost Train (Hudson Valley, New York, April 1865 funeral train legend)",
+  "lines": [
+    "Elke april wachten mensen in het donker langs de Hudson-rivier bij het spoor.",
+    "Ze zeggen dat Lincolns rouwtrein nog steeds komt, de trein die hem in achttienhonderd vijfenzestig naar huis bracht.",
+    "De legende zegt dat de klokken stilvallen als hij nadert, en de lucht ijskoud wordt.",
+    "Een bleke locomotief glijdt binnen, gehuld in zwart, zonder machinist aan de knoppen.",
+    "Een spookachtige band speelt een trage, gedempte mars.",
+    "Soldaten staan op de open wagons, roerloos als standbeelden, bleek als bot.",
+    "Dan verdwijnt hij in de mist, zonder fluit, zonder geluid.",
+    "En de klokken gaan weer tikken, alsof er niets gebeurd is.",
+    "Zou jij bij het spoor wachten om hem te zien?"
+  ],
+  "scenes": [
+    {
+      "name": "tracks",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "clock",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "engine",
+      "from": 3,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "band",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "soldiers",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "fade",
+      "from": 6,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.7,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De spooktrein die elke april nog rijdt",
+  "description": "In New York gaat de legende dat de rouwtrein van Abraham Lincoln elke april terugkeert: een bleke locomotief, een spookband en klokken die stilvallen.\n\n#engeverhalen #spooktrein #lincoln #newyork #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "spooktrein",
+    "lincoln",
+    "newyork",
+    "legende",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

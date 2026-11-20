@@ -1,0 +1,137 @@
+{
+  "id": "034-lightning-bird",
+  "legend": "The Impundulu, the lightning bird (South Africa, Zulu and Xhosa folklore)",
+  "lines": [
+    "In South Africa, storm clouds carry an old and terrible story.",
+    "Zulu and Xhosa folklore tells of the Impundulu, the lightning bird.",
+    "It is a huge bird, black and white, taller than a man.",
+    "They say thunder is its wings beating, and lightning flashes from its claws.",
+    "In some tales it serves a witch, who sends it to strike her enemies.",
+    "You hear it before you see it, a rumble that shakes the ground.",
+    "Then the sky splits white, and a shadow with huge wings sweeps over the hills.",
+    "People hid indoors until the last thunder faded.",
+    "Next time lightning strikes, will you dare to look up?"
+  ],
+  "scenes": [
+    {
+      "name": "hills",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.65,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "perch",
+      "from": 2,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    {
+      "name": "claws",
+      "from": 3,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "rain": true
+    },
+    {
+      "name": "witch",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "village",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "sweep",
+      "from": 6,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "rain": true
+    },
+    {
+      "name": "hut",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.25,
+        0.85
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [
+    3,
+    6
+  ],
+  "title": "The Giant Bird That Brings the Thunder #shorts",
+  "description": "In Zulu and Xhosa folklore, the Impundulu is a huge black-and-white bird: thunder is its wings, lightning flashes from its claws.\n\n#scarystories #impundulu #southafrica #folklore #lightningbird #shorts",
+  "tags": [
+    "scarystories",
+    "impundulu",
+    "lightningbird",
+    "southafrica",
+    "zulu",
+    "folklore",
+    "creepy",
+    "shorts"
+  ]
+}

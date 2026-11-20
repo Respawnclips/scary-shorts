@@ -35,3 +35,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 029 | 029-bunyip (+ -nl) | The Bunyip (Australia, Aboriginal billabong legend, 1847 skull) | 2026-11-19 |
 | 030 | 030-mad-gasser (+ -nl) | The Mad Gasser of Mattoon (Illinois, USA, September 1944) | 2026-11-19 |
 | 031 | 031-stingy-jack (+ -nl) | Stingy Jack and the first jack-o'-lantern (Ireland, folktale) | 2026-11-19 |
+| 032 | 032-kelpie (+ -nl) | The Kelpie (Scottish Highlands, water-horse folklore) | 2026-11-20 |
+| 033 | 033-lincoln-ghost-train (+ -nl) | Lincoln's Ghost Train (Hudson Valley, New York, April 1865 funeral train legend) | 2026-11-20 |
+| 034 | 034-lightning-bird (+ -nl) | The Impundulu, the lightning bird (South Africa, Zulu and Xhosa folklore) | 2026-11-20 |

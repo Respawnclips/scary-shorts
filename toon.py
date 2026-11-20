@@ -1428,3 +1428,159 @@ def bunyip(x, y, s=1.0, t=0.0, mode="swim", flip=False, look=(1, 0), rise=1.0, f
     inner = (neck if mode == "peek" else body + f'<g transform="translate(70,-110)">{neck}</g>')
     rip = "".join(f'<ellipse cx="{k * 90 + sn(t * 1.5 + k) * 12:.0f}" cy="{14 + abs(k) * 2}" rx="{150 - abs(k) * 20}" ry="14" fill="none" stroke="#9ec0d8" stroke-width="5" opacity=".55"/>' for k in (-1, 0, 1))
     return f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{sn(t * 1.2) * 4:.1f})">{inner}</g>{rip}</g>'
+
+
+# ---------------------------------------------------------------- rigs for the 2026-11-20 stories (kelpie, ghost train, lightning bird)
+def kelpie(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), coat="#2c3446", mane="#1f7a72", eyec="#8ff0ff", water=None):
+    """Kelpie: a wet black water-horse with a weed mane, faces RIGHT (flip=True: left), hooves at (x, y).
+    mode: stand (breathing, ear flicks, tail swish) | walk | gallop | rear (up on hind legs, pawing) | peek (only head and neck above the water line at y).
+    water: if given (e.g. 1.0) draws ripples around the water line."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    blink = 0.15 if (t % 4.1) < .12 else 1.0
+    ph = t * (4.2 if mode == "walk" else 10.5 if mode == "gallop" else 0)
+    bob = 0.0; rot = 0.0; amp = 0.0; kn = 0.0; hr = sn(t * 1.1) * 4; open_ = 0.0
+    fa = [0.0, 0.0]; fk = [0.0, 0.0]; ha = [0.0, 0.0]; hk = [0.0, 0.0]
+    if mode in ("walk", "gallop"):
+        amp = 24 if mode == "walk" else 48
+        kn = 38 if mode == "walk" else 70
+        fa = [sn(ph) * amp, -sn(ph) * amp]; ha = [-sn(ph + .5) * amp, sn(ph + .5) * amp]
+        fk = [max(0, sn(ph + 1.4)) * kn, max(0, -sn(ph + 1.4)) * kn]; hk = [max(0, sn(ph + 1.9)) * kn, max(0, -sn(ph + 1.9)) * kn]
+        bob = -abs(sn(ph)) * (8 if mode == "walk" else 22); rot = sn(ph) * (1 if mode == "walk" else 3); hr += 6 + sn(ph * 2) * (2 if mode == "walk" else 5)
+    elif mode == "rear":
+        rot = 38 + sn(t * 3) * 3; fa = [-50 + sn(t * 6) * 18, -70 + sn(t * 6 + 1) * 18]; fk = [90, 70]; hr = -6 + sn(t * 4) * 4; open_ = 14 + sn(t * 8) * 6
+    else:
+        bob = sn(t * 1.7) * 3
+    sw = sn(t * (3 if mode in ("stand", "peek") else 7))
+    ear = sn(t * 0.8) * 8 + (sn(t * 17) * 10 if (t % 5) < .4 else 0)
+
+    def leg(hx, hy, a, k, near):
+        c = coat if near else "#1c2230"
+        return (f'<g transform="translate({hx},{hy}) rotate({a:.1f})"><path d="M-26,-6 L26,-6 L18,124 L-18,124Z" fill="{c}"/>'
+                f'<g transform="translate(0,120) rotate({-k:.1f})"><path d="M-18,0 L18,0 L13,112 L-13,112Z" fill="{c}"/>'
+                f'<path d="M-17,106 h34 l5,18 h-44Z" fill="#0f1218"/></g></g>')
+
+    seaweed = "".join(
+        f'<path d="M{128 + k * 17},{-396 - k * 20} q{20 + sn(t * 2.2 + k) * 14:.0f},{-8 + k} {34 + sn(t * 2.6 + k * 1.3) * 12:.0f},{16 + k * 4} q{-12 + sn(t * 2 + k) * 8:.0f},{14} {-6},{44 + k * 3}" '
+        f'fill="none" stroke="{mane}" stroke-width="{12 - k}" stroke-linecap="round"/>' for k in range(6))
+    tail = (f'<path d="M-170,-350 Q{-250 + sw * 22:.0f},-330 {-262 + sw * 30:.0f},-190 Q{-250 + sw * 30:.0f},-90 {-214 + sw * 36:.0f},-40 Q{-216 + sw * 20:.0f},-170 -150,-290Z" fill="{mane}"/>'
+            f'<path d="M{-240 + sw * 28:.0f},-120 q-6,24 4,46" fill="none" stroke="#9ee6f0" stroke-width="5" opacity=".7"/>')
+    eye = (f'<ellipse cx="62" cy="-12" rx="12" ry="{12 * blink:.1f}" fill="{eyec}" stroke-width="4"/>'
+           f'<circle cx="{64 + look[0] * 3:.1f}" cy="{-12 + look[1] * 3:.1f}" r="{4.5 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>')
+    head = (f'<g transform="rotate({hr:.1f})"><path d="M-14,-30 L-24,-86 L14,-42Z" fill="{coat}" transform="rotate({ear:.1f} -10 -34)" stroke-width="5"/>'
+            f'<path d="M-30,-14 Q-30,-52 14,-56 Q70,-52 120,-4 Q150,20 138,44 Q124,62 96,58 Q40,60 -4,38 Q-30,26 -30,-14Z" fill="{coat}"/>'
+            f'<path d="M64,36 L132,40 Q140,50 126,60 Q96,66 62,52Z" fill="#161b27" transform="rotate({open_ * .8:.1f} 60 40)" stroke-width="5"/>'
+            f'<path d="M-30,-14 Q-52,6 -44,40 Q-14,30 -4,0Z" fill="{mane}" stroke-width="4"/>' + eye +
+            f'<ellipse cx="128" cy="20" rx="7" ry="9" fill="#0d0f15" stroke="none"/>'
+            + ('<path d="M92,50 l4,12 l5,-12 M112,50 l4,10 l4,-10" fill="#f4f4ea" stroke-width="3"/>' if open_ > 8 else '') + '</g>')
+    neck = (f'<path d="M96,-386 Q150,-470 176,-566 L252,-540 Q238,-440 214,-352Z" fill="{coat}"/>' + seaweed
+            + f'<g transform="translate(232,-552)">{head}</g>')
+    body = (f'<path d="M-180,-300 Q-196,-396 -70,-392 Q60,-384 160,-402 Q226,-392 214,-300 Q204,-214 110,-204 Q0,-192 -110,-204 Q-190,-214 -180,-300Z" fill="{coat}"/>'
+            f'<path d="M-150,-300 q60,-60 120,-10 M60,-330 q40,-20 90,0" fill="none" stroke="#4a5570" stroke-width="6" opacity=".7"/>')
+    if mode == "peek":
+        out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(-170,330) scale(1)">{neck}</g></g>'
+        return out + (_ripples(x, y, s, t) if water else "")
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob:.1f}) rotate({-rot:.1f} -120 0)">'
+    out += leg(-120, -232, ha[1], hk[1], False) + leg(130, -228, fa[1], fk[1], False) + tail + body + neck
+    out += leg(-90, -236, ha[0], hk[0], True) + leg(160, -226, fa[0], fk[0], True)
+    return out + '</g></g>' + (_ripples(x, y, s, t) if water else "")
+
+
+def _ripples(x, y, s, t):
+    return "".join(f'<ellipse cx="{x + k * 150 * s + _m.sin(t * 1.5 + k) * 10:.0f}" cy="{y + 8 + abs(k) * 6}" rx="{(240 - abs(k) * 50) * s:.0f}" ry="{20 * s:.0f}" fill="none" stroke="#a8d4e4" stroke-width="5" opacity=".6"/>' for k in (-1, 0, 1))
+
+
+def steam_engine(x, y, s=1.0, t=0.0, speed=1.0, flip=False, ghost=0.0, flag=True):
+    """Old steam locomotive (side view, faces RIGHT, flip=True: left), wheels on the rails at (x, y). Rolling wheels, working rods, smoke puffs.
+    ghost 0..1 makes it pale and see-through with a cold glow. flag draws black funeral drapes."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * 6.0 * speed
+    body_c = "#2a2c38" if not ghost else "#6f7f95"
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT} opacity="{1 - ghost * .35:.2f}">'
+    for k in range(7):
+        age = (t * .9 + k * .5) % 3.5
+        o += f'<circle cx="{190 + age * 110:.0f}" cy="{-470 - age * 120:.0f}" r="{34 + age * 22:.0f}" fill="#c9d2de" opacity="{max(0, .6 - age * .17):.2f}" stroke="none"/>'
+    o += (f'<rect x="-330" y="-110" width="640" height="26" fill="#14161c"/>'
+          f'<path d="M-330,-96 L-410,-60 L-410,-20 L-330,-40Z" fill="#14161c"/>'
+          f'<rect x="-310" y="-380" width="260" height="280" fill="{body_c}"/><path d="M-330,-380 h300 v-30 h-300Z" fill="#14161c"/>'
+          f'<rect x="-270" y="-340" width="90" height="100" fill="{"#d8f0ff" if ghost else "#f3c555"}"/>'
+          f'<rect x="-50" y="-330" width="360" height="230" rx="30" fill="{body_c}"/><path d="M-50,-330 q180,-40 360,0" fill="none"/>'
+          f'<rect x="250" y="-460" width="64" height="150" fill="#14161c"/><path d="M230,-470 h104 l-20,-34 h-64Z" fill="#14161c"/>'
+          f'<rect x="60" y="-400" width="80" height="80" rx="40" fill="#8a8f9a"/><path d="M310,-250 L400,-120 L310,-110Z" fill="#14161c"/>'
+          f'<circle cx="326" cy="-286" r="26" fill="{"#e8f6ff" if ghost else "#f3e08a"}"/>')
+    if ghost:
+        o += f'<circle cx="326" cy="-286" r="{90 + sn(t * 3) * 8:.0f}" fill="#bfe8ff" opacity=".25" stroke="none"/>'
+    for wx, wr in ((-210, 78), (-60, 78), (90, 78), (240, 78)):
+        a = ph * 57.3
+        o += (f'<g transform="translate({wx},{-wr + 4})"><circle r="{wr}" fill="#1b1d26"/><circle r="{wr - 16}" fill="#3a3d4a" stroke-width="4"/>'
+              f'<g transform="rotate({a:.0f})">' + "".join(f'<path d="M0,0 L{(wr - 12) * _m.cos(i * 1.047):.0f},{(wr - 12) * sn(i * 1.047):.0f}" stroke-width="6"/>' for i in range(6)) + '</g></g>')
+    rod = sn(ph) * 34
+    o += f'<rect x="{-215 + rod:.0f}" y="-98" width="300" height="18" fill="#8a8f9a"/><circle cx="{-210 + 34 * _m.cos(ph) * 0:.0f}" cy="-74" r="10" fill="#8a8f9a"/>'
+    if flag:
+        o += ('<path d="M-300,-300 q40,60 90,10 q40,60 90,10" fill="none" stroke="#08090d" stroke-width="22"/>'
+              f'<path d="M300,-330 q{10 + sn(t * 3) * 6:.0f},50 40,60 l-20,60Z" fill="#08090d"/>')
+    return o + '</g>'
+
+
+def impundulu(x, y, s=1.0, t=0.0, mode="perch", flip=False, look=(1, 0), spark=0.0, body_c="#1d2230", belly="#e8e8f0"):
+    """Impundulu, the lightning bird: a huge black-and-white bird with a crest, faces RIGHT (flip=True: left). (x, y) = feet (perch) or body centre (fly/glide).
+    mode: perch (wings folded, head turning, preening) | fly (strong wing beats) | glide (wings spread) | screech (perched, beak wide open, wings half spread).
+    spark 0..1 adds crackling lightning around the claws and wing tips."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    blink = 0.15 if (t % 3.3) < .12 else 1.0
+    lx, ly = look
+    flying = mode in ("fly", "glide")
+    if mode == "fly":
+        wa = sn(t * 5.5) * 55 - 5; wb = sn(t * 5.5 - 1.0) * 40 + 10; bob = sn(t * 5.5 + 1.2) * 18; tilt = sn(t * 5.5) * 3
+    elif mode == "glide":
+        wa = -8 + sn(t * 1.3) * 5; wb = 6 + sn(t * 1.6) * 5; bob = sn(t * 1.2) * 8; tilt = -3
+    elif mode == "screech":
+        wa = 62 + sn(t * 9) * 5; wb = 20; bob = sn(t * 8) * 3; tilt = 0
+    else:
+        wa = wb = 0; bob = sn(t * 1.5) * 2; tilt = 0
+    beak_open = 18 + sn(t * 10) * 6 if mode == "screech" else (4 if mode == "perch" and (t % 6) < .5 else 0)
+    hr = sn(t * 0.9) * 6 + (14 if (mode == "perch" and 3 < (t % 8) < 5) else 0)
+
+    def wing(near):
+        c = body_c if near else "#141824"
+        ang = -wa if near else -wa * .92
+        return (f'<g transform="translate({-10 if near else 0},-215) rotate({ang:.1f})"><g transform="scale(-1,-1)">'
+                f'<path d="M-40,0 Q-70,150 -30,250 L40,300 L60,230 L100,310 L120,230 L160,290 L150,150 Q130,50 60,0Z" fill="{c}"/>'
+                f'<g transform="translate(20,240) rotate({-wb:.1f})"><path d="M-50,0 Q-60,120 -20,200 L30,250 L46,190 L80,260 L96,180 L132,230 L120,90 Q100,20 50,0Z" fill="{"#f1f1f6" if near else "#c9c9d6"}"/></g></g></g>')
+
+    def tailf():
+        return (f'<g transform="translate(-170,-170) rotate({18 + sn(t * 1.6) * 4 - (tilt * 2):.1f})"><path d="M0,-20 L-190,-30 L-170,-6 L-200,12 L-168,26 L-186,50 L0,34Z" fill="#141824"/>'
+                f'<path d="M-90,-26 L-120,-26 M-90,10 L-130,12" stroke="#f1f1f6" stroke-width="10"/></g>')
+
+    head = (f'<g transform="translate(150,-290) rotate({hr:.1f})"><path d="M-30,-40 Q-44,-96 -80,-124 Q-30,-112 0,-64 Q20,-118 4,-150 Q40,-120 38,-56Z" fill="#a8222a" stroke-width="5"/>'
+            f'<path d="M-40,40 Q-52,-20 -10,-50 Q40,-64 70,-30 L92,0 L50,12 Q30,50 -10,52Z" fill="{body_c}"/><path d="M-6,44 Q20,56 46,18 L56,6 Q30,40 -6,44Z" fill="{belly}" stroke-width="4"/>'
+            f'<g transform="rotate({-beak_open * .5:.1f} 60 0)"><path d="M54,-20 Q120,-36 156,12 Q116,6 56,4Z" fill="#e8c46a" stroke-width="5"/></g>'
+            f'<g transform="rotate({beak_open:.1f} 60 4)"><path d="M54,4 Q110,10 140,34 Q96,36 52,24Z" fill="#d2a850" stroke-width="5"/></g>'
+            f'<ellipse cx="32" cy="-12" rx="12" ry="{12 * blink:.1f}" fill="#ffe36a" stroke-width="4"/><circle cx="{34 + lx * 3:.1f}" cy="{-12 + ly * 3:.1f}" r="{4.5 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/></g>')
+    neck = f'<path d="M80,-210 Q150,-250 170,-330 L214,-320 Q210,-230 130,-150Z" fill="{body_c}"/>' + head
+    body = (f'<path d="M-190,-170 Q-190,-290 -40,-300 Q110,-300 170,-230 Q190,-150 100,-100 Q-20,-70 -140,-110 Q-190,-130 -190,-170Z" fill="{body_c}"/>'
+            f'<path d="M20,-150 Q110,-170 150,-210 Q180,-150 100,-104 Q50,-90 10,-110Z" fill="{belly}" stroke-width="4"/>')
+    legs = ""
+    if not flying:
+        legs = (f'<path d="M10,-110 L-8,-24 M-8,-24 l-34,22 M-8,-24 l4,32 M-8,-24 l34,20" fill="none" stroke="#0d0f15" stroke-width="22"/>'
+                f'<path d="M10,-110 L-8,-24 M-8,-24 l-34,22 M-8,-24 l4,32 M-8,-24 l34,20" fill="none" stroke="#7a6a5a" stroke-width="10" stroke-linecap="round"/>')
+    else:
+        legs = '<path d="M20,-104 L50,-30 l-30,20 M50,-30 l26,18" fill="none" stroke="#7a6a5a" stroke-width="12" stroke-linecap="round"/>'
+    folded = ('' if (flying or mode == "screech") else
+              f'<path d="M-170,-230 Q-40,-300 120,-210 Q40,-130 -120,-150Z" fill="#141824"/><path d="M-100,-210 Q10,-240 80,-196" fill="none" stroke="#f1f1f6" stroke-width="8"/>')
+    sp = ""
+    if spark > 0:
+        r = random.Random(int(t * 12) % 50)
+        for k in range(5):
+            bx, by = r.choice((-20, 40, 70)) if not flying else r.randint(-200, 200), (-24 if not flying else r.randint(-420, -100))
+            pts = f'M{bx},{by} ' + " ".join(f'l{r.randint(-40, 40)},{r.randint(-50, -10)}' for _ in range(4))
+            sp += f'<path d="{pts}" fill="none" stroke="#f4fbff" stroke-width="6" stroke-linecap="round"/><path d="{pts}" fill="none" stroke="#8fd0ff" stroke-width="14" opacity=".4"/>'
+        sp = f'<g opacity="{spark:.2f}">{sp}</g>'
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob:.1f}) rotate({tilt:.1f})">'
+    if flying:
+        o += wing(False) + legs + tailf() + body + neck + wing(True)
+    else:
+        o += tailf() + (wing(False) if mode == "screech" else "") + legs + body + folded + (wing(True) if mode == "screech" else "") + neck
+    return o + sp + '</g></g>'
