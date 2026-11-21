@@ -1584,3 +1584,150 @@ def impundulu(x, y, s=1.0, t=0.0, mode="perch", flip=False, look=(1, 0), spark=0
     else:
         o += tailf() + (wing(False) if mode == "screech" else "") + legs + body + folded + (wing(True) if mode == "screech" else "") + neck
     return o + sp + '</g></g>'
+
+
+# ---------------------------------------------------------------- Krampus rig (horned goat-legged beast, chains, birch switches)
+def krampus(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), fur="#2b211e", fur2="#4a382f", roar=None):
+    """Rigged, animated Krampus (Alpine winter beast), faces RIGHT (flip=True: left), feet at (x, y), ~600 units tall.
+    mode: stand (breathing, head turning, swinging chains) | walk (heavy stomping) | roar (arms up, mouth wide) | reach (arm stretched forward).
+    roar: mouth opening 0-1 (None = automatic)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * 4.2 if mode == "walk" else 0
+    bob = sn(t * 1.6) * 3; lean = 6; la = ra = 0.0; lk = rk = 0.0
+    a1, e1, a2, e2 = 10 + sn(t * 1.5) * 4, -20, -8 - sn(t * 1.5) * 4, -26   # near arm (chains), far arm (switches)
+    hr = sn(t * .8) * 5 + look[0] * 4
+    mo = 0.12 + 0.08 * sn(t * 2.1)
+    if mode == "walk":
+        la, ra = sn(ph) * 22, -sn(ph) * 22
+        lk, rk = max(0, sn(ph + 1.2)) * 26, max(0, sn(ph + 1.2 + _m.pi)) * 26
+        bob = -abs(sn(ph)) * 14; lean = 12
+        a1, a2 = -sn(ph) * 24 + 10, sn(ph) * 24 - 8
+    elif mode == "roar":
+        bob = sn(t * 9) * 3; lean = -8; a1, e1, a2, e2 = -140 + sn(t * 8) * 6, -20, 140 - sn(t * 8) * 6, 20; hr = -8 + sn(t * 9) * 3; mo = 0.9
+    elif mode == "reach":
+        a1, e1 = -85 + sn(t * 3) * 4, -10; lean = 14; hr = 6
+    if roar is not None:
+        mo = roar
+    blink = 0.15 if (t % 3.4) < .12 else 1.0
+    chain_sw = sn(t * 2.3) * 8
+
+    def leg(a, k):
+        return (f'<g transform="rotate({-20 + a:.1f})"><path d="M-30,-8 Q-48,70 -26,136 L28,136 Q46,60 30,-8Z" fill="{fur}"/>'
+                f'<path d="M-34,40 l10,10 l-8,10 M30,40 l-10,10 l8,10" fill="none" stroke="{fur2}" stroke-width="5"/>'
+                f'<g transform="translate(0,132) rotate({58 + k:.1f})"><path d="M-20,-6 L-26,112 L20,112 L24,-6Z" fill="{fur}"/>'
+                f'<g transform="translate(0,108) rotate({-38 - a * .5:.1f})"><path d="M-22,0 L-28,38 L-34,70 L26,70 L22,0Z" fill="#17110f"/></g></g></g>')
+
+    def arm(a, e, kind):
+        g = (f'<g transform="rotate({a:.1f})"><path d="M-26,-12 Q-40,60 -24,130 L24,130 Q40,60 26,-12Z" fill="{fur}"/>'
+             f'<path d="M-28,30 l12,10 l-12,10 M-26,80 l12,10 l-12,10" fill="none" stroke="{fur2}" stroke-width="5"/>'
+             f'<g transform="translate(0,126) rotate({e:.1f})"><path d="M-22,-6 Q-30,60 -16,128 L20,128 Q32,60 22,-6Z" fill="{fur}"/>'
+             f'<circle cx="0" cy="132" r="22" fill="{fur}"/><path d="M-18,146 l-6,26 M0,152 l0,28 M18,146 l6,26" stroke="#e8dcc4" stroke-width="7" stroke-linecap="round" fill="none"/>'
+             f'<rect x="-27" y="96" width="54" height="14" rx="5" fill="#6a6a74"/>')
+        if kind == "chain":
+            g += (f'<g transform="translate(0,136) rotate({chain_sw - a * .4:.1f})"><path d="M0,0 q-6,40 4,80 q10,40 -6,90 q-10,30 4,60" fill="none" stroke="#0d0f15" stroke-width="16"/>'
+                  f'<path d="M0,0 q-6,40 4,80 q10,40 -6,90 q-10,30 4,60" fill="none" stroke="#9aa0ae" stroke-width="7" stroke-dasharray="14 7"/>'
+                  f'<circle cx="4" cy="230" r="16" fill="#d9b24a"/></g>')
+        elif kind == "switch":
+            g += ('<g transform="translate(0,140) rotate(-18)">' + "".join(
+                f'<path d="M0,0 L{-24 + i * 12},-190 " stroke="#7a5a34" stroke-width="5" fill="none"/>' for i in range(5))
+                + '<rect x="-16" y="-14" width="32" height="26" rx="6" fill="#b89a5a"/></g>')
+        return g + '</g></g>'
+
+    eyec = "#ffcf3a"
+    head = (f'<g transform="rotate({hr:.1f})">'
+            f'<path d="M-30,-70 Q-60,-150 -20,-200 Q-26,-130 0,-96Z M16,-80 Q10,-190 70,-226 Q40,-150 56,-96Z" fill="#d8cdb0" stroke-width="5"/>'   # horns
+            f'<path d="M-40,-30 q-40,-10 -62,-44 q40,-2 70,24Z" fill="{fur}"/>'                                                              # ear
+            f'<circle cx="0" cy="-30" r="60" fill="{fur}"/>'
+            f'<path d="M20,-60 Q96,-70 120,-20 Q130,30 112,{40 + 36 * mo:.0f} L20,{40 + 36 * mo:.0f}Z" fill="{fur}"/>'
+            f'<path d="M20,{22 + 6 * mo:.0f} L116,{20 + 6 * mo:.0f} L108,{34 + 56 * mo:.0f} Q60,{52 + 56 * mo:.0f} 18,{46 + 56 * mo:.0f}Z" fill="#2a0f12" stroke-width="4"/>'
+            f'<path d="M70,{36 + 20 * mo:.0f} q16,{50 + 40 * mo:.0f} -6,{80 + 40 * mo:.0f} q-22,-14 -30,-{60 - 30 * mo:.0f}Z" fill="#c4323c" stroke-width="4"/>'
+            + "".join(f'<path d="M{34 + i * 17},{20 + 6 * mo:.0f} l7,16 l7,-16Z" fill="#f4efe2" stroke-width="2"/>' for i in range(5))
+            + f'<ellipse cx="38" cy="-44" rx="13" ry="{11 * blink:.1f}" fill="{eyec}" stroke-width="4"/>'
+              f'<circle cx="{40 + look[0] * 3:.1f}" cy="{-44 + look[1] * 3:.1f}" r="{4.5 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>'
+              f'<path d="M20,-62 l36,12" stroke-width="6" fill="none"/>'
+              f'<circle cx="112" cy="-12" r="5" fill="#0d0f15" stroke="none"/></g>')
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob:.1f})">'
+    o += f'<g transform="translate(-10,-262)">{leg(ra, rk)}</g>'
+    o += f'<g transform="translate(-40,-290) rotate({-10 + sn(t * 2.4) * 8:.1f})"><path d="M0,0 Q-70,10 -110,-50 Q-80,-4 0,-26Z" fill="{fur}"/></g>'   # tail
+    o += f'<g transform="translate(-6,-280) rotate({lean:.1f})">'
+    o += f'<g transform="translate(40,-210)">{arm(a2, e2, "switch")}</g>'
+    o += (f'<path d="M-62,0 Q-100,-120 -40,-232 Q40,-290 116,-200 Q132,-100 66,0Z" fill="{fur}"/>'
+          f'<path d="M-20,-30 Q30,-60 80,-30 Q96,-130 40,-200 Q-30,-160 -20,-30Z" fill="{fur2}" stroke="none"/>'
+          f'<path d="M-94,-90 l-26,-12 l22,-14 l-20,-18 l28,-6 M-70,-180 l-22,-16 l28,-4" fill="none" stroke="{fur2}" stroke-width="6"/>'
+          f'<rect x="-52" y="-24" width="116" height="16" rx="6" fill="#6a5438"/>')
+    o += f'<g transform="translate(96,-236)">{head}</g>'
+    o += f'<g transform="translate(60,-216)">{arm(a1, e1, "chain")}</g></g>'
+    o += f'<g transform="translate(26,-262)">{leg(la, lk)}</g>'
+    return o + '</g></g>'
+
+
+# ---------------------------------------------------------------- knocker rig (small mine goblin with candle hat and pick)
+def knocker(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), skin="#7e9a6a", coat="#5a4630", hat="#3a2c22", glowc="#ffd36a"):
+    """Rigged, animated Tommyknocker (mine spirit), ~250 units tall, faces RIGHT (flip=True: left), feet at (x, y).
+    mode: stand (breathing, looking about) | knock (swings the pick at the wall in front of it) | walk | wave | peek (hides behind its own feet line: only head and hat, sinks and rises)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * 6 if mode == "walk" else 0
+    bob = sn(t * 2.0) * 2; la = ra = 0.0; lk = rk = 0.0
+    a1, e1, a2, e2 = 8, -12, -8, -12; hr = sn(t * 1.1) * 4 + look[0] * 5
+    if mode == "walk":
+        la, ra = sn(ph) * 28, -sn(ph) * 28; lk, rk = max(0, sn(ph + 1.3)) * 30, max(0, sn(ph + 4.4)) * 30
+        bob = -abs(sn(ph)) * 7; a1, a2 = -sn(ph) * 26, sn(ph) * 26
+    elif mode == "knock":
+        sw = sn(t * 7.0)
+        a1, e1 = -110 + sw * 38, -20 + sw * 40; bob = -abs(sw) * 3; hr = 6
+    elif mode == "wave":
+        a1, e1 = -150 + sn(t * 7) * 14, 18 + sn(t * 7) * 20
+    blink = 0.15 if (t % 3.1) < .12 else 1.0
+    dy = 0.0
+    if mode == "peek":
+        dy = 70 + sn(t * 1.3) * 22 - 40
+
+    def leg(a, k):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-12,0 L-14,40 L12,40 L12,0Z" fill="{coat}"/><g transform="translate(0,38) rotate({k:.1f})">'
+                f'<path d="M-12,0 L-13,34 L11,34 L12,0Z" fill="{coat}"/><path d="M-14,30 Q-14,48 0,48 Q26,48 28,38 Q22,30 12,30Z" fill="#241a14"/></g></g>')
+
+    def arm(a, e, pick):
+        g = (f'<g transform="rotate({a:.1f})"><path d="M-10,0 L-12,46 L12,46 L10,0Z" fill="{coat}"/><g transform="translate(0,44) rotate({e:.1f})">'
+             f'<path d="M-9,0 L-11,40 L11,40 L9,0Z" fill="{skin}"/><circle cx="0" cy="44" r="12" fill="{skin}"/>')
+        if pick:
+            g += ('<g transform="translate(0,44) rotate(-12)"><rect x="-5" y="-20" width="10" height="120" rx="4" fill="#6a4a2a"/>'
+                  '<path d="M-60,-24 Q0,-52 62,-24 L56,-12 Q0,-36 -54,-12Z" fill="#8a909c"/></g>')
+        return g + '</g></g>'
+
+    head = (f'<g transform="rotate({hr:.1f})"><path d="M-30,-14 l-28,-14 l8,22 l24,6Z M30,-14 l28,-14 l-8,22 l-24,6Z" fill="{skin}"/>'
+            f'<ellipse cx="0" cy="-20" rx="36" ry="34" fill="{skin}"/>'
+            f'<path d="M-30,0 Q-26,52 0,58 Q26,52 30,0 Q0,22 -30,0Z" fill="#cfc8b4"/>'
+            f'<path d="M4,-18 Q34,-12 36,12 Q20,18 8,6Z" fill="{skin}"/>'
+            f'<ellipse cx="-12" cy="-28" rx="8" ry="{8 * blink:.1f}" fill="#fff" stroke-width="3"/><ellipse cx="14" cy="-28" rx="8" ry="{8 * blink:.1f}" fill="#fff" stroke-width="3"/>'
+            f'<circle cx="{-12 + look[0] * 3:.1f}" cy="{-28 + look[1] * 2:.1f}" r="{3 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>'
+            f'<circle cx="{14 + look[0] * 3:.1f}" cy="{-28 + look[1] * 2:.1f}" r="{3 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>'
+            f'<path d="M-6,22 q8,8 16,0" fill="none" stroke-width="3.5"/>'
+            f'<path d="M-40,-44 Q0,-92 40,-44Z" fill="{hat}"/><rect x="-46" y="-50" width="92" height="12" rx="5" fill="{hat}"/>'
+            f'<rect x="-8" y="-80" width="16" height="22" fill="#e8dcc4" stroke-width="3"/>'
+            f'<path d="M0,-84 q-9,-12 0,-26 q9,14 0,26Z" fill="{glowc}" stroke-width="3"/></g>')
+    gl = glow(0, -110, 140, glowc, 0.35)
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob + dy:.1f})">'
+    o += f'<g transform="translate(-12,-88)">{leg(ra, rk)}</g><g transform="translate(-30,-130)">{arm(a2, e2, False)}</g>'
+    o += f'<path d="M-32,-84 Q-36,-150 -22,-178 Q0,-190 24,-176 Q40,-150 34,-84Z" fill="{coat}"/><path d="M-30,-110 H32" stroke="#241a14" stroke-width="8"/>'
+    o += f'<g transform="translate(8,-88)">{leg(la, lk)}</g><g transform="translate(0,-186)">{head}</g><g transform="translate(24,-136)">{arm(a1, e1, mode == "knock")}</g>'
+    return o + '</g></g>' + f'<g transform="translate({x},{y - 190 * s + dy * s}) scale({s})">{gl}</g>'
+
+
+# ---------------------------------------------------------------- heavy coffin (prop that can rattle, tilt and slide)
+def coffin(x, y, s=1.0, t=0.0, mode="still", angle=0.0, flip=False, lead="#59606e", trim="#c9a24a"):
+    """Old lead-lined coffin, ~150 wide x 480 long when upright-lying; base-centre at (x, y), drawn lying along the x axis (length ~520, height ~150).
+    mode: still | shake (rattling) | rock (slow heavy rocking) ; angle = extra tilt in degrees."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    sh = sn(t * 31) * 2.5 if mode == "shake" else 0
+    rk = sn(t * 1.7) * 6 if mode == "rock" else 0
+    jx = sn(t * 47) * 5 if mode == "shake" else 0
+    o = f'<g transform="translate({x + jx:.1f},{y}) scale({f * s},{s}) rotate({angle + sh + rk:.1f})" {OUT}>'
+    o += (f'<path d="M-260,-120 L-200,-150 L200,-150 L260,-120 L230,0 L-230,0Z" fill="{lead}"/>'
+          f'<path d="M-200,-150 L-170,-110 L170,-110 L200,-150" fill="#6e7684" stroke-width="4"/>'
+          f'<path d="M-230,0 L-250,-90 M230,0 L250,-90" stroke-width="3" fill="none" opacity=".5"/>'
+          f'<path d="M-30,-60 h60 M0,-90 v60" stroke="{trim}" stroke-width="12" stroke-linecap="round"/>'
+          + "".join(f'<circle cx="{cx}" cy="-70" r="10" fill="{trim}" stroke-width="3"/>' for cx in (-170, -100, 100, 170)))
+    return o + '</g>'

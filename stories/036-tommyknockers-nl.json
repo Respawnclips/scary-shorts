@@ -1,0 +1,134 @@
+{
+  "id": "036-tommyknockers-nl",
+  "lang": "nl",
+  "legend": "The Tommyknockers (Cornish miners' folklore, Colorado gold mines, USA)",
+  "lines": [
+    "Diep in een goudmijn in Colorado stopt een mijnwerker met zwaaien met zijn houweel.",
+    "Hij hoort het weer: tik, tik, tik, vanuit de rots zelf.",
+    "Cornische mijnwerkers namen de legende in de achttienhonderd over de oceaan mee.",
+    "Ze noemden ze klopgeesten, kleine wezens die onder de grond wonen.",
+    "Sommigen zeggen dat hun geklop waarschuwt voor een instorting, voordat die gebeurt.",
+    "Anderen zeggen dat ze dol zijn op streken, gereedschap verstoppen en kaarsen uitblazen.",
+    "Daarom lieten mijnwerkers altijd een korst van hun pasteitje achter voor de klopgeesten.",
+    "Een man die ze uitlachte, vond zijn kaars uitgeblazen in het donker.",
+    "Als je de volgende keer getik in een muur hoort, laat je dan een kruimel liggen?"
+  ],
+  "scenes": [
+    {
+      "name": "mine",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "tap",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.45,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "ship",
+      "from": 2,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.75
+      ]
+    },
+    {
+      "name": "tunnel",
+      "from": 3,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "fog": false
+    },
+    {
+      "name": "warn",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "tricks",
+      "from": 5,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "fog": false
+    },
+    {
+      "name": "pasty",
+      "from": 6,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [],
+  "title": "De kleine geesten die kloppen in goudmijnen",
+  "description": "Cornische mijnwerkers namen de Tommyknockers mee naar het Amerikaanse Westen: kleine geesten wier geklop in de rots voor een instorting zou waarschuwen.\n\n#engeverhalen #tommyknockers #goudmijn #colorado #folklore #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "tommyknockers",
+    "goudmijn",
+    "colorado",
+    "folklore",
+    "foryou",
+    "foryoupage"
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "id": "036-tommyknockers",
+  "legend": "The Tommyknockers (Cornish miners' folklore, Colorado gold mines, USA)",
+  "lines": [
+    "Deep in a Colorado gold mine, a miner stops swinging his pick.",
+    "He hears it again: tap, tap, tap, from inside the rock.",
+    "Cornish miners carried the legend across the ocean in the eighteen hundreds.",
+    "They called them knockers, little spirits who live below the ground.",
+    "Some say their knocking warns of a cave-in before it happens.",
+    "Others say they love tricks, hiding tools and blowing out candles.",
+    "So miners always left a crust of their pasty behind for the knockers.",
+    "One man who laughed at them found his candle blown out in the dark.",
+    "Next time you hear tapping in a wall, will you leave a crumb?"
+  ],
+  "scenes": [
+    {
+      "name": "mine",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "tap",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.45,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "ship",
+      "from": 2,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.4,
+        0.75
+      ]
+    },
+    {
+      "name": "tunnel",
+      "from": 3,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "fog": false
+    },
+    {
+      "name": "warn",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "tricks",
+      "from": 5,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "fog": false
+    },
+    {
+      "name": "pasty",
+      "from": 6,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Tiny Spirits Who Knock Inside Gold Mines #shorts",
+  "description": "Cornish miners brought the Tommyknockers to the American West: tiny spirits whose tapping in the rock was said to warn of a cave-in.\n\n#scarystories #tommyknockers #goldmine #colorado #folklore #shorts",
+  "tags": [
+    "scarystories",
+    "tommyknockers",
+    "goldmine",
+    "colorado",
+    "folklore",
+    "creepy",
+    "shorts"
+  ]
+}

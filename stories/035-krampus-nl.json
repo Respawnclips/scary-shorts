@@ -1,0 +1,130 @@
+{
+  "id": "035-krampus-nl",
+  "lang": "nl",
+  "legend": "Krampus (Alpine winter folklore, Austria and Bavaria)",
+  "lines": [
+    "In de Alpen was de nacht van vijf december ooit een nacht om bang voor te zijn.",
+    "Volgens de traditie loopt Sinterklaas nooit alleen.",
+    "Aan zijn zij sluipt Krampus, een gehoornd beest met de poten van een geit.",
+    "Hij sleept roestige kettingen mee en draagt een bundel berkentakken.",
+    "De legende zegt dat hij kwam voor kinderen die het hele jaar stout waren geweest.",
+    "Dorpelingen luisterden of ze zijn kettingen hoorden rinkelen in de sneeuw.",
+    "Deuren werden gegrendeld en de kaarsen brandden laag.",
+    "Zelfs nu rennen mannen met harige maskers die nacht door de straten van Oostenrijk.",
+    "Als je vannacht kettingen in de sneeuw hoorde, zou je dan de deur opendoen?"
+  ],
+  "scenes": [
+    {
+      "name": "village",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "saint",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "name": "beast",
+      "from": 2,
+      "move": [
+        -25,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.6,
+        0.65
+      ]
+    },
+    {
+      "name": "chains",
+      "from": 3,
+      "move": [
+        15,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ]
+    },
+    {
+      "name": "listen",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.25,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "parade",
+      "from": 7,
+      "move": [
+        20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "roar",
+      "from": 8,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.3
+      ],
+      "focus": [
+        0.45,
+        0.7
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het Alpenbeest dat stoute kinderen komt halen",
+  "description": "In de folklore van de Alpen loopt Krampus, een gehoornd beest met geitenpoten en kettingen, in de nacht van vijf december naast Sinterklaas.\n\n#engeverhalen #krampus #oostenrijk #folklore #alpen #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "krampus",
+    "oostenrijk",
+    "folklore",
+    "alpen",
+    "foryou",
+    "foryoupage"
+  ]
+}

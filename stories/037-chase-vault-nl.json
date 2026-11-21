@@ -1,0 +1,133 @@
+{
+  "id": "037-chase-vault-nl",
+  "lang": "nl",
+  "legend": "The Moving Coffins of the Chase Vault (Barbados, 1812-1820)",
+  "lines": [
+    "Op Barbados bewaarde een verzegelde stenen graftombe een geheim dat niemand kon verklaren.",
+    "De grafkelder van de familie Chase stond op een kerkhof aan zee.",
+    "Elke keer als hij werd geopend voor een begrafenis, lagen de zware loden kisten door elkaar.",
+    "Het gebeurde in achttienhonderd twaalf, en daarna nog een keer, en nog een keer.",
+    "In achttienhonderd twintig kwam de gouverneur van het eiland het zelf bekijken.",
+    "Hij liet de vloer met zand bestrooien, de deur met cement dichtmaken en zijn eigen zegel erin drukken.",
+    "De legende zegt dat het zegel heel bleef, maar dat de kisten toch weer verspreid lagen.",
+    "Niemand werd ooit beschuldigd, en de grafkelder werd leeggelaten.",
+    "Waren het overstromingen, dieven, of iets anders?"
+  ],
+  "scenes": [
+    {
+      "name": "church",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "vault",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "coffins",
+      "from": 2,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "governor",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ]
+    },
+    {
+      "name": "seal",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "moved",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "empty",
+      "from": 7,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "De graftombe waar kisten vanzelf bewogen",
+  "description": "In de negentiende eeuw lagen zware loden kisten in een verzegelde grafkelder op Barbados steeds weer door elkaar, zelfs nadat de gouverneur de deur verzegelde.\n\n#engeverhalen #chasevault #barbados #mysterie #geschiedenis #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "chasevault",
+    "barbados",
+    "mysterie",
+    "geschiedenis",
+    "foryou",
+    "foryoupage"
+  ]
+}

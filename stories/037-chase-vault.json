@@ -1,0 +1,132 @@
+{
+  "id": "037-chase-vault",
+  "legend": "The Moving Coffins of the Chase Vault (Barbados, 1812-1820)",
+  "lines": [
+    "In Barbados, a sealed stone tomb kept a secret no one could explain.",
+    "The Chase family vault stood in a churchyard by the sea.",
+    "Each time it was opened for a burial, the heavy lead coffins were found tossed about.",
+    "It happened in eighteen twelve, then again, and again.",
+    "In eighteen twenty, the island's governor came to see for himself.",
+    "He had the floor sanded, the door sealed with cement, and his own mark pressed into it.",
+    "Legend says the seal stayed unbroken, yet the coffins lay scattered once more.",
+    "Nobody was ever blamed, and the vault was left empty.",
+    "Was it floods, thieves, or something else?"
+  ],
+  "scenes": [
+    {
+      "name": "church",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "vault",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "coffins",
+      "from": 2,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "governor",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ]
+    },
+    {
+      "name": "seal",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "moved",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "empty",
+      "from": 7,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "The Tomb Where Coffins Moved by Themselves #shorts",
+  "description": "In the 1800s, heavy lead coffins in a sealed Barbados vault were found thrown around again and again, even after the governor sealed the door.\n\n#scarystories #chasevault #barbados #mystery #history #shorts",
+  "tags": [
+    "scarystories",
+    "chasevault",
+    "barbados",
+    "mystery",
+    "history",
+    "creepy",
+    "shorts"
+  ]
+}

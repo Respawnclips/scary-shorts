@@ -38,3 +38,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 032 | 032-kelpie (+ -nl) | The Kelpie (Scottish Highlands, water-horse folklore) | 2026-11-20 |
 | 033 | 033-lincoln-ghost-train (+ -nl) | Lincoln's Ghost Train (Hudson Valley, New York, April 1865 funeral train legend) | 2026-11-20 |
 | 034 | 034-lightning-bird (+ -nl) | The Impundulu, the lightning bird (South Africa, Zulu and Xhosa folklore) | 2026-11-20 |
+| 035 | 035-krampus (+ -nl) | Krampus (Alpine winter folklore, Austria and Bavaria) | 2026-11-21 |
+| 036 | 036-tommyknockers (+ -nl) | The Tommyknockers (Cornish miners' folklore, Colorado gold mines, USA) | 2026-11-21 |
+| 037 | 037-chase-vault (+ -nl) | The Moving Coffins of the Chase Vault (Barbados, 1812-1820) | 2026-11-21 |
