@@ -1,0 +1,120 @@
+{
+  "id": "038-greenbrier-ghost",
+  "legend": "The Greenbrier Ghost (West Virginia, USA, 1897)",
+  "lines": [
+    "In West Virginia, in eighteen ninety-seven, a ghost helped solve a crime.",
+    "A young bride was found dead, and the doctor called it natural.",
+    "Her mother did not believe it.",
+    "Four nights in a row, a pale figure stood by her bed.",
+    "Legend says it was her daughter, with a different story.",
+    "She named her husband, and turned her head right around to prove it.",
+    "The body was examined again, and the findings backed her up.",
+    "The husband went on trial, and was found guilty.",
+    "Could a ghost really help win a case?"
+  ],
+  "scenes": [
+    {
+      "name": "hills",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "doctor",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "bedside",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.6,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "turn",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.12,
+        1.3
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ],
+      "fog": false
+    },
+    {
+      "name": "town",
+      "from": 6,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "court",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "The Ghost Who Testified at a Murder Trial #shorts",
+  "description": "In 1897 in West Virginia, a mother said her dead daughter's ghost named the culprit, and a famous trial followed. Legend or truth?\n\n#scarystories #greenbrierghost #westvirginia #truecrime #ghoststory #shorts",
+  "tags": [
+    "scarystories",
+    "greenbrierghost",
+    "westvirginia",
+    "truecrime",
+    "ghost",
+    "history",
+    "creepy",
+    "shorts"
+  ]
+}

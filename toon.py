@@ -1731,3 +1731,137 @@ def coffin(x, y, s=1.0, t=0.0, mode="still", angle=0.0, flip=False, lead="#59606
           f'<path d="M-30,-60 h60 M0,-90 v60" stroke="{trim}" stroke-width="12" stroke-linecap="round"/>'
           + "".join(f'<circle cx="{cx}" cy="-70" r="10" fill="{trim}" stroke-width="3"/>' for cx in (-170, -100, 100, 170)))
     return o + '</g>'
+
+
+# ---------------------------------------------------------------- rigs for the 2026-11-22 stories (ghost bride, tikbalang, death worm)
+def bride(x, y, s=1.0, t=0.0, mode="stand", flip=False, expr="calm", look=(1, 0), alpha=0.8, headturn=0.0):
+    """Pale ghost bride in a long white gown (rigged via human(); modes as in human()), floats and trails mist.
+    headturn 0..1 twists the head sideways (uncanny)."""
+    sn = _m.sin
+    fl = sn(t * 1.3) * 10
+    body = human(0, 0, 1.0, t, "stand" if mode == "glide" else mode, coat="#e6ecf4", pants="#e6ecf4", skin="#d6dee8", hair="#1c1a24", expr=expr, look=look, longhair=True)
+    sway = sn(t * 1.6) * 8
+    skirt = (f'<path d="M-62,-190 Q-120,-60 {-150 + sway:.0f},0 Q{-60 + sway:.0f},26 0,10 Q{60 + sway:.0f},26 {150 + sway:.0f},0 Q120,-60 62,-190Z" fill="#e6ecf4" {OUT}/>'
+             f'<path d="M-40,-150 Q{-50 + sway:.0f},-60 {-70 + sway:.0f},0 M40,-150 Q{50 + sway:.0f},-60 {70 + sway:.0f},0 M0,-160 V10" fill="none" stroke="#9aa6b8" stroke-width="4"/>')
+    veil = f'<path d="M-46,-430 Q{-110 - sway:.0f},-330 {-120 - sway * 2:.0f},-190 Q-60,-260 -30,-330Z" fill="#cfd8e6" opacity=".6" stroke-width="3" {OUT}/>'
+    mist = "".join(f'<ellipse cx="{mx + sn(t * 1.2 + mx) * 16:.0f}" cy="{12 + k * 6}" rx="{150 - k * 25}" ry="20" fill="#c8d4e0" opacity=".4" stroke="none"/>' for k, mx in enumerate((-30, 20, 0)))
+    f = -1 if flip else 1
+    tw = f'<g transform="translate(0,-402) rotate({headturn * 70:.0f}) translate(0,402)">' if headturn else '<g>'
+    return (f'<g transform="translate({x},{y - 30 - fl:.1f}) scale({f * s},{s})"><g transform="translate(0,{fl + 30:.1f})">{mist}</g><g opacity="{alpha}">'
+            f'{body}{skirt}{veil}</g></g>')
+
+
+def tikbalang(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), fur="#5a4634", mane="#1c1410", eyec="#ffcf5a", neigh=0.0):
+    """Tikbalang: very tall, thin dark creature with a horse head and long limbs (rigged via human(), stretched).
+    mode as in human() (stand / walk / scared / point / reach). neigh 0..1 opens the mouth and tosses the head."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ST = 1.3
+    body = human(0, 0, 1.0, t, mode, coat=fur, pants="#241c15", skin=fur, hair=mane, look=look)
+    bob = -abs(sn(t * 5)) * 10 if mode == "walk" else -abs(sn(t * 9)) * 18 if mode == "run" else sn(t * 1.8) * 3
+    lean = 4 if mode == "walk" else 12 if mode == "run" else 0
+    hy = -402 * ST + bob * ST
+    sway = sn(t * 1.1) * 6 + neigh * (sn(t * 9) * 8 - 10)
+    blink = 0.12 if (t % 3.5) < .12 else 1.0
+    lx, ly = look
+    jaw = neigh * 22 + (3 if mode == "stand" else 0) * (sn(t * 2) + 1)
+    head = (f'<g transform="translate({lean * 3:.0f},{hy:.1f}) rotate({sway:.1f})">'
+            f'<path d="M-60,-50 Q-96,-70 -88,-150 Q-60,-110 -40,-92Z M60,-50 Q96,-70 88,-150 Q60,-110 40,-92Z" fill="{fur}"/>'
+            f'<path d="M-30,-150 Q-70,-100 -62,-20 Q-40,40 -20,52 Q-10,100 0,106 Q10,100 20,52 Q40,40 62,-20 Q70,-100 30,-150 Q0,-170 -30,-150Z" fill="{fur}"/>'
+            f'<path d="M-20,-152 Q-70,-190 -30,-230 Q-20,-190 0,-176 Q20,-190 30,-230 Q70,-190 20,-152Z M0,-176 Q-6,-100 -4,-20" fill="{mane}"/>'
+            f'<path d="M-30,52 Q-24,90 -14,96 Q0,106 14,96 Q24,90 30,52Z" fill="#4a3a2c" stroke-width="5"/>'
+            f'<ellipse cx="-9" cy="76" rx="5" ry="8" fill="#0d0f15" stroke="none"/><ellipse cx="9" cy="76" rx="5" ry="8" fill="#0d0f15" stroke="none"/>'
+            f'<g transform="translate(0,{jaw:.1f})"><path d="M-22,96 Q0,{120 + jaw:.0f} 22,96 Q0,100 -22,96Z" fill="#2a1014" stroke-width="4"/></g>'
+            + "".join(f'<ellipse cx="{ex}" cy="-34" rx="17" ry="{17 * blink:.1f}" fill="{eyec}" stroke-width="4"/><circle cx="{ex + lx * 5:.1f}" cy="{-34 + ly * 3:.1f}" r="{6 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>' for ex in (-30, 30))
+            + '</g>')
+    # human head is hidden by painting over it with a neck + the horse head
+    neck = f'<path d="M-30,{-340 * ST:.0f} L-26,{hy:.0f} L26,{hy:.0f} L30,{-340 * ST:.0f}Z" fill="{fur}"/>'
+    return (f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="scale(1,{ST})">{body}</g>{neck}{head}</g>')
+
+
+def deathworm(x, y, s=1.0, t=0.0, mode="rise", flip=False, look=(1, 0), rise=1.0, col="#b23a22", col2="#d8663a", spit=0.0, zap=0.0, n=15):
+    """Mongolian death worm: a blood-red segmented worm without eyes, coming out of a sand mound at (x, y).
+    mode: lurk (only a small hump with ripples) | rise (swaying upright, mouth gaping) | lunge (head bent forward, mouth wide) | spit (head back, spraying yellow venom).
+    rise 0..1 = how much of the body is out. spit/zap 0..1 draw yellow venom droplets / a blue-white shock bolt towards the facing side."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    if mode == "lurk":
+        rise = min(rise, .22)
+    seg = 36
+    segs = []
+    px, py = 0.0, 0.0
+    N = max(2, int(n * rise + 1))
+    bend = {"rise": 0.0, "lunge": 1.0, "spit": -.6, "lurk": 0.0}[mode]
+    ang = -90.0
+    for i in range(N):
+        k = i / max(1, N - 1)
+        ang += sn(t * 2.2 + i * .55) * (7 + 10 * k) + bend * (10 * k if k > .45 else 0)
+        px += _m.cos(_m.radians(ang)) * seg
+        py += _m.sin(_m.radians(ang)) * seg
+        segs.append((px, py, ang))
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    o += '<ellipse cx="0" cy="6" rx="210" ry="38" fill="#c4a15e"/><ellipse cx="0" cy="-4" rx="150" ry="26" fill="#d8b872" stroke-width="5"/>'
+    for i in range(N - 1, -1, -1):
+        sx, sy, a = segs[i]
+        r = 54 - 20 * (i / max(1, N)) + (4 if i == N - 1 else 0)
+        o += f'<circle cx="{sx:.1f}" cy="{sy:.1f}" r="{r:.1f}" fill="{col if i % 2 == 0 else col2}"/>'
+    if mode != "lurk":
+        hx, hy, ha = segs[-1]
+        gape = 26 + sn(t * 8) * 6 + (18 if mode in ("lunge", "spit") else 0)
+        o += (f'<g transform="translate({hx:.1f},{hy:.1f}) rotate({ha + 90:.1f})"><path d="M-62,6 Q-66,-66 0,-72 Q66,-66 62,6Z" fill="{col}"/>'
+              f'<ellipse cx="0" cy="-14" rx="{40 + gape * .25:.0f}" ry="{gape + 10:.0f}" fill="#2a0a10" stroke-width="5"/>'
+              + "".join(f'<path d="M{-34 + j * 17},{-14 - (gape + 6)} l7,16 l7,-16Z" fill="#f4eed8" stroke-width="3"/>' for j in range(5))
+              + "".join(f'<path d="M{-34 + j * 17},{-14 + (gape + 6)} l7,-16 l7,16Z" fill="#f4eed8" stroke-width="3"/>' for j in range(5))
+              + '<ellipse cx="0" cy="-14" rx="18" ry="12" fill="#6a1a22" stroke="none"/></g>')
+        if spit > 0:
+            for j in range(10):
+                u = ((t * 1.7 + j * .13) % 1.0)
+                dx = hx + 80 + u * 520 * spit
+                dy = hy - 40 + (-1 + 2 * u) * 120 * u + u * u * 260 + (j % 3) * 14
+                o += f'<circle cx="{dx:.0f}" cy="{dy:.0f}" r="{16 - 10 * u:.0f}" fill="#e8d84a" stroke-width="3"/>'
+        if zap > 0:
+            pts = " ".join(f"{hx + 60 + k * 70:.0f},{hy - 20 + (28 if k % 2 else -28) * sn(t * 30 + k):.0f}" for k in range(8))
+            o += f'<polyline points="{pts}" fill="none" stroke="#bfe8ff" stroke-width="10"/><polyline points="{pts}" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>'
+    grains = "".join(f'<circle cx="{(j - 3) * 55 + sn(t * 3 + j) * 10:.0f}" cy="{-10 - ((t * 60 + j * 20) % 70):.0f}" r="5" fill="#d8b872" stroke="none" opacity=".8"/>' for j in range(7))
+    return o + grains + '</g>'
+
+
+def dunes(y=1700, col="#6a5238", seed=3, hi=170, step=420, x0=-60, x1=1420):
+    r = random.Random(seed)
+    pts = f"M{x0},2400 L{x0},{y} "
+    x = x0
+    while x < x1:
+        pts += f"Q{x + step / 2:.0f},{y - r.randint(hi // 2, hi):.0f} {x + step:.0f},{y + r.randint(-30, 30)} "
+        x += step
+    return f'<path d="{pts}L{x1 + step},2400Z" fill="{col}" {OUT}/>'
+
+
+def tent(x, y, s=1.0, col="#7a6a50", lit=True):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-260,0 L0,-300 L260,0Z" fill="{col}"/>'
+            f'<path d="M-70,0 L0,-170 L70,0Z" fill="{"#f3c555" if lit else "#17141a"}"/><path d="M0,-300 V-340" stroke-width="8"/></g>')
+
+
+def campfire(x, y, s=1.0, t=0.0):
+    fl = "".join(f'<path d="M{dx},0 Q{dx - 26},{-60 - h + _m.sin(t * 9 + dx) * 12:.0f} {dx},{-120 - h + _m.sin(t * 11 + dx) * 14:.0f} Q{dx + 26},{-60 - h} {dx},0Z" fill="{c}" stroke-width="4"/>' for dx, h, c in ((-24, 0, "#d8561f"), (22, 20, "#e88a2a"), (0, 40, "#f3c555")))
+    return f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-70,10 L70,-10 M-70,-10 L70,10" stroke="#4a3322" stroke-width="22" stroke-linecap="round"/>{fl}</g>'
+
+
+def bed(x, y, s=1.0):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><rect x="-300" y="-140" width="600" height="110" rx="16" fill="#8a3a3a"/>'
+            f'<rect x="-300" y="-30" width="600" height="30" fill="#3a2a22"/><rect x="-300" y="-260" width="70" height="260" fill="#3a2a22"/><rect x="-250" y="-200" width="130" height="60" rx="22" fill="#d8d2c0"/></g>')
+
+
+def farmhouse(x, y, s=1.0, lit="#f3c555", wall="#8a7a66", roof="#3a2c28", snow_=True):
+    d = (f'<g transform="translate({x},{y}) scale({s})" {OUT}><rect x="-260" y="-300" width="520" height="300" fill="{wall}"/>'
+         f'<path d="M-300,-290 L0,-470 L300,-290Z" fill="{roof}"/>'
+         f'<rect x="-190" y="-220" width="90" height="100" fill="{lit}"/><rect x="100" y="-220" width="90" height="100" fill="{lit}"/>'
+         f'<rect x="-40" y="-170" width="80" height="170" fill="#3a2a22"/><rect x="150" y="-460" width="50" height="110" fill="#5a4a46"/>')
+    if snow_:
+        d += '<path d="M-300,-290 L0,-470 L300,-290 L260,-286 L0,-436 L-260,-286Z" fill="#e8eef6" stroke-width="4"/>'
+    return d + '</g>'
+
+
+def bench_court(y=1500):
+    return (f'<rect x="-20" y="{y}" width="1400" height="900" fill="#5a3f2c" {OUT}/><rect x="300" y="{y - 300}" width="750" height="320" fill="#6b4a32" {OUT}/>'
+            f'<rect x="270" y="{y - 330}" width="810" height="50" fill="#4a3322" {OUT}/><rect x="-20" y="{y - 700}" width="1400" height="700" fill="#2a2430"/>'
+            f'<path d="M0,{y} H1350" stroke="#0d0f15" stroke-width="8"/>')

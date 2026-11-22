@@ -41,3 +41,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 035 | 035-krampus (+ -nl) | Krampus (Alpine winter folklore, Austria and Bavaria) | 2026-11-21 |
 | 036 | 036-tommyknockers (+ -nl) | The Tommyknockers (Cornish miners' folklore, Colorado gold mines, USA) | 2026-11-21 |
 | 037 | 037-chase-vault (+ -nl) | The Moving Coffins of the Chase Vault (Barbados, 1812-1820) | 2026-11-21 |
+| 038 | 038-greenbrier-ghost (+ -nl) | The Greenbrier Ghost (West Virginia, USA, 1897 murder trial legend) | 2026-11-22 |
+| 039 | 039-tikbalang (+ -nl) | The Tikbalang (Philippines, mountain-forest folklore) | 2026-11-22 |
+| 040 | 040-death-worm (+ -nl) | The Mongolian Death Worm (Gobi Desert, Mongolia, nomad legend) | 2026-11-22 |

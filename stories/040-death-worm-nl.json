@@ -1,0 +1,131 @@
+{
+  "id": "040-death-worm-nl",
+  "legend": "The Mongolian Death Worm (Gobi Desert, Mongolia, nomad legend)",
+  "lines": [
+    "Diep in de Gobi-woestijn fluisteren nomaden over een worm die zich onder het zand verbergt.",
+    "Ze noemen hem de olgoi-khorkhoi, de worm die op een darm lijkt.",
+    "De legende zegt dat hij rood is als bloed, en zo lang als een mensenarm.",
+    "Hij slaapt onder de grond, en komt alleen tevoorschijn na de zomerregen.",
+    "Ze zeggen dat hij gele gifstof spuwt, en op afstand een schok kan geven.",
+    "In de jaren twintig schreef een Amerikaanse ontdekkingsreiziger het verhaal op.",
+    "Expedities zochten jarenlang in de duinen, en vonden niets.",
+    "Toch mijden herders het zand nog altijd na regen.",
+    "Zou jij vanavond de duinen oversteken?"
+  ],
+  "scenes": [
+    {
+      "name": "dunes",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "worm",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "name": "rain",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "rain": true
+    },
+    {
+      "name": "spit",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "name": "camp",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "search",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "herder",
+      "from": 7,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    4
+  ],
+  "title": "De woestijnworm die je op afstand schokt",
+  "description": "Mongoolse nomaden vertellen over een rode worm in het zand van de Gobi die gif spuwt na regen. Niemand vond er ooit een. Echt of mythe?\n\n#engeverhalen #dodenworm #mongolie #cryptid #woestijn #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "dodenworm",
+    "mongolie",
+    "cryptid",
+    "woestijn",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

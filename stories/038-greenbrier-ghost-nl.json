@@ -1,0 +1,120 @@
+{
+  "id": "038-greenbrier-ghost-nl",
+  "legend": "The Greenbrier Ghost (West Virginia, USA, 1897)",
+  "lines": [
+    "In West Virginia hielp in achttienhonderd zevenennegentig een spook een misdaad op te lossen.",
+    "Een jonge bruid werd dood gevonden, en de dokter noemde het natuurlijk.",
+    "Haar moeder geloofde er niets van.",
+    "Vier nachten achter elkaar stond er een bleke gestalte naast haar bed.",
+    "De legende zegt dat het haar dochter was, met een ander verhaal.",
+    "Ze noemde haar man, en draaide haar hoofd helemaal om als bewijs.",
+    "Het lichaam werd opnieuw onderzocht, en de bevindingen gaven de moeder gelijk.",
+    "De man kwam voor de rechter, en werd schuldig bevonden.",
+    "Kan een spook echt helpen een zaak te winnen?"
+  ],
+  "scenes": [
+    {
+      "name": "hills",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "doctor",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "bedside",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.6,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "turn",
+      "from": 5,
+      "move": [
+        15,
+        0,
+        1.12,
+        1.3
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ],
+      "fog": false
+    },
+    {
+      "name": "town",
+      "from": 6,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "court",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "Het spook dat getuigde in een moordzaak",
+  "description": "In 1897 zei een moeder in West Virginia dat het spook van haar dochter de dader noemde, en er volgde een beroemd proces. Legende of waarheid?\n\n#engeverhalen #greenbrierghost #westvirginia #truecrime #spookverhaal #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "greenbrierghost",
+    "westvirginia",
+    "truecrime",
+    "spookverhaal",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

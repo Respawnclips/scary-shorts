@@ -1,0 +1,130 @@
+{
+  "id": "040-death-worm",
+  "legend": "The Mongolian Death Worm (Gobi Desert, Mongolia, nomad legend)",
+  "lines": [
+    "Deep in the Gobi Desert, nomads whisper of a worm that hides beneath the sand.",
+    "They call it the olgoi-khorkhoi, the large intestine worm.",
+    "Legend says it is red as blood, and as long as a man's arm.",
+    "It sleeps underground, and only appears after summer rain.",
+    "They say it spits yellow poison, and can shock from a distance.",
+    "In the nineteen twenties, an American explorer wrote down the tale.",
+    "Expeditions have searched the dunes for years, and found nothing.",
+    "Yet herders still avoid the sand after rain.",
+    "Would you cross the dunes tonight?"
+  ],
+  "scenes": [
+    {
+      "name": "dunes",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "worm",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "name": "rain",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "rain": true
+    },
+    {
+      "name": "spit",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "name": "camp",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "search",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "herder",
+      "from": 7,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    4
+  ],
+  "title": "The Desert Worm That Shocks From a Distance #shorts",
+  "description": "Mongolian nomads tell of a red worm that hides in the Gobi sand and spits poison after rain. No one has ever found one. Real or myth?\n\n#scarystories #deathworm #mongolia #cryptid #desert #shorts",
+  "tags": [
+    "scarystories",
+    "deathworm",
+    "mongolia",
+    "cryptid",
+    "gobi",
+    "creepy",
+    "shorts"
+  ]
+}

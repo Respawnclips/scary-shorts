@@ -1,0 +1,129 @@
+{
+  "id": "039-tikbalang",
+  "legend": "The Tikbalang (Philippines, mountain-forest folklore)",
+  "lines": [
+    "In the Philippine mountains, travelers fear a tall creature of the forest.",
+    "It has a horse's head, and knees that rise above its shoulders.",
+    "Legend says the tikbalang loves to make travelers lose their way.",
+    "You walk for hours, yet every path leads back to the same tree.",
+    "Elders say to wear your shirt inside out, and the spell breaks.",
+    "And always ask permission as you pass: tabi tabi po.",
+    "Forget, and you may hear a low whinny in the dark behind you.",
+    "A lone white horse on the trail may not be a horse at all.",
+    "Would you follow it?"
+  ],
+  "scenes": [
+    {
+      "name": "forest",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "creature",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    {
+      "name": "lost",
+      "from": 2,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "shirt",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "bow",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "behind",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "name": "trail",
+      "from": 7,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "The Horse-Headed Creature That Makes You Lose Your Way #shorts",
+  "description": "In Filipino folklore the tall tikbalang leads travelers in circles through the mountain forest. How do you break its spell?\n\n#scarystories #tikbalang #philippines #folklore #legends #shorts",
+  "tags": [
+    "scarystories",
+    "tikbalang",
+    "philippines",
+    "folklore",
+    "legends",
+    "creepy",
+    "shorts"
+  ]
+}

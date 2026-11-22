@@ -1,0 +1,130 @@
+{
+  "id": "039-tikbalang-nl",
+  "legend": "The Tikbalang (Philippines, mountain-forest folklore)",
+  "lines": [
+    "In de bergen van de Filipijnen vrezen reizigers een lang wezen uit het bos.",
+    "Het heeft het hoofd van een paard, en knieën die boven zijn schouders uitsteken.",
+    "De legende zegt dat de tikbalang reizigers graag de weg kwijt laat raken.",
+    "Je loopt urenlang, maar elk pad brengt je terug bij dezelfde boom.",
+    "Ouderen zeggen: draag je shirt binnenstebuiten, dan verdwijnt de betovering.",
+    "En vraag altijd toestemming als je langskomt: tabi tabi po.",
+    "Vergeet je dat, dan hoor je misschien een laag gehinnik in het donker achter je.",
+    "Een eenzaam wit paard op het pad is misschien helemaal geen paard.",
+    "Zou jij het volgen?"
+  ],
+  "scenes": [
+    {
+      "name": "forest",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "creature",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    {
+      "name": "lost",
+      "from": 2,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "shirt",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "bow",
+      "from": 5,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "behind",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "name": "trail",
+      "from": 7,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "Het wezen met paardenhoofd dat je laat verdwalen",
+  "description": "In de Filipijnse folklore laat de lange tikbalang reizigers eindeloos ronddwalen in het bergbos. Hoe verbreek je zijn betovering?\n\n#engeverhalen #tikbalang #filipijnen #folklore #legendes #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "tikbalang",
+    "filipijnen",
+    "folklore",
+    "legendes",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}
