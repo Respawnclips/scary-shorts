@@ -1,0 +1,118 @@
+{
+  "id": "041-wampus-cat-nl",
+  "legend": "The Wampus Cat (Appalachian Mountains, USA, Cherokee-linked folklore)",
+  "lines": [
+    "In de Appalachen vertellen mensen over een kat die loopt als een vrouw.",
+    "Ze noemen haar de Wampus Cat.",
+    "Sommigen zeggen dat het begon met een vrouw die de jagers bespioneerde tijdens hun heilige ritueel.",
+    "Volgens de legende verstopte ze zich in een poemavel, maar werd ze betrapt.",
+    "Als straf kon de vacht nooit meer af.",
+    "Nu sluipt ze 's nachts door de bossen, half vrouw, half kat, met gloeiende gele ogen.",
+    "Jagers horen een schreeuw die op geen enkel dier lijkt.",
+    "De honden zwijgen, en het bos wordt doodstil.",
+    "Zou jij dat pad lopen in het donker?"
+  ],
+  "scenes": [
+    {
+      "name": "ridge",
+      "from": 0,
+      "move": [
+        -20,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "cat",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "spy",
+      "from": 2,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.3,
+        0.75
+      ],
+      "fog": false
+    },
+    {
+      "name": "curse",
+      "from": 4,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.3
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    {
+      "name": "scream",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.6,
+        0.7
+      ]
+    },
+    {
+      "name": "trail",
+      "from": 7,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "De kat die loopt als een vrouw: de Wampus Cat",
+  "description": "Volgens een oud verhaal uit de Appalachen sluipt een halve vrouw, halve poema door het bos met gloeiende gele ogen. Legende of waarheid?\n\n#engeverhalen #wampuscat #appalachen #cryptid #folklore #spookverhaal #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "wampuscat",
+    "appalachen",
+    "cryptid",
+    "folklore",
+    "spookverhaal",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

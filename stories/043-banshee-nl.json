@@ -1,0 +1,118 @@
+{
+  "id": "043-banshee-nl",
+  "legend": "The Banshee (Ireland, bean sí folklore)",
+  "lines": [
+    "Op een mistige nacht in Ierland hoort een oude familie een kreet buiten het raam.",
+    "Het is niet de wind, en het is geen vos.",
+    "In Ierse verhalen is het de banshee, de vrouw van de elfenheuvel.",
+    "Ze is bleek, met lang grijs haar en ogen die rood zijn van het huilen.",
+    "Sommigen zeggen dat ze op een steen zit, haar haar kamt en jammert.",
+    "Ze huilt alleen om bepaalde oude families, met namen die beginnen met O of Mac.",
+    "Haar kreet is een waarschuwing dat de dood dichtbij is.",
+    "Oude mensen zeggen: raap nooit een kam op die 's nachts op de grond ligt.",
+    "Hoor jij haar vannacht?"
+  ],
+  "scenes": [
+    {
+      "name": "house",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.75
+      ]
+    },
+    {
+      "name": "wind",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.3,
+        0.75
+      ]
+    },
+    {
+      "name": "face",
+      "from": 2,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.3
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "stone",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "castle",
+      "from": 5,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ],
+      "rain": true
+    },
+    {
+      "name": "comb",
+      "from": 7,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "De jammerende vrouw die Ierse families waarschuwt: de banshee",
+  "description": "In de Ierse folklore jammert de banshee voor het huis van oude families om te waarschuwen dat de dood nabij is. Raap nooit een kam op in het donker.\n\n#engeverhalen #banshee #ierland #folklore #spookverhaal #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "banshee",
+    "ierland",
+    "folklore",
+    "spookverhaal",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}

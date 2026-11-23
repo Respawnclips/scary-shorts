@@ -1865,3 +1865,166 @@ def bench_court(y=1500):
     return (f'<rect x="-20" y="{y}" width="1400" height="900" fill="#5a3f2c" {OUT}/><rect x="300" y="{y - 300}" width="750" height="320" fill="#6b4a32" {OUT}/>'
             f'<rect x="270" y="{y - 330}" width="810" height="50" fill="#4a3322" {OUT}/><rect x="-20" y="{y - 700}" width="1400" height="700" fill="#2a2430"/>'
             f'<path d="M0,{y} H1350" stroke="#0d0f15" stroke-width="8"/>')
+
+
+# ---------------------------------------------------------------- 2026-11-23 rigs: Wampus Cat, steamer (Baychimo), banshee
+def _cathead(t, fur, fur2, eyec, look, scream, blink, rot=0.0):
+    """Front-view cat face centred at (0,0), ~120 wide. scream 0..1 opens the mouth."""
+    lx, ly = look
+    eyes = "".join(
+        f'<path d="M{ex - 17},-6 Q{ex},{-24 * blink - 4:.1f} {ex + 17},-6 Q{ex},{12 * blink - 2:.1f} {ex - 17},-6Z" fill="{eyec}" stroke-width="4"/>'
+        f'<rect x="{ex + lx * 4 - 2.5:.1f}" y="{-6 - 11 * blink + ly * 2:.1f}" width="5" height="{22 * blink:.1f}" rx="2" fill="#0d0f15" stroke="none"/>' for ex in (-26, 26))
+    mouth = (f'<path d="M-22,28 Q0,{34 + scream * 40:.0f} 22,28 Q0,{26 + scream * 14:.0f} -22,28Z" fill="#2a1014" stroke-width="4"/>'
+             + (f'<path d="M-14,30 l4,{10 + scream * 8:.0f} l5,-9 M14,30 l-4,{10 + scream * 8:.0f} l-5,-9" fill="#f4f4ea" stroke-width="3"/>' if scream > .2 else ''))
+    return (f'<g transform="rotate({rot:.1f})"><path d="M-54,-30 L-72,-104 L-16,-58Z M54,-30 L72,-104 L16,-58Z" fill="{fur}"/>'
+            f'<path d="M-48,-40 L-60,-86 L-28,-58Z M48,-40 L60,-86 L28,-58Z" fill="#c07a74" stroke="none"/>'
+            f'<path d="M-64,0 Q-70,40 -40,56 Q0,70 40,56 Q70,40 64,0 Q60,-54 0,-58 Q-60,-54 -64,0Z" fill="{fur}"/>'
+            f'<path d="M-14,-56 v22 M0,-58 v26 M14,-56 v22 M-60,-6 l22,6 M60,-6 l-22,6" stroke="{fur2}" stroke-width="7" fill="none"/>'
+            + eyes + '<path d="M-8,14 L8,14 L0,24Z" fill="#c07a74" stroke-width="3"/>' + mouth +
+            '<path d="M-34,24 l-58,-8 M-34,30 l-58,6 M34,24 l58,-8 M34,30 l58,6" stroke="#e6e0d0" stroke-width="3" fill="none"/></g>')
+
+
+def wampus(x, y, s=1.0, t=0.0, mode="prowl", flip=False, look=(1, 0), fur="#8a6a3a", fur2="#5a4226", eyec="#ffe04a", scream=0.0):
+    """Wampus Cat: half woman, half cougar with glowing yellow eyes. Feet at (x, y).
+    mode: prowl (four-legged walk, faces RIGHT) | crouch (low, tail twitching) | run |
+          upright (stands on hind legs like a woman, tall; claws out, sways) | upwalk (walks upright) | rear (upright, arms spread, screaming)
+    scream 0..1 opens the mouth."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    blink = 0.15 if (t % 4.3) < .12 else 1.0
+    if mode in ("upright", "upwalk", "rear"):
+        hm = {"upright": "stand", "upwalk": "walk", "rear": "scared"}[mode]
+        body = human(0, 0, 1.0, t, hm, coat=fur, pants=fur2, skin=fur, hair=fur2, look=look)
+        sw = sn(t * 2.2) * 26
+        tail = (f'<path d="M-10,-180 Q-140,-170 {-190 + sw:.0f},-250 Q{-230 + sw:.0f},-330 {-190 + sw * 1.4:.0f},-380 Q{-160 + sw:.0f},-310 {-120 + sw * .6:.0f},-250 Q-70,-200 10,-150Z" fill="{fur}" {OUT}/>'
+                f'<path d="M{-196 + sw:.0f},-290 q22,-8 30,6 M{-200 + sw:.0f},-340 q20,-8 28,6" stroke="{fur2}" stroke-width="9" fill="none"/>')
+        bob = (-abs(sn(t * 5)) * 10 if hm == "walk" else sn(t * 1.8) * 3)
+        claws = "".join(f'<path d="M{cx},{cy} l{dx},30" stroke="#f4f4ea" stroke-width="5" stroke-linecap="round" fill="none"/>' for cx, cy, dx in ((0, 0, 0),))
+        head = f'<g transform="translate(0,{-410 + bob:.1f}) scale(1.05)">{_cathead(t, fur, fur2, eyec, look, scream, blink, sn(t * 1.1) * 4)}</g>'
+        dress = (f'<path d="M-60,-186 Q-96,-80 -112,-8 L112,-8 Q96,-80 60,-186Z" fill="#6a5a46" {OUT}/>'
+                 f'<path d="M-90,-40 q10,10 20,0 M-30,-20 q10,10 20,0 M40,-30 q10,10 20,0" stroke="#0d0f15" stroke-width="4" fill="none"/>')
+        neck = f'<rect x="-22" y="-430" width="44" height="60" fill="{fur}" stroke="none"/>'
+        return (f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>{tail}{body}{dress}{neck}{head}</g>')
+    # quadruped, faces right
+    ph = t * (5.0 if mode == "prowl" else 11.0 if mode == "run" else 0)
+    low = 70 if mode == "crouch" else 0
+    amp = 26 if mode == "prowl" else 52 if mode == "run" else 0
+    kn = 30 if mode == "prowl" else 60 if mode == "run" else 0
+    bob = -abs(sn(ph)) * (6 if mode == "prowl" else 22) if amp else sn(t * 1.6) * 3
+    wig = sn(t * 3.4) * 20 if mode == "crouch" else sn(t * 2.1) * 14
+    def leg(hx, hy, a, k, near):
+        c = fur if near else fur2
+        return (f'<g transform="translate({hx},{hy}) rotate({a:.1f})"><path d="M-26,-6 L26,-6 L16,92 L-14,92Z" fill="{c}"/>'
+                f'<g transform="translate(0,88) rotate({-k:.1f})"><path d="M-14,0 L16,0 L11,{86 - low * .5:.0f} L-11,{86 - low * .5:.0f}Z" fill="{c}"/>'
+                f'<ellipse cx="6" cy="{88 - low * .5:.0f}" rx="26" ry="12" fill="{c}"/><path d="M20,{90 - low * .5:.0f} l8,6 M14,{94 - low * .5:.0f} l7,6" stroke="#f4f4ea" stroke-width="3" fill="none"/></g></g>')
+    hy = -214 + low
+    legs_far = leg(-120, hy, sn(ph + .6) * amp, max(0, sn(ph + 2)) * kn, False) + leg(120, hy, -sn(ph + .6) * amp, max(0, sn(ph + 3.5)) * kn, False)
+    legs_near = leg(-100, hy, -sn(ph) * amp, max(0, sn(ph + 1.4)) * kn, True) + leg(140, hy, sn(ph) * amp, max(0, sn(ph + 2.8)) * kn, True)
+    tail = (f'<path d="M-170,{hy - 30} Q{-290 + wig:.0f},{hy - 20} {-300 + wig:.0f},{hy - 150} Q{-300 + wig:.0f},{hy - 220} {-250 + wig:.0f},{hy - 240} Q{-260 + wig:.0f},{hy - 170} {-230 + wig:.0f},{hy - 110} Q{-210 + wig:.0f},{hy - 40} -150,{hy + 14}Z" fill="{fur}"/>')
+    body = (f'<path d="M-200,{hy - 10} Q-210,{hy - 100} -80,{hy - 106} Q40,{hy - 116} 150,{hy - 100} Q222,{hy - 80} 214,{hy - 10} Q190,{hy + 50} 60,{hy + 46} Q-100,{hy + 54} -200,{hy - 10}Z" fill="{fur}"/>'
+            f'<path d="M-130,{hy - 100} l16,50 M-60,{hy - 106} l12,60 M20,{hy - 110} l10,60 M100,{hy - 104} l8,56" stroke="{fur2}" stroke-width="12" fill="none"/>')
+    neck = f'<path d="M120,{hy - 90} Q200,{hy - 130} 240,{hy - 110} L250,{hy - 10} Q190,{hy + 10} 140,{hy + 30}Z" fill="{fur}"/>'
+    head = f'<g transform="translate(262,{hy - 70 + sn(t * 1.3) * 3:.1f})">{_cathead(t, fur, fur2, eyec, look, scream, blink, 8 + sn(t * 1.2) * 3)}</g>'
+    ans = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,{bob:.1f})">{tail}{legs_far}{body}{neck}{legs_near}{head}</g></g>'
+    return ans
+
+
+def icefield(y=1700, seed=5, col="#d8e4f0", shade="#9fb4cc", n=7):
+    """Jagged Arctic pack ice from y down to the bottom."""
+    r = random.Random(seed)
+    d = f"M-20,2420 L-20,{y} "
+    xx = -20
+    while xx < 1400:
+        d += f"L{xx + r.randint(40, 90)},{y - r.randint(20, 70)} L{xx + r.randint(110, 170)},{y + r.randint(-10, 20)} "
+        xx += 170
+    out = f'<path d="{d}L1400,2420Z" fill="{col}" {OUT}/>'
+    for _ in range(n):
+        px, py = r.randint(0, 1250), r.randint(y + 60, 2360)
+        out += f'<path d="M{px},{py} l{r.randint(50, 110)},{r.randint(-20, 10)} l{r.randint(30, 80)},{r.randint(10, 40)}" fill="none" stroke="{shade}" stroke-width="6"/>'
+    return out
+
+
+def steamer(x, y, s=1.0, t=0.0, flip=False, roll=1.0, smoke=0.0, lights=False, tilt=0.0, alpha=1.0):
+    """Old cargo steamer (the Baychimo), side view, ~760 wide, ~520 tall, waterline/ice at (x, y). Rolls gently; flag flutters;
+    smoke 0..1 draws a funnel plume; lights=True lights the windows (ghostly)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    rl = sn(t * .8) * 2.2 * roll + tilt
+    fl = sn(t * 4) * 10
+    win = "#f3c555" if lights else "#1a2030"
+    sm = ""
+    for k in range(5 if smoke else 0):
+        u = (t * .35 + k * .2) % 1.0
+        sm += f'<circle cx="{-60 + u * 160 + sn(t + k) * 12:.0f}" cy="{-470 - u * 260:.0f}" r="{34 + u * 70:.0f}" fill="#6f7a8c" opacity="{(1 - u) * .55 * smoke:.2f}" stroke="none"/>'
+    g = f'<g opacity="{alpha}" transform="translate({x},{y}) scale({f * s},{s}) rotate({rl:.2f} 0 0)" {OUT}>'
+    g += sm
+    g += '<rect x="170" y="-440" width="14" height="260" fill="#3a2b1f"/><rect x="-250" y="-420" width="14" height="240" fill="#3a2b1f"/>'
+    g += f'<path d="M184,-436 q{50 + fl * .5:.0f},{-12 + fl * .3:.0f} {100 + fl:.0f},0 l-20,12 l12,14 l-92,2Z" fill="#8c2a2a" stroke-width="4"/>'
+    g += '<path d="M-236,-420 L-390,-170 M-236,-420 L-60,-200 M184,-436 L330,-190 M184,-436 L40,-200" stroke="#0d0f15" stroke-width="3" fill="none"/>'
+    g += '<path d="M-380,-190 L400,-190 L330,10 L-330,10 Q-400,-60 -380,-190Z" fill="#1c2230"/><path d="M-372,-130 H388 L378,-100 H-366Z" fill="#8c2a2a" stroke-width="4"/>'
+    g += '<rect x="-210" y="-300" width="300" height="112" fill="#d8d4c4"/><rect x="-170" y="-380" width="190" height="82" fill="#d8d4c4"/>'
+    g += f'<rect x="-150" y="-360" width="46" height="40" fill="{win}" stroke-width="4"/><rect x="-92" y="-360" width="46" height="40" fill="{win}" stroke-width="4"/><rect x="-34" y="-360" width="46" height="40" fill="{win}" stroke-width="4"/>'
+    g += "".join(f'<circle cx="{wx}" cy="-244" r="20" fill="{win}" stroke-width="4"/>' for wx in (-160, -90, -20, 50))
+    g += '<rect x="90" y="-420" width="86" height="240" fill="#14161b"/><rect x="90" y="-360" width="86" height="34" fill="#d8863a" stroke-width="4"/>'
+    g += '<path d="M-212,-300 H92 M-172,-380 H22" stroke="#0d0f15" stroke-width="4"/><path d="M-380,-190 L400,-190" stroke="#0d0f15" stroke-width="8"/>'
+    g += '<path d="M-368,-190 v-50 M-300,-190 v-50 M300,-190 v-50 M360,-190 v-50 M-370,-240 H-210 M270,-240 H394" stroke="#0d0f15" stroke-width="5" fill="none"/>'
+    return g + '</g>'
+
+
+def shipwheel(x, y, s=1.0, t=0.0, spin=1.0, col="#6a4a2c"):
+    """Wooden ship's wheel that turns by itself; centre at (x, y)."""
+    a = t * 40 * spin
+    sp = "".join(f'<g transform="rotate({k * 45})"><rect x="-9" y="-190" width="18" height="380" rx="8" fill="{col}"/><rect x="-16" y="-214" width="32" height="46" rx="10" fill="{col}"/>'
+                 f'<rect x="-16" y="168" width="32" height="46" rx="10" fill="{col}"/></g>' for k in range(4))
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><g transform="rotate({a:.1f})"><circle r="150" fill="none" stroke="{col}" stroke-width="30"/>'
+            f'<circle r="150" fill="none" stroke="#0d0f15" stroke-width="3"/>{sp}<circle r="40" fill="#8a6a3c"/></g></g>')
+
+
+def banshee(x, y, s=1.0, t=0.0, mode="float", flip=False, look=(1, 0), alpha=0.92, gown="#c4ced8", hair="#aeb4c0", wail=0.0, face_only=False):
+    """Banshee: pale woman in a long gown, wild long grey hair, red-rimmed eyes. Hem at (x, y), ~480 tall, no legs.
+    mode: float (drifts, arms hang, hair streams) | wail (head thrown back, arms spread, mouth open) | comb (sits/hovers, one arm combing her hair) | reach.
+    wail 0..1 opens the mouth. face_only draws just the head centred at (x, y)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    hov = -26 - sn(t * 1.4) * 14
+    blink = 0.15 if (t % 4.0) < .13 else 1.0
+    if mode == "wail":
+        wail = max(wail, .6 + .4 * sn(t * 6)); la, lb, ra, rb = 140 + sn(t * 3) * 8, 10, -140 - sn(t * 3.3) * 8, -10; hr = -10 + sn(t * 5) * 3
+    elif mode == "comb":
+        la, lb, ra, rb = 150 + sn(t * 5) * 10, -70 + sn(t * 5) * 14, -8, -6; hr = 6 + sn(t * 1.2) * 3
+    elif mode == "reach":
+        la, lb, ra, rb = 8, -6, -98 + sn(t * 2.5) * 6, 4; hr = 4
+    else:
+        la, lb, ra, rb = 14 + sn(t * 1.5) * 6, -10, -14 - sn(t * 1.4) * 6, -10; hr = sn(t * .9) * 5 + look[0] * 4
+    # hair: long wavy strands behind the head
+    strands = ""
+    for k in range(7):
+        ox = (k - 3) * 15; L = 330 + (k % 3) * 40
+        w = sn(t * 1.8 + k * .9) * 24
+        strands += (f'<path d="M{ox},-30 Q{ox * 2.4 + w:.0f},{L * .35:.0f} {ox * 2 + w * 1.5:.0f},{L:.0f} Q{ox * 1.2 + w * .5:.0f},{L * .5:.0f} {ox * .5 + 10},-20Z" fill="{hair}" stroke-width="4"/>')
+    def head():
+        ey = "".join(f'<ellipse cx="{ex}" cy="-6" rx="12" ry="{11 * blink:.1f}" fill="#fff" stroke="#b02a2a" stroke-width="5"/>'
+                     f'<circle cx="{ex + look[0] * 3:.1f}" cy="{-6 + look[1] * 2:.1f}" r="3.5" fill="#0d0f15" stroke="none"/>' for ex in (-19, 19))
+        mo = (f'<ellipse cx="0" cy="{24 + wail * 6:.0f}" rx="{10 + wail * 12:.0f}" ry="{4 + wail * 24:.0f}" fill="#2a1014" stroke-width="4"/>')
+        return (f'<g transform="rotate({hr:.1f})"><g transform="translate(0,-30)">{strands}</g>'
+                f'<ellipse cx="0" cy="0" rx="48" ry="58" fill="#dfe6ee"/>'
+                f'<path d="M-50,-10 Q-56,-70 0,-72 Q56,-70 50,-10 Q40,-46 0,-44 Q-40,-46 -50,-10Z" fill="{hair}" stroke-width="4"/>'
+                + ey + '<path d="M-30,-24 l16,6 M30,-24 l-16,6" stroke-width="4" fill="none"/>' + mo + '</g>')
+    if face_only:
+        return f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>{head()}</g>'
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-16,-6 Q-34,60 -22,120 L22,120 Q36,60 16,-6Z" fill="{gown}"/>'
+                f'<g transform="translate(0,116) rotate({e:.1f})"><path d="M-20,0 Q-34,50 -26,100 L26,100 Q34,50 20,0Z" fill="{gown}"/>'
+                f'<circle cx="0" cy="104" r="14" fill="#dfe6ee"/><path d="M-8,112 l-4,26 M0,114 l0,30 M8,112 l5,26" stroke="#dfe6ee" stroke-width="6" stroke-linecap="round" fill="none"/>'
+                + ('<g transform="translate(0,120)"><rect x="-26" y="0" width="52" height="16" rx="4" fill="#e8dcc0"/>' + ''.join(f'<path d="M{-22 + i * 9},16 v18" stroke="#e8dcc0" stroke-width="4"/>' for i in range(6)) + '</g>' if mode == "comb" and a > 100 else '')
+                + '</g></g>')
+    w1, w2, w3 = sn(t * 2.2) * 22, sn(t * 2.2 + 1.8) * 26, sn(t * 2.2 + 3.4) * 22
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g opacity="{alpha}" transform="translate(0,{hov:.1f})">'
+    out += (f'<path d="M-62,-330 Q-150,-130 {-176 + w1:.0f},6 L{-110 + w1:.0f},-26 L{-56 + w2:.0f},30 L{-4 + w2:.0f},-20 L{54 + w3:.0f},34 L{108 + w3:.0f},-22 L{180 + w3:.0f},6 Q150,-130 62,-330Z" fill="{gown}"/>'
+            f'<path d="M-24,-280 Q-40,-140 {-48 + w1:.0f},-20 M26,-280 Q42,-140 {50 + w3:.0f},-20" fill="none" stroke="#8d98a8" stroke-width="4" opacity=".7"/>')
+    out += f'<g transform="translate(-52,-306)">{arm(la, lb)}</g>'
+    out += f'<path d="M-58,-250 Q-66,-320 -40,-346 Q0,-360 40,-346 Q66,-320 58,-250Z" fill="{gown}"/>'
+    out += f'<g transform="translate(0,-396)">{head()}</g>'
+    out += f'<g transform="translate(52,-306)">{arm(ra, rb)}</g>'
+    return out + '</g></g>'

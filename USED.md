@@ -44,3 +44,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 038 | 038-greenbrier-ghost (+ -nl) | The Greenbrier Ghost (West Virginia, USA, 1897 murder trial legend) | 2026-11-22 |
 | 039 | 039-tikbalang (+ -nl) | The Tikbalang (Philippines, mountain-forest folklore) | 2026-11-22 |
 | 040 | 040-death-worm (+ -nl) | The Mongolian Death Worm (Gobi Desert, Mongolia, nomad legend) | 2026-11-22 |
+| 041 | 041-wampus-cat (+ -nl) | The Wampus Cat (Appalachian Mountains, USA, Cherokee-linked folklore) | 2026-11-23 |
+| 042 | 042-baychimo (+ -nl) | The SS Baychimo, Arctic ghost ship (Alaska, 1931-1969) | 2026-11-23 |
+| 043 | 043-banshee (+ -nl) | The Banshee (Ireland, bean sí folklore) | 2026-11-23 |

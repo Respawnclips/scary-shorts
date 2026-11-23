@@ -1,0 +1,117 @@
+{
+  "id": "043-banshee",
+  "legend": "The Banshee (Ireland, bean sí folklore)",
+  "lines": [
+    "On a misty night in Ireland, an old family hears a cry outside the window.",
+    "It is not the wind, and it is not a fox.",
+    "In Irish tales, it is the banshee, the woman of the fairy mound.",
+    "She is pale, with long grey hair and eyes red from weeping.",
+    "Some say she sits on a stone, combing her hair and wailing.",
+    "She only cries for certain old families, with names starting with O or Mac.",
+    "Her cry is a warning that death is near.",
+    "Old folk say never pick up a comb lying on the ground in the dark.",
+    "Do you hear her tonight?"
+  ],
+  "scenes": [
+    {
+      "name": "house",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.75
+      ]
+    },
+    {
+      "name": "wind",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.3,
+        0.75
+      ]
+    },
+    {
+      "name": "face",
+      "from": 2,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.3
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "stone",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "castle",
+      "from": 5,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ],
+      "rain": true
+    },
+    {
+      "name": "comb",
+      "from": 7,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "The Wailing Woman Who Warns Irish Families of Death #shorts",
+  "description": "In Irish folklore the banshee wails outside the homes of old families to warn that death is near. Never pick up a comb you find in the dark.\n\n#scarystories #banshee #ireland #folklore #ghost #shorts",
+  "tags": [
+    "scarystories",
+    "banshee",
+    "ireland",
+    "folklore",
+    "ghost",
+    "creepy",
+    "shorts"
+  ]
+}

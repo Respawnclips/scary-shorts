@@ -1,0 +1,114 @@
+{
+  "id": "042-baychimo",
+  "legend": "The SS Baychimo, Arctic ghost ship (Alaska, 1931-1969)",
+  "lines": [
+    "In October nineteen thirty-one, a cargo steamer named Baychimo was trapped in Arctic ice near Alaska.",
+    "Her crew left her behind, sure she would sink.",
+    "But after a blizzard, the ship was still there.",
+    "Empty, silent, and floating all alone.",
+    "For the next thirty-eight years, sailors and villagers spotted her drifting through the ice.",
+    "A few brave people climbed aboard, but nobody could tow her home.",
+    "She was last reported in nineteen sixty-nine.",
+    "Legend says she still sails the Arctic tonight, with no one at the wheel.",
+    "Would you step aboard?"
+  ],
+  "scenes": [
+    {
+      "name": "ice",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "leave",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "storm",
+      "from": 2,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    {
+      "name": "drift",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "board",
+      "from": 5,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "wheel",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Ghost Ship That Drifted the Arctic for 38 Years #shorts",
+  "description": "In 1931 the steamer Baychimo was abandoned in Arctic ice, yet she kept drifting for decades with no crew. Legend says she is still out there.\n\n#scarystories #ghostship #baychimo #arctic #truestory #shorts",
+  "tags": [
+    "scarystories",
+    "ghostship",
+    "baychimo",
+    "arctic",
+    "alaska",
+    "creepy",
+    "shorts"
+  ]
+}

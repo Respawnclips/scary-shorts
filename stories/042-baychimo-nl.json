@@ -1,0 +1,115 @@
+{
+  "id": "042-baychimo-nl",
+  "legend": "The SS Baychimo, Arctic ghost ship (Alaska, 1931-1969)",
+  "lines": [
+    "In oktober negentienhonderd eenendertig raakte het vrachtschip Baychimo vast in het poolijs bij Alaska.",
+    "De bemanning liet haar achter, zeker dat ze zou zinken.",
+    "Maar na een sneeuwstorm lag het schip er nog steeds.",
+    "Leeg, stil en helemaal alleen.",
+    "Achtendertig jaar lang zagen zeelieden en dorpelingen haar door het ijs drijven.",
+    "Een paar durfals klommen aan boord, maar niemand kreeg haar naar huis gesleept.",
+    "In negentienhonderd negenenzestig werd ze voor het laatst gezien.",
+    "Volgens de legende vaart ze vannacht nog steeds door het poolgebied, zonder iemand aan het roer.",
+    "Zou jij aan boord stappen?"
+  ],
+  "scenes": [
+    {
+      "name": "ice",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "leave",
+      "from": 1,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "storm",
+      "from": 2,
+      "move": [
+        -15,
+        0,
+        1.1,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    {
+      "name": "drift",
+      "from": 4,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "board",
+      "from": 5,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "wheel",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ],
+      "fog": false
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het spookschip dat 38 jaar door het poolijs dreef",
+  "description": "In 1931 werd de Baychimo verlaten in het poolijs, maar het schip bleef tientallen jaren zonder bemanning ronddrijven. Volgens de legende vaart ze nog steeds.\n\n#engeverhalen #spookschip #baychimo #alaska #waargebeurd #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "spookschip",
+    "baychimo",
+    "alaska",
+    "waargebeurd",
+    "foryou",
+    "foryoupage"
+  ],
+  "lang": "nl"
+}
