@@ -2028,3 +2028,77 @@ def banshee(x, y, s=1.0, t=0.0, mode="float", flip=False, look=(1, 0), alpha=0.9
     out += f'<g transform="translate(0,-396)">{head()}</g>'
     out += f'<g transform="translate(52,-306)">{arm(ra, rb)}</g>'
     return out + '</g></g>'
+
+
+def nainrouge(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), skin="#b03a2e", skin2="#7a221e", grin=0.0):
+    """Nain Rouge: little red dwarf with pointed ears, glowing eyes, wolfish fur and hooves. Feet at (x, y), ~300 tall.
+    mode: stand (sways, rubs hands) | walk (waddle) | dance (hops, arms up) | point (right arm points, laughs). grin 0..1 opens the mouth."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * 6
+    bob = 0.0; la = ra = 0.0
+    al, el, ar, er = -40 + sn(t * 6) * 12, 80, 40 - sn(t * 6.3) * 12, -80
+    sway = sn(t * 2) * 3
+    if mode == "walk":
+        la, ra = sn(ph) * 30, -sn(ph) * 30; bob = -abs(sn(ph)) * 10; sway = sn(ph) * 5
+        al, el, ar, er = -sn(ph) * 35, -20, sn(ph) * 35, 20
+    elif mode == "dance":
+        ph = t * 8
+        la, ra = sn(ph) * 35, -sn(ph) * 35; bob = -abs(sn(ph)) * 32; sway = sn(ph) * 8
+        al, el, ar, er = 140 + sn(ph) * 25, 30, -140 - sn(ph + 1) * 25, -30; grin = max(grin, .8)
+    elif mode == "point":
+        al, el, ar, er = 20, 20, -88 + sn(t * 3) * 4, 0; grin = max(grin, .5 + .4 * sn(t * 7)); sway = sn(t * 6) * 3
+    blink = 0.2 if (t % 3.3) < .12 else 1.0
+    hr = sn(t * 1.1) * 4 + look[0] * 5
+
+    def leg(a):
+        return (f'<g transform="translate(0,-100) rotate({a:.1f})"><path d="M-20,0 Q-26,50 -16,92 L18,92 Q26,50 20,0Z" fill="{skin2}"/>'
+                f'<path d="M-22,88 L24,88 L28,108 L-24,108Z" fill="#1d1416"/></g>')
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-12,0 Q-18,36 -10,66 L12,66 Q18,36 12,0Z" fill="{skin}"/>'
+                f'<g transform="translate(0,62) rotate({e:.1f})"><path d="M-11,0 Q-16,30 -9,58 L11,58 Q16,30 11,0Z" fill="{skin}"/>'
+                f'<circle cx="0" cy="62" r="13" fill="{skin2}"/><path d="M-8,70 l-4,16 M0,72 l0,18 M8,70 l4,16" stroke="#1d1416" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>')
+    ey = "".join(f'<ellipse cx="{ex}" cy="-4" rx="12" ry="{9 * blink:.1f}" fill="#ffe04a"/><circle cx="{ex + look[0] * 3:.1f}" cy="{-4 + look[1] * 2:.1f}" r="3.5" fill="#0d0f15" stroke="none"/>' for ex in (-22, 22))
+    mo = (f'<path d="M-30,24 Q0,{40 + grin * 26:.0f} 30,24 Q0,{30 + grin * 10:.0f} -30,24Z" fill="#2a0e10" stroke-width="4"/>'
+          '<path d="M-22,26 l5,12 l5,-10 M4,28 l5,10 l5,-12 M16,26 l3,8" fill="#f4f0dc" stroke="none"/>')
+    head = (f'<g transform="rotate({hr:.1f})"><path d="M-48,-30 L-98,-80 L-60,-4Z M48,-30 L98,-80 L60,-4Z" fill="{skin}"/>'
+            f'<path d="M-54,-18 Q-60,-86 0,-92 Q60,-86 54,-18 Q56,44 0,56 Q-56,44 -54,-18Z" fill="{skin}"/>'
+            f'<path d="M-44,-62 L-30,-96 L-14,-66 L0,-100 L14,-66 L30,-96 L44,-62Z" fill="{skin2}"/>'
+            + ey + '<path d="M-36,-24 l22,10 M36,-24 l-22,10" stroke-width="5" fill="none"/>' + mo + '</g>')
+    return (f'<g transform="translate({x},{y + bob:.1f}) scale({f * s},{s})" {OUT}><g transform="rotate({sway:.1f})">'
+            f'{leg(la)}{leg(ra)}'
+            f'<path d="M-46,-90 Q-62,-150 -42,-196 Q0,-216 42,-196 Q62,-150 46,-90Z" fill="{skin}"/>'
+            f'<path d="M-30,-160 q10,10 0,22 M10,-170 q10,10 0,24 M26,-140 q8,8 0,18" stroke="{skin2}" stroke-width="4" fill="none"/>'
+            f'<g transform="translate(-44,-186)">{arm(al, el)}</g>'
+            f'<g transform="translate(0,-252)">{head}</g>'
+            f'<g transform="translate(44,-186)">{arm(ar, er)}</g></g></g>')
+
+
+def watcher(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), alpha=1.0, cloak="#0c0f1a", edge="#3a4668", eyes=0.0):
+    """Dark Watcher: very tall silhouette in a long cloak and wide-brimmed hat. Feet at (x, y), ~620 tall.
+    mode: stand (cloak sways, head turns slowly) | walk (strides) | turn (head turns to face you) | wave (one arm raised). eyes 0..1 = glowing eyes."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    sw = sn(t * 1.1) * 6
+    hr = sn(t * .6) * 8 + look[0] * 6
+    la = ra = 0.0; bob = 0.0
+    al, ar = 6 + sn(t * 1.2) * 3, -6 - sn(t * 1.2) * 3
+    if mode == "walk":
+        ph = t * 3.2; la, ra = sn(ph) * 24, -sn(ph) * 24; bob = -abs(sn(ph)) * 8; al, ar = -sn(ph) * 14, sn(ph) * 14; sw = sn(ph) * 8
+    elif mode == "turn":
+        hr = 0; eyes = max(eyes, .8)
+    elif mode == "wave":
+        ar = -150 + sn(t * 5) * 14
+    leg = lambda a: f'<g transform="translate(0,-200) rotate({a:.1f})"><path d="M-20,0 L-16,196 L24,196 L20,0Z" fill="{cloak}"/></g>'
+    face = ""
+    if eyes > 0:
+        face = f'<ellipse cx="-16" cy="-6" rx="9" ry="6" fill="#fff6c0"/><ellipse cx="16" cy="-6" rx="9" ry="6" fill="#fff6c0"/>' + glow(0, -6, 60, "#fff6c0", .3 * eyes)
+    head = (f'<g transform="rotate({hr:.1f})"><ellipse cx="0" cy="0" rx="42" ry="50" fill="{cloak}"/>{face}'
+            f'<ellipse cx="0" cy="-40" rx="110" ry="20" fill="{cloak}"/><path d="M-52,-42 Q-48,-120 0,-124 Q48,-120 52,-42Z" fill="{cloak}"/></g>')
+    arm = lambda a: f'<g transform="rotate({a:.1f})"><path d="M-14,0 Q-26,120 -16,250 L16,250 Q26,120 14,0Z" fill="{cloak}"/></g>'
+    return (f'<g opacity="{alpha:.2f}" transform="translate({x},{y + bob:.1f}) scale({f * s},{s})" stroke="{edge}" stroke-width="5">'
+            f'{leg(la)}{leg(ra)}'
+            f'<path d="M-62,-520 Q-92,-250 {-118 + sw:.0f},-30 L{118 + sw:.0f},-30 Q92,-250 62,-520Z" fill="{cloak}"/>'
+            f'<g transform="translate(-58,-500)">{arm(al)}</g><g transform="translate(58,-500)">{arm(ar)}</g>'
+            f'<g transform="translate(0,-560)">{head}</g></g>')

@@ -1,0 +1,130 @@
+{
+  "id": "046-devils-footprints-nl",
+  "legend": "The Devil's Footprints (Devon, England, February 1855)",
+  "lines": [
+    "Devon, Engeland. De ochtend van negen februari, achttienhonderdvijfenvijftig.",
+    "Sneeuw ligt op de dorpen, en mensen vinden vreemde sporen.",
+    "Een rij hoefvormige afdrukken, elk ongeveer tien centimeter lang.",
+    "Ze lopen in één rechte lijn, alsof iets op twee benen liep.",
+    "Ze gaan over daken, langs muren, zelfs dwars door hooibergen.",
+    "Ze lopen zelfs door over een riviermonding van drie kilometer breed.",
+    "Volgens berichten liep het spoor wel honderdzestig kilometer ver.",
+    "Dorpelingen fluisterden dat de duivel zelf door Devon had gelopen.",
+    "Theorieën lopen uiteen van dassen tot een ontsnapte kangoeroe. Niemand weet het.",
+    "Wat denk jij dat daar liep?"
+  ],
+  "scenes": [
+    {
+      "name": "village",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "tracks",
+      "from": 2,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.3,
+        0.75
+      ],
+      "fog": false
+    },
+    {
+      "name": "line",
+      "from": 3,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "roof",
+      "from": 4,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.2,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "river",
+      "from": 5,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "shadow",
+      "from": 7,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    },
+    {
+      "name": "end",
+      "from": 9,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De voetsporen van de duivel: sporen over daken en dwars door een rivier",
+  "description": "In februari 1855 verschenen er vreemde hoefvormige sporen in de sneeuw in Devon, Engeland, over muren en dwars door een brede rivier. Niemand weet wat ze maakte.\n\n#engeverhalen #duivelsvoetsporen #devon #mysterie #geschiedenis #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "devon",
+    "mysterie",
+    "geschiedenis",
+    "eng"
+  ],
+  "lang": "nl"
+}

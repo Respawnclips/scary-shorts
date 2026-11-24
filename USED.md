@@ -47,3 +47,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 041 | 041-wampus-cat (+ -nl) | The Wampus Cat (Appalachian Mountains, USA, Cherokee-linked folklore) | 2026-11-23 |
 | 042 | 042-baychimo (+ -nl) | The SS Baychimo, Arctic ghost ship (Alaska, 1931-1969) | 2026-11-23 |
 | 043 | 043-banshee (+ -nl) | The Banshee (Ireland, bean sí folklore) | 2026-11-23 |
+| 044 | 044-nain-rouge (+ -nl) | The Nain Rouge, the Red Dwarf of Detroit (Michigan, USA, French colonial legend, 1701) | 2026-11-24 |
+| 045 | 045-dark-watchers (+ -nl) | The Dark Watchers (Santa Lucia Mountains, California, USA, ridge-line folklore) | 2026-11-24 |
+| 046 | 046-devils-footprints (+ -nl) | The Devil's Footprints (Devon, England, February 1855) | 2026-11-24 |

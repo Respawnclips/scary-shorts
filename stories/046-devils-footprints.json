@@ -1,0 +1,131 @@
+{
+  "id": "046-devils-footprints",
+  "legend": "The Devil's Footprints (Devon, England, February 1855)",
+  "lines": [
+    "Devon, England. The morning of February 9th, 1855.",
+    "Snow lies on the villages, and people find strange tracks.",
+    "A line of hoof-shaped prints, each about four inches long.",
+    "They run in one straight line, as if on two legs.",
+    "They cross rooftops, climb walls, even pass through haystacks.",
+    "They even continue across a river two miles wide.",
+    "Reports say the trail ran up to a hundred miles.",
+    "Villagers whispered the devil himself had walked through Devon.",
+    "Theories range from badgers to an escaped kangaroo. Nobody knows.",
+    "What do you think walked there?"
+  ],
+  "scenes": [
+    {
+      "name": "village",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "tracks",
+      "from": 2,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.3,
+        0.75
+      ],
+      "fog": false
+    },
+    {
+      "name": "line",
+      "from": 3,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "roof",
+      "from": 4,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.2,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "river",
+      "from": 5,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "shadow",
+      "from": 7,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ]
+    },
+    {
+      "name": "end",
+      "from": 9,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Devil's Footprints: Tracks That Crossed Rooftops and a River #shorts",
+  "description": "In February 1855, strange hoof-shaped prints appeared in the snow across Devon, England, climbing walls and crossing a wide river. To this day nobody knows what made them.\n\n#scarystories #devilsfootprints #devon #mystery #history #shorts",
+  "tags": [
+    "scarystories",
+    "devilsfootprints",
+    "devon",
+    "mystery",
+    "history",
+    "creepy",
+    "shorts"
+  ]
+}

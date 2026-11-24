@@ -1,0 +1,118 @@
+{
+  "id": "044-nain-rouge",
+  "legend": "The Nain Rouge, the Red Dwarf of Detroit (Michigan, USA, French colonial legend, 1701)",
+  "lines": [
+    "Detroit, 1701. A little red creature waits in the dark.",
+    "It has glowing eyes, wolf fur and a wicked grin.",
+    "It is the Nain Rouge, the red dwarf of the French settlers.",
+    "Cadillac, the founder, struck at it with his cane.",
+    "The dwarf laughed, and legend says he cursed the city on the spot.",
+    "Later, people claimed to see him dancing before fires and storms.",
+    "They say he appeared before the great fire of 1805.",
+    "Today, Detroit marches every spring to chase him out of town.",
+    "Would you dare to meet his eyes tonight?"
+  ],
+  "scenes": [
+    {
+      "name": "dark",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.75,
+        0.8
+      ]
+    },
+    {
+      "name": "face",
+      "from": 1,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.3
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "meet",
+      "from": 3,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "curse",
+      "from": 4,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.7,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "fire",
+      "from": 5,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "march",
+      "from": 7,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    4
+  ],
+  "title": "The Red Dwarf Who Cursed Detroit Before It Even Began #shorts",
+  "description": "In Detroit legend, a little red dwarf called the Nain Rouge cursed the city in 1701 and appears before disasters. Every spring the city marches to chase him away.\n\n#scarystories #nainrouge #detroit #folklore #legend #shorts",
+  "tags": [
+    "scarystories",
+    "nainrouge",
+    "detroit",
+    "folklore",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

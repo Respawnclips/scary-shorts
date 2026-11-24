@@ -1,0 +1,115 @@
+{
+  "id": "045-dark-watchers",
+  "legend": "The Dark Watchers (Santa Lucia Mountains, California, USA, ridge-line folklore)",
+  "lines": [
+    "California, the Santa Lucia Mountains, just before sunset.",
+    "A lone traveler looks up at the ridge.",
+    "There stands a tall dark figure in a wide hat, perfectly still.",
+    "Old stories call them the Dark Watchers.",
+    "Some say the Chumash knew of them long before the settlers came.",
+    "Travelers say they are taller than any man, and they only watch.",
+    "Look straight at one, and legend says it simply vanishes.",
+    "The writer John Steinbeck even wrote about them.",
+    "They never come closer. They only watch.",
+    "So tonight, who is watching you?"
+  ],
+  "scenes": [
+    {
+      "name": "ridge",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "figure",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.6,
+        0.7
+      ]
+    },
+    {
+      "name": "elders",
+      "from": 3,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.2
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "tall",
+      "from": 5,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "fog": false
+    },
+    {
+      "name": "vanish",
+      "from": 6,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "night",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Silent Giants Who Watch Hikers From California's Ridges #shorts",
+  "description": "Hikers in California's Santa Lucia Mountains tell of tall dark figures in wide hats who watch from the ridge and vanish when you look straight at them.\n\n#scarystories #darkwatchers #california #bigsur #folklore #shorts",
+  "tags": [
+    "scarystories",
+    "darkwatchers",
+    "california",
+    "bigsur",
+    "folklore",
+    "creepy",
+    "shorts"
+  ]
+}
