@@ -50,3 +50,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 044 | 044-nain-rouge (+ -nl) | The Nain Rouge, the Red Dwarf of Detroit (Michigan, USA, French colonial legend, 1701) | 2026-11-24 |
 | 045 | 045-dark-watchers (+ -nl) | The Dark Watchers (Santa Lucia Mountains, California, USA, ridge-line folklore) | 2026-11-24 |
 | 046 | 046-devils-footprints (+ -nl) | The Devil's Footprints (Devon, England, February 1855) | 2026-11-24 |
+| 047 | 047-bigfoot-ape-canyon (+ -nl) | Bigfoot at Ape Canyon (Mount St. Helens, Washington, USA, July 1924) | 2026-11-25 |
+| 048 | 048-tutankhamun-curse (+ -nl) | The Curse of Tutankhamun (Valley of the Kings, Egypt, 1922-1923) | 2026-11-25 |
+| 049 | 049-jiangshi (+ -nl) | The Jiangshi, the hopping corpse (China, Qing dynasty folklore) | 2026-11-25 |

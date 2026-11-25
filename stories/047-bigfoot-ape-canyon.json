@@ -1,0 +1,132 @@
+{
+  "id": "047-bigfoot-ape-canyon",
+  "legend": "Bigfoot at Ape Canyon (Mount St. Helens, Washington, USA, July 1924)",
+  "lines": [
+    "Ape Canyon, Washington, July 1924.",
+    "Five gold miners build a cabin near Mount Saint Helens.",
+    "Night after night, they hear strange whistles in the dark.",
+    "One evening, a huge, hairy figure steps out from between the pines.",
+    "A miner fires at it, and the creature runs away.",
+    "But at midnight, the whole cabin starts to shake.",
+    "Legend says giant creatures hurled rocks at the roof all night.",
+    "At dawn, the miners fled the mountain and never came back.",
+    "Skeptics call it a prank, but nobody can prove it.",
+    "Would you have stayed in that cabin?"
+  ],
+  "scenes": [
+    {
+      "name": "mountain",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "night",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.7,
+        0.85
+      ]
+    },
+    {
+      "name": "reveal",
+      "from": 3,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "inside",
+      "from": 5,
+      "move": [
+        0,
+        8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "cabin",
+      "from": 6,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "name": "dawn",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "end",
+      "from": 8,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    5
+  ],
+  "title": "The Bigfoot Attack at Ape Canyon: Rocks Rained on the Cabin #shorts",
+  "description": "In July 1924, five miners near Mount St. Helens said giant hairy creatures pelted their cabin with rocks all night. Hoax or something real in the woods?\n\n#scarystories #bigfoot #apecanyon #sasquatch #legend #shorts",
+  "tags": [
+    "scarystories",
+    "bigfoot",
+    "apecanyon",
+    "sasquatch",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

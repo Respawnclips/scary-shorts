@@ -1,0 +1,130 @@
+{
+  "id": "048-tutankhamun-curse-nl",
+  "lang": "nl",
+  "legend": "The Curse of Tutankhamun (Valley of the Kings, Egypt, 1922-1923)",
+  "lines": [
+    "Egypte, negentienhonderdtweeëntwintig. Howard Carter opent het verzegelde graf van de jonge koning Toetanchamon.",
+    "Goud glinstert in het fakkellicht, drieduizend jaar onaangeroerd.",
+    "Dan begint men te fluisteren over een vloek.",
+    "Op de dag van de ontdekking at volgens de legende een cobra Carters kanarie op.",
+    "Maanden later werd Lord Carnarvon, die de opgraving betaalde, ziek in Caïro.",
+    "Hij overleed in april negentienhonderddrieëntwintig, en volgens de legende gingen alle lichten in de stad uit.",
+    "De kranten schreeuwden over de vloek van de farao's.",
+    "Wetenschappers wijzen erop dat de meeste teamleden nog vele jaren leefden.",
+    "Toch bleef de legende bestaan. Zou jij dat graf openen?"
+  ],
+  "scenes": [
+    {
+      "name": "desert",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "tomb",
+      "from": 1,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "whisper",
+      "from": 2,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "canary",
+      "from": 3,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.6,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "cairo",
+      "from": 4,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "news",
+      "from": 6,
+      "move": [
+        12,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "end",
+      "from": 8,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De vloek van Toetanchamon: de kanarie, de cobra en het donkere Caïro",
+  "description": "Nadat het graf van Toetanchamon in 1922 werd geopend, gaven kranten een vloek van de farao de schuld van alle pech. Wat zegt de legende, en wat de feiten?\n\n#engeverhalen #toetanchamon #vloekvandefarao #egypte #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "toetanchamon",
+    "egypte",
+    "legende",
+    "vloek",
+    "foryou"
+  ]
+}

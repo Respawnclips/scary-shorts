@@ -1,0 +1,130 @@
+{
+  "id": "048-tutankhamun-curse",
+  "legend": "The Curse of Tutankhamun (Valley of the Kings, Egypt, 1922-1923)",
+  "lines": [
+    "Egypt, 1922. Howard Carter opens the sealed tomb of young King Tutankhamun.",
+    "Gold glitters in the torchlight, untouched for three thousand years.",
+    "Then people start whispering about a curse.",
+    "On the day of the discovery, legend says, a cobra swallowed Carter's pet canary.",
+    "Months later, Lord Carnarvon, who funded the dig, fell ill in Cairo.",
+    "He died in April 1923, and legend says every light in the city went dark.",
+    "Newspapers screamed about the curse of the pharaohs.",
+    "Scientists point out that most of the team lived for many more years.",
+    "Still, the legend never died. Would you open that tomb?"
+  ],
+  "scenes": [
+    {
+      "name": "desert",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "tomb",
+      "from": 1,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.4,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "whisper",
+      "from": 2,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "canary",
+      "from": 3,
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.6,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "cairo",
+      "from": 4,
+      "move": [
+        0,
+        10,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "news",
+      "from": 6,
+      "move": [
+        12,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "end",
+      "from": 8,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.75
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "King Tut's Curse: The Canary, the Cobra and the Night Cairo Went Dark #shorts",
+  "description": "After the tomb of Tutankhamun was opened in 1922, newspapers blamed a pharaoh's curse for every misfortune. What does the legend say, and what do the facts say?\n\n#scarystories #tutankhamun #curseofthepharaohs #egypt #legend #shorts",
+  "tags": [
+    "scarystories",
+    "tutankhamun",
+    "curseofthepharaohs",
+    "egypt",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

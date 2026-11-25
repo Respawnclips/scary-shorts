@@ -2102,3 +2102,248 @@ def watcher(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), alpha=1.0
             f'<path d="M-62,-520 Q-92,-250 {-118 + sw:.0f},-30 L{118 + sw:.0f},-30 Q92,-250 62,-520Z" fill="{cloak}"/>'
             f'<g transform="translate(-58,-500)">{arm(al)}</g><g transform="translate(58,-500)">{arm(ar)}</g>'
             f'<g transform="translate(0,-560)">{head}</g></g>')
+
+
+# ---------------------------------------------------------------- 2026-11-25 rigs: Bigfoot, cobra, jiangshi + scenery
+def bigfoot(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), fur="#3b2a22", fur2="#5a4034", roar=0.0):
+    """Bigfoot: tall hunched ape-man, long arms. Feet at (x, y), ~560 tall.
+    mode: stand (breathes, arms sway, looks around) | walk | run | throw (winds up and hurls rocks) | roar (arms up, beats chest). roar 0..1 opens the mouth."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * (4.0 if mode == "walk" else 8.5)
+    bob = lean = 0.0; la = ra = 0.0
+    al, el, ar, er = 6 + sn(t * 1.3) * 3, 6, -6 - sn(t * 1.3) * 3, -6
+    hr = sn(t * .8) * 4 + look[0] * 5
+    rock = False
+    if mode in ("walk", "run"):
+        amp = 22 if mode == "walk" else 36
+        la, ra = sn(ph) * amp, -sn(ph) * amp
+        bob = -abs(sn(ph)) * (10 if mode == "walk" else 22); lean = 3 if mode == "walk" else 13
+        al, ar = -sn(ph) * amp * 1.2, sn(ph) * amp * 1.2
+        er, el = (-8, 8) if mode == "walk" else (-60, 60)
+    elif mode == "throw":
+        p = (t * 1.1) % 1.0
+        rock = p < .62
+        if p < .62:
+            k = p / .62; ar = -60 - 110 * k; er = -20 - 40 * k; lean = -6 * k
+        else:
+            k = (p - .62) / .38; ar = -170 + 150 * k; er = -60 + 55 * k; lean = -6 + 18 * k
+        al, el = 25 + sn(t * 3) * 4, 10
+    elif mode == "roar":
+        roar = max(roar, .7 + .3 * sn(t * 9)); beat = sn(t * 11) * 14
+        al, el, ar, er = 120 + beat, 70, -120 - beat, -70; bob = -abs(sn(t * 5.5)) * 8
+    blink = 0.15 if (t % 4.1) < .12 else 1.0
+    fx, fy = look
+
+    def leg(a):
+        return (f'<g transform="translate(0,-232) rotate({a:.1f})"><path d="M-36,0 Q-46,110 -34,226 L34,226 Q48,110 36,0Z" fill="{fur}"/>'
+                f'<path d="M-34,216 Q-44,248 -10,248 Q50,248 58,234 Q52,214 34,214Z" fill="{fur2}"/></g>')
+
+    def arm(a, e, item=False):
+        g = (f'<g transform="rotate({a:.1f})"><path d="M-27,-6 Q-36,90 -25,172 L25,172 Q36,90 27,-6Z" fill="{fur}"/>'
+             f'<path d="M-30,60 l-12,18 l16,-4 M28,90 l12,18 l-16,-4" fill="none" stroke="{fur2}" stroke-width="5"/>'
+             f'<g transform="translate(0,166) rotate({e:.1f})"><path d="M-23,-4 Q-30,84 -19,158 L19,158 Q30,84 23,-4Z" fill="{fur}"/>'
+             f'<circle cx="0" cy="166" r="27" fill="{fur2}"/>')
+        if item:
+            g += '<g transform="translate(0,176)"><path d="M-30,-6 L-10,-30 L24,-24 L34,6 L10,26 L-22,20Z" fill="#8a8d94" stroke-width="5"/></g>'
+        return g + '</g></g>'
+    mo = (f'<path d="M-22,34 Q0,{40 + roar * 26:.0f} 22,34 Q0,{34 + roar * 4:.0f} -22,34Z" fill="#240e10" stroke-width="4"/>'
+          + ('<path d="M-14,36 l4,10 l5,-9 M6,36 l5,9 l4,-10" fill="#f4f0dc" stroke="none"/>' if roar > .3 else ''))
+    ey = "".join(f'<ellipse cx="{ex}" cy="-10" rx="10" ry="{9 * blink:.1f}" fill="#fff" stroke-width="3"/>'
+                 f'<circle cx="{ex + fx * 3:.1f}" cy="{-10 + fy * 2:.1f}" r="4" fill="#0d0f15" stroke="none"/>' for ex in (-21, 21))
+    head = (f'<g transform="rotate({hr:.1f})"><path d="M-50,-10 Q-58,-84 0,-96 Q58,-84 50,-10 Q54,52 0,58 Q-54,52 -50,-10Z" fill="{fur}"/>'
+            f'<path d="M-16,-96 L0,-124 L16,-96Z" fill="{fur}"/>'
+            f'<ellipse cx="0" cy="14" rx="36" ry="38" fill="#7a6254" stroke-width="4"/>' + ey +
+            '<path d="M-40,-26 Q0,-10 40,-26 L36,-18 Q0,-2 -36,-18Z" fill="#1d1412" stroke-width="3"/>'
+            '<path d="M-8,10 l-4,8 M8,10 l4,8" stroke-width="4" fill="none"/>' + mo + '</g>')
+    torso = (f'<path d="M-76,0 Q-128,-110 -104,-250 Q-60,-304 0,-304 Q60,-304 104,-250 Q128,-110 76,0Z" fill="{fur}"/>'
+             f'<ellipse cx="0" cy="-130" rx="52" ry="96" fill="{fur2}" opacity=".7" stroke="none"/>'
+             f'<path d="M-100,-200 l-18,18 l24,-2 M96,-150 l20,16 l-26,0 M-80,-60 l-16,20 l22,-4 M70,-40 l14,22 l-20,-6" fill="none" stroke="{fur2}" stroke-width="5"/>')
+    return (f'<g transform="translate({x},{y + bob:.1f}) scale({f * s},{s})" {OUT}>'
+            f'{leg(la)}{leg(ra)}'
+            f'<g transform="translate(0,-222) rotate({lean:.1f})"><g transform="translate(-106,-250)">{arm(al, el)}</g>'
+            f'{torso}<g transform="translate(0,-292)">{head}</g><g transform="translate(106,-250)">{arm(ar, er, rock)}</g></g></g>')
+
+
+def cobra(x, y, s=1.0, t=0.0, mode="sway", flip=False, look=(1, 0), col="#6a7a3a", col2="#c8b868", strike=0.0):
+    """Cobra: coiled tail, rearing neck with a flared hood. Base at (x, y), ~380 tall.
+    mode: sway (rears and sways, tongue flicks) | strike (lunges forward and back, hood wide) | low (near the ground)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    if mode == "strike":
+        strike = max(strike, max(0.0, sn(t * 2.4)) ** 2)
+    rear = .45 if mode == "low" else 1.0
+    pts = []
+    for k in range(11):
+        pts.append((-340 + k * 34, -sn(k * .95 + t * 1.4) * 16 - 14))
+    neck = []
+    N = 13
+    for k in range(N + 1):
+        v = k / N
+        px = 12 * sn(t * 1.7 + v * 2.6) * v + strike * 300 * v * v + 8
+        py = -v * 330 * rear
+        neck.append((px, py))
+    body = pts + neck
+    d = "M" + " L".join(f"{a:.0f},{b:.0f}" for a, b in body)
+    nd = "M" + " L".join(f"{a:.0f},{b:.0f}" for a, b in neck)
+    hx, hy = neck[-1]
+    flick = max(0.0, sn(t * 7)) * 30
+    hood = 76 * (1.0 + .18 * strike)
+    tongue = (f'<path d="M0,38 l0,{14 + flick:.0f} l-8,10 M0,{52 + flick:.0f} l8,10" stroke="#c43a4a" stroke-width="4" fill="none"/>' if flick > 8 else '')
+    face = (f'<ellipse cx="0" cy="0" rx="40" ry="32" fill="{col}"/>'
+            + "".join(f'<ellipse cx="{ex}" cy="-6" rx="9" ry="9" fill="#ffe04a" stroke-width="3"/><ellipse cx="{ex + look[0] * 2:.1f}" cy="-6" rx="2.6" ry="8" fill="#0d0f15" stroke="none"/>' for ex in (-18, 18))
+            + tongue)
+    return (f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT} fill="none">'
+            f'<path d="{d}" stroke="#0d0f15" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<path d="{d}" stroke="{col}" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<path d="{nd}" stroke="{col2}" stroke-width="12" stroke-linecap="round" opacity=".7"/>'
+            f'<g transform="translate({hx:.0f},{hy + 20:.0f})"><ellipse cx="0" cy="40" rx="{hood:.0f}" ry="{hood * 1.05:.0f}" fill="{col}"/>'
+            f'<path d="M-30,10 Q0,70 30,10" stroke="{col2}" stroke-width="10" fill="none"/><ellipse cx="0" cy="62" rx="{hood * .36:.0f}" ry="{hood * .5:.0f}" fill="{col2}" stroke="none" opacity=".6"/>'
+            f'<g transform="translate(0,-26)">{face}</g></g></g>')
+
+
+def jiangshi(x, y, s=1.0, t=0.0, mode="hop", flip=False, look=(1, 0), robe="#2c4a5a", trim="#b8963a", skin="#8fa58f", paper="#f0d060", speed=1.0, tilt=0.0):
+    """Jiangshi (Chinese hopping corpse): stiff, pale, in an old official robe and cap, yellow paper charm on the forehead, arms straight out. Feet at (x, y), ~480 tall.
+    mode: hop (hops with feet together) | stand (stiff, swaying) | sniff (hops slowly, head swings side to side, sniffing) | lean (leans forward, arms out)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    ph = t * 5.2 * speed
+    lift = 0.0; lean = 4.0; hr = 0.0; arms = -88 + sn(t * 1.5) * 2; sway = 0.0
+    if mode == "hop":
+        lift = abs(sn(ph)) * 74; lean = 6 + lift / 74 * 7; arms = -88 + sn(ph * 2) * 4
+    elif mode == "sniff":
+        ph = t * 2.2; lift = abs(sn(ph)) * 34; hr = sn(t * 2.4) * 16 + tilt; lean = 8
+    elif mode == "lean":
+        lean = 16 + sn(t * 1.3) * 2; hr = sn(t * 1.9) * 6
+    else:
+        sway = sn(t * 1.2) * 3
+    paper_sw = sn(t * 4.3 + lift * .03) * 5
+    blink = 0.0
+    legs = ''.join(f'<path d="M{dx - 20},-110 L{dx - 18},-26 L{dx + 22},-26 L{dx + 20},-110Z" fill="#1c1a22"/><path d="M{dx - 24},-30 Q{dx - 26},-2 {dx},-2 Q{dx + 44},-2 {dx + 46},-14 Q{dx + 40},-30 {dx + 22},-30Z" fill="#0f1016"/>' for dx in (-24, 24))
+    sleeve = lambda dy, c: (f'<g transform="translate(0,{dy}) rotate({arms:.1f})"><path d="M-26,-4 Q-34,100 -22,200 L22,200 Q34,100 26,-4Z" fill="{c}"/>'
+                            f'<path d="M-24,170 h48" stroke="{trim}" stroke-width="7"/><path d="M-12,196 L-14,246 L14,246 L12,196Z" fill="{skin}"/>'
+                            f'<path d="M-14,240 l-3,22 M-4,246 l-1,26 M6,246 l1,26 M14,240 l4,22" stroke="#0d0f15" stroke-width="5" fill="none"/></g>')
+    # head
+    eyes = (f'<path d="M-30,-4 q9,7 18,0 M12,-4 q9,7 18,0" fill="none" stroke-width="5"/>'
+            f'<path d="M-30,6 q10,8 20,0 M10,6 q10,8 20,0" fill="none" stroke="#5a6a5a" stroke-width="4"/>')
+    head = (f'<g transform="rotate({hr:.1f})"><circle cx="0" cy="-44" r="50" fill="{skin}"/>'
+            f'<g transform="translate(0,-44)">{eyes}<path d="M-14,34 q14,10 28,0" fill="#2a1a1a" stroke-width="4"/><path d="M-7,34 l2,9 l3,-8 M3,35 l3,8 l2,-7" fill="#f4f0dc" stroke="none"/></g>'
+            f'<path d="M-62,-62 Q0,-94 62,-62 L56,-92 Q0,-132 -56,-92Z" fill="#14151c"/><path d="M-66,-60 Q0,-80 66,-60 L66,-50 Q0,-68 -66,-50Z" fill="{trim}"/>'
+            f'<g transform="translate(0,-64) skewX({paper_sw:.1f})"><path d="M-20,0 L20,0 L18,58 L0,68 L-18,58Z" fill="{paper}" stroke-width="4"/>'
+            f'<path d="M-9,12 h18 M-10,26 h20 M-7,40 h14 M0,8 v46" stroke="#b02a22" stroke-width="4" fill="none"/></g></g>')
+    body = (f'<g transform="translate(0,-110) rotate({lean + sway:.1f})">'
+            f'<g transform="translate(0,-170)">{sleeve(0, "#223a48")}</g>'
+            f'<path d="M-66,44 L-76,-170 Q-40,-205 0,-205 Q40,-205 76,-170 L66,44Z" fill="{robe}"/>'
+            f'<path d="M0,-200 V44" stroke="{trim}" stroke-width="7" fill="none"/><path d="M-66,34 H66" stroke="{trim}" stroke-width="8"/>'
+            f'<rect x="-34" y="-136" width="68" height="56" fill="none" stroke="{trim}" stroke-width="6"/><path d="M-22,-124 h44 M-22,-108 h44 M-22,-92 h44" stroke="{trim}" stroke-width="3"/>'
+            f'<g transform="translate(0,-190)">{sleeve(0, robe)}</g>'
+            f'<rect x="-14" y="-224" width="28" height="30" fill="{skin}"/><g transform="translate(0,-196)">{head}</g></g>')
+    return (f'<g transform="translate({x},{y - lift:.1f}) scale({f * s},{s})" {OUT}>{legs}{body}</g>')
+
+
+def volcano(x, y, w=1100, h=900, col="#4a5470", snow_="#dce4ee"):
+    return (f'<path d="M{x - w / 2},{y} L{x - w * .12},{y - h} L{x - w * .04},{y - h * .93} L{x + w * .06},{y - h * 1.0} L{x + w * .14},{y - h * .96} L{x + w / 2},{y}Z" fill="{col}" {OUT}/>'
+            f'<path d="M{x - w * .12},{y - h} L{x - w * .04},{y - h * .93} L{x + w * .06},{y - h} L{x + w * .14},{y - h * .96} L{x + w * .2},{y - h * .72} L{x + w * .08},{y - h * .78} L{x - w * .02},{y - h * .7} L{x - w * .1},{y - h * .78} L{x - w * .18},{y - h * .7}Z" fill="{snow_}" {OUT}/>')
+
+
+def cabin(x, y, s=1.0, lit="#f3c555", logs="#6a4a30", roof="#3a2a22", shake=0.0, t=0.0):
+    sh = _m.sin(t * 40) * shake
+    g = f'<g transform="translate({x + sh:.1f},{y}) scale({s})" {OUT}><rect x="-230" y="-250" width="460" height="250" fill="{logs}"/>'
+    for yy in range(-210, 0, 42):
+        g += f'<path d="M-230,{yy} H230" stroke="#2a1c12" stroke-width="5"/>'
+    g += (f'<path d="M-270,-240 L0,-400 L270,-240Z" fill="{roof}"/><rect x="-170" y="-190" width="90" height="90" fill="{lit}"/>'
+          f'<path d="M-125,-190 V-100 M-170,-145 H-80" stroke="#2a1c12" stroke-width="5"/><rect x="60" y="-180" width="90" height="180" fill="#2a1c12"/>'
+          f'<rect x="130" y="-420" width="46" height="100" fill="#4a3a36"/></g>')
+    return g
+
+
+def pyramid(x, y, s=1.0, col="#a8946a", shade="#7a6a4a"):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-420,0 L0,-420 L420,0Z" fill="{col}"/><path d="M0,-420 L420,0 L120,0Z" fill="{shade}"/></g>')
+
+
+def torch(x, y, s=1.0, t=0.0):
+    fl = f'<path d="M0,-6 Q-30,{-50 - _m.sin(t * 9) * 10:.0f} 0,{-110 - _m.sin(t * 11) * 12:.0f} Q30,-50 0,-6Z" fill="#e8892a" stroke-width="4"/><path d="M0,-6 Q-14,-34 0,{-66 - _m.sin(t * 13) * 8:.0f} Q14,-34 0,-6Z" fill="#f6d36a" stroke="none"/>'
+    return f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-10,0 L-16,230 L16,230 L10,0Z" fill="#4a3322"/><path d="M-26,0 L26,0 L18,-18 L-18,-18Z" fill="#2a2a30"/>{fl}</g>'
+
+
+def tomb_wall(y=1500, stone="#6a5a44", seed=12):
+    r = random.Random(seed)
+    g = f'<rect width="1350" height="2400" fill="#1c1812"/><rect x="-20" y="-20" width="1390" height="{y + 20}" fill="{stone}" {OUT}/>'
+    for row in range(0, y, 130):
+        off = 0 if (row // 130) % 2 == 0 else 100
+        for cx in range(-100 + off, 1400, 200):
+            g += f'<rect x="{cx}" y="{row}" width="200" height="130" fill="none" stroke="#2a2218" stroke-width="4" opacity=".6"/>'
+    # abstract wall paintings: eyes, waves, little birds, figures (original, not real glyphs)
+    for gx in range(80, 1300, 210):
+        for gy in range(150, y - 150, 260):
+            k = r.randint(0, 3)
+            c = r.choice(["#b8452e", "#2f7a8a", "#d8b44a"])
+            if k == 0:
+                g += f'<path d="M{gx},{gy} q40,-34 80,0 q-40,34 -80,0Z" fill="none" stroke="{c}" stroke-width="6"/><circle cx="{gx + 40}" cy="{gy}" r="9" fill="{c}" stroke="none"/>'
+            elif k == 1:
+                g += f'<path d="M{gx},{gy} q20,-26 40,0 t40,0 t40,0" fill="none" stroke="{c}" stroke-width="6"/>'
+            elif k == 2:
+                g += f'<path d="M{gx + 20},{gy + 40} L{gx + 40},{gy - 20} L{gx + 60},{gy + 40}M{gx + 40},{gy - 20} v-26" fill="none" stroke="{c}" stroke-width="6"/><circle cx="{gx + 40}" cy="{gy - 56}" r="12" fill="{c}" stroke="none"/>'
+            else:
+                g += f'<rect x="{gx + 10}" y="{gy - 30}" width="60" height="60" fill="none" stroke="{c}" stroke-width="6"/><path d="M{gx + 10},{gy} h60" stroke="{c}" stroke-width="5"/>'
+    return g + f'<rect x="-20" y="{y}" width="1390" height="{2420 - y}" fill="#3a3024" {OUT}/>'
+
+
+def goldshrine(x, y, s=1.0, gold="#d8b43a", dark="#8a6a1e"):
+    g = f'<g transform="translate({x},{y}) scale({s})" {OUT}><rect x="-300" y="-420" width="600" height="420" fill="{gold}"/><rect x="-300" y="-470" width="600" height="60" fill="{dark}"/>'
+    for px in (-250, -90, 90, 250):
+        g += f'<rect x="{px - 14}" y="-410" width="28" height="400" fill="{dark}"/>'
+    g += f'<path d="M-200,-300 q50,-40 100,0 q-50,40 -100,0Z M100,-300 q50,-40 100,0 q-50,40 -100,0Z" fill="#2f7a8a"/><path d="M-60,-200 h120 v60 h-120Z" fill="#b8452e"/>'
+    return g + '</g>'
+
+
+def sealed_door(x, y, s=1.0, glow_=0.0):
+    g = (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-260,0 L-260,-520 Q0,-640 260,-520 L260,0Z" fill="#7a6a50"/>'
+         f'<path d="M-190,0 L-190,-480 Q0,-570 190,-480 L190,0Z" fill="#4a3e2e"/><path d="M-190,-250 H190" stroke="#2a2218" stroke-width="8"/>'
+         f'<path d="M-60,-330 q60,-40 120,0 q-60,40 -120,0Z" fill="#d8b43a"/><circle cx="0" cy="-330" r="12" fill="#0d0f15"/><path d="M0,-400 v-40" stroke="#d8b43a" stroke-width="10"/></g>')
+    if glow_ > 0:
+        g += glow(x, y - 330 * s, 260 * s, "#ffd860", .5 * glow_)
+    return g
+
+
+def cairo_city(y=1700, lit=1.0, seed=7, col="#1f2a40", shapes=True, windows=True):
+    """Night skyline with domes and minarets; `lit` 0..1 = share of windows still lit (decreasing in a story animation).
+    Use shapes=True/windows=False for the static buildings and shapes=False/windows=True in an actor for animated windows."""
+    r = random.Random(seed); g = ''
+    for bx in range(-40, 1400, 190):
+        h = r.randint(260, 520); w = 170
+        if shapes:
+            g += f'<rect x="{bx}" y="{y - h}" width="{w}" height="{h + 700}" fill="{col}" {OUT}/>'
+        dome = r.random() < .5
+        if shapes:
+            if dome:
+                g += f'<path d="M{bx + 10},{y - h} Q{bx + w / 2},{y - h - 150} {bx + w - 10},{y - h}Z" fill="{col}" {OUT}/><path d="M{bx + w / 2},{y - h - 148} v-50" stroke="#0d0f15" stroke-width="6"/>'
+            else:
+                g += f'<rect x="{bx + w / 2 - 14}" y="{y - h - 160}" width="28" height="160" fill="{col}" {OUT}/><path d="M{bx + w / 2 - 22},{y - h - 160} L{bx + w / 2},{y - h - 220} L{bx + w / 2 + 22},{y - h - 160}Z" fill="{col}" {OUT}/>'
+        for wy in range(y - h + 40, y + 500, 90):
+            for wx in (bx + 30, bx + 100):
+                v = r.random()
+                if windows and v < lit * 0.85:
+                    g += f'<rect x="{wx}" y="{wy}" width="36" height="46" fill="#f3c555" stroke="#0d0f15" stroke-width="3"/>'
+    return g
+
+
+def bamboo(x, y, h=1200, col="#4a7a52", seed=1):
+    r = random.Random(seed); g = f'<g {OUT}>'
+    for i, dx in enumerate((-50, 0, 46)):
+        hh = h * r.uniform(.8, 1.0)
+        g += f'<rect x="{x + dx - 16}" y="{y - hh}" width="32" height="{hh}" fill="{col}"/>'
+        for k in range(1, int(hh // 150)):
+            g += f'<path d="M{x + dx - 16},{y - k * 150} h32" stroke="#0d0f15" stroke-width="5"/><path d="M{x + dx + 16},{y - k * 150} q50,-20 80,-50 q-50,8 -80,20Z" fill="{col}" stroke-width="4"/>'
+    return g + '</g>'
+
+
+def inn(x, y, s=1.0, lit="#f3c555", wall="#7a5a44", roof="#2c2430"):
+    g = (f'<g transform="translate({x},{y}) scale({s})" {OUT}><rect x="-300" y="-300" width="600" height="300" fill="{wall}"/>'
+         f'<path d="M-380,-290 Q-260,-300 -200,-380 L200,-380 Q260,-300 380,-290 L330,-250 L-330,-250Z" fill="{roof}"/>'
+         f'<path d="M-330,-250 Q-200,-260 -150,-330 L-150,-380 M330,-250 Q200,-260 150,-330" fill="none"/>'
+         f'<rect x="-230" y="-230" width="110" height="110" fill="{lit}"/><path d="M-175,-230 V-120 M-230,-175 H-120" stroke="#2a1c12" stroke-width="6"/>'
+         f'<rect x="-50" y="-200" width="100" height="200" fill="#3a1e18"/><path d="M0,-200 V0" stroke="#0d0f15" stroke-width="5"/>'
+         f'<rect x="120" y="-230" width="110" height="110" fill="{lit}"/><path d="M175,-230 V-120 M120,-175 H230" stroke="#2a1c12" stroke-width="6"/>'
+         f'<ellipse cx="-300" cy="-190" rx="26" ry="36" fill="#c8382e" stroke-width="5"/><ellipse cx="300" cy="-190" rx="26" ry="36" fill="#c8382e" stroke-width="5"/></g>')
+    return g + glow(x - 300 * s, y - 190 * s, 140 * s, "#ff8a60", .35) + glow(x + 300 * s, y - 190 * s, 140 * s, "#ff8a60", .35)

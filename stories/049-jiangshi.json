@@ -1,0 +1,137 @@
+{
+  "id": "049-jiangshi",
+  "legend": "The Jiangshi, the hopping corpse (China, Qing dynasty folklore)",
+  "lines": [
+    "Hunan, China, long ago. Rain falls on a mountain road.",
+    "A traveler hears a slow, strange thump. Thump. Thump.",
+    "Out of the mist hops a stiff figure with its arms stretched out.",
+    "A yellow paper charm is stuck to its forehead.",
+    "Legend says this is a jiangshi, a hopping corpse.",
+    "It cannot see you, but it can feel your breath.",
+    "So the traveler hides in an inn and holds his breath.",
+    "The thing hops closer and closer, then stops at the door.",
+    "At dawn, the rooster crows, and the hopping stops.",
+    "Could you hold your breath that long?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "thump",
+      "from": 1,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "hop",
+      "from": 2,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "charm",
+      "from": 3,
+      "move": [
+        0,
+        8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ],
+      "fog": false,
+      "rain": true
+    },
+    {
+      "name": "breath",
+      "from": 4,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "inn",
+      "from": 6,
+      "move": [
+        12,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.6,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "dawn",
+      "from": 8,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "The Jiangshi: China's Hopping Corpse That Hunts by Your Breath #shorts",
+  "description": "In old Chinese folklore, the jiangshi is a stiff, hopping corpse with a paper charm on its forehead. Legend says it hunts by feeling your breath.\n\n#scarystories #jiangshi #chinesefolklore #hoppingvampire #legend #shorts",
+  "tags": [
+    "scarystories",
+    "jiangshi",
+    "chinesefolklore",
+    "hoppingvampire",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "049-jiangshi-nl",
+  "lang": "nl",
+  "legend": "The Jiangshi, the hopping corpse (China, Qing dynasty folklore)",
+  "lines": [
+    "Hunan, China, lang geleden. Regen valt op een bergpad.",
+    "Een reiziger hoort een trage, vreemde bonk. Bonk. Bonk.",
+    "Uit de mist hipt een stijve gestalte, met de armen recht vooruit.",
+    "Op zijn voorhoofd zit een geel papieren amulet geplakt.",
+    "Volgens de legende is dit een jiangshi, een hippend lijk.",
+    "Hij kan je niet zien, maar wel je adem voelen.",
+    "Dus verstopt de reiziger zich in een herberg en houdt zijn adem in.",
+    "Het ding hipt steeds dichterbij, en blijft bij de deur staan.",
+    "Bij zonsopgang kraait de haan, en het gehipt stopt.",
+    "Zou jij net zo lang je adem kunnen inhouden?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "rain": true
+    },
+    {
+      "name": "thump",
+      "from": 1,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.3,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "hop",
+      "from": 2,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "charm",
+      "from": 3,
+      "move": [
+        0,
+        8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ],
+      "fog": false,
+      "rain": true
+    },
+    {
+      "name": "breath",
+      "from": 4,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "inn",
+      "from": 6,
+      "move": [
+        12,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.6,
+        0.8
+      ],
+      "rain": true
+    },
+    {
+      "name": "dawn",
+      "from": 8,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "De Jiangshi: het hippende lijk dat je opspoort via je adem",
+  "description": "In oude Chinese folklore is de jiangshi een stijf, hippend lijk met een papieren amulet op het voorhoofd. Hij spoort je op via je adem.\n\n#engeverhalen #jiangshi #chinesefolklore #hippendlijk #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "jiangshi",
+    "chinesefolklore",
+    "legende",
+    "foryou"
+  ]
+}

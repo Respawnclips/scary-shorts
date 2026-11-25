@@ -1,0 +1,132 @@
+{
+  "id": "047-bigfoot-ape-canyon-nl",
+  "lang": "nl",
+  "legend": "Bigfoot at Ape Canyon (Mount St. Helens, Washington, USA, July 1924)",
+  "lines": [
+    "Ape Canyon, Washington, juli negentienhonderdvierentwintig.",
+    "Vijf goudzoekers bouwen een hut bij de berg Mount Saint Helens.",
+    "Nacht na nacht horen ze vreemd gefluit in het donker.",
+    "Op een avond stapt een enorme, harige gestalte tussen de dennen vandaan.",
+    "Een mijnwerker schiet, en het wezen rent weg.",
+    "Maar om middernacht begint de hele hut te trillen.",
+    "Volgens de legende gooiden reuzen de hele nacht stenen op het dak.",
+    "Bij zonsopgang vluchtten de mannen de berg af en kwamen nooit meer terug.",
+    "Sceptici noemen het een grap, maar niemand kan het bewijzen.",
+    "Zou jij in die hut zijn gebleven?"
+  ],
+  "scenes": [
+    {
+      "name": "mountain",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ],
+      "fog": false
+    },
+    {
+      "name": "night",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.7,
+        0.85
+      ]
+    },
+    {
+      "name": "reveal",
+      "from": 3,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.55,
+        0.8
+      ]
+    },
+    {
+      "name": "inside",
+      "from": 5,
+      "move": [
+        0,
+        8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "cabin",
+      "from": 6,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.25
+      ],
+      "focus": [
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "name": "dawn",
+      "from": 7,
+      "move": [
+        15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "end",
+      "from": 8,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    5
+  ],
+  "title": "De nacht dat Bigfoot een hut bestookte met stenen",
+  "description": "In juli 1924 zeiden vijf mijnwerkers bij Mount St. Helens dat harige reuzen de hele nacht stenen op hun hut gooiden. Grap of echt?\n\n#engeverhalen #bigfoot #apecanyon #sasquatch #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "bigfoot",
+    "apecanyon",
+    "sasquatch",
+    "legende",
+    "foryou"
+  ]
+}
