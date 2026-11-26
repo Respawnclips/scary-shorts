@@ -1,0 +1,133 @@
+{
+  "id": "052-oak-island",
+  "legend": "The Oak Island Money Pit (Nova Scotia, Canada, 1795 legend)",
+  "lines": [
+    "Oak Island, Nova Scotia, seventeen ninety-five.",
+    "A teenage boy finds a dip in the ground under an old oak.",
+    "A ship's pulley hangs from a branch above it.",
+    "He and two friends start digging.",
+    "Every ten feet down, they hit a platform of thick oak logs.",
+    "At ninety feet, legend says, a stone with strange symbols waits.",
+    "Then the pit floods with seawater, and the digging stops.",
+    "For over two hundred years, treasure hunters have tried to drain it.",
+    "Nobody has proved what is down there, if anything.",
+    "Pirate gold, or a clever trick? What do you think?"
+  ],
+  "scenes": [
+    {
+      "name": "island",
+      "from": 0,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "oak",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "dig",
+      "from": 3,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "platforms",
+      "from": 4,
+      "move": [
+        0,
+        12,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "stone",
+      "from": 5,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.6,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "flood",
+      "from": 6,
+      "move": [
+        0,
+        12,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "hunters",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "Oak Island: The Pit That Swallowed 200 Years of Treasure Hunters #shorts",
+  "description": "In 1795, a boy found a strange dip under an oak on Oak Island, and legend says a booby-trapped pit lies beneath. Pirate treasure, or a clever trick?\n\n#scarystories #oakisland #treasure #mystery #legend #shorts",
+  "tags": [
+    "scarystories",
+    "oakisland",
+    "treasure",
+    "mystery",
+    "legend",
+    "pirates",
+    "shorts"
+  ]
+}

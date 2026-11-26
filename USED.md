@@ -53,3 +53,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 047 | 047-bigfoot-ape-canyon (+ -nl) | Bigfoot at Ape Canyon (Mount St. Helens, Washington, USA, July 1924) | 2026-11-25 |
 | 048 | 048-tutankhamun-curse (+ -nl) | The Curse of Tutankhamun (Valley of the Kings, Egypt, 1922-1923) | 2026-11-25 |
 | 049 | 049-jiangshi (+ -nl) | The Jiangshi, the hopping corpse (China, Qing dynasty folklore) | 2026-11-25 |
+| 050 | 050-flatwoods-monster (+ -nl) | The Flatwoods Monster (Flatwoods, West Virginia, USA, 12 September 1952) | 2026-11-26 |
+| 051 | 051-pontianak (+ -nl) | The Pontianak (Malay village folklore, Malaysia and Indonesia) | 2026-11-26 |
+| 052 | 052-oak-island (+ -nl) | The Oak Island Money Pit (Nova Scotia, Canada, 1795 legend) | 2026-11-26 |

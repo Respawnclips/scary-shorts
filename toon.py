@@ -2347,3 +2347,235 @@ def inn(x, y, s=1.0, lit="#f3c555", wall="#7a5a44", roof="#2c2430"):
          f'<rect x="120" y="-230" width="110" height="110" fill="{lit}"/><path d="M175,-230 V-120 M120,-175 H230" stroke="#2a1c12" stroke-width="6"/>'
          f'<ellipse cx="-300" cy="-190" rx="26" ry="36" fill="#c8382e" stroke-width="5"/><ellipse cx="300" cy="-190" rx="26" ry="36" fill="#c8382e" stroke-width="5"/></g>')
     return g + glow(x - 300 * s, y - 190 * s, 140 * s, "#ff8a60", .35) + glow(x + 300 * s, y - 190 * s, 140 * s, "#ff8a60", .35)
+
+
+# ---------------------------------------------------------------- 050-052 rigs: Flatwoods monster, pontianak, digger + scenery
+def flatwoods(x, y, s=1.0, t=0.0, mode="hover", flip=False, look=(1, 0), aura=1.0, skirt="#2b3a36", face="#c4452e"):
+    """Flatwoods monster: tall, hovering, dark metallic body, spade-shaped hood around a round red face, two glowing green eyes, clawed arms.
+    Hem at (x, y), ~640 tall incl. hood. mode: hover (bobs, head turns slowly) | glide (drifts, leans forward) | reach (arms raised toward you) | stand (still, arms down).
+    aura 0..1 = strength of the glow around the head."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    hov = -40 - sn(t * 1.6) * 16
+    lean = 0.0; hr = sn(t * .8) * 16 + look[0] * 6
+    a1, e1, a2, e2 = 12 + sn(t * 1.7) * 5, 10, -12 - sn(t * 1.5) * 5, -10
+    if mode == "glide":
+        lean = 7 + sn(t * 1.2) * 2; a1, e1, a2, e2 = 40, 25, -40, -25
+        hov = -34 - sn(t * 1.1) * 8
+    elif mode == "reach":
+        a1, e1, a2, e2 = 98 + sn(t * 3.2) * 6, 14, -98 - sn(t * 3.1) * 6, -14; hr = sn(t * 1.4) * 8; lean = -3
+    elif mode == "stand":
+        hov = -sn(t * 1.2) * 3
+    blink = 0.1 if (t % 3.6) < .12 else 1.0
+    pulse = .75 + .25 * sn(t * 5)
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-14,-4 Q-24,70 -16,150 L16,150 Q24,70 14,-4Z" fill="{skirt}"/>'
+                f'<g transform="translate(0,146) rotate({e:.1f})"><path d="M-14,-2 Q-20,60 -12,130 L12,130 Q20,60 14,-2Z" fill="{skirt}"/>'
+                f'<path d="M-12,126 l-18,56 M0,130 l-2,62 M12,126 l18,56" stroke="#0d0f15" stroke-width="9" stroke-linecap="round" fill="none"/>'
+                f'<path d="M-12,126 l-18,56 M0,130 l-2,62 M12,126 l18,56" stroke="#7a8a82" stroke-width="3" stroke-linecap="round" fill="none"/></g></g>')
+    eyes = "".join(f'<ellipse cx="{ex}" cy="-8" rx="15" ry="{14 * blink:.1f}" fill="#b8ff8a" stroke-width="4"/>'
+                   f'<ellipse cx="{ex + look[0] * 4:.1f}" cy="-8" rx="4" ry="{11 * blink:.1f}" fill="#0d1a10" stroke="none"/>' for ex in (-24, 24))
+    head = (f'<g transform="rotate({hr:.1f})"><g stroke="none">{glow(0, -30, 330 * aura + 10, "#ff6a3a", .30 * pulse)}</g>'
+            f'<path d="M0,-170 C-130,-110 -170,-20 -96,36 Q-52,62 0,48 Q52,62 96,36 C170,-20 130,-110 0,-170Z" fill="{skirt}"/>'
+            f'<path d="M0,-150 C-96,-100 -120,-30 -78,14" fill="none" stroke="#5a6e66" stroke-width="4"/>'
+            f'<circle cx="0" cy="-8" r="62" fill="{face}"/>' + eyes +
+            '<path d="M-16,30 q16,8 32,0" fill="none" stroke-width="4"/></g>')
+    body = (f'<path d="M-58,-470 Q-70,-380 -64,-330 Q-150,-170 -130,-4 Q0,24 130,-4 Q150,-170 64,-330 Q70,-380 58,-470Z" fill="{skirt}"/>'
+            f'<path d="M-34,-420 Q-40,-250 -70,-20 M34,-420 Q40,-250 70,-20 M0,-440 V-10" fill="none" stroke="#5a6e66" stroke-width="4" opacity=".8"/>')
+    mist = "".join(f'<ellipse cx="{mx + sn(t * 1.1 + mx) * 14:.0f}" cy="{8 + k * 4}" rx="{170 - k * 26}" ry="22" fill="#b8c8c0" opacity=".38" stroke="none"/>' for k, mx in enumerate((-20, 24, 0)))
+    return (f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="translate(0,30)">{mist}</g>'
+            f'<g transform="translate(0,{hov:.1f}) rotate({lean:.1f})">{body}<g transform="translate(-62,-420)">{arm(a1, e1)}</g>'
+            f'<g transform="translate(0,-492)">{head}</g><g transform="translate(62,-420)">{arm(a2, e2)}</g></g></g>')
+
+
+def pontianak(x, y, s=1.0, t=0.0, mode="float", flip=False, look=(1, 0), alpha=0.95, gown="#e9edf2", hair="#0b0b12", face_only=False, tilt=0.0):
+    """Pontianak (Malay ghost): pale woman in a tattered white gown, very long black hair hiding half her face, glowing red eyes. Hem at (x, y), ~500 tall.
+    mode: float (drifts, arms hang) | reach (arms out toward you) | tilt (head tilts far sideways, stares) | perch (hunched, crouching low like on a branch).
+    tilt adds extra head tilt in degrees. face_only draws only the head centred at (x, y)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    hov = -30 - sn(t * 1.3) * 14
+    hr = sn(t * .9) * 4 + look[0] * 4 + tilt
+    la, lb, ra, rb = 10 + sn(t * 1.5) * 5, -8, -10 - sn(t * 1.4) * 5, -8
+    crouch = 0.0
+    if mode == "reach":
+        la, lb, ra, rb = 92 + sn(t * 2.4) * 5, 4, -92 - sn(t * 2.2) * 5, -4
+    elif mode == "tilt":
+        hr = 38 + sn(t * 1.1) * 6 + tilt
+    elif mode == "perch":
+        crouch = 1.0; hov = -sn(t * 1.6) * 4; la, lb, ra, rb = 30, 40, -30, -40; hr = sn(t * 1.2) * 8 + tilt
+    blink = 0.15 if (t % 4.4) < .12 else 1.0
+    pulse = .7 + .3 * sn(t * 4)
+    strands = ""
+    for k in range(9):
+        ox = (k - 4) * 14; L = 380 + (k % 4) * 40
+        w = sn(t * 1.7 + k * .8) * 22
+        strands += f'<path d="M{ox},-40 Q{ox * 2.2 + w:.0f},{L * .4:.0f} {ox * 1.8 + w * 1.4:.0f},{L:.0f} Q{ox * 1.1 + w * .4:.0f},{L * .5:.0f} {ox * .4 + 8},-30Z" fill="{hair}" stroke-width="3"/>'
+
+    def head():
+        eyes = (f'<ellipse cx="14" cy="-4" rx="12" ry="{12 * blink:.1f}" fill="#1a0a0c" stroke-width="4"/>'
+                f'<circle cx="{14 + look[0] * 3:.1f}" cy="{-4 + look[1] * 2:.1f}" r="{6 * pulse + 1:.1f}" fill="#ff3a2a" stroke="none"/>'
+                f'<ellipse cx="-20" cy="-4" rx="12" ry="{12 * blink:.1f}" fill="#1a0a0c" stroke-width="4"/>'
+                f'<circle cx="{-20 + look[0] * 3:.1f}" cy="{-4 + look[1] * 2:.1f}" r="{6 * pulse + 1:.1f}" fill="#ff3a2a" stroke="none"/>')
+        return (f'<g transform="rotate({hr:.1f})"><g transform="translate(0,-30)">{strands}</g>'
+                f'<ellipse cx="0" cy="0" rx="46" ry="56" fill="#d9e0e6"/>' + eyes +
+                '<path d="M-12,30 q12,6 24,0" fill="#2a1014" stroke-width="4"/>'
+                f'<path d="M-50,-8 Q-58,-70 0,-72 Q58,-70 52,-8 Q30,-40 4,-34 Q-8,-4 -26,-10 Q-40,-40 -50,-8Z" fill="{hair}" stroke-width="3"/>'
+                f'<path d="M-48,0 Q-60,60 -50,130 L-34,130 Q-40,60 -30,10Z" fill="{hair}" stroke-width="3"/></g>')
+    if face_only:
+        return f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>{head()}</g>'
+
+    def arm(a, e):
+        return (f'<g transform="rotate({a:.1f})"><path d="M-14,-6 Q-30,56 -20,112 L20,112 Q32,56 14,-6Z" fill="{gown}"/>'
+                f'<g transform="translate(0,108) rotate({e:.1f})"><path d="M-18,0 Q-30,48 -22,96 L22,96 Q30,48 18,0Z" fill="{gown}"/>'
+                f'<circle cx="0" cy="98" r="13" fill="#d9e0e6"/><path d="M-8,106 l-5,36 M0,108 l0,40 M8,106 l6,36" stroke="#d9e0e6" stroke-width="6" stroke-linecap="round" fill="none"/>'
+                f'<path d="M-8,106 l-5,36 M0,108 l0,40 M8,106 l6,36" stroke="#0d0f15" stroke-width="1.5" fill="none"/></g></g>')
+    w1, w2, w3 = sn(t * 2.1) * 22, sn(t * 2.1 + 1.8) * 26, sn(t * 2.1 + 3.4) * 22
+    sc = 1 - .28 * crouch
+    out = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g opacity="{alpha}" transform="translate(0,{hov:.1f}) scale(1,{sc:.2f})">'
+    out += (f'<path d="M-60,-340 Q-150,-130 {-170 + w1:.0f},6 L{-110 + w1:.0f},-24 L{-56 + w2:.0f},30 L{-4 + w2:.0f},-18 L{54 + w3:.0f},34 L{108 + w3:.0f},-22 L{176 + w3:.0f},6 Q150,-130 60,-340Z" fill="{gown}"/>'
+            f'<path d="M-26,-290 Q-40,-140 {-46 + w1:.0f},-20 M28,-290 Q42,-140 {50 + w3:.0f},-20" fill="none" stroke="#9aa6b6" stroke-width="4" opacity=".7"/>'
+            f'<path d="M-30,-120 l10,40 M40,-90 l-8,50" stroke="#7a6a5a" stroke-width="4" opacity=".5" fill="none"/>')
+    out += f'<g transform="translate(-50,-316)">{arm(la, lb)}</g>'
+    out += f'<path d="M-56,-260 Q-64,-330 -38,-354 Q0,-366 38,-354 Q64,-330 56,-260Z" fill="{gown}"/>'
+    out += f'<g transform="translate(0,-404)">{head()}</g>'
+    out += f'<g transform="translate(50,-316)">{arm(ra, rb)}</g>'
+    return out + '</g></g>'
+
+
+def _ik(sx, sy, hx, hy, l1, l2, bend=1):
+    """Two-bone IK: elbow point for a shoulder (sx,sy) reaching (hx,hy)."""
+    d = max(1e-3, min(_m.hypot(hx - sx, hy - sy), l1 + l2 - 1))
+    a = (l1 * l1 - l2 * l2 + d * d) / (2 * d)
+    h = _m.sqrt(max(0, l1 * l1 - a * a))
+    ux, uy = (hx - sx) / d, (hy - sy) / d
+    return sx + ux * a - bend * uy * h, sy + uy * a + bend * ux * h
+
+
+def digger(x, y, s=1.0, t=0.0, mode="dig", flip=False, coat="#6a4a3a", pants="#2a2a34", skin="#e2c29a", hair="#14141a", hat=True, look=(1, 0)):
+    """Treasure digger seen from the side, facing right (feet at (x, y), ~430 tall). Arms use IK so the hands really hold the tool.
+    mode: dig (stabs a shovel into the ground and heaves a load) | pull (hauls on a rope, leaning back) | flee (runs, looking back over the shoulder) | gaze (stands, hand over eyes, looking down)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    lean = 8.0; bob = 0.0; la = ra = 0.0; lk = rk = 0.0
+    sh = (10, -330)
+    tool = None
+    if mode == "dig":
+        p = (t * 1.1) % 1.0
+        k = sn(p * _m.pi * 2) * .5 + .5
+        lean = 12 + 26 * k
+        hand = (150 + 60 * (1 - k), -150 + 150 * k)
+        ang = 12 - 55 * (1 - k) + (-40 if p > .65 else 0)
+        tool = ("shovel", hand, ang)
+    elif mode == "pull":
+        k = sn(t * 2.2) * .5 + .5
+        lean = -14 - 8 * k; hand = (130 + 20 * k, -140 + 10 * k)
+        tool = ("rope", hand, 0)
+        la, ra = 10, -8
+    elif mode == "flee":
+        ph = t * 9.0
+        la, ra = sn(ph) * 40, -sn(ph) * 40
+        lk, rk = max(0, sn(ph + 1.3)) * 60, max(0, sn(ph + 1.3 + _m.pi)) * 60
+        bob = -abs(sn(ph)) * 16; lean = 14
+        tool = ("flail", (60 + sn(ph) * 60, -140 + sn(ph + 1) * 50), 0)
+    else:
+        lean = 6 + sn(t * 1.4) * 2; hand = (56, -228 + sn(t * 2) * 4)
+        tool = ("brow", hand, 0)
+    blink = 0.12 if (t % 3.5) < .12 else 1.0
+    o = f'<g transform="translate({x},{y + bob:.1f}) scale({f * s},{s})" {OUT}>'
+    # legs
+    for dx, a, k_ in ((-26, la, lk), (26, ra, rk)):
+        o += (f'<g transform="translate({dx},-170) rotate({a:.1f})"><path d="M-28,-6 L28,-6 L24,88 L-24,88Z" fill="{pants}"/>'
+              f'<g transform="translate(0,84) rotate({k_:.1f})"><path d="M-24,0 L24,0 L20,82 L-20,82Z" fill="{pants}"/>'
+              f'<path d="M-22,78 Q-24,100 0,100 Q40,100 46,90 Q44,80 20,78Z" fill="#14161b"/></g></g>')
+    # torso (bends forward at the hips)
+    o += f'<g transform="translate(0,-170) rotate({lean:.1f})">'
+    o += f'<path d="M-52,0 Q-64,-80 -50,-160 Q0,-184 52,-160 Q64,-80 52,0Z" fill="{coat}"/><path d="M-52,-40 H52" stroke="#2a1c12" stroke-width="8"/>'
+    # tool + arms are drawn in torso space: shoulder at (10,-150)
+    shx, shy = 10, -150
+    if tool[0] in ("shovel", "rope", "flail", "brow"):
+        hx, hy = tool[1][0], tool[1][1] + 170 * 0 + 0
+        # hand coordinates are given in the torso frame (origin = hip), y up negative
+        hx, hy = tool[1][0], tool[1][1] + 170 - 170 + 0
+    hx, hy = tool[1]
+    hy = hy + 20
+    ex, ey = _ik(shx, shy, hx, hy, 105, 100, bend=-1 if tool[0] != "brow" else 1)
+    if tool[0] == "shovel":
+        ang = tool[2]
+        o += (f'<g transform="translate({hx:.0f},{hy:.0f}) rotate({ang:.1f})"><rect x="-8" y="-60" width="16" height="250" rx="5" fill="#7a5a36"/>'
+              f'<path d="M-30,186 L30,186 L22,260 L0,282 L-22,260Z" fill="#8a9098"/><path d="M-22,260 H22" stroke="#0d0f15" stroke-width="3"/>'
+              f'<ellipse cx="0" cy="290" rx="30" ry="9" fill="#5a4636" stroke="none" opacity=".0"/></g>')
+    elif tool[0] == "rope":
+        o += (f'<path d="M{hx:.0f},{hy:.0f} Q{hx + 80:.0f},{hy - 60:.0f} {hx + 300:.0f},{hy - 120:.0f}" fill="none" stroke="#b8975a" stroke-width="12"/>'
+              f'<path d="M{hx:.0f},{hy:.0f} Q{hx + 80:.0f},{hy - 60:.0f} {hx + 300:.0f},{hy - 120:.0f}" fill="none" stroke="#0d0f15" stroke-width="3" stroke-dasharray="10 12"/>')
+    for ar_ in (1, 0):
+        px, py = (ex, ey) if ar_ else (ex - 4, ey + 6)
+        o += (f'<path d="M{shx},{shy} L{px:.0f},{py:.0f} L{hx:.0f},{hy:.0f}" fill="none" stroke="#0d0f15" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>'
+              f'<path d="M{shx},{shy} L{px:.0f},{py:.0f} L{hx:.0f},{hy:.0f}" fill="none" stroke="{coat}" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>'
+              if ar_ else '')
+    o += f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="16" fill="{skin}"/>'
+    # head
+    o += (f'<g transform="translate(14,-186)"><rect x="-10" y="-8" width="22" height="26" fill="{skin}"/><circle cx="6" cy="-36" r="40" fill="{skin}"/>'
+          f'<path d="M-34,-40 A40,40 0 0 1 46,-40 Q20,-60 4,-52 Q-18,-62 -34,-40Z" fill="{hair}"/>'
+          f'<ellipse cx="22" cy="-34" rx="7" ry="{8 * blink:.1f}" fill="#fff" stroke-width="3"/><circle cx="{24 + look[0] * 2:.1f}" cy="-34" r="3" fill="#0d0f15" stroke="none"/>'
+          f'<path d="M14,-12 q10,5 20,0" fill="none" stroke-width="4"/>'
+          + ('<ellipse cx="6" cy="-64" rx="56" ry="12" fill="#2a2622"/><path d="M-22,-66 Q-20,-112 6,-114 Q32,-112 34,-66Z" fill="#2a2622"/>' if hat else '') + '</g>')
+    return o + '</g></g>'
+
+
+def oak_big(x, y, s=1.0, col="#243026", trunkc="#3a2c22"):
+    """Big old oak with a thick horizontal branch (and a rope-block hanging from it)."""
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-60,0 Q-50,-300 -40,-520 L40,-520 Q50,-300 70,0Z" fill="{trunkc}"/>'
+            f'<path d="M-30,-480 Q-200,-560 -330,-520 L-330,-560 Q-190,-620 -20,-560Z M30,-500 Q200,-600 340,-560 L330,-520 Q200,-540 40,-460Z" fill="{trunkc}"/>'
+            f'<g fill="{col}"><circle cx="-250" cy="-640" r="120"/><circle cx="-80" cy="-720" r="150"/><circle cx="110" cy="-690" r="150"/><circle cx="280" cy="-620" r="120"/><circle cx="0" cy="-600" r="120"/></g>'
+            f'<path d="M-250,-545 V-440" stroke="#b8975a" stroke-width="7"/><circle cx="-250" cy="-425" r="16" fill="#6a6a70"/></g>')
+
+
+def hill_night(y, col="#1b2a24", seed=2, hi=260):
+    return dunes(y, col, seed, hi, 520)
+
+
+def frangipani(x, y, s=1.0, col="#f4eccf"):
+    pet = "".join(f'<ellipse cx="0" cy="-26" rx="13" ry="30" fill="{col}" transform="rotate({a})"/>' for a in range(0, 360, 72))
+    return f'<g transform="translate({x},{y}) scale({s})" {OUT} stroke-width="4">{pet}<circle r="9" fill="#f0c040"/></g>'
+
+
+def banyan(x, y, s=1.0, col="#1b2c26", bark="#2a2a26"):
+    roots = "".join(f'<path d="M{dx},-520 Q{dx + k},-250 {dx + k * 1.4},0 L{dx + k * 1.4 + 22},0 Q{dx + k + 22},-250 {dx + 20},-520Z" fill="{bark}"/>' for dx, k in ((-200, -40), (-110, 20), (-20, -10), (60, 40), (150, -20), (230, 30)))
+    leaves = "".join(f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}"/>' for cx, cy, rx, ry in ((-250, -640, 180, 110), (-60, -740, 220, 130), (170, -700, 220, 120), (330, -610, 160, 100), (0, -600, 260, 90)))
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-210,0 Q-150,-300 -130,-480 L130,-480 Q160,-300 240,0Z" fill="{bark}"/>{roots}<path d="M-120,-480 Q0,-560 120,-480 L130,-380 Q0,-420 -130,-380Z" fill="{bark}"/>'
+            f'<g fill="{col}">{leaves}</g><path d="M-180,-560 v140 M-120,-540 v190 M260,-540 v170 M330,-520 v120" stroke="{bark}" stroke-width="9" fill="none"/></g>')
+
+
+def kampung_house(x, y, s=1.0, lit="#f3c555", wall="#6a4a34", roof="#2a2a30"):
+    return (f'<g transform="translate({x},{y}) scale({s})" {OUT}><path d="M-170,-90 V-20 M170,-90 V-20 M-60,-90 V-20 M60,-90 V-20" stroke="#4a3626" stroke-width="16"/>'
+            f'<rect x="-210" y="-330" width="420" height="250" fill="{wall}"/><path d="M-270,-320 L-120,-480 L120,-480 L270,-320Z" fill="{roof}"/>'
+            f'<rect x="-150" y="-260" width="90" height="100" fill="{lit}"/><rect x="60" y="-260" width="90" height="100" fill="{lit}"/>'
+            f'<rect x="-30" y="-270" width="60" height="190" fill="#2a1a12"/><path d="M-40,-80 L-70,0 M40,-80 L70,0" stroke="#4a3626" stroke-width="10"/></g>')
+
+
+def coconut_palm(x, y, h=900, col="#264a3a", seed=1):
+    r = _random(seed)
+    fr = "".join(f'<path d="M0,0 Q{d * 120},{-60 - r.randint(0, 40)} {d * 260},{40 + r.randint(0, 50)} Q{d * 130},{-10} 0,18Z" fill="{col}" transform="rotate({a})"/>' for d, a in ((1, -10), (-1, 10), (1, -50), (-1, 50), (1, 24), (-1, -24)))
+    return (f'<g {OUT}><path d="M{x},{y} Q{x + 60},{y - h * .5} {x + 20},{y - h} L{x + 52},{y - h} Q{x + 100},{y - h * .5} {x + 60},{y}Z" fill="#3a2e24"/>'
+            f'<g transform="translate({x + 36},{y - h})">{fr}<circle cx="0" cy="14" r="18" fill="#4a3a28"/><circle cx="26" cy="22" r="16" fill="#4a3a28"/></g></g>')
+
+
+def _random(seed):
+    return random.Random(seed)
+
+
+def money_pit_section(x, y, w=380, depth=1500, water=0.0, t=0.0):
+    """Cutaway of the Oak Island Money Pit: earth layers, oak log platforms every ten feet, flagstone. water 0..1 = flood level from the bottom."""
+    d = (f'<g {OUT}><rect x="{x - w / 2 - 250}" y="{y}" width="{w + 500}" height="{depth}" fill="#4a3a2c"/>'
+         f'<path d="M{x - w / 2 - 250},{y + 380} Q{x},{y + 340} {x + w / 2 + 250},{y + 400} M{x - w / 2 - 250},{y + 800} Q{x},{y + 840} {x + w / 2 + 250},{y + 780}" stroke="#2c2018" stroke-width="5" fill="none"/>'
+         f'<rect x="{x - w / 2}" y="{y}" width="{w}" height="{depth}" fill="#16110d"/>')
+    for i in range(6):
+        yy = y + 180 + i * 220
+        d += (f'<rect x="{x - w / 2}" y="{yy}" width="{w}" height="46" fill="#7a5a36"/>'
+              + "".join(f'<path d="M{x - w / 2 + k * 64},{yy} v46" stroke="#0d0f15" stroke-width="3"/>' for k in range(1, 6)))
+    wl = y + depth - water * (depth - 140)
+    if water > 0:
+        d += (f'<path d="M{x - w / 2},{wl + _m.sin(t * 2) * 8:.0f} Q{x - w / 4},{wl - 14 + _m.sin(t * 2.6) * 8:.0f} {x},{wl:.0f} T{x + w / 2},{wl + _m.sin(t * 2.3) * 8:.0f} V{y + depth} H{x - w / 2}Z" fill="#2d6a88" opacity=".85" stroke="#0d0f15"/>')
+    return d + '</g>'

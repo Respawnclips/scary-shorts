@@ -1,0 +1,131 @@
+{
+  "id": "050-flatwoods-monster-nl",
+  "legend": "The Flatwoods Monster (Flatwoods, West Virginia, USA, 12 September 1952)",
+  "lines": [
+    "Flatwoods, West Virginia. Twaalf september, negentienhonderdtweeënvijftig.",
+    "Net na het donker valt een gloeiend licht op een boerderij op een heuvel.",
+    "Twee jongens, een moeder en een jonge soldaat klimmen omhoog om te kijken.",
+    "Een vreemde mist prikt in hun ogen.",
+    "Dan vindt hun zaklamp twee gloeiende groene ogen.",
+    "Ze zeggen dat er een lange gestalte zweefde, met een rood gezicht in een schoppenvormige kap.",
+    "Hij dreef op hen af, siste, en iedereen rende weg.",
+    "De volgende ochtend vonden zoekers alleen sleepsporen in het gras.",
+    "Sceptici wijzen naar een meteoor en een uil, maar de getuigen bleven bij hun verhaal.",
+    "Zou jij die heuvel zijn opgeklommen?"
+  ],
+  "scenes": [
+    {
+      "name": "farm",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.7,
+        0.5
+      ]
+    },
+    {
+      "name": "climb",
+      "from": 2,
+      "move": [
+        12,
+        0,
+        1.1,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "mist",
+      "from": 3,
+      "move": [
+        0,
+        -8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "eyes",
+      "from": 4,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.65,
+        0.45
+      ],
+      "fog": false
+    },
+    {
+      "name": "reveal",
+      "from": 5,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.65,
+        0.75
+      ]
+    },
+    {
+      "name": "run",
+      "from": 6,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "morning",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    4
+  ],
+  "title": "Het Flatwoods-monster: wat kwam er in 1952 uit het donker?",
+  "description": "In 1952 viel een gloeiend licht op een heuvel in West Virginia, en een groepje bewoners zei een lange gestalte met gloeiende ogen te zien. Volgens de legende dreef hij door de mist op hen af.\n\n#engeverhalen #flatwoodsmonster #legende #creepy #horror #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "flatwoodsmonster",
+    "legende",
+    "creepy",
+    "horror"
+  ],
+  "lang": "nl"
+}

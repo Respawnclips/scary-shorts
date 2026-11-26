@@ -1,0 +1,127 @@
+{
+  "id": "051-pontianak-nl",
+  "legend": "The Pontianak (Malay village folklore, Malaysia and Indonesia)",
+  "lines": [
+    "Maleisië, een dorp in de nacht, lang geleden.",
+    "Een zoete geur van frangipani drijft tussen de huizen.",
+    "De dorpelingen weten wat dat betekent, en ze doen hun deuren op slot.",
+    "Volgens de legende is de pontianak dichtbij.",
+    "Een vrouw in het wit, met zwart haar tot aan haar knieën.",
+    "Ze wacht in de oude banyanboom op eenzame reizigers.",
+    "Ze roept met een zachte, droevige stem, zodat je dichterbij komt.",
+    "Maar de ouderen zeggen dat een spijker in haar nek haar mak maakt.",
+    "Zou jij een zoete geur volgen in het donker?"
+  ],
+  "scenes": [
+    {
+      "name": "village",
+      "from": 0,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.35,
+        0.85
+      ]
+    },
+    {
+      "name": "doors",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "near",
+      "from": 3,
+      "move": [
+        0,
+        -8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ],
+      "fog": false
+    },
+    {
+      "name": "banyan",
+      "from": 4,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.6
+      ]
+    },
+    {
+      "name": "lure",
+      "from": 6,
+      "move": [
+        12,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "nail",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "end",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De Pontianak: de zoete geur die betekent dat zij dichtbij is",
+  "description": "In de Maleise folklore is de pontianak een bleke vrouw in het wit die in banyanbomen wacht. Volgens de legende betekent een plotselinge geur van frangipani dat ze dichtbij is.\n\n#engeverhalen #pontianak #maleisie #legende #creepy #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "pontianak",
+    "maleisie",
+    "legende",
+    "creepy"
+  ],
+  "lang": "nl"
+}

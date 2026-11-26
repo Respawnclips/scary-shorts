@@ -1,0 +1,128 @@
+{
+  "id": "051-pontianak",
+  "legend": "The Pontianak (Malay village folklore, Malaysia and Indonesia)",
+  "lines": [
+    "Malaysia, a village at night, long ago.",
+    "A sweet scent of frangipani drifts between the houses.",
+    "The villagers know what it means, and they lock their doors.",
+    "Legend says the pontianak is near.",
+    "A woman in white, with black hair down to her knees.",
+    "She waits in the old banyan tree for lone travelers.",
+    "She calls out in a soft, sad voice, so you will come closer.",
+    "But the elders say a nail in the back of her neck makes her gentle.",
+    "Would you follow a sweet scent in the dark?"
+  ],
+  "scenes": [
+    {
+      "name": "village",
+      "from": 0,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.35,
+        0.85
+      ]
+    },
+    {
+      "name": "doors",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "near",
+      "from": 3,
+      "move": [
+        0,
+        -8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ],
+      "fog": false
+    },
+    {
+      "name": "banyan",
+      "from": 4,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.6
+      ]
+    },
+    {
+      "name": "lure",
+      "from": 6,
+      "move": [
+        12,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "nail",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "end",
+      "from": 8,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Pontianak: The Sweet Smell That Means She Is Near #shorts",
+  "description": "In Malay folklore, the pontianak is a pale woman in white who waits in banyan trees. Legend says a sudden scent of frangipani means she is close.\n\n#scarystories #pontianak #malaysia #asianfolklore #legend #shorts",
+  "tags": [
+    "scarystories",
+    "pontianak",
+    "malaysia",
+    "asianfolklore",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

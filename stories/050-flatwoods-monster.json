@@ -1,0 +1,132 @@
+{
+  "id": "050-flatwoods-monster",
+  "legend": "The Flatwoods Monster (Flatwoods, West Virginia, USA, 12 September 1952)",
+  "lines": [
+    "Flatwoods, West Virginia. September twelfth, nineteen fifty-two.",
+    "Just after dark, a glowing light drops onto a hillside farm.",
+    "Two boys, a mother and a young guardsman climb up to look.",
+    "A strange mist stings their eyes.",
+    "Then their flashlight finds two glowing green eyes.",
+    "They say a tall figure floated there, with a red face in a spade-shaped hood.",
+    "It drifted toward them, hissing, and everyone ran.",
+    "Next morning, searchers found only skid marks in the grass.",
+    "Skeptics blame a meteor and an owl, but the witnesses never changed their story.",
+    "Would you have climbed that hill?"
+  ],
+  "scenes": [
+    {
+      "name": "farm",
+      "from": 0,
+      "move": [
+        -15,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.7,
+        0.5
+      ]
+    },
+    {
+      "name": "climb",
+      "from": 2,
+      "move": [
+        12,
+        0,
+        1.1,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "mist",
+      "from": 3,
+      "move": [
+        0,
+        -8,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.45,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "eyes",
+      "from": 4,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.65,
+        0.45
+      ],
+      "fog": false
+    },
+    {
+      "name": "reveal",
+      "from": 5,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.65,
+        0.75
+      ]
+    },
+    {
+      "name": "run",
+      "from": 6,
+      "move": [
+        10,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.6,
+        0.85
+      ]
+    },
+    {
+      "name": "morning",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    4
+  ],
+  "title": "The Flatwoods Monster: What Climbed Out of the Dark in 1952? #shorts",
+  "description": "In 1952, a glowing light fell on a West Virginia hill, and a group of locals said they met a tall figure with glowing eyes. Legend says it floated toward them in the mist.\n\n#scarystories #flatwoodsmonster #westvirginia #legend #creepy #shorts",
+  "tags": [
+    "scarystories",
+    "flatwoodsmonster",
+    "westvirginia",
+    "ufo",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

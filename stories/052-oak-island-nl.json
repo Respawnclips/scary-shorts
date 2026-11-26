@@ -1,0 +1,132 @@
+{
+  "id": "052-oak-island-nl",
+  "legend": "The Oak Island Money Pit (Nova Scotia, Canada, 1795 legend)",
+  "lines": [
+    "Oak Island, Nova Scotia, zeventienhonderdvijfennegentig.",
+    "Een tienerjongen vindt een kuil in de grond onder een oude eik.",
+    "Aan een tak erboven hangt een scheepskatrol.",
+    "Hij en twee vrienden beginnen te graven.",
+    "Om de drie meter stuiten ze op een vloer van dikke eikenstammen.",
+    "Op bijna dertig meter diepte wacht volgens de legende een steen met vreemde tekens.",
+    "Dan loopt de put vol zeewater, en stopt het graven.",
+    "Al meer dan tweehonderd jaar proberen schatzoekers hem leeg te pompen.",
+    "Niemand heeft bewezen wat er beneden ligt, als er al iets ligt.",
+    "Piratengoud, of een slimme list? Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "island",
+      "from": 0,
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "oak",
+      "from": 2,
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "dig",
+      "from": 3,
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "platforms",
+      "from": 4,
+      "move": [
+        0,
+        12,
+        1.08,
+        1.22
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "stone",
+      "from": 5,
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "focus": [
+        0.6,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "flood",
+      "from": 6,
+      "move": [
+        0,
+        12,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.55,
+        0.7
+      ],
+      "fog": false
+    },
+    {
+      "name": "hunters",
+      "from": 7,
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.24
+      ],
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [
+    6
+  ],
+  "title": "Oak Island: de put die tweehonderd jaar schatzoekers verslond",
+  "description": "In 1795 vond een jongen een vreemde kuil onder een eik op Oak Island, en volgens de legende ligt daaronder een put vol valstrikken. Piratenschat, of een slimme list?\n\n#engeverhalen #oakisland #schat #mysterie #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "oakisland",
+    "schat",
+    "mysterie",
+    "legende"
+  ],
+  "lang": "nl"
+}
