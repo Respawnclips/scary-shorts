@@ -56,3 +56,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 050 | 050-flatwoods-monster (+ -nl) | The Flatwoods Monster (Flatwoods, West Virginia, USA, 12 September 1952) | 2026-11-26 |
 | 051 | 051-pontianak (+ -nl) | The Pontianak (Malay village folklore, Malaysia and Indonesia) | 2026-11-26 |
 | 052 | 052-oak-island (+ -nl) | The Oak Island Money Pit (Nova Scotia, Canada, 1795 legend) | 2026-11-26 |
+| 053 | 053-bloody-benders (+ -nl) | The Bloody Benders (Kansas, USA, 1873 inn legend) | 2026-11-27 |
+| 054 | 054-island-of-dolls (+ -nl) | The Island of the Dolls (Xochimilco, Mexico, legend) | 2026-11-27 |
+| 055 | 055-dover-demon (+ -nl) | The Dover Demon (Dover, Massachusetts, USA, April 1977) | 2026-11-27 |

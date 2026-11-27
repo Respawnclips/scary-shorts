@@ -1,0 +1,129 @@
+{
+  "id": "054-island-of-dolls-nl",
+  "legend": "The Island of the Dolls (Xochimilco, Mexico, legend)",
+  "lines": [
+    "Xochimilco, ten zuiden van Mexico-Stad: een piepklein eiland verscholen tussen de kanalen.",
+    "Honderden poppen hangen in de bomen, met ontbrekende ogen en armen.",
+    "De legende zegt dat een man genaamd Julián hier lang geleden alleen kwam wonen.",
+    "Hij was bang dat een rusteloze geest bij het water rondwaarde.",
+    "Dus hing hij in elke boom poppen op om haar rustig te houden.",
+    "Bezoekers zeggen dat de poppen 's nachts fluisteren en hun hoofd draaien.",
+    "In tweeduizend en een werd Julián gevonden in precies het water waar hij bang voor was.",
+    "Nog steeds kijken de poppen vanuit de takken toe.",
+    "Durf jij daar één nacht te slapen? Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "canal",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 0,
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "dolls",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 1,
+      "focus": [
+        0.5,
+        0.3
+      ],
+      "fog": false
+    },
+    {
+      "name": "julian",
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.22
+      ],
+      "from": 2,
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "hang",
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.24
+      ],
+      "from": 3,
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "whisper",
+      "move": [
+        0,
+        12,
+        1.1,
+        1.3
+      ],
+      "from": 5,
+      "focus": [
+        0.5,
+        0.2
+      ],
+      "fog": false
+    },
+    {
+      "name": "water",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 6,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "watchers",
+      "move": [
+        0,
+        -12,
+        1.08,
+        1.25
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het poppeneiland: waarom honderden poppen in elke boom hangen",
+  "description": "Op een klein eiland bij Mexico-Stad hangen honderden verweerde poppen in de bomen. De legende zegt dat ze werden opgehangen om een rusteloze geest te kalmeren.\n\n#engeverhalen #poppeneiland #mexico #creepy #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "poppeneiland",
+    "mexico",
+    "creepy",
+    "legende",
+    "nederlands"
+  ],
+  "lang": "nl"
+}

@@ -1,0 +1,115 @@
+{
+  "id": "055-dover-demon-nl",
+  "legend": "The Dover Demon (Dover, Massachusetts, USA, April 1977)",
+  "lines": [
+    "Dover, Massachusetts, april negentienzevenenzeventig, net na zonsondergang.",
+    "Een tiener rijdt over een rustige landweg.",
+    "In zijn koplampen kruipt iets langs een stenen muurtje.",
+    "Het heeft een enorm, meloenvormig hoofd, dunne ledematen en gloeiende oranje ogen.",
+    "Ze zeggen dat het geen neus en geen mond heeft, en zo klein is als een kind.",
+    "Uren later ziet een andere tiener het in de struiken staan.",
+    "Een schets verschijnt in de lokale krant, en de stad praat nergens anders meer over.",
+    "Geen sporen, geen foto's en geen bewijs, alleen een tekening.",
+    "Een dier, een grap, of iets anders? Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "road",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 0,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "wall",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "from": 2,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "face",
+      "move": [
+        0,
+        -10,
+        1.12,
+        1.3
+      ],
+      "from": 3,
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "fog": false
+    },
+    {
+      "name": "bushes",
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.24
+      ],
+      "from": 5,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "sketch",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.2
+      ],
+      "from": 6,
+      "focus": [
+        0.4,
+        0.6
+      ],
+      "fog": false
+    },
+    {
+      "name": "eyes",
+      "move": [
+        0,
+        -12,
+        1.1,
+        1.3
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.75
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De Dover Demon: het wezen met gloeiende oranje ogen",
+  "description": "In april 1977 zeiden een paar tieners in Dover, Massachusetts dat ze een vreemd wezen met een enorm hoofd en gloeiende oranje ogen zagen. Het werd nooit gevonden.\n\n#engeverhalen #doverdemon #cryptid #massachusetts #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "doverdemon",
+    "cryptid",
+    "massachusetts",
+    "legende",
+    "nederlands"
+  ],
+  "lang": "nl"
+}

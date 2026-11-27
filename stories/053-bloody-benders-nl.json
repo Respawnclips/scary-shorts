@@ -1,0 +1,131 @@
+{
+  "id": "053-bloody-benders-nl",
+  "legend": "The Bloody Benders (Kansas, USA, 1873 inn legend)",
+  "lines": [
+    "Kansas, achttienhonderddrieënzeventig: een eenzame herberg op de lege prairie.",
+    "Een familie Bender houdt hem open, en dochter Kate zegt dat ze kan genezen en met geesten kan praten.",
+    "Reizigers stoppen er voor een maaltijd en een bed.",
+    "Maar sommigen van hen worden nooit meer gezien.",
+    "Zoekploegen gaan vragen stellen, en de familie wordt nerveus.",
+    "Als de buren eindelijk komen kijken, is de herberg leeg.",
+    "De dieren verhongeren, en de Benders zijn verdwenen.",
+    "Achter het huis, zegt de legende, vinden zoekers een vreemde, pas omgespitte boomgaard.",
+    "De familie is nooit gevonden, en de verhalen bleven maar komen.",
+    "Zijn ze ontsnapt, of heeft de prairie hen opgeslokt? Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "inn",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 0,
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "kate",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 1,
+      "focus": [
+        0.8,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "road",
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.25
+      ],
+      "from": 3,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "search",
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 4,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "empty",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "from": 5,
+      "focus": [
+        0.25,
+        0.85
+      ]
+    },
+    {
+      "name": "orchard",
+      "move": [
+        0,
+        12,
+        1.08,
+        1.22
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "flee",
+      "move": [
+        0,
+        -12,
+        1.08,
+        1.25
+      ],
+      "from": 8,
+      "focus": [
+        0.5,
+        0.7
+      ]
+    }
+  ],
+  "flash_lines": [
+    7
+  ],
+  "title": "De herberg in Kansas waar reizigers verdwenen: de Benders",
+  "description": "In 1873 werd een herberg op de prairie van Kansas het middelpunt van een van Amerika's vreemdste verdwijningsverhalen. Waar gingen de Benders heen?\n\n#engeverhalen #bloodybenders #kansas #truecrime #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "bloodybenders",
+    "kansas",
+    "truecrime",
+    "legende",
+    "nederlands"
+  ],
+  "lang": "nl"
+}

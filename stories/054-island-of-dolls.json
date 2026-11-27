@@ -1,0 +1,129 @@
+{
+  "id": "054-island-of-dolls",
+  "legend": "The Island of the Dolls (Xochimilco, Mexico, legend)",
+  "lines": [
+    "Xochimilco, south of Mexico City: a tiny island hidden among the canals.",
+    "Hundreds of dolls hang from its trees, with missing eyes and missing arms.",
+    "Legend says a man named Julián moved here alone, long ago.",
+    "He feared a restless spirit lingered by the water.",
+    "So he hung dolls from every tree to keep her calm.",
+    "Visitors say the dolls whisper and turn their heads at night.",
+    "In two thousand one, Julián was found in the very water he feared.",
+    "Today, the dolls still watch from the branches.",
+    "Would you dare to spend one night there? What do you think?"
+  ],
+  "scenes": [
+    {
+      "name": "canal",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 0,
+      "focus": [
+        0.3,
+        0.85
+      ]
+    },
+    {
+      "name": "dolls",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 1,
+      "focus": [
+        0.5,
+        0.3
+      ],
+      "fog": false
+    },
+    {
+      "name": "julian",
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.22
+      ],
+      "from": 2,
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "hang",
+      "move": [
+        -10,
+        0,
+        1.08,
+        1.24
+      ],
+      "from": 3,
+      "focus": [
+        0.4,
+        0.85
+      ]
+    },
+    {
+      "name": "whisper",
+      "move": [
+        0,
+        12,
+        1.1,
+        1.3
+      ],
+      "from": 5,
+      "focus": [
+        0.5,
+        0.2
+      ],
+      "fog": false
+    },
+    {
+      "name": "water",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 6,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "watchers",
+      "move": [
+        0,
+        -12,
+        1.08,
+        1.25
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "The Island of Dolls: Why Hundreds of Dolls Hang From Every Tree #shorts",
+  "description": "On a tiny island near Mexico City, hundreds of weathered dolls hang from the trees. Legend says they were hung to calm a restless spirit.\n\n#scarystories #islandofthedolls #mexico #creepy #legend #shorts",
+  "tags": [
+    "scarystories",
+    "islandofthedolls",
+    "mexico",
+    "creepy",
+    "legend",
+    "dolls",
+    "shorts"
+  ]
+}

@@ -2579,3 +2579,107 @@ def money_pit_section(x, y, w=380, depth=1500, water=0.0, t=0.0):
     if water > 0:
         d += (f'<path d="M{x - w / 2},{wl + _m.sin(t * 2) * 8:.0f} Q{x - w / 4},{wl - 14 + _m.sin(t * 2.6) * 8:.0f} {x},{wl:.0f} T{x + w / 2},{wl + _m.sin(t * 2.3) * 8:.0f} V{y + depth} H{x - w / 2}Z" fill="#2d6a88" opacity=".85" stroke="#0d0f15"/>')
     return d + '</g>'
+
+
+# ---------------------------------------------------------------- limb helper + Dover Demon rig + hanging doll rig
+def _limb2(x0, y0, a1, l1, a2, l2, col, w=15, foot=True):
+    """Thin two-segment limb (angles in degrees, 0 = straight down, + = toward +x). Returns svg with outline, knee knob and hand/foot."""
+    r = _m.radians
+    x1, y1 = x0 + l1 * _m.sin(r(a1)), y0 + l1 * _m.cos(r(a1))
+    x2, y2 = x1 + l2 * _m.sin(r(a2)), y1 + l2 * _m.cos(r(a2))
+    d = f"M{x0:.1f},{y0:.1f} L{x1:.1f},{y1:.1f} L{x2:.1f},{y2:.1f}"
+    return (f'<path d="{d}" fill="none" stroke="#0d0f15" stroke-width="{w + 8}" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<circle cx="{x1:.1f}" cy="{y1:.1f}" r="{w * .75:.1f}" fill="{col}" stroke-width="4"/>'
+            + (f'<ellipse cx="{x2 + 6:.1f}" cy="{y2:.1f}" rx="{w * 1.1:.1f}" ry="{w * .7:.1f}" fill="{col}" stroke-width="4"/>' if foot else ''))
+
+
+def demon(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), skin="#b79d84", eyec="#ff9a1e", peek=1.0):
+    """Dover Demon: thin pale creature, huge melon-shaped head, two big glowing orange eyes, no nose or mouth, spindly limbs.
+    Feet at (x, y), ~470 tall standing. mode: stand (sways, head tilts, blinks) | walk (stiff slow stride) | crawl (low on all fours, e.g. along a wall) | peek (only the head rises from below y, peek 0..1 = how far)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    blink = 0.1 if (t % 4.3) < .13 else 1.0
+    pulse = .8 + .2 * sn(t * 3.1)
+    lx, ly = look
+
+    def head(hx, hy, rot):
+        eyes = "".join(
+            '<g stroke="none">' + glow(ex, 14, 62, eyec, .55 * pulse) + '</g>'
+            + f'<ellipse cx="{ex}" cy="14" rx="22" ry="{26 * blink:.1f}" fill="{eyec}" stroke-width="4"/>'
+            f'<ellipse cx="{ex + lx * 4:.1f}" cy="{14 + ly * 3:.1f}" rx="6" ry="{12 * blink:.1f}" fill="#3a1a06" stroke="none"/>'
+            for ex in (-34, 34))
+        return (f'<g transform="translate({hx:.1f},{hy:.1f}) rotate({rot:.1f})"><ellipse cx="0" cy="0" rx="76" ry="94" fill="{skin}" {OUT}/>'
+                f'<path d="M-50,-40 Q0,-70 50,-40" fill="none" stroke="#8a7560" stroke-width="4" opacity=".5"/>' + eyes + '</g>')
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "peek":
+        o += f'<g transform="translate(0,{(1 - peek) * 190:.1f})">' + head(0, -120, sn(t * .8) * 6 + 8 * sn(t * 2.3)) + '</g>'
+        return o + '</g>'
+    if mode == "crawl":
+        ph = t * 3.2
+        hip, sh = (-110, -150), (80, -160)
+        sway = sn(ph) * 4
+        o += _limb2(hip[0] - 10, hip[1], -30 + sn(ph + 3.14) * 30, 80, 10 + sn(ph + 3.14) * 22, 80, skin, 14)
+        o += _limb2(hip[0] + 10, hip[1], -30 + sn(ph) * 30, 80, 10 + sn(ph) * 22, 80, skin, 14)
+        o += f'<path d="M{hip[0]},{hip[1]} Q-20,{-175 + sway:.0f} {sh[0]},{sh[1]}" fill="none" stroke="#0d0f15" stroke-width="36" stroke-linecap="round"/>'
+        o += f'<path d="M{hip[0]},{hip[1]} Q-20,{-175 + sway:.0f} {sh[0]},{sh[1]}" fill="none" stroke="{skin}" stroke-width="26" stroke-linecap="round"/>'
+        o += _limb2(sh[0] - 6, sh[1], 25 + sn(ph + 1.6) * 28, 78, 8 + sn(ph + 1.6) * 20, 78, skin, 14)
+        o += _limb2(sh[0] + 8, sh[1], 25 + sn(ph + 4.7) * 28, 78, 8 + sn(ph + 4.7) * 20, 78, skin, 14)
+        o += head(150 + sn(ph) * 4, -165 + sn(ph * 2) * 5, 78 + sn(t * .9) * 4)
+        return o + '</g>'
+    ph = t * 3.0
+    walk = mode == "walk"
+    bob = abs(sn(ph)) * -8 if walk else sn(t * 1.5) * 3
+    sw = sn(ph) * 24 if walk else 0
+    o += f'<g transform="translate(0,{bob:.1f})">'
+    o += _limb2(-16, -200, -sw * .5 - 3, 100, -sw * .3, 100, skin, 15)
+    o += _limb2(16, -200, sw * .5 + 3, 100, sw * .3, 100, skin, 15)
+    o += f'<g transform="rotate({(4 if walk else sn(t * 1.1) * 2):.1f},0,-200)">'
+    o += f'<path d="M0,-196 L0,-290" stroke="#0d0f15" stroke-width="40" stroke-linecap="round"/><path d="M0,-196 L0,-290" stroke="{skin}" stroke-width="30" stroke-linecap="round"/>'
+    o += _limb2(-14, -282, 14 - sw * .8 + sn(t * 1.6) * 3, 92, 8 - sw * .6, 96, skin, 12)
+    o += _limb2(14, -282, -14 + sw * .8 - sn(t * 1.6 + 1) * 3, 92, -8 + sw * .6, 96, skin, 12)
+    o += head(0, -380, sn(t * .9) * 5 + lx * 3 + (8 * sn(t * .35) if not walk else 0)) + '</g></g></g>'
+    return o
+
+
+def doll(x, y, s=1.0, t=0.0, mode="hang", seed=0, flip=False, look=(1, 0), alive=0.0, rope=260, dress="#c9a0a8", hair="#2a1c14", skin="#e6d8c4"):
+    """Creepy old doll hanging from a rope tied at (x, y) (the knot); the doll's feet end ~rope+450 below. Missing arm/eye depends on seed.
+    mode: hang (swings gently, head lolls) | watch (head slowly turns toward you, eyes glow when alive>0) | spin (turns around on the rope).
+    alive 0..1 makes the eye sockets glow pale yellow."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    sw = sn(t * 1.25 + seed * 1.7) * 6 + sn(t * .53 + seed) * 3
+    hr = sn(t * .7 + seed) * 12
+    if mode == "watch":
+        hr = 38 * sn(t * .55 + seed * .8) * (.5 + .5 * alive) + look[0] * 6
+    spin = (_m.cos(t * (1.2 if mode == "spin" else .0) + seed) if mode == "spin" else 1.0)
+    glw = alive * (.7 + .3 * sn(t * 4 + seed))
+    blink = .12 if (t % 5.3) < .12 else 1.0
+    missing = seed % 3
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}><g transform="rotate({sw:.1f})">'
+    o += f'<path d="M0,0 V{rope}" stroke="#7a6a4a" stroke-width="8" fill="none"/><g transform="translate(0,{rope}) scale({spin:.3f},1)">'
+    arm_sw = sn(t * 1.25 + seed * 1.7 - .8) * 10
+
+    def arm(side):
+        if missing == 1 and side < 0:
+            return f'<path d="M{side * 44},108 l{side * 10},22" stroke="#7a5a4a" stroke-width="12" fill="none"/>'
+        return (f'<g transform="translate({side * 44},106) rotate({side * (26 + arm_sw)})"><path d="M-9,0 L-8,92 L8,92 L9,0Z" fill="{skin}"/>'
+                f'<circle cx="0" cy="98" r="11" fill="{skin}"/></g>')
+    o += arm(-1) + arm(1)
+    for sd, ph in ((-1, 0), (1, 1.4)):
+        o += (f'<g transform="translate({sd * 22},296) rotate({sn(t * 1.25 + seed + ph) * 6 + sd * 3:.1f})"><path d="M-9,0 L-8,120 L8,120 L9,0Z" fill="{skin}"/>'
+              f'<path d="M-14,114 Q-16,138 4,136 Q26,136 22,114Z" fill="#3a2a2a"/></g>')
+    o += f'<path d="M-44,98 L44,98 L70,300 L-70,300Z" fill="{dress}"/><path d="M-30,150 h60 M-40,210 h80" stroke="#8a6068" stroke-width="5" fill="none"/>'
+    o += f'<path d="M-24,98 L-22,70 L22,70 L24,98Z" fill="{skin}"/>'
+    o += f'<g transform="translate(0,34) rotate({hr:.1f})"><path d="M-46,-6 Q-58,50 -40,70 L40,70 Q58,50 46,-6Z" fill="{hair}"/><circle cx="0" cy="0" r="46" fill="{skin}"/>'
+    o += f'<path d="M-46,-8 A46,46 0 0 1 46,-8 Q24,-34 0,-24 Q-22,-34 -46,-8Z" fill="{hair}"/><path d="M12,-44 l-8,22 l8,14 l-6,16" fill="none" stroke="#6a5a4a" stroke-width="3"/>'
+    for ex in (-19, 19):
+        gone = (missing == 2 and ex > 0)
+        if gone:
+            o += f'<ellipse cx="{ex}" cy="2" rx="12" ry="12" fill="#0d0f15" stroke-width="3"/>'
+        else:
+            o += (f'<ellipse cx="{ex}" cy="2" rx="12" ry="{12 * blink:.1f}" fill="#f4f0e4" stroke-width="3"/><circle cx="{ex + look[0] * 3:.1f}" cy="{2 + look[1] * 2:.1f}" r="5" fill="#0d0f15" stroke="none"/>')
+        if glw > .05:
+            o += '<g stroke="none">' + glow(ex, 2, 46, "#fff2a0", .75 * glw) + '</g>'
+    o += '<path d="M-14,28 q14,10 28,0" fill="#8a2a2a" stroke-width="3"/></g></g></g></g>'
+    return o
