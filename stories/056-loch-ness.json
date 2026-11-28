@@ -1,0 +1,129 @@
+{
+  "id": "056-loch-ness",
+  "legend": "The Loch Ness Monster (Scotland, May 1933 sighting, Saint Columba legend)",
+  "lines": [
+    "Loch Ness, Scotland, May nineteen thirty-three.",
+    "A hotel manager and his wife drive along the shore.",
+    "They say the dark water suddenly begins to boil.",
+    "A huge humped back rises, big as a whale.",
+    "Then a long neck lifts, and a small head looks around.",
+    "The newspaper calls it a monster, and the world goes wild.",
+    "A famous photo was later called a fake.",
+    "But legend says a beast has lurked here since the days of Saint Columba.",
+    "Is it a real animal, or just a legend? What do you think?"
+  ],
+  "scenes": [
+    {
+      "name": "shore",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 0,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "humps",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "from": 2,
+      "focus": [
+        0.55,
+        0.75
+      ]
+    },
+    {
+      "name": "neck",
+      "move": [
+        0,
+        -10,
+        1.12,
+        1.3
+      ],
+      "from": 4,
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "paper",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.22
+      ],
+      "from": 5,
+      "focus": [
+        0.4,
+        0.45
+      ],
+      "fog": false
+    },
+    {
+      "name": "photo",
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 6,
+      "focus": [
+        0.45,
+        0.4
+      ],
+      "fog": false
+    },
+    {
+      "name": "columba",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "deep",
+      "move": [
+        0,
+        -12,
+        1.1,
+        1.3
+      ],
+      "from": 8,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Loch Ness Monster: The Night the Water Began to Boil #shorts",
+  "description": "In May 1933 a hotel manager and his wife said the water of Loch Ness began to boil and a huge creature rose up. The legend of the monster is much older.\n\n#scarystories #lochness #nessie #scotland #legend #shorts",
+  "tags": [
+    "scarystories",
+    "lochness",
+    "nessie",
+    "scotland",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

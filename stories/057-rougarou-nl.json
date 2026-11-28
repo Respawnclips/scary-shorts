@@ -1,0 +1,131 @@
+{
+  "id": "057-rougarou-nl",
+  "lang": "nl",
+  "lines": [
+    "Diep in de moerassen van Louisiana fluisteren de Cajuns over de rougarou.",
+    "Ze zeggen dat het een vervloekte man is die verandert in een beest met een wolvenkop.",
+    "Volgens de legende treft de vloek iedereen die zeven jaar lang de vastentijd negeert.",
+    "Op mistige nachten zwaait er een lantaarn over het pad langs de bayou.",
+    "Iets groots volgt hem, en gloeiende ogen schitteren tussen de cipressen.",
+    "Opa's en oma's waarschuwen dat het iedereen najaagt die te laat buiten is.",
+    "Ze zeggen dat dertien munten voor je deur hem tot zonsopgang laten tellen.",
+    "Bij zonsopgang is het beest verdwenen.",
+    "Is het gewoon een moerasverhaal? Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "howl",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 0,
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    {
+      "name": "lent",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 2,
+      "focus": [
+        0.6,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "path",
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 3,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "eyes",
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "from": 4,
+      "focus": [
+        0.3,
+        0.8
+      ]
+    },
+    {
+      "name": "porch",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 5,
+      "focus": [
+        0.7,
+        0.85
+      ]
+    },
+    {
+      "name": "coins",
+      "move": [
+        0,
+        10,
+        1.1,
+        1.26
+      ],
+      "from": 6,
+      "focus": [
+        0.4,
+        0.9
+      ],
+      "fog": false
+    },
+    {
+      "name": "dawn",
+      "move": [
+        -8,
+        0,
+        1.08,
+        1.24
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "De rougarou: het moerasbeest dat jouw munten moet tellen",
+  "description": "In de bayou van Louisiana vertellen de Cajuns over de rougarou, een vervloekte man met een wolvenkop die op mistige nachten jaagt. Dertien munten voor je deur houden hem tegen.\n\n#engeverhalen #rougarou #louisiana #cajun #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "rougarou",
+    "louisiana",
+    "cajun",
+    "legende",
+    "griezelig"
+  ],
+  "legend": "The Rougarou (Louisiana bayou, Cajun swamp werewolf legend)"
+}

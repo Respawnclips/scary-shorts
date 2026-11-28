@@ -1,0 +1,128 @@
+{
+  "id": "058-curupira-nl",
+  "lang": "nl",
+  "lines": [
+    "Diep in het Amazoneregenwoud praten jagers over de Curupira.",
+    "Een klein bosgeestje met vlammend rood haar.",
+    "Maar kijk naar zijn voeten, want die wijzen naar achteren.",
+    "Wie zijn sporen volgt, loopt dus recht van hem vandaan en raakt verdwaald.",
+    "De Curupira beschermt de dieren, en hij haat jagers die te veel nemen.",
+    "Hij fluit tussen de bomen, en reizigers dwalen dagenlang in kringen rond.",
+    "Ze zeggen dat een cadeau van tabak hem kan kalmeren.",
+    "Behandel het bos met respect, en misschien laat hij je gaan.",
+    "Is de Curupira maar een verhaal? Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "jungle",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 0,
+      "focus": [
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "name": "feet",
+      "move": [
+        0,
+        10,
+        1.1,
+        1.28
+      ],
+      "from": 2,
+      "focus": [
+        0.5,
+        0.88
+      ],
+      "fog": false
+    },
+    {
+      "name": "tracks",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 3,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "angry",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "from": 4,
+      "focus": [
+        0.35,
+        0.65
+      ]
+    },
+    {
+      "name": "whistle",
+      "move": [
+        0,
+        -10,
+        1.08,
+        1.24
+      ],
+      "from": 5,
+      "focus": [
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "name": "gift",
+      "move": [
+        8,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 6,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "name": "leave",
+      "move": [
+        -8,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "De Curupira: de bosgeest met achterstevoren voeten",
+  "description": "In het Amazoneregenwoud vertellen jagers over de Curupira, een klein geestje met vlammend rood haar en voeten die naar achteren wijzen, zodat zijn sporen je de verkeerde kant op sturen.\n\n#engeverhalen #curupira #amazone #brazilie #folklore #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "curupira",
+    "amazone",
+    "brazilie",
+    "folklore",
+    "griezelig"
+  ],
+  "legend": "The Curupira (Amazon rainforest, Brazilian forest-spirit folklore)"
+}

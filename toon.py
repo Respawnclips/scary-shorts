@@ -2683,3 +2683,179 @@ def doll(x, y, s=1.0, t=0.0, mode="hang", seed=0, flip=False, look=(1, 0), alive
             o += '<g stroke="none">' + glow(ex, 2, 46, "#fff2a0", .75 * glw) + '</g>'
     o += '<path d="M-14,28 q14,10 28,0" fill="#8a2a2a" stroke-width="3"/></g></g></g></g>'
     return o
+
+
+# ---------------------------------------------------------------- 056-058 rigs: Loch Ness monster, rougarou, curupira
+def nessie(x, y, s=1.0, t=0.0, mode="neck", flip=False, look=(1, 0), rise=1.0, col="#4f6e64", col2="#6a8a7c"):
+    """Loch Ness monster. (x, y) = waterline in the middle of the body; faces +x (flip faces -x). ~1100 wide, neck up to ~560 tall.
+    mode: hump (three back humps glide and bob) | neck (humps + long neck, small head looks around) | peek (only the head rises from the water).
+    rise 0..1 = how far it has come up out of the water (parts below the waterline are hidden)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    cid = uid()
+    blink = .12 if (t % 4.4) < .13 else 1.0
+    sink = (1 - rise) * 260
+    body = mode != "peek"
+    n = {"hump": 0.0, "neck": 1.0, "peek": .26}[mode] * (rise if mode != "peek" else 1.0)
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    o += f'<defs><clipPath id="{cid}"><rect x="-1400" y="-1600" width="2800" height="1600"/></clipPath></defs><g clip-path="url(#{cid})">'
+    sw = sn(t * .8) * 38
+    base = (150, sink - 10)
+    if body:
+        o += f'<ellipse cx="-90" cy="{sink + 30:.1f}" rx="470" ry="86" fill="{col}"/>'
+        tail = sn(t * 1.3) * 26
+        o += (f'<path d="M-470,{sink + 20:.1f} Q-580,{sink - 20:.1f} -650,{sink - 110 + tail:.1f}" fill="none" stroke="#0d0f15" stroke-width="72" stroke-linecap="round"/>'
+              f'<path d="M-470,{sink + 20:.1f} Q-580,{sink - 20:.1f} -650,{sink - 110 + tail:.1f}" fill="none" stroke="{col}" stroke-width="56" stroke-linecap="round"/>')
+        for k, hx in enumerate((-340, -130, 70)):
+            h = (118 - k * 14) * (.88 + .12 * sn(t * 1.5 + k * 1.4))
+            o += f'<ellipse cx="{hx}" cy="{sink + 12 + sn(t * 1.1 + k) * 8:.1f}" rx="104" ry="{h:.1f}" fill="{col}"/>'
+            o += f'<path d="M{hx - 60},{sink - h * .55:.1f} q60,-26 120,0" fill="none" stroke="{col2}" stroke-width="9" stroke-linecap="round" opacity=".8"/>'
+    if n > .02:
+        hx, hy = 190 + sw * 1.2, sink - 20 - 560 * n
+        d = (f'M{base[0]},{base[1] + 30:.1f} C{300 + sw:.1f},{sink - 200 * n:.1f} {70 + sw:.1f},{sink - 380 * n:.1f} {hx:.1f},{hy:.1f}')
+        o += (f'<path d="{d}" fill="none" stroke="#0d0f15" stroke-width="{58 + 30 * n:.0f}" stroke-linecap="round"/>'
+              f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{44 + 28 * n:.0f}" stroke-linecap="round"/>'
+              f'<path d="{d}" fill="none" stroke="{col2}" stroke-width="10" stroke-linecap="round" opacity=".55" transform="translate(-9,0)"/>')
+        rot = -8 + sn(t * .6) * 9 + look[0] * 5
+        lx, ly = look
+        o += (f'<g transform="translate({hx:.1f},{hy:.1f}) rotate({rot:.1f})"><ellipse cx="22" cy="0" rx="74" ry="44" fill="{col}"/>'
+              f'<path d="M40,14 Q92,10 100,24 Q86,44 30,40Z" fill="{col2}"/><path d="M52,28 Q80,32 100,26" fill="none" stroke-width="4"/>'
+              f'<circle cx="92" cy="8" r="5" fill="#0d0f15" stroke="none"/><circle cx="-14" cy="-40" r="12" fill="{col2}" stroke-width="4"/><circle cx="26" cy="-42" r="12" fill="{col2}" stroke-width="4"/>'
+              f'<ellipse cx="34" cy="-6" rx="17" ry="{17 * blink:.1f}" fill="#f4f0d0" stroke-width="4"/>'
+              f'<circle cx="{38 + lx * 5:.1f}" cy="{-6 + ly * 3:.1f}" r="{7 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/></g>')
+    o += '</g>'
+    for k, cx in enumerate(((-340, -130, 70) if body else ()) + ((190 + sw * 1.2,) if n > .02 else ())):
+        r = ((t * .7 + k * .33) % 1.0)
+        o += (f'<ellipse cx="{cx}" cy="0" rx="{110 + r * 150:.0f}" ry="{14 + r * 12:.0f}" fill="none" stroke="#d6e6ee" stroke-width="5" opacity="{(1 - r) * .6:.2f}"/>')
+    return o + '</g>'
+
+
+def _wolfhead(t, fur, fur2, eyec, look, jaw, rot, ear_tw=0.0, blink=1.0):
+    """Wolf head facing +x, centred at the origin (skull), snout reaching to x~125. jaw 0..30 degrees open."""
+    lx, ly = look
+    o = f'<g transform="rotate({rot:.1f})">'
+    o += f'<path d="M-30,-40 L-18,-112 L22,-52Z" fill="{fur}" transform="rotate({ear_tw:.1f},-10,-40)"/><path d="M8,-50 L34,-116 L58,-36Z" fill="{fur}" transform="rotate({ear_tw:.1f},30,-40)"/>'
+    o += f'<g transform="rotate({jaw:.1f},30,36)"><path d="M30,24 L124,22 L120,44 Q70,60 24,52Z" fill="{fur2}"/>'
+    if jaw > 6:
+        o += '<path d="M60,24 l8,16 l8,-16 M92,22 l6,14 l7,-14" fill="#f4f0e4" stroke-width="3"/>'
+    o += '</g>'
+    o += f'<ellipse cx="0" cy="0" rx="62" ry="58" fill="{fur}"/><path d="M26,-20 Q90,-30 128,10 L124,30 L30,34Z" fill="{fur2}"/><ellipse cx="128" cy="10" rx="14" ry="11" fill="#14131a" stroke-width="4"/>'
+    if jaw > 6:
+        o += '<path d="M60,28 l8,-14 l8,14 M92,28 l6,-12 l7,12" fill="#f4f0e4" stroke-width="3"/>'
+    o += ('<g stroke="none">' + glow(34, -14, 54, eyec, .6) + '</g>'
+          f'<ellipse cx="34" cy="-14" rx="16" ry="{12 * blink:.1f}" fill="{eyec}" stroke-width="4"/><ellipse cx="{36 + lx * 4:.1f}" cy="{-14 + ly * 2:.1f}" rx="4" ry="{10 * blink:.1f}" fill="#1a1208" stroke="none"/>'
+          '<path d="M16,-34 l32,12" stroke-width="6" fill="none"/>')
+    return o + '</g>'
+
+
+def rougarou(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), fur="#3b3446", fur2="#5a5068", eyec="#ffd23a", peek=1.0):
+    """Rougarou (Cajun swamp werewolf): hunched man-sized beast with a wolf head and claws, glowing yellow eyes. Feet at (x, y), ~480 tall.
+    mode: stand (breathes, head sways) | walk (slow stalk) | run | howl (head thrown back, jaw open) | count (crouched, tapping the ground with a claw) | peek (only the head rises from below y; peek 0..1)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    blink = .1 if (t % 4.1) < .12 else 1.0
+    lx, ly = look
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+    if mode == "peek":
+        o += f'<g transform="translate(0,{(1 - peek) * 210:.1f})">' + _wolfhead(t, fur, fur2, eyec, look, 0, sn(t * .9) * 6, sn(t * 3) * 5, blink) + '</g>'
+        return o + '</g>'
+    ph = t * (4.2 if mode == "walk" else 9.0 if mode == "run" else 0)
+    hipy = -200; lean = 22; bob = 0.0; head_rot = sn(t * .8) * 5 + lx * 5; jaw = 0.0
+    la = ra = 0.0; lk = rk = 0.0
+    a_f, e_f, a_b, e_b = 14, 8, -6, 4
+    if mode in ("walk", "run"):
+        amp = 30 if mode == "walk" else 52
+        la, ra = sn(ph) * amp, -sn(ph) * amp
+        lk, rk = max(0, sn(ph + 1.3)) * 40, max(0, sn(ph + 1.3 + _m.pi)) * 40
+        bob = -abs(sn(ph)) * (10 if mode == "walk" else 24); lean = 26 if mode == "walk" else 44
+        a_f, a_b = -sn(ph) * amp * 1.1 + 30, sn(ph) * amp * 1.1 + 20
+        e_f = e_b = 20 if mode == "walk" else 50
+    elif mode == "howl":
+        lean = -6; head_rot = -58 + sn(t * 1.4) * 4; jaw = 26 + sn(t * 2.4) * 4; bob = sn(t * 2) * 3
+        a_f, a_b = 40, -30; e_f = e_b = 30
+    elif mode == "count":
+        hipy = -120; lean = 62; bob = sn(t * 1.2) * 3
+        la, ra = 70, 58; lk, rk = -70, -62
+        a_f = 20 + max(0, sn(t * 5)) * 26; e_f = 30; a_b = 8; e_b = 12; head_rot = 28 + sn(t * 2.5) * 8
+    else:
+        bob = sn(t * 1.8) * 3; jaw = max(0, sn(t * .7)) * 6
+    ox = sn(t * 1.5) * 2
+    o += f'<g transform="translate({ox:.1f},{bob:.1f})">'
+    for sd, a, k in ((-1, la, lk), (1, ra, rk)):
+        o += _limb2(sd * 22, hipy, a * .8 + 10, 105, a * .3 - 14 + k, 105, fur, 38)
+    o += f'<g transform="translate(0,{hipy}) rotate({lean:.1f})">'
+    o += _limb2(-30, -170, -a_b, 112, -a_b - e_b, 110, fur, 30)
+    o += (f'<path d="M-52,10 Q-76,-110 -30,-190 Q40,-250 76,-176 Q96,-100 58,10Z" fill="{fur}"/>'
+          f'<path d="M-10,-60 q30,-20 54,0 M-18,-120 q36,-20 62,2" fill="none" stroke="{fur2}" stroke-width="7" stroke-linecap="round"/>'
+          f'<path d="M-52,-10 l-14,28 l20,-14 l8,26 l12,-24 l18,22 l6,-26 M30,-6 l8,26 l16,-22" fill="{fur2}" stroke-width="4"/>')
+    o += _limb2(38, -178, a_f, 112, a_f + e_f, 110, fur, 30)
+    o += f'<g transform="translate(30,-236) rotate({-lean * .6:.1f})">' + _wolfhead(t, fur, fur2, eyec, look, jaw, head_rot, sn(t * 3.3) * 4, blink) + '</g>'
+    return o + '</g></g></g>'
+
+
+def curupira(x, y, s=1.0, t=0.0, mode="stand", flip=False, look=(1, 0), skin="#cf8a58", fire="#e8421e", fire2="#ffb23a", peek=1.0):
+    """Curupira (Brazilian forest spirit): small figure with a blazing red hair, pointed ears and FEET THAT POINT BACKWARDS. Feet at (x, y), ~340 tall; faces +x.
+    mode: stand | walk (walks forward on backward feet) | wave (one arm waves, grin) | angry (stomps, fists, hair roars) | whistle (puffed mouth, music notes) | offer (arm out to receive a gift) | peek (head rises from below y, peek 0..1)."""
+    sn = _m.sin
+    f = -1 if flip else 1
+    blink = .1 if (t % 3.6) < .12 else 1.0
+    lx, ly = look
+    big = 1.35 if mode == "angry" else 1.0
+    o = f'<g transform="translate({x},{y}) scale({f * s},{s})" {OUT}>'
+
+    def head(hx, hy, rot):
+        fl = ""
+        for k, (dx, h) in enumerate(((-62, 120), (-34, 170), (0, 200), (34, 165), (62, 115), (-84, 70), (84, 66))):
+            fh = (h * big) * (.85 + .15 * sn(t * 7 + k * 1.7)); sway = sn(t * 5 + k * 2.1) * 12
+            fl += (f'<path d="M{dx - 30},-30 Q{dx - 36 + sway * .5:.0f},{-fh * .55:.0f} {dx + sway:.0f},{-fh:.0f} Q{dx + 36 + sway * .5:.0f},{-fh * .5:.0f} {dx + 30},-30Z" fill="{fire}"/>'
+                   f'<path d="M{dx - 14},-34 Q{dx - 16 + sway * .4:.0f},{-fh * .4:.0f} {dx + sway * .8:.0f},{-fh * .66:.0f} Q{dx + 18},{-fh * .35:.0f} {dx + 14},-34Z" fill="{fire2}" stroke="none"/>')
+        er = 9 if mode != "angry" else 8
+        o2 = f'<g transform="translate({hx:.1f},{hy:.1f}) rotate({rot:.1f})"><g stroke="none">' + glow(0, -60, 150, "#ff7a2a", .35) + '</g>' + fl
+        o2 += (f'<path d="M-52,-6 L-96,-40 L-60,-48Z M52,-6 L96,-40 L60,-48Z" fill="{skin}" stroke-width="5"/>'
+               f'<circle cx="0" cy="0" r="58" fill="{skin}"/><path d="M-50,-30 Q0,-60 50,-30 Q40,-52 0,-54 Q-40,-52 -50,-30Z" fill="{fire}" stroke="none"/>')
+        for ex in (-21, 21):
+            o2 += (f'<ellipse cx="{ex}" cy="2" rx="{er + 3}" ry="{(er + 4) * blink:.1f}" fill="#fff" stroke-width="3"/>'
+                   f'<circle cx="{ex + lx * 4:.1f}" cy="{2 + ly * 3:.1f}" r="{5 * (1 if blink > .5 else .1):.1f}" fill="#0d0f15" stroke="none"/>')
+        if mode == "angry":
+            o2 += '<path d="M-40,-20 l28,12 M40,-20 l-28,12" stroke-width="7" fill="none"/><path d="M-22,30 q22,-18 44,0 q-22,12 -44,0Z" fill="#3a0e0e" stroke-width="4"/><path d="M-14,30 l5,8 l5,-8 M4,30 l5,8 l5,-8" fill="#f4f0e4" stroke-width="2"/>'
+        elif mode == "whistle":
+            o2 += '<circle cx="0" cy="32" r="9" fill="#3a0e0e" stroke-width="4"/><path d="M-30,-14 q14,-6 24,0 M30,-14 q-14,-6 -24,0" fill="none" stroke-width="4"/>'
+        elif mode in ("wave", "offer", "walk", "stand", "peek"):
+            o2 += '<path d="M-22,26 q22,22 44,0Z" fill="#3a0e0e" stroke-width="4"/>'
+        return o2 + '</g>'
+
+    if mode == "peek":
+        o += f'<g transform="translate(0,{(1 - peek) * 230:.1f})">' + head(0, -90, sn(t * 1.1) * 5) + '</g>'
+        return o + '</g>'
+    ph = t * (5.0 if mode == "walk" else 0)
+    sw = sn(ph) * 24 if mode == "walk" else 0
+    bob = -abs(sn(ph)) * 8 if mode == "walk" else sn(t * 1.7) * 3
+    if mode == "angry":
+        bob = -abs(sn(t * 7)) * 22
+    a_f, e_f, a_b, e_b = 8, 8, -8, -8
+    if mode == "walk":
+        a_f, a_b = -sw * .8, sw * .8
+    elif mode == "wave":
+        a_f = 148 + sn(t * 6) * 14; e_f = 20 + sn(t * 6) * 16; a_b = -6
+    elif mode == "angry":
+        a_f, e_f, a_b, e_b = 54 + sn(t * 9) * 10, 80, -54 - sn(t * 9) * 10, -80
+    elif mode == "offer":
+        a_f, e_f = 78 + sn(t * 2) * 4, 8
+    elif mode == "whistle":
+        a_f, a_b = 24, -24; e_f, e_b = 70, -70
+    o += f'<g transform="translate(0,{bob:.1f})">'
+    for sd, a in ((-1, sw), (1, -sw)):
+        hx0 = sd * 20
+        k = 18 if mode == "angry" and sd > 0 else 0
+        o += _limb2(hx0, -150, a * .4, 78, a * .3, 78 - k, skin, 26, foot=False)
+        fx = hx0 + _m.sin(_m.radians(a * .4)) * 78 + _m.sin(_m.radians(a * .3)) * (78 - k)
+        fy = -150 + _m.cos(_m.radians(a * .4)) * 78 + _m.cos(_m.radians(a * .3)) * (78 - k)
+        o += (f'<path d="M{fx + 20:.1f},{fy - 6:.1f} Q{fx + 24:.1f},{fy + 18:.1f} {fx:.1f},{fy + 16:.1f} L{fx - 40:.1f},{fy + 16:.1f} Q{fx - 52:.1f},{fy - 10:.1f} {fx - 28:.1f},{fy - 10:.1f}Z" fill="{skin}"/>'
+              f'<path d="M{fx - 40:.1f},{fy + 6:.1f} h-2 M{fx - 22:.1f},{fy + 16:.1f} v0" stroke-width="3" fill="none"/>'
+              + "".join(f'<circle cx="{fx - 44 + q * 10:.1f}" cy="{fy + 4 - q * 2:.1f}" r="7" fill="{skin}" stroke-width="3"/>' for q in range(3)))
+    o += f'<path d="M-44,-140 Q-52,-250 -30,-290 L30,-290 Q52,-250 44,-140Z" fill="{skin}"/>'
+    o += '<path d="M-48,-150 Q0,-120 48,-150 L40,-100 Q0,-80 -40,-100Z" fill="#3f8a4a" stroke-width="5"/><path d="M-20,-120 l-6,24 M0,-116 v30 M20,-120 l6,24" stroke-width="3" fill="none"/>'
+    o += f'<g transform="translate(-48,-262)">{_limb2(0, 0, a_b, 70, a_b + e_b, 68, skin, 22)}</g>'
+    o += f'<g transform="translate(48,-262)">{_limb2(0, 0, a_f, 70, a_f + e_f, 68, skin, 22)}</g>'
+    o += head(sn(t * 1.7) * 2 + lx * 3, -346 + (4 if mode == "angry" else 0), sn(t * .9) * 4 + (lx * 4))
+    return o + '</g></g>'

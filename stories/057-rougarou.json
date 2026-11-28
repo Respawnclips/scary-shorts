@@ -1,0 +1,131 @@
+{
+  "id": "057-rougarou",
+  "legend": "The Rougarou (Louisiana bayou, Cajun swamp werewolf legend)",
+  "lines": [
+    "Deep in the Louisiana swamps, the Cajuns whisper about the rougarou.",
+    "They say it is a man cursed to become a beast with a wolf's head.",
+    "Legend says the curse falls on anyone who skips Lent for seven years.",
+    "On foggy nights, a lantern swings along the bayou path.",
+    "Something big follows, and glowing eyes shine between the cypress trees.",
+    "Grandparents warn that it chases anyone who is out too late.",
+    "They say thirteen coins at your door make it count until sunrise.",
+    "At sunrise, the beast is gone.",
+    "Is it just a swamp story? What do you think?"
+  ],
+  "scenes": [
+    {
+      "name": "howl",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 0,
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    {
+      "name": "lent",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 2,
+      "focus": [
+        0.6,
+        0.8
+      ],
+      "fog": false
+    },
+    {
+      "name": "path",
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 3,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "eyes",
+      "move": [
+        0,
+        -10,
+        1.1,
+        1.28
+      ],
+      "from": 4,
+      "focus": [
+        0.3,
+        0.8
+      ]
+    },
+    {
+      "name": "porch",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 5,
+      "focus": [
+        0.7,
+        0.85
+      ]
+    },
+    {
+      "name": "coins",
+      "move": [
+        0,
+        10,
+        1.1,
+        1.26
+      ],
+      "from": 6,
+      "focus": [
+        0.4,
+        0.9
+      ],
+      "fog": false
+    },
+    {
+      "name": "dawn",
+      "move": [
+        -8,
+        0,
+        1.08,
+        1.24
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [
+    3
+  ],
+  "title": "The Rougarou: The Swamp Beast That Must Count Your Coins #shorts",
+  "description": "In the Louisiana bayou, Cajuns tell of the rougarou, a cursed man with a wolf's head who hunts on foggy nights. They say thirteen coins at your door can stop it.\n\n#scarystories #rougarou #louisiana #cajun #legend #shorts",
+  "tags": [
+    "scarystories",
+    "rougarou",
+    "louisiana",
+    "cajun",
+    "legend",
+    "creepy",
+    "shorts"
+  ]
+}

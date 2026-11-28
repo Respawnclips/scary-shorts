@@ -59,3 +59,6 @@ Each legend gets an English version (YouTube) and a Dutch version (TikTok, id en
 | 053 | 053-bloody-benders (+ -nl) | The Bloody Benders (Kansas, USA, 1873 inn legend) | 2026-11-27 |
 | 054 | 054-island-of-dolls (+ -nl) | The Island of the Dolls (Xochimilco, Mexico, legend) | 2026-11-27 |
 | 055 | 055-dover-demon (+ -nl) | The Dover Demon (Dover, Massachusetts, USA, April 1977) | 2026-11-27 |
+| 056 | 056-loch-ness (+ -nl) | The Loch Ness Monster (Scotland, May 1933 sighting, Saint Columba legend) | 2026-11-28 |
+| 057 | 057-rougarou (+ -nl) | The Rougarou (Louisiana bayou, Cajun swamp werewolf legend) | 2026-11-28 |
+| 058 | 058-curupira (+ -nl) | The Curupira (Amazon rainforest, Brazilian forest-spirit folklore) | 2026-11-28 |

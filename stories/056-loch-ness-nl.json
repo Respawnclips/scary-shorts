@@ -1,0 +1,129 @@
+{
+  "id": "056-loch-ness-nl",
+  "lang": "nl",
+  "legend": "The Loch Ness Monster (Scotland, May 1933 sighting, Saint Columba legend)",
+  "lines": [
+    "Loch Ness, Schotland, mei negentien drieëndertig.",
+    "Een hotelmanager en zijn vrouw rijden langs de oever.",
+    "Ze zeggen dat het donkere water ineens begint te borrelen.",
+    "Een enorme bult komt omhoog, zo groot als een walvis.",
+    "Dan tilt een lange nek op, en een klein hoofd kijkt rond.",
+    "De krant noemt het een monster, en de hele wereld gaat los.",
+    "Een beroemde foto werd later een vervalsing genoemd.",
+    "Maar volgens de legende leeft hier al een beest sinds de tijd van Sint Columba.",
+    "Is het een echt dier, of gewoon een legende? Wat denk jij?"
+  ],
+  "scenes": [
+    {
+      "name": "shore",
+      "move": [
+        -12,
+        0,
+        1.08,
+        1.2
+      ],
+      "from": 0,
+      "focus": [
+        0.5,
+        0.85
+      ]
+    },
+    {
+      "name": "humps",
+      "move": [
+        10,
+        0,
+        1.1,
+        1.26
+      ],
+      "from": 2,
+      "focus": [
+        0.55,
+        0.75
+      ]
+    },
+    {
+      "name": "neck",
+      "move": [
+        0,
+        -10,
+        1.12,
+        1.3
+      ],
+      "from": 4,
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "paper",
+      "move": [
+        0,
+        10,
+        1.08,
+        1.22
+      ],
+      "from": 5,
+      "focus": [
+        0.4,
+        0.45
+      ],
+      "fog": false
+    },
+    {
+      "name": "photo",
+      "move": [
+        -10,
+        0,
+        1.1,
+        1.24
+      ],
+      "from": 6,
+      "focus": [
+        0.45,
+        0.4
+      ],
+      "fog": false
+    },
+    {
+      "name": "columba",
+      "move": [
+        10,
+        0,
+        1.08,
+        1.22
+      ],
+      "from": 7,
+      "focus": [
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "name": "deep",
+      "move": [
+        0,
+        -12,
+        1.1,
+        1.3
+      ],
+      "from": 8,
+      "focus": [
+        0.5,
+        0.8
+      ]
+    }
+  ],
+  "flash_lines": [],
+  "title": "Het monster van Loch Ness: de nacht dat het water begon te borrelen",
+  "description": "In mei 1933 zagen een hotelmanager en zijn vrouw het water van Loch Ness borrelen en een enorm wezen opstijgen. De legende is veel ouder.\n\n#engeverhalen #lochness #nessie #schotland #legende #foryou #foryoupage",
+  "tags": [
+    "engeverhalen",
+    "lochness",
+    "nessie",
+    "schotland",
+    "legende",
+    "griezelig"
+  ]
+}
